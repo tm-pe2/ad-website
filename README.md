@@ -16,8 +16,11 @@ APP_KEY=
 ```
 then in your terminal run `php artisan key:generate`
 
-To serve run `php artisan serve`.
-You can also immediately serve with `./composer.[sh/bat] serve`
+You can `exit` the terminal and serve with `./composer.[sh/bat] serve`.
+
+To serve in the terminal run `php artisan serve` (on windows you need to add `--host 0.0.0.0`, the script does this for you).
+
+The development server is now available on [127.0.0.1:8000](http://127.0.0.1:8000)
 
 ## Native (untested)
 
