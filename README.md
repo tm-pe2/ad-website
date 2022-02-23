@@ -1,9 +1,32 @@
 # AD Website
 
-## Getting started
+## Docker
+
+We highly recommend using the docker to ensure cross-platform developement.
+
+Make sure you have docker install, then run according to your platform:
+- Linux: (`chmod +x ./composer.sh`) `./composer.sh`
+- Windows: `./composer.bat`
+
+Then run the command `composer update`.
+
+If this is the first time you run this you need to create a `.env` file with the contents:
+```
+APP_KEY=
+```
+then in your terminal run `php artisan key:generate`
+
+You can `exit` the terminal and serve with `./composer.[sh/bat] serve`.
+
+To serve in the terminal run `php artisan serve` (on windows you need to add `--host 0.0.0.0`, the script does this for you).
+
+The development server is now available on [127.0.0.1:8000](http://127.0.0.1:8000)
+
+## Native (untested)
 
 To get started make sure u have `php` installed and `composer` (or other alternatives from their getting started website).
 
+Run `composer install (--ignore-platform-reqs)`  
 Run `composer update`.
 
 Create a `.env` file with
