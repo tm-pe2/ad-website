@@ -32,4 +32,4 @@ jobs:
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqle
-      run: vendor/bin/phpunitit
+      run: vendor/bin/phpunit
