@@ -1,58 +1,27 @@
-# AD Website
+# AdFrontend
 
-## Docker
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.4.
 
-We highly recommend using the docker to ensure cross-platform developement.
+## Development server
 
-Make sure you have docker install, then run according to your platform:
-- Linux: (`chmod +x ./composer.sh`) `./composer.sh`
-- Windows: `./composer.bat`
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-Then run the command `composer update`.
+## Code scaffolding
 
-If this is the first time you run this you need to create a `.env` file with the contents:
-```
-APP_KEY=
-```
-then in your terminal run `php artisan key:generate`
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-You can `exit` the terminal and serve with `./composer.[sh/bat] serve`.
+## Build
 
-To serve in the terminal run `php artisan serve` (on windows you need to add `--host 0.0.0.0`, the script does this for you).
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-The development server is now available on [127.0.0.1:8000](http://127.0.0.1:8000)
+## Running unit tests
 
-## Native (untested)
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-To get started make sure u have `php` installed and `composer` (or other alternatives from their getting started website).
+## Running end-to-end tests
 
-Run `composer install (--ignore-platform-reqs)`  
-Run `composer update`.
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-Create a `.env` file with
-```
-APP_KEY=
-```
-as the content. Then run `php artisan key:generate`.
+## Further help
 
-Start the dev server with `php artisan serve`.
-
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
