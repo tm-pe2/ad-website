@@ -32,7 +32,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 To create a web page in angular we need to create a component and add it to the routing.
 Start off by generating a component with a name you want
 
-`ng generate component component-name`
+`ng generate component new`
 
 Now navigate to `app-routing.module.ts` In src/app
 In this file you will see a structure like this
@@ -44,12 +44,12 @@ const routes: Routes = [
 
 To add your route, add a new object in the array for example:
 
-`{path: 'component-name', component: NewComponent}`
+`{path: 'new', component: NewComponent}`
 
 If you are using vscode, the component will be automatically imported, if not at the top of the file you will have to add:
 
-`import { NewComponent } from './component-name/new.component';`
+`import { NewComponent } from './new/new.component';`
 
 Run `ng serve` to start the local web server and browse to `localhost:4200`
-Adding your route to the end of this like: `localhost:4200/component-name` will browse to your new page
-This page will display `component-name works!` if you did everything correctly, you can now start creating your page in this component!
+Adding your route to the end of this like: `localhost:4200/new` will browse to your new page
+This page will display `new works!` if you did everything correctly, you can now start creating your page in this component!
