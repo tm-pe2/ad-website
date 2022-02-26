@@ -27,5 +27,5 @@ jobs:
 
       - name: npm install, run test and build production
         run: |
-          npm ci
+          npm i
           npm run test:prod
