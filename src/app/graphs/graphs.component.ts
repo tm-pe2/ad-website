@@ -19,20 +19,26 @@ export class GraphsComponent implements OnInit {
       'April',
       'May',
       'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
     ];
   
     const data = {
       labels: labels,
       datasets: [{
         label: 'My First dataset',
-        backgroundColor: 'rgb(255, 99, 132)',
+        backgroundColor: ['rgb(255, 99, 132)', 'rgb(255, 255, 0)'],
         borderColor: 'rgb(255, 99, 132)',
-        data: [0, 10, 5, 2, 20, 30, 45],
+        data: [0, 10, 5, 2, 20, 30, 45, 65, 32, 42, 14, 30],
       }]
     };
   
     const config: any = {
-      type: 'line',
+      type: 'bar',
       data: data,
       options: {}
     };
