@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser'
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,9 +9,12 @@ import { Title } from '@angular/platform-browser'
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private titleService: Title) { }
+  title: string = 'Dashboard'
+
+  constructor(private titleService: Title, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.titleService.setTitle('Dashboard')
+    this.title = 'Dashboard ' + this.activatedRoute.snapshot.paramMap.getAll("userType").join(' ')
   }
 }

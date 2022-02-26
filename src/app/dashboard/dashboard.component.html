@@ -1,9 +1,26 @@
 <div class="bg-slate-100 min-h-screen">
-    <h1 class="text-5xl font-bold">Dashboard</h1>
+    <h1 class="text-5xl font-bold p-5">{{ title }}</h1>
     
-    <div class="flex flex-wrap">
-        <app-small-card [title]="'Manage employees'"></app-small-card>
-        <app-small-card [title]="'Manage clients'"></app-small-card>
-        <app-small-card [title]="'Manage invoices'"></app-small-card>
+    <div class="flex flex-wrap overflow">
+        <app-small-card [title]="'Manage employees'" [href]="'manage-employees'"></app-small-card>
+        <app-small-card [title]="'Manage clients'" [href]="'manage-clients'"></app-small-card>
+        <app-small-card [title]="'Manage invoices'" [href]="'manage-invoices'"></app-small-card>
+
+        <div class="w-full lg:w-2/3 p-5 h-[32rem]">
+            <a class="cursor-pointer flex flex-row bg-white shadow-lg rounded-lg p-5 transition-all hover:shadow-xl hover:-mt-2 h-full">
+                <img src="../../assets/img/dashboard/person.webp" alt="test" class="rounded h-32">
+                <div class="flex">
+                    <h1 class="text-xl font-bold">Your consumption/tickets/prices</h1>
+                </div>
+            </a>
+        </div>
+        <div class="w-full lg:w-1/3 p-5 h-[32rem]">
+            <a class="cursor-pointer flex flex-row bg-white shadow-lg rounded-lg p-5 transition-all hover:shadow-xl hover:-mt-2 h-full">
+                <img src="../../assets/img/dashboard/person.webp" alt="test" class="rounded h-32">
+                <div class="flex">
+                    <h1 class="text-xl font-bold">Your profile</h1>
+                </div>
+            </a>
+        </div>
     <div>
 </div>
