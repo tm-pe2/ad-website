@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Chart } from 'chart.js';
-
+import { Chart, registerables} from 'chart.js';
 @Component({
   selector: 'app-graphs',
   templateUrl: './graphs.component.html',
@@ -8,7 +7,9 @@ import { Chart } from 'chart.js';
 })
 export class GraphsComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    Chart.register(...registerables);
+   }
 
   ngOnInit(): void {
     const labels = [
@@ -31,7 +32,7 @@ export class GraphsComponent implements OnInit {
     };
   
     const config: any = {
-      type: 'doughnut',
+      type: 'line',
       data: data,
       options: {}
     };
