@@ -6,7 +6,7 @@
         <app-small-card [title]="'Manage clients'" [href]="'manage-clients'"></app-small-card>
         <app-small-card [title]="'Manage invoices'" [href]="'manage-invoices'"></app-small-card>
 
-        <div class="w-full lg:w-2/3 p-5 h-[32rem]">
+        <!-- <div class="w-full lg:w-2/3 p-5 h-[32rem]">
             <a class="cursor-pointer flex flex-row bg-white shadow-lg rounded-lg p-5 transition-all hover:shadow-xl hover:-mt-2 h-full">
                 <img src="../../assets/img/dashboard/person.webp" alt="test" class="rounded h-32">
                 <div class="flex">
@@ -21,6 +21,13 @@
                     <h1 class="text-xl font-bold">Your profile</h1>
                 </div>
             </a>
-        </div>
+        </div> -->
+
+        <app-big-card>
+            <div class="bg-blue-500 w-full h-1/2"></div>
+            <div class="bg-yellow-300 w-full h-1/2"></div>
+        </app-big-card>
+
+        <app-profile-card></app-profile-card>
     <div>
 </div>
