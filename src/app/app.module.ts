@@ -21,6 +21,7 @@ import { ClientTicketsComponent } from './ticketing/client-tickets/client-ticket
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TicketingComponent } from './ticketing/ticketing.component';
 import { ManageEmployeesComponent } from './manage-employees/manage-employees.component';
+import { EmployeeCardComponent } from './employee-card/employee-card.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ManageEmployeesComponent } from './manage-employees/manage-employees.co
     ManageTickets,
     ClientTicketsComponent, 
     TicketingComponent,
-    ManageEmployeesComponent
+    ManageEmployeesComponent,
+    EmployeeCardComponent
   ],
   imports: [
     BrowserModule,
