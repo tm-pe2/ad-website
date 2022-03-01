@@ -7,6 +7,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SmallCardComponent } from './dashboard/small-card/small-card.component';
 import { BigCardComponent } from './dashboard/big-card/big-card.component';
 import { ProfileCardComponent } from './dashboard/profile-card/profile-card.component';
+import { SmallGraphComponent } from './graphs/small-graph/small-graph.component';
+import { MediumGraphComponent } from './graphs/medium-graph/medium-graph.component';
+import { BigGraphComponent } from './graphs/big-graph/big-graph.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,10 @@ import { ProfileCardComponent } from './dashboard/profile-card/profile-card.comp
     DashboardComponent,
     SmallCardComponent,
     BigCardComponent,
-    ProfileCardComponent
+    ProfileCardComponent,
+    SmallGraphComponent,
+    MediumGraphComponent,
+    BigGraphComponent
   ],
   imports: [
     BrowserModule,
