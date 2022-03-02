@@ -1,0 +1,12 @@
+<div>
+    <div *ngFor="let i of fields">
+        <!-- Iterate over all input fields, display -->
+        {{i}}
+    </div>
+    <div [hidden]="Completed == true">
+        Completed: <input type="checkbox" checked=>
+    </div>    
+    <div [hidden]="Completed == false">
+        Completed: <input type="checkbox">
+    </div>
+</div>
