@@ -13,10 +13,20 @@
             <app-small-card *ngIf="user?.type == 'Employee'" [title]="'Manage clients'" [href]="'manage-clients'"></app-small-card>
             <app-small-card *ngIf="user?.type == 'Employee'" [title]="'Manage invoices'" [href]="'manage-invoices'"></app-small-card>
 
-            <app-big-card>
+            <app-big-card *ngIf="user?.type == 'Employee'" [title]="'Prices'">
+                <app-graphs></app-graphs>
+            </app-big-card>
+
+            <app-big-card *ngIf="user?.type == 'Technician'" [title]="'Tickets'">
                 <div class="bg-blue-500 w-full h-1/2"></div>
                 <div class="bg-yellow-300 w-full h-1/2"></div>
             </app-big-card>
+
+            <app-big-card *ngIf="user?.type == 'User'" [title]="'Your consumption'">
+                <app-graphs></app-graphs>
+            </app-big-card>
+
+
             <app-profile-card [user]="user"></app-profile-card>
         <div>
     </div>
