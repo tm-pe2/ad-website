@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { User } from '../dashboard.component';
 
 @Component({
   selector: 'app-profile-card',
@@ -8,11 +9,11 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ProfileCardComponent implements OnInit {
 
+  @Input() user?: User
   @Input() title: string = 'Your profile';
 
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }

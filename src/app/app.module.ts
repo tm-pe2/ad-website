@@ -10,6 +10,9 @@ import { ProfileCardComponent } from './dashboard/profile-card/profile-card.comp
 import { SmallGraphComponent } from './graphs/small-graph/small-graph.component';
 import { MediumGraphComponent } from './graphs/medium-graph/medium-graph.component';
 import { BigGraphComponent } from './graphs/big-graph/big-graph.component';
+import { ButtonComponent } from './dashboard/button/button.component';
+import { TicketingComponent } from './ticketing/ticketing.component';
+import { GraphsComponent } from './graphs/graphs.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { BigGraphComponent } from './graphs/big-graph/big-graph.component';
     ProfileCardComponent,
     SmallGraphComponent,
     MediumGraphComponent,
-    BigGraphComponent
+    BigGraphComponent,
+    ButtonComponent,
+    TicketingComponent,
+    GraphsComponent
   ],
   imports: [
     BrowserModule,
