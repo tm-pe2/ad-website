@@ -1,33 +1,24 @@
-<div class="bg-slate-100 min-h-screen">
-    <h1 class="text-5xl font-bold p-5">{{ title }}</h1>
-    
-    <div class="flex flex-wrap overflow">
-        <app-small-card [title]="'Manage employees'" [href]="'manage-employees'"></app-small-card>
-        <app-small-card [title]="'Manage clients'" [href]="'manage-clients'"></app-small-card>
-        <app-small-card [title]="'Manage invoices'" [href]="'manage-invoices'"></app-small-card>
+<div class="bg-slate-100 min-h-screen flex flex-row">
+    <div class="2xl:w-1/6"></div>
+    <div class="2xl:w-4/6">
+        <app-button [href]="'dashboard/0'">0</app-button>
+        <app-button [href]="'dashboard/1'">1</app-button>
+        <app-button [href]="'dashboard/2'">2</app-button>
+        <h1 class="text-5xl font-bold p-5">{{ title }}
+        </h1>
+        
+        <div class="flex flex-wrap overflow">
 
-        <!-- <div class="w-full lg:w-2/3 p-5 h-[32rem]">
-            <a class="cursor-pointer flex flex-row bg-white shadow-lg rounded-lg p-5 transition-all hover:shadow-xl hover:-mt-2 h-full">
-                <img src="../../assets/img/dashboard/person.webp" alt="test" class="rounded h-32">
-                <div class="flex">
-                    <h1 class="text-xl font-bold">Your consumption/tickets/prices</h1>
-                </div>
-            </a>
-        </div>
-        <div class="w-full lg:w-1/3 p-5 h-[32rem]">
-            <a class="cursor-pointer flex flex-row bg-white shadow-lg rounded-lg p-5 transition-all hover:shadow-xl hover:-mt-2 h-full">
-                <img src="../../assets/img/dashboard/person.webp" alt="test" class="rounded h-32">
-                <div class="flex">
-                    <h1 class="text-xl font-bold">Your profile</h1>
-                </div>
-            </a>
-        </div> -->
+            <app-small-card *ngIf="user?.type == 'Employee'" [title]="'Manage employees'" [href]="'manage-employees'"></app-small-card>
+            <app-small-card *ngIf="user?.type == 'Employee'" [title]="'Manage clients'" [href]="'manage-clients'"></app-small-card>
+            <app-small-card *ngIf="user?.type == 'Employee'" [title]="'Manage invoices'" [href]="'manage-invoices'"></app-small-card>
 
-        <app-big-card>
-            <div class="bg-blue-500 w-full h-1/2"></div>
-            <div class="bg-yellow-300 w-full h-1/2"></div>
-        </app-big-card>
-
-        <app-profile-card></app-profile-card>
-    <div>
+            <app-big-card>
+                <div class="bg-blue-500 w-full h-1/2"></div>
+                <div class="bg-yellow-300 w-full h-1/2"></div>
+            </app-big-card>
+            <app-profile-card [user]="user"></app-profile-card>
+        <div>
+    </div>
+    <div class="2xl:w-1/6"></div>
 </div>
