@@ -18,7 +18,6 @@ export class EditModalComponent implements OnInit {
   }
   confirmDelete(id: string){
     document.getElementById(id)!.style.display = "none";
-
   }
   closeModal(id: string){
     document.getElementById(id)!.style.display = "none";
