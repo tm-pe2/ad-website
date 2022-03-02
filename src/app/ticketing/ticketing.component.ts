@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UtilService } from '../util.service';
 
 @Component({
   selector: 'app-ticketing',
@@ -12,9 +11,8 @@ export class TicketingComponent implements OnInit {
 
   ngOnInit(): void {
 
+
   }
-
-
 
 }
 
@@ -27,4 +25,8 @@ export class TableRow {
   constructor() {}
   @Input() fields!: Array<String>;
   @Input() header: Boolean = false;
+
+  showModal() {
+    document.getElementById("my-modal")!.style.display = "block";
+  }
 }

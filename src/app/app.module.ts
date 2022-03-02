@@ -6,14 +6,17 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TableRow, TicketingComponent } from './ticketing/ticketing.component';
 import { UtilService } from './util.service';
+import { DeleteModalComponent } from './ticketing/delete-modal/delete-modal.component';
+import { EditModalComponent } from './ticketing/edit-modal/edit-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     TicketingComponent,
-    TableRow
-
+    TableRow,
+    DeleteModalComponent,
+    EditModalComponent
   ],
   imports: [
     BrowserModule,
