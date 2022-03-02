@@ -1,0 +1,18 @@
+<!--container to place all the cards in (place all cards in this container)-->
+<div class="p-4 max-w-xs">
+    <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden shadow-xl">
+        
+        <img class="lg:h-72 md:h-48 w-full object-cover object-center rounded-full"
+            src={{employee?.imageUrl}} alt="personPlaceholder">
+        
+        <!--Make clicking div go to details page to edit employee-->
+        <div class="p-6 hover:bg-gray-700 hover:text-white transition duration-300 ease-in cursor-pointer">
+            <h1 class="text-2xl font-medium text-indigo-300 mb-1">{{employee?.name}}</h1>
+            <h1 class="text-lg font-semibold mb-3">{{employee?.department}}</h1>
+            <p class="leading-relaxed mb-3">
+                {{employee?.description}}
+            </p>
+            
+        </div>
+    </div>
+</div>
