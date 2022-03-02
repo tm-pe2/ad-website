@@ -1,13 +1,13 @@
 <div class="p-4 sm:w-full lg:w-1/2">
     <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden shadow-xl hover:scale-110">
         <!--title and graph-->
-        <h1 class="text-base font-bold m-2">Insert Title Here</h1><hr>
-        <img src="https://chartio.com/assets/12c091/tutorials/charts/line-charts/3d65abd1a3336e11e14ccac5cd8cbff37c274e9c734cfd190c2bc6ac39072199/line-chart-bestpractices-2a.png" alt="image" class="h-1/2 w-full object-center"><hr>
+        <h1 class="text-base font-bold m-2">{{graph.title}}</h1><hr>
+        <img src={{graph.imageUrl}} alt="image" class="h-1/2 w-full object-center"><hr>
         
         <div class="p-6 hover:bg-indigo-700 hover:text-white transition duration-300 ease-in">
             <!--text under graph-->                      
             <p class="leading-relaxed mb-3">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia nobis harum unde dolorem recusandae voluptatibus autem, corporis mollitia! Voluptatem voluptate nostrum nihil qui, dolores error?
+                {{graph.description}}
             </p>
             <div class="flex items-center flex-wrap">
                 <a href="#" class="text-indigo-300 inline-flex items-center md:mb-2 lg:mb-0">
