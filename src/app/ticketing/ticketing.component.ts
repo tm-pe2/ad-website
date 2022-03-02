@@ -1,4 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ComponentRef, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { DeleteModalComponent } from './delete-modal/delete-modal.component';
+import { EditModalComponent } from './edit-modal/edit-modal.component';
+
 
 @Component({
   selector: 'app-ticketing',
@@ -8,18 +11,21 @@ import { Component, Input, OnInit } from '@angular/core';
 export class TicketingComponent implements OnInit {
   //dummy data
   fields: Array<FieldData> = [
-   {name: 'Dries', issue: 'This is a test issue', description: 'Test issue' , id:0},
-   {name: "Peter", issue: "Laptop start met een groen scherm", description: "Mijn laptop heeft bij het opstarten een groen scherm, en soms start hij helemaal niet op!", id:1},
-   {name: "Dries", issue: "Windows XP is gehacked en FB is geblokkeerd!", description: "Bij het inloggen op windows XP wordt mijn scherm rood en verschijnt een melding dat ik Bitcoin moet storten op hun adres om toegang te krijgen tot mijn bestanden, hierdoor kan ik niet op Facebook!", id:2}, 
+    { name: 'Dries', issue: 'This is a test issue', description: 'Test issue', id: 0 },
+    { name: "Peter", issue: "Laptop start met een groen scherm", description: "Mijn laptop heeft bij het opstarten een groen scherm, en soms start hij helemaal niet op!", id: 1 },
+    { name: "Dries", issue: "Windows XP is gehacked en FB is geblokkeerd!", description: "Bij het inloggen op windows XP wordt mijn scherm rood en verschijnt een melding dat ik Bitcoin moet storten op hun adres om toegang te krijgen tot mijn bestanden, hierdoor kan ik niet op Facebook!", id: 2 },
   ]
 
-  constructor() { 
+
+
+  constructor() {
   }
 
   ngOnInit(): void {
 
 
   }
+
 
 }
 
@@ -30,16 +36,49 @@ export class TicketingComponent implements OnInit {
 
 export class TableRow {
 
-  constructor() {}
+  fields: Array<FieldData> = [
+    { name: 'Dries', issue: 'This is a test issue', description: 'Test issue', id: 0 },
+    { name: "Peter", issue: "Laptop start met een groen scherm", description: "Mijn laptop heeft bij het opstarten een groen scherm, en soms start hij helemaal niet op!", id: 1 },
+    { name: "Dries", issue: "Windows XP is gehacked en FB is geblokkeerd!", description: "Bij het inloggen op windows XP wordt mijn scherm rood en verschijnt een melding dat ik Bitcoin moet storten op hun adres om toegang te krijgen tot mijn bestanden, hierdoor kan ik niet op Facebook!", id: 2 },
+  ]
+
+
+  @ViewChild('modal', { read: ViewContainerRef }) entry?: ViewContainerRef;
+  ecomponent?: ComponentRef<EditModalComponent>;
+  dcomponent?: ComponentRef<DeleteModalComponent>;
+  subscribtion: any;
+  constructor() { }
   @Input() rows?: Array<FieldData>;
   @Input() header: Boolean = false;
 
-  showModal(id:string) {
-      console.log(id)
-      document.getElementById(id)!.style.display = "block";
-      document.getElementById(id)!.style.display = "block";
+
+
+
+  ngOnDestroy(): void {
+    this.ecomponent?.destroy();
+    this.dcomponent?.destroy();
+  }
+  createEditModal(id: number): void {
+    this.entry?.clear();
+    this.ecomponent = this.entry?.createComponent(EditModalComponent);
+    this.ecomponent!.instance.data = this.fields[id];
+    this.ecomponent!.instance.parent = this;
+  }
+  destroyEditModal() {
+    this.ecomponent?.destroy();
+  }
+
+  createDeleteModal(id: number): void {
+    this.entry?.clear();
+    this.dcomponent = this.entry?.createComponent(DeleteModalComponent);
+    this.dcomponent!.instance.data = this.fields.find(x => x.id === id) || this.fields[0];
+    this.dcomponent!.instance.parent = this;
 
   }
+  destroyDeleteModal() {
+    this.dcomponent?.destroy();
+  }
+
   limitDescription(description: String) {
     if (description.length > 150) {
       return description.substring(0, 150) + "...";
@@ -48,9 +87,9 @@ export class TableRow {
   }
 }
 
-export interface FieldData{
+export interface FieldData {
   name: String;
   issue: String;
   description: String;
-  id?: Number;
+  id?: number;
 }
