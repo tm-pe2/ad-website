@@ -8,6 +8,8 @@ import { SmallCardComponent } from './dashboard/small-card/small-card.component'
 import { BigCardComponent } from './dashboard/big-card/big-card.component';
 import { ProfileCardComponent } from './dashboard/profile-card/profile-card.component';
 import { ButtonComponent } from './dashboard/button/button.component';
+import { TicketingComponent } from './ticketing/ticketing.component';
+import { GraphsComponent } from './graphs/graphs.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { ButtonComponent } from './dashboard/button/button.component';
     SmallCardComponent,
     BigCardComponent,
     ProfileCardComponent,
-    ButtonComponent
+    ButtonComponent,
+    TicketingComponent,
+    GraphsComponent
   ],
   imports: [
     BrowserModule,
