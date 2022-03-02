@@ -23,7 +23,7 @@ export class TicketingComponent implements OnInit {
 
 export class TableRow {
   constructor() {}
-  @Input() fields!: Array<String>;
+  @Input() fields?: Array<String>;
   @Input() header: Boolean = false;
 
   showModal() {
