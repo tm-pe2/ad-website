@@ -1,1 +1,21 @@
-<p>edit-modal works!</p>
+<div class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full" (click)="closeModal(this.id)">
+</div>
+<div class="fixed mx-auto inset-0 top-10 p-5 border h-fit w-96 shadow-lg rounded-md bg-white">
+    <div class="mt-3">
+        <h1 class="text-center font-semibold"> Edit Ticket</h1>
+        <label for="name">Name: </label>
+        <input type="text" class="border pl-2 ml-2" placeholder="Name" name="name" value="{{data.name}}">
+        <form>
+            
+        </form>
+        <div class="flex px-4 py-3 space-x-3">
+            <button id="confirm-btn"  class="px-4 py-2 bg-green-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">
+                Apply
+            </button>
+            <button id="cancel-btn"  class="px-4 py-2 bg-gray-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300"
+                (click)="closeModal(this.id)">
+                Cancel
+            </button>
+        </div>
+    </div>
+</div>
