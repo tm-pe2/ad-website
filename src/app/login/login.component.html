@@ -1,0 +1,15 @@
+<form #signInForm="ngForm" (ngSubmit)="onSubmit(signInForm)">
+    <h2>Sign in!</h2>
+    <div class="form-group">
+        <label class="form-label" for="login-mail">E-mail</label>
+        <input class="form-control" id="login-mail" type="email" name="login-mail" required autofocus ngModel />
+    </div>
+    <div class="form-group">
+        <label class="form-label" for="login-password">Password</label>
+        <input class="form-control" id="login-password" type="password" name="login-password" required ngModel />
+    </div>
+    <div class="form-buttons">
+        <button class="form-button" id="login-confirm" type="submit">Login</button>
+        <button class="form-button" id="link-reg" type="button" routerLink="/registration">Sign up</button>
+    </div>
+</form>

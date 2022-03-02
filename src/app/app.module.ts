@@ -6,20 +6,30 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TableRow, TicketingComponent } from './ticketing/ticketing.component';
 import { UtilService } from './util.service';
+import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { RegistrationService } from './registration/registration.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     TicketingComponent,
-    TableRow
+    TableRow,
+    LoginComponent,
+    RegistrationComponent
 
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
-  providers: [UtilService],
+  providers: [
+    UtilService,
+    RegistrationService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

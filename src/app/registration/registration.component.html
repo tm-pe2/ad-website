@@ -1,0 +1,49 @@
+<form #signUpForm="ngForm" (ngSubmit)="onSubmit(signUpForm)">
+    <h2>Sign up!</h2>
+    <div class="form-group">
+        <label class="form-label" for="reg-name">Name</label>
+        <input class="form-control" id="reg-name" type="text" name="reg-name" required autofocus ngModel />
+    </div>
+    <div class="form-group">
+        <label class="form-label" for="reg-mail">E-mail</label>
+        <input class="form-control" id="reg-mail" type="email" name="reg-mail" required ngModel />
+    </div>
+    <div class="form-group">
+        <label class="form-label" for="reg-phone">Phone</label>
+        <input class="form-control" id="reg-phone" type="text" name="reg-phone" required ngModel />
+    </div>
+    <div class="form-group">
+        <label class="form-label" for="reg-type">Type</label>
+        <select class="form-dropdown" id="reg-type" name="reg-type" required ngModel>
+            <option *ngFor="let type of types" value="{{ type }}">{{ type }}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label class="form-label" for="reg-city">City</label>
+        <input class="form-control" id="reg-city" type="text" name="reg-city" required ngModel />
+    </div>
+    <div class="form-group">
+        <label class="form-label" for="reg-postalcode">Postal code</label>
+        <input class="form-control" id="reg-postalcode" type="number" name="reg-postalcode" required ngModel />
+    </div>
+    <div class="form-group">
+        <label class="form-label" for="reg-street">Street</label>
+        <input class="form-control" id="reg-street" type="text" name="reg-street" required ngModel />
+    </div>
+    <div class="form-group">
+        <label class="form-label" for="reg-number">Housenumber</label>
+        <input class="form-control" id="reg-number" type="text" name="reg-number" required ngModel />
+    </div>
+    <div class="form-group">
+        <label class="form-label" for="reg-password">Password</label>
+        <input class="form-control" id="reg-password" type="password" name="reg-password" required ngModel />
+    </div>
+    <div class="form-group">
+        <label class="form-label" for="reg-password">Confirm password</label>
+        <input class="form-control" id="reg-confPassword" type="password" name="reg-confPassword" required ngModel />
+    </div>
+    <div class="form-buttons">
+        <button class="form-button" id="login-confirm" type="submit">Register</button>
+        <button class="form-button" id="link-reg" type="button" routerLink="/login">Sign in</button>
+    </div>
+</form>
