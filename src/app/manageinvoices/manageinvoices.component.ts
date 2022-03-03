@@ -6,11 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./manageinvoices.component.css']
 })
 export class ManageinvoicesComponent implements OnInit {
-
-  customers= [{customerName: "John"}];
   
-  bill = [{"ID": 3, "Customer": "John", "Type": "Gas", "Supplier": "GasSupplierName", "Amount": 500, "Charge": 100},
-  {"ID": 10, "Customer": "Doe", "Type": "Electricity", "Supplier": "ElecSupplierName", "Amount": 4500, "Charge": 50}];
+  people = [
+    {"ID": 1, "FirstName": "John", "LastName": "Doe", "bills": [
+      {"ID": 3, "Date": "24/02/2022", "Type": "Gas", "Supplier": "Esso", "Amount": 500, "Charge": 100},
+      {"ID": 10, "Date": "03/03/2022", "Type": "Electricity", "Supplier": "Electrabel", "Amount": 4500, "Charge": 50}
+    ]},
+    {"ID": 2, "FirstName": "Amy", "LastName": "Spiller", "bills": [
+
+    ]}]
 
 
 
