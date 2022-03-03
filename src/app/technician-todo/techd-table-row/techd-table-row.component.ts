@@ -1,3 +1,4 @@
+import { Byte } from '@angular/compiler/src/util';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -12,6 +13,7 @@ export class TechdTableRowComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
   @Input() rows: Array<TableRow> = [
@@ -19,6 +21,32 @@ export class TechdTableRowComponent implements OnInit {
     new TableRow(['A', 'B', 'C', 'D'], true),
   ];;
 
+  @Input() QueryState: number = 0x01
+
+  
+
+  QueriedShow()
+  {
+    let LinesToShow: Array<TableRow>;
+    LinesToShow = new Array<TableRow>();
+    if(this.QueryState == 0x01)
+    {
+      return this.rows;
+    }
+    if(this.QueryState == 0x02)
+    {
+      this.rows.forEach(function(value)
+      {
+        if(!value.Completed)
+        {
+          LinesToShow.push(value);
+        }
+      })
+      return LinesToShow;
+    }
+
+    return this.rows; //something went wrong HELP
+  }
 }
 
 export interface TableRowInt {

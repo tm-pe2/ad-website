@@ -9,7 +9,7 @@
     <!-- <div [hidden]="Completed == false"> -->
         <!-- Completed: <input type="checkbox"> -->
     <!-- </div> -->
-    <div *ngFor="let row of rows">
+    <div *ngFor="let row of QueriedShow()">
         <div *ngFor="let i of row.Fields">
             {{i}}
         </div>
