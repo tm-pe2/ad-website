@@ -7,6 +7,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { TicketingComponent } from './ticketing/ticketing.component';
 import { ManageEmployeesComponent } from './manage-employees/manage-employees.component';
 import { EmployeeCardComponent } from './employee-card/employee-card.component';
+import { AddEmployeeFormComponent } from './add-employee-form/add-employee-form.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,11 +16,13 @@ import { EmployeeCardComponent } from './employee-card/employee-card.component';
     DashboardComponent,
     TicketingComponent,
     ManageEmployeesComponent,
-    EmployeeCardComponent
+    EmployeeCardComponent,
+    AddEmployeeFormComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
