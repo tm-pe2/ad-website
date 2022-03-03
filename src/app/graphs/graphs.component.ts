@@ -30,7 +30,7 @@ export class GraphsComponent implements OnInit {
     const data = {
       labels: labels,
       datasets: [{
-        label: 'My First dataset',
+        label: 'Energy Usage',
         backgroundColor: ['rgb(255, 99, 132)', 'rgb(255, 255, 0)'],
         borderColor: 'rgb(255, 99, 132)',
         data: [0, 10, 5, 2, 20, 30, 45, 65, 32, 42, 14, 30],
@@ -40,10 +40,28 @@ export class GraphsComponent implements OnInit {
     const config: any = {
       type: 'bar',
       data: data,
-      options: {}
+      options: {
+        scales: {
+          y: {
+            title: {
+              display: 'true',
+              text: 'kWh',
+              align: 'center',
+              padding: 20,
+            }
+          },
+          x: {
+            ticks: {
+              padding: 20
+            }
+          }
+        },
+        responsive: 'true',
+        maintainAspectRatio: 'false',
+      }
     };
   
-    const myChart = new Chart(<HTMLCanvasElement>document.getElementById('myChart'), config);
+    const myChart = new Chart(<HTMLCanvasElement>document.getElementById('monthlyChart'), config);
   }
 
 }
