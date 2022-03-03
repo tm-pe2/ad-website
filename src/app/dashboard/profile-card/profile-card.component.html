@@ -1,12 +1,13 @@
-<a class="cursor-pointer flex flex-col items-center bg-white shadow-md rounded-lg p-5 transition-all hover:shadow-xl hover:-mt-2 h-full">
-    <img src="../../assets/img/dashboard/person.webp" alt="test" class="rounded-full h-32 ">
+<div class="flex flex-col items-center bg-white shadow-md rounded-lg p-5 transition-all hover:shadow-xl hover:-mt-2 h-full">
+    <img [attr.src]="user?.pfpsrc" alt="Profile picture" class="rounded-full h-32 ">
     <h2 class="text-xl font-bold text-center">{{ title }}</h2>
     <p class="p-1">{{ user?.name }}</p>
-    <p class="p-1">{{ user?.email }}</p>
+    <p></p>
+    <a class="p-1 underline text-blue-500" [attr.href]="'mailto:'+user?.email">{{ user?.email }}</a>
     <p class="p-1">{{ user?.birthday }}</p>
     <p class="p-1">{{ user?.address }}</p>
 
     <app-button>View profile</app-button>
     <app-button *ngIf="user?.type == 'User'">View subscription</app-button>
 
-</a>
+</div>

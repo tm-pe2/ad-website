@@ -16,34 +16,35 @@ export class DashboardComponent implements OnInit {
       phone: "+01 23/45/67/89",
       address: "59 Golden Leaf Road",
       birthday: "19/05/1965",
-      pfpsrc: "",
+      pfpsrc: "../../assets/img/dashboard/human.webp",
       type: "Employee"
     },
     {
       id: 1,
-      name: "Alice Wonder",
+      name: "Jeef Cumbersome",
       email: "example@example.example",
       phone: "+01 23/45/67/89",
       address: "3155 Carioca Hill",
       birthday: "23/06/1980",
-      pfpsrc: "",
+      pfpsrc: "../../assets/img/dashboard/tech.webp",
       type: "Technician"
     },
     {
       id: 2,
-      name: "Dex Texan",
+      name: "Abigail Janssens",
       email: "example@example.example",
       phone: "+01 23/45/67/89",
       address: "0287 Mayer Hill",
       birthday: "23/03/1995",
-      pfpsrc: "",
+      pfpsrc: "../../assets/img/dashboard/woman.jpg",
       type: "User"
     },
   ]
   user?: User
   title: string = 'Dashboard'
 
-  constructor(private titleService: Title, private activatedRoute:ActivatedRoute) { }
+  constructor(private titleService: Title, private activatedRoute:ActivatedRoute) {
+  }
 
   ngOnInit(): void {
     this.titleService.setTitle('Dashboard')
