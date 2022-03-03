@@ -1,0 +1,24 @@
+<h1>Invoice List</h1>
+
+<div class="invoice-wrapper" *ngFor="let customer of customers">
+    <div class="invoice-header">
+        <h3>ClientName: {{customer.customerName}}</h3>
+        <h5>Date 24/02/2022</h5>
+    </div>
+    <div class="invoice-body">
+        <div class="Invoice" *ngFor="let item of bill; let i = index">
+            <p><strong>Invoice ID: </strong><span>{{bill[i].ID}}</span></p>
+            <ul>
+                <li><strong>Type: </strong><span>{{bill[i].Type}}</span></li>
+                <li><strong>Supplier: </strong><span>{{bill[i].Supplier}}</span></li>
+                <li><strong>Amount: </strong><span>{{bill[i].Amount}}
+                    <div *ngIf='bill[i].Type == "Gas"; then gasBlock else electricityBlock'></div>
+                    <ng-template #gasBlock>L</ng-template>
+                    <ng-template #electricityBlock>kWh</ng-template>
+                </span></li>
+                <li><strong>Charge: </strong><span>${{bill[i].Charge}}</span></li>
+            </ul>
+        </div>
+        <div class="managing">Edit + Delete</div>
+    </div>
+</div>
