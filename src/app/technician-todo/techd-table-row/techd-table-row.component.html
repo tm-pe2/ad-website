@@ -1,12 +1,23 @@
 <div>
-    <div *ngFor="let i of fields">
+    <!-- <div *ngFor="let i of fields"> -->
         <!-- Iterate over all input fields, display -->
-        {{i}}
-    </div>
-    <div [hidden]="Completed == true">
-        Completed: <input type="checkbox" checked=>
-    </div>    
-    <div [hidden]="Completed == false">
-        Completed: <input type="checkbox">
+        <!-- {{i}} -->
+    <!-- </div> -->
+    <!-- <div [hidden]="Completed == true"> -->
+        <!-- Completed: <input type="checkbox" checked=> -->
+    <!-- </div>     -->
+    <!-- <div [hidden]="Completed == false"> -->
+        <!-- Completed: <input type="checkbox"> -->
+    <!-- </div> -->
+    <div *ngFor="let row of rows">
+        <div *ngFor="let i of row.Fields">
+            {{i}}
+        </div>
+        <div [hidden]="row.Completed == true">
+            Completed: <input type="checkbox" checked>
+        </div>
+        <div [hidden]="row.Completed == false">
+            Completed: <input type="checkbox">
+        </div>        
     </div>
 </div>
