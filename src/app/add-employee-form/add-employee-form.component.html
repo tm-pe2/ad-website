@@ -1,0 +1,37 @@
+<div class="w-full max-w-xs">
+    <label for="addEmp">Add Employee</label><br>
+    
+    <label for="Fname">First name: </label>
+    <input class="border-2" type="text" id="Fname" name="Fname"><br>
+    
+    <label for="Lname">Last name: </label>
+    <input class="border-2" type="text" id="Lname" name="Lname"><br>
+    
+    <label for="birDate">BirthDate: </label>
+    <input class="border-2" type="text" id="birDate" name="birDate"><br>
+    
+    <label for="email">Email </label>
+    <input class="border-2" type="text" id="email" name="email"><br>
+    
+    <label for="phoneNR">Phone Number: </label>
+    <input class="border-2" type="text" id="phoneNR" name="phoneNR"><br>
+    
+    <label for="address">Address</label>
+    <input class="border-2" type="text" id="address" Addressname="address">Address<br>
+
+    
+    <label for="department">Department</label>  
+    <select class="form-control" id="department" required>
+      <option *ngFor="let dep of Department" [value]="dep">{{dep}}</option>
+    </select><br>
+
+
+    <input type="radio" id="M" name="gender" value="M">
+    <label for="M">M</label><br>
+    <input type="radio" id="F" name="gender" value="F">
+    <label for="F">F</label><br>
+    <input type="radio" id="X" name="gender" value="X">
+    <label for="X">X</label><br>
+
+    <button class="p-2 bg-blue-300 rounded" type="submit">Add</button> 
+  </div>

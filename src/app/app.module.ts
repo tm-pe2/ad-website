@@ -22,6 +22,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { TicketingComponent } from './ticketing/ticketing.component';
 import { ManageEmployeesComponent } from './manage-employees/manage-employees.component';
 import { EmployeeCardComponent } from './employee-card/employee-card.component';
+import { AddEmployeeFormComponent } from './add-employee-form/add-employee-form.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { EmployeeCardComponent } from './employee-card/employee-card.component';
     ClientTicketsComponent, 
     TicketingComponent,
     ManageEmployeesComponent,
-    EmployeeCardComponent
+    EmployeeCardComponent,
+    AddEmployeeFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +60,7 @@ import { EmployeeCardComponent } from './employee-card/employee-card.component';
       useClass: AuthInterceptor,
       multi: true
     }, 
+    FormsModule
   ],
   bootstrap: [AppComponent]
 })
