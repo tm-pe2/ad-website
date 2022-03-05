@@ -1,15 +1,19 @@
 <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
-    <h2>Sign in!</h2>
+    <h2>Please sign in</h2>
     <div class="form-group">
-        <label class="form-label" for="loginMail">E-mail</label>
-        <input class="form-control" id="logiMail" type="email" name="loginMail" required autofocus ngModel />
+        <input class="form-control" id="logiMail" type="email" name="loginMail" placeholder="E-mail address" required autofocus ngModel />
     </div>
     <div class="form-group">
-        <label class="form-label" for="loginPassword">Password</label>
-        <input class="form-control" id="loginPassword" type="password" name="loginPassword" required ngModel />
+        <input class="form-control" id="loginPassword" type="password" name="loginPassword"placeholder="Password" required ngModel />
     </div>
     <div class="form-buttons">
-        <button class="form-button" id="loginConfirm" type="submit">Login</button>
-        <button class="form-button" id="linkReg" type="button" routerLink="/registration">Sign up</button>
+        <button class="form-button" id="loginConfirm" type="submit">Sign in</button>
+        <!-- <button class="form-button" id="linkReg" type="button" routerLink="/registration">Sign up</button> -->
+    </div>
+    <div class="error-alert" role="alert" *ngIf="invalidForm">
+        Make sure all fields are filled!
+    </div>
+    <div class="error-alert" role="alert" *ngIf="invalidCreds">
+        Invalid mail or password!
     </div>
 </form>

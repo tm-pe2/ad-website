@@ -10,28 +10,45 @@ import { Md5 } from 'ts-md5';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  // Variables
+  invalidForm = false;
+  invalidCreds= false;
 
+  // Constructor
   constructor(private service: LoginService) { }
 
-  ngOnInit(): void
-  {
-    
+  // On init
+  ngOnInit(): void { }
 
-  }
-
+  // Functions
+  // Public
   onSubmit(loginForm: NgForm)
   {
-    // Displays data in console
-    // Remove from final product
-    console.log("Mail: " + loginForm.value.loginMail);
-    console.log("Pass: " + Md5.hashStr(loginForm.value.loginPassword));
+    // Check if all required inputs are filled
+    if (!loginForm.valid)
+    { 
+      this.invalidForm = true;
+      this.invalidCreds = false;
+      return;
+    
+    }
 
-    // Make new data object, gets data from the form in login.component.html
-    const loginData = new LoginData(loginForm.value.loginMail, Md5.hashStr(loginForm.value.loginPassword));
-
-    // Authenticate data object via LoginService
-    this.service.authenticate(loginData);
+    // Check if input fields have correct mail/password combo
+    this.checkCreds(loginForm);
   
+  }
+
+  // Private
+  private checkCreds(loginForm: NgForm)
+  {
+    const loginData = new LoginData(loginForm.value.loginMail, loginForm.value.loginPassword);
+    if (!this.service.authenticate(loginData))
+    {
+      this.invalidForm = false;
+      this.invalidCreds = true;
+    
+    }
+
   }
 
 }

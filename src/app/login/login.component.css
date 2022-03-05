@@ -1,9 +1,10 @@
 form
 {
     display: flex;
-    margin: 20vh 10vw;
-    height: 60vh;
-    width: 80vw;
+    margin-top: 20vh;
+    margin-left: 20vw;
+    max-height: 60vh;
+    width: 60vw;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -17,11 +18,10 @@ form
 
 h2
 {
-    text-align: center;
+    text-align: left;
     width: 90%;
     font-size: 2.5rem;
     color: #444444;
-    border-bottom: solid 1px #B22222;
 
 }
 
@@ -31,6 +31,7 @@ h2
     flex-direction: column;
     flex-wrap: wrap;
     width: 90%;
+    margin: 1rem;
 
 }
 
@@ -45,8 +46,9 @@ h2
 {
     width: 100%;
     margin: auto;
+    padding: 0.5rem;
     border: solid 1px #888888;
-    text-align: center;
+    text-align: left;
     border-radius: 0.75rem;
 
 }
@@ -58,6 +60,7 @@ h2
     flex-wrap: wrap;
     justify-content: space-evenly;
     width: 90%;
+    margin: 1rem;
 
 }
 
@@ -66,11 +69,23 @@ h2
     background-color: #B22222;
     color: #FFFFFF;
     padding: 1rem;
-    width: 30%;
+    width: 100%;
     border: solid 1px #000000;
     border-radius: 0.75rem;
-    box-shadow: 0.25rem 0.25rem 0.25rem #888888;
+    box-shadow: 0.125rem 0.125rem 0.25rem #888888;
     text-align: center;
 
 }
 
+.error-alert
+{
+    margin: 1rem;
+    padding: 1rem;
+    width: 90%;
+    text-align: center;
+    color: #B22222;
+    background-color: #FFAAAA;
+    border: solid 1px #B22222;
+    border-radius: 0.75rem;
+
+}
