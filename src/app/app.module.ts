@@ -10,6 +10,7 @@ import { ProfileCardComponent } from './dashboard/profile-card/profile-card.comp
 import { ButtonComponent } from './dashboard/button/button.component';
 import { TicketingComponent } from './ticketing/ticketing.component';
 import { GraphsComponent } from './graphs/graphs.component';
+import { MatIconModule } from '@angular/material/icon'
 
 @NgModule({
   declarations: [
@@ -20,11 +21,12 @@ import { GraphsComponent } from './graphs/graphs.component';
     ProfileCardComponent,
     ButtonComponent,
     TicketingComponent,
-    GraphsComponent
+    GraphsComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,7 +7,7 @@
     <p class="p-1">{{ user?.birthday }}</p>
     <p class="p-1">{{ user?.address }}</p>
 
-    <app-button>View profile</app-button>
+    <app-button mat-button><mat-icon>person</mat-icon> View profile</app-button>
     <app-button *ngIf="user?.type == 'User'">View subscription</app-button>
 
 </div>
