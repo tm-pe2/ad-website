@@ -10,6 +10,7 @@ export class AppComponent {
   title = 'ad-frontend';
 
   // For login test
+  // Adds login service so you can access the authenticated variable
   constructor (public service: LoginService) {}
 
 }

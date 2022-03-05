@@ -8,7 +8,7 @@ import { LoginData } from './loginData';
 
 export class LoginService {
   // Mockuser 
-  private readonly mockUser = new LoginData("johndoe@mail.com", "test123");
+  private readonly mockUser = new LoginData("johndoe@mail.com", "cc03e747a6afbbcbf8be7668acfebee5");
 
   // Variables
   authenticated = false;
@@ -20,6 +20,9 @@ export class LoginService {
   // Public
   authenticate(loginData: LoginData): boolean
   {
+    // If the user has the correct login data he/she will be send to the home page
+    // authenticed variable is set to true so logged in user can access new parts of site
+    // (check app.component.ts & app.component.html for inmplementation)
     if (this.checkCredentials(loginData))
     {
       this.authenticated = true;
