@@ -12,7 +12,7 @@ export class RegistrationComponent implements OnInit {
 
   constructor(service: RegistrationService)
   {
-    this.types = service.getTypes();
+    this.types = service.types;
 
   }
 

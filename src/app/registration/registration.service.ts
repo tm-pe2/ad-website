@@ -5,9 +5,15 @@ import { Injectable } from '@angular/core';
 })
 
 export class RegistrationService {
+  // Variables
   private _types = ["Private", "Company"];
 
+  // Constructor
   constructor() {}
-  getTypes() { return this._types; }
+
+  // Getters
+  get types() { return this._types; }
+
+  // Setters
 
 }
