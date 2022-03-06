@@ -2,7 +2,6 @@ import { Component, ComponentRef, Input, OnInit, ViewChild, ViewContainerRef } f
 import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 import { EditModalComponent } from './edit-modal/edit-modal.component';
 
-
 @Component({
   selector: 'app-ticketing',
   templateUrl: './ticketing.component.html',
@@ -10,24 +9,25 @@ import { EditModalComponent } from './edit-modal/edit-modal.component';
 })
 export class TicketingComponent implements OnInit {
   //dummy data
-  fields: Array<FieldData> = [
-    { name: 'Dries', issue: 'This is a test issue', description: 'Test issue', id: 0 },
-    { name: "Peter", issue: "Laptop start met een groen scherm", description: "Mijn laptop heeft bij het opstarten een groen scherm, en soms start hij helemaal niet op!", id: 1 },
-    { name: "Dries", issue: "Windows XP is gehacked en FB is geblokkeerd!", description: "Bij het inloggen op windows XP wordt mijn scherm rood en verschijnt een melding dat ik Bitcoin moet storten op hun adres om toegang te krijgen tot mijn bestanden, hierdoor kan ik niet op Facebook!", id: 2 },
-  ]
-
-
-
   constructor() {
   }
 
+  tickets?: FieldData[];
+
+  errorField: FieldData= {name: "Something went wrong", issue: "We could not get the correct field!", description: "We are sorry, but something went wrong. Please try again later.", status: "Error"};
+
+
+
+
   ngOnInit(): void {
-
-
+  fetch('http://localhost:6060/tickets')
+    .then((response) => response.json())
+    .then((tickets) => {
+      console.table(tickets.tickets);
+      this.tickets = tickets.tickets;
+    });
   }
-
-
-}
+  }
 
 @Component({
   selector: 'table-row',
@@ -35,12 +35,6 @@ export class TicketingComponent implements OnInit {
 })
 
 export class TableRow {
-
-  fields: Array<FieldData> = [
-    { name: 'Dries', issue: 'This is a test issue', description: 'Test issue', id: 0 },
-    { name: "Peter", issue: "Laptop start met een groen scherm", description: "Mijn laptop heeft bij het opstarten een groen scherm, en soms start hij helemaal niet op!", id: 1 },
-    { name: "Dries", issue: "Windows XP is gehacked en FB is geblokkeerd!", description: "Bij het inloggen op windows XP wordt mijn scherm rood en verschijnt een melding dat ik Bitcoin moet storten op hun adres om toegang te krijgen tot mijn bestanden, hierdoor kan ik niet op Facebook!", id: 2 },
-  ]
 
 
   @ViewChild('modal', { read: ViewContainerRef }) entry?: ViewContainerRef;
@@ -50,6 +44,7 @@ export class TableRow {
   constructor() { }
   @Input() rows?: Array<FieldData>;
   @Input() header: Boolean = false;
+  @Input() parentPage?: TicketingComponent;
 
 
 
@@ -61,7 +56,8 @@ export class TableRow {
   createEditModal(id: number): void {
     this.entry?.clear();
     this.ecomponent = this.entry?.createComponent(EditModalComponent);
-    this.ecomponent!.instance.data = this.fields[id];
+    if(!this.parentPage?.tickets) return;
+    this.ecomponent!.instance.data = this.parentPage!.tickets.find(x => x.id === id) || this.parentPage!.errorField;
     this.ecomponent!.instance.parent = this;
   }
   destroyEditModal() {
@@ -71,7 +67,8 @@ export class TableRow {
   createDeleteModal(id: number): void {
     this.entry?.clear();
     this.dcomponent = this.entry?.createComponent(DeleteModalComponent);
-    this.dcomponent!.instance.data = this.fields.find(x => x.id === id) || this.fields[0];
+    if(!this.parentPage?.tickets) return;
+    this.dcomponent!.instance.data = this.parentPage!.tickets.find(x => x.id === id) || this.parentPage!.errorField;
     this.dcomponent!.instance.parent = this;
 
   }
@@ -92,4 +89,5 @@ export interface FieldData {
   issue: String;
   description: String;
   id?: number;
+  status?: String;
 }

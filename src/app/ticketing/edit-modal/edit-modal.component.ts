@@ -18,10 +18,10 @@ export class EditModalComponent implements OnInit {
 
 
   removeModal(){
-    //TODO: Implement delete ticket function
     this.parent.destroyEditModal();
-
   }
+  //TODO: Implement edit ticket function
+
 
 
 
