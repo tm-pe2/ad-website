@@ -1,6 +1,9 @@
 # AdFrontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.4.
+## Install dependencies
+
+You will need Angular CLI, you can install this globally like so: `npm install -g @angular/cli`.
+Run `npm install` to install the needed dependencies for the project.
 
 ## Development server
 
