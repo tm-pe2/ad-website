@@ -4,10 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { TicketingComponent } from './ticketing/ticketing.component';
 import { ManageinvoicesComponent } from './manageinvoices/manageinvoices.component';
 import { TableRow, TicketingComponent } from './ticketing/ticketing.component';
 import { UtilService } from './util.service';
+import { InvoicesListedComponent } from './manageinvoices/invoices-listed/invoices-listed/invoices-listed.component';
 
 @NgModule({
   declarations: [
@@ -16,8 +16,9 @@ import { UtilService } from './util.service';
     TicketingComponent,
     ManageinvoicesComponent,
     TicketingComponent,
-    TableRow
-
+    TableRow,
+    ManageinvoicesComponent,
+    InvoicesListedComponent
   ],
   imports: [
     BrowserModule,

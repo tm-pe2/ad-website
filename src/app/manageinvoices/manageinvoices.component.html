@@ -1,5 +1,6 @@
 <h1>Invoice List</h1>
 
+
 <ul>
     <li class="Person" *ngFor="let person of people; let j = index;">
         <div class="invoice-header">
@@ -21,6 +22,54 @@
                 <li><strong>Charge: </strong><span>${{bill.Charge}}</span></li>
                 <li><button id="bill.ID" action="EDIT">EDIT</button> <button id="bill.ID" action="DELETE">-</button></li>
             </ul>
+
+                        
         </div>
     </li>
 </ul>
+
+
+
+<!-- When uncommenting this, delete te space between the comment taggs below (<!- - and - ->)
+<div class="grid overflow-hidden grid-cols-10 grid-rows-6 gap-px h-screen">
+    <div class="box row-start-1 row-end-1 col-start-1 col-end-11">
+        <!- -Header- ->
+    </div>
+    <div class="box row-start-2 row-end-6 col-start-1 col-end-3 overflow-y-auto shadow">
+        <!- -Search div- ->
+    </div>
+    <div class="box row-start-2 row-end-6 col-start-3 col-end-11">
+        <div class="flex flex-wrap overflow-y-auto max-h-full border-md shadow">          
+            
+            <table class="w-full rounded-lg shadow">
+                <thead class="bg-gray-50 border-b-2 border-gray-200">
+                    <tr>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Date</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Name</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">private/business</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Price</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Status</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Details</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <!- -When pasting the component here in plain text it works as inteded. 
+                        I don't know what angular has smoked to not make it work with the component as intended but oh well- ->
+                    <app-invoices-listed></app-invoices-listed>
+  
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <div class="box row-start-6 row-end-6 col-start-1 col-end-11">
+        <!- -Footer- ->
+    </div>
+</div>
+-->
+
+
+
+
