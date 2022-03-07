@@ -58,7 +58,7 @@ h2
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-between;
     width: 90%;
     margin: 1rem;
 
@@ -69,17 +69,26 @@ h2
     background-color: #B22222;
     color: #FFFFFF;
     padding: 1rem;
-    width: 100%;
+    width: 30%;
     border: solid 1px #000000;
     border-radius: 0.75rem;
-    box-shadow: 0.125rem 0.125rem 0.25rem #888888;
+    box-shadow: 0.125rem 0.1 25rem 0.25rem #888888;
     text-align: center;
+
+}
+
+.form-link
+{
+    padding: 1rem;
+    width: 30%;
+    text-align: center;
+    text-decoration: underline;
 
 }
 
 .error-alert
 {
-    margin: 1rem;
+    margin-bottom: 1rem;
     padding: 1rem;
     width: 90%;
     text-align: center;

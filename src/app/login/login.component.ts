@@ -12,7 +12,7 @@ import { Md5 } from 'ts-md5';
 export class LoginComponent implements OnInit {
   // Variables
   invalidForm = false;
-  invalidCreds= false;
+  invalidCreds = false;
 
   // Constructor
   constructor(private service: LoginService) { }
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
   // Private
   private checkCreds(loginForm: NgForm)
   {
-    const loginData = new LoginData(loginForm.value.loginMail, loginForm.value.loginPassword);
+    const loginData = new LoginData(loginForm.value.loginMail, Md5.hashStr(loginForm.value.loginPassword));
     if (!this.service.authenticate(loginData))
     {
       this.invalidForm = false;
