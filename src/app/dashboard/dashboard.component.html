@@ -9,21 +9,28 @@
         
         <div class="flex flex-wrap overflow">
 
-            <app-small-card *ngIf="user?.type == 'Employee'" [title]="'Manage suppliers'" [href]="'manage-suppliers'"></app-small-card>
-            <app-small-card *ngIf="user?.type == 'Employee'" [title]="'Manage clients'" [href]="'manage-clients'"></app-small-card>
-            <app-small-card *ngIf="user?.type == 'Employee'" [title]="'Manage invoices'" [href]="'manage-invoices'"></app-small-card>
+            <app-small-card *ngIf="user?.type == 'Employee'" [title]="'Manage suppliers'" [icon]="'archive'" [href]="'manage-suppliers'"></app-small-card>
+            <app-small-card *ngIf="user?.type == 'Employee'" [title]="'Manage clients'" [icon]="'group icon'" [href]="'manage-clients'"></app-small-card>
+            <app-small-card *ngIf="user?.type == 'Employee'" [title]="'Manage invoices'" [icon]="'file_copy'"  [href]="'manage-invoices'"></app-small-card>
 
-            <app-big-card *ngIf="user?.type == 'Employee'" [title]="'Prices'">
+            <app-big-card *ngIf="user?.type == 'Employee'"
+            [title]="'Prices'" [icon]="'show_chart'"
+            [buttonTitle]="'View details'" [buttonIcon]="'bar_chart'">
+                <img class="h-full" src="../../assets/img/dashboard/examplechart.png" alt="chart" />
                 <!-- <app-graphs class="w-full"></app-graphs> -->
             </app-big-card>
 
-            <app-big-card *ngIf="user?.type == 'Technician'" [title]="'Tickets'">
+            <app-big-card *ngIf="user?.type == 'Technician'"
+            [title]="'Recent tickets'" [icon]="'show_chart'"
+            [buttonTitle]="'All tickets'" [buttonIcon]="'bar_chart'">
                 <div class="bg-blue-500 w-full h-1/2"></div>
                 <div class="bg-yellow-300 w-full h-1/2"></div>
             </app-big-card>
 
-            <app-big-card *ngIf="user?.type == 'User'" [title]="'Your consumption'">
-                <!-- <app-graphs></app-graphs> -->
+            <app-big-card *ngIf="user?.type == 'User'"
+            [title]="'Recent consumption'" [icon]="'show_chart'"
+            [buttonTitle]="'View details'" [buttonIcon]="'bar_chart'">
+                <img class="h-full" src="../../assets/img/dashboard/examplechart.png" alt="chart" />
             </app-big-card>
 
 

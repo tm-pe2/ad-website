@@ -1,9 +1,13 @@
-<a class="cursor-pointer flex flex-row bg-white shadow-md rounded-lg p-5 transition-all hover:shadow-xl hover:-mt-2 h-full">
-    <img src="../../assets/img/dashboard/person.webp" alt="test" class="rounded w-20 h-fit">
+<!-- hover:shadow-xl hover:-mt-2 -->
+<div class="flex flex-row bg-white shadow-md rounded-lg p-5 transition-all h-full">
+    <mat-icon class="scale-[250%] mr-8 mt-5 ml-5">{{ icon }}</mat-icon> <!--Positioning of icons is not the best way of doing it-->
     <div class="flex flex-col w-full">
-        <h2 class="text-xl font-bold">{{ title }}</h2>
-        <div class=" h-full"> <!--Maybe add padding-->
-            <ng-content></ng-content>
-        </div>
+        <h2 class="text-xl font-bold">{{ title }}
+            <app-button *ngIf="buttonTitle!=''" class=" text-base font-normal">
+                <mat-icon class="scale-150" [inline]="true">{{buttonIcon}}</mat-icon>
+                {{buttonTitle}}
+            </app-button>
+        </h2>
+        <ng-content class="h-full"></ng-content>
     </div>
-</a>
+</div>

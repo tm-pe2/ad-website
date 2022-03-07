@@ -4,7 +4,7 @@ import { Component, Input, OnInit } from '@angular/core';
   selector: 'app-button',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.css'],
-  host: {'[class]': "'mt-4 px-3 py-2'"}
+  host: {'[class]': "''"}
 })
 export class ButtonComponent implements OnInit {
   @Input() type: 'info' | 'warning' | 'error' | 'success' = 'info';

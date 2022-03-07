@@ -1,4 +1,5 @@
-<div class="flex flex-col items-center bg-white shadow-md rounded-lg p-5 transition-all hover:shadow-xl hover:-mt-2 h-full">
+<!-- hover:shadow-xl hover:-mt-2 -->
+<div class="flex flex-col items-center bg-white shadow-md rounded-lg p-5 transition-all h-full">
     <img [attr.src]="user?.pfpsrc" alt="Profile picture" class="rounded-full h-32 ">
     <h2 class="text-xl font-bold text-center">{{ title }}</h2>
     <p class="p-1">{{ user?.name }}</p>
@@ -7,7 +8,13 @@
     <p class="p-1">{{ user?.birthday }}</p>
     <p class="p-1">{{ user?.address }}</p>
 
-    <app-button mat-button><mat-icon>person</mat-icon> View profile</app-button>
-    <app-button *ngIf="user?.type == 'User'">View subscription</app-button>
-
+    <app-button>
+        <mat-icon class="scale-150" [inline]="true">person</mat-icon>
+        View profile
+    </app-button>
+    <app-button *ngIf="user?.type == 'User'">
+        <mat-icon class="scale-150" [inline]="true">attach_money</mat-icon>
+        View subscription
+    </app-button>
+    
 </div>
