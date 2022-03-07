@@ -16,6 +16,7 @@ export class DeleteModalComponent implements OnInit {
   ngOnInit(): void {
   }
   removeModal(){
+    //TODO: implement delete ticket function
    this.parent.destroyDeleteModal();
   }
 
