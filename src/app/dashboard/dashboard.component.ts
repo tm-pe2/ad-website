@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
   user?: User
+  tickets: Ticket[] = [];
   title: string = 'Dashboard'
 
   constructor(private titleService: Title, private activatedRoute:ActivatedRoute) {
@@ -30,6 +31,16 @@ export class DashboardComponent implements OnInit {
         this.title = 'Error retrieving user'
         console.error('Error retrieving user', err);
       });
+
+    fetch('http://localhost:6060/tickets')
+      .then((res) => res.json())
+      .then((data) => {
+        console.table(data.tickets);
+        this.tickets = data.tickets;
+      })
+      .catch((err) => {
+        console.error('Error retrieving tickets', err);
+      });
   }
 }
 
@@ -42,4 +53,12 @@ export interface User {
   birthday: String,
   pfpsrc: String,
   type: String
+}
+
+interface Ticket{
+  name: String;
+  issue: String;
+  description: String;
+  id?: number;
+  status?: String;
 }
