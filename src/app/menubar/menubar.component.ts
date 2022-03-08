@@ -15,6 +15,7 @@ export class MenubarComponent implements OnInit {
     let menubar = document.getElementById("menubar");
     let menubox = document.getElementById("menubox");
     let list = document.getElementById("list");
+     
 
     let menubarClasses = ['w-full', 'border-solid', 'border-2', 'border-red-600'];
     let menuboxClasses = ['max-w-fit', 'border-solid', 'border-2', 'border-blue-600', 'flex'];
@@ -26,7 +27,8 @@ export class MenubarComponent implements OnInit {
     this.addStyle(list, listClasses);
 
     let links = ['link1', 'link2', 'link3', 'link4'];
-    this.generateLinks(links, linkClasses, list);
+    let linkAddresses = ['','','',''];
+    this.generateLinks(links, linkClasses, list, linkAddresses);
 
 
   }
@@ -34,13 +36,13 @@ export class MenubarComponent implements OnInit {
   //Functions
   
   showMenu() : void{
-    let links = document.getElementById("list")?.getElementsByTagName('li');
+    let links = document.getElementById("list")?.getElementsByTagName('a');
     for(let i = 0; i < links!.length; i++){
       document.getElementById('link' + i)?.style.setProperty('display', 'block');
     }
   }
   hideMenu() : void{
-    let links = document.getElementById("list")?.getElementsByTagName('li');
+    let links = document.getElementById("list")?.getElementsByTagName('a');
     for(let i = 0; i < links!.length; i++){
       document.getElementById('link' + i)?.style.setProperty('display', 'none');
     }
@@ -52,12 +54,13 @@ export class MenubarComponent implements OnInit {
     }
   }
 
-  generateLinks(links : string[], linkClasses : string[], list : HTMLElement|null) : void{
+  generateLinks(links : string[], linkClasses : string[], list : HTMLElement|null, linkAdrs : string[]) : void{
     for(let i = 0; i < links.length; i++){
-      let link = document.createElement('li');
+      let link = document.createElement('a');
       list?.appendChild(link);
       link.innerHTML = links[i];
       link.id = "link" + i;
+      link.href = linkAdrs[i];
       for(let i = 0; i < linkClasses.length; i++){
         this.addStyle(link, linkClasses);
       }
