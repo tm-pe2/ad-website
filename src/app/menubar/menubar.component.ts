@@ -11,7 +11,7 @@ export class MenubarComponent implements OnInit {
 
   ngOnInit(): void {
 
-    //Foundation
+    //dummy styling
     let menubar = document.getElementById("menubar");
     let menubox = document.getElementById("menubox");
     let list = document.getElementById("list");
@@ -28,16 +28,22 @@ export class MenubarComponent implements OnInit {
     let links = ['link1', 'link2', 'link3', 'link4'];
     this.generateLinks(links, linkClasses, list);
 
+
   }
 
   //Functions
-
   
   showMenu() : void{
-    
+    let links = document.getElementById("list")?.getElementsByTagName('li');
+    for(let i = 0; i < links!.length; i++){
+      document.getElementById('link' + i)?.style.setProperty('display', 'block');
+    }
   }
   hideMenu() : void{
-
+    let links = document.getElementById("list")?.getElementsByTagName('li');
+    for(let i = 0; i < links!.length; i++){
+      document.getElementById('link' + i)?.style.setProperty('display', 'none');
+    }
   }
 
   addStyle(div : HTMLElement|null, classlist : string[]) : void{
