@@ -6,9 +6,10 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TicketingComponent } from './ticketing/ticketing.component';
 import { ManageEmployeesComponent } from './manage-employees/manage-employees.component';
-import { EmployeeCardComponent } from './employee-card/employee-card.component';
-import { AddEmployeeFormComponent } from './add-employee-form/add-employee-form.component';
-import { FormsModule } from '@angular/forms';
+import { EmployeeCardComponent } from './manage-employees/employee-card/employee-card.component';
+import { AddEmployeeFormComponent } from './manage-employees/add-employee-form/add-employee-form.component';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { EditEmployeeFormComponent } from './manage-employees/edit-employee-form/edit-employee-form.component';
 
 @NgModule({
   declarations: [
@@ -18,11 +19,13 @@ import { FormsModule } from '@angular/forms';
     ManageEmployeesComponent,
     EmployeeCardComponent,
     AddEmployeeFormComponent,
+    EditEmployeeFormComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
