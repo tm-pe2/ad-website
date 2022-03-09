@@ -4,21 +4,18 @@
  
 <!-- 
     INFO:
-        - This page will show you a form to add a new supplier. 
-    
+        - Same as the Add page but this form will edit the selected Supplier
 
     TODO:
-        - form validation
--->
+        - check if fgields are valid -> if not error msg
+        
+   -->
 <div class="border-2 border-black w-fit px-11 py-4 m-10 mx-auto">
 
     <form>
         <table border="2">
             <tr>
-    
-
-            <tr>
-                <th colspan="2"><p class="mb-5 text-3xl underline">Add new Supplier</p></th>
+                <th colspan="2"><p class="mb-5 text-3xl underline">Edit -name of supplier- Supplier</p></th>
             </tr>
             <tr>
                 <th>Name Supplier</th>
@@ -46,10 +43,10 @@
                 </td>
             </tr>
             <tr>
-                <th colspan="2"><button class="border-2 border-black w-52" (click)="addSupplier('supplierName')">Add</button></th>
+                <th colspan="2"><button class="border-2 border-black w-52">Edit</button></th> <!-- Will edit the selectet Supplier in the Database -->
             </tr>
             <tr>
-                <th colspan="2"><button class="border-2 border-black w-36 mt-4" (click)="backToHub('suppliers')">Back to Supplier</button></th>
+                <th colspan="2"><button class="border-2 border-black w-36 mt-4" (click)="gotToPage('suppliers')">Back to Supplier</button></th>
             </tr>
         </table>
     </form>

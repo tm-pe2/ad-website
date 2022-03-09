@@ -7,6 +7,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { TicketingComponent } from './ticketing/ticketing.component';
 import { SuppliersComponent } from './suppliers/suppliers.component';
 import { AddSuplierComponent } from './add-suplier/add-suplier.component';
+import { EditSupplierComponent } from './suppliers/edit-supplier/edit-supplier.component';
+import { DeleteSupplierComponent } from './suppliers/delete-supplier/delete-supplier.component';
+
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -15,10 +20,14 @@ import { AddSuplierComponent } from './add-suplier/add-suplier.component';
     TicketingComponent,
     SuppliersComponent,
     AddSuplierComponent,
+    EditSupplierComponent,
+    DeleteSupplierComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

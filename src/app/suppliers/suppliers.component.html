@@ -2,7 +2,7 @@
 
 <div class="border-2 border-black w-3/4 mx-auto my-1.5">
     <div class="w-fit p-3 my-5 mx-auto">
-        <button class="text-xl border-2 border-red-600 p-4" (click)="gotToAddPage('add-suplier')">Add Supplier</button> 
+        <button class="text-xl border-2 border-red-600 p-4" (click)="gotToPage('add-suplier')">Add Supplier</button> <!-- page will redirect you to the add supplier page-->
     </div>
 
   
@@ -10,8 +10,8 @@
     <p class="text-center">Supplier 1</p> 
     <p class="text-center text-xs">Electricity</p>    
     <p class="text-center text-xs mb-2">BierStraat 10</p>
-    <button class="border-2 border-black mx-5 w-12">Edit</button>
-    <button class="border-2 border-black w-12" (click)="getName()">Delete</button>
+    <button class="border-2 border-black mx-5 w-12" (click)="gotToPage('edit-supplier')">Edit</button> <!-- Button will redirect you to the edit page -->
+    <button class="border-2 border-black w-12" (click)="gotToPage('delete-supplier')">Delete</button> <!-- Buttonw ill reditect your to the Delete page -->
 </div>
 
 

@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormGroup,FormControl, FormControlName, FormBuilder } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 
 @Component({
@@ -9,15 +12,23 @@ import { Router } from '@angular/router';
 })
 export class AddSuplierComponent implements OnInit {
 
-  constructor(private router: Router) { }
+ // myForm: FormGroup;
 
+  constructor(private router: Router, private fb: FormBuilder) { }   
+ 
   ngOnInit(): void {
+   
   }
 
+  addSupplier(suplierName:string):void{
+    
+      alert("Supplier has been added");
+  }
 
   backToHub(pageName:string):void{
     this.router.navigate([`${pageName}`]);
-
   }
-}
 
+
+  
+}

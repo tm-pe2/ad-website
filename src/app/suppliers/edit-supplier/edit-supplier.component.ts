@@ -1,28 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-
 @Component({
-  selector: 'app-suppliers',
-  templateUrl: './suppliers.component.html',
-  styleUrls: ['./suppliers.component.css']
+  selector: 'app-edit-supplier',
+  templateUrl: './edit-supplier.component.html',
+  styleUrls: ['./edit-supplier.component.css']
 })
-export class SuppliersComponent implements OnInit {
+export class EditSupplierComponent implements OnInit {
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
-  myName="Jeff";
-  getName()
-  {
-    alert(this.myName)
-  }
-
+  
   gotToPage(pageName:string):void{
     this.router.navigate([`${pageName}`]);
-
   }
 
-}
 
+}
