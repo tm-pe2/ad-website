@@ -1,0 +1,111 @@
+<div class="grid overflow-hidden grid-cols-10 grid-rows-6 gap-px h-screen">
+  <div class="box row-start-0.5 row-end-0.5 col-start-1 col-end-11">
+      <!--Header-->
+      <header class="border-b md:flex md:items-center md:justify-between p-4 pb-0 shadow-lg md:pb-2">
+        <!-- Logo text or image -->
+       <div class="flex items-center justify-between mb-3 md:mb-0">
+         <h1 class="leading-none text-2xl text-grey-darkest">
+           <a class="no-underline text-grey-darkest hover:text-black" href="#">
+             Manage Clients
+           </a>
+         </h1>
+     
+         <a class="text-black hover:text-orange md:hidden" href="#">
+           <i class="fa fa-2x fa-bars"></i>
+         </a>
+       </div>
+       <!-- END Logo text or image -->
+       
+       <!-- Search field -->
+       <form class="mb-4 w-full md:mb-0 md:w-1/4">
+         <label class="hidden" for="search-form">Search</label>
+         <input class="bg-grey-lightest border-2 focus:border-orange p-2 rounded-lg shadow-inner w-full" placeholder="Search" type="text">
+         <button class="hidden">Submit</button>
+       </form>
+       <!-- END Search field -->
+       
+       <!-- Global navigation-->
+       <nav>
+         <ul class="list-reset md:flex md:items-center">
+           <li class="md:ml-4">
+             <a class="block no-underline hover:underline py-2 text-grey-darkest hover:text-black md:border-none md:p-0" href="#">
+               Products
+             </a>
+           </li>
+           <li class="md:ml-4">
+             <a class="border-t block no-underline hover:underline py-2 text-grey-darkest hover:text-black md:border-none md:p-0" href="#">
+               About
+             </a>
+           </li>
+           <li class="md:ml-4">
+             <a class="border-t block no-underline hover:underline py-2 text-grey-darkest hover:text-black md:border-none md:p-0" href="#">
+               Contact
+             </a>
+           </li>
+         </ul>
+       </nav>
+       </header> 
+  </div>
+  <div class="box row-start-2 row-end-6 col-start-1 col-end-3 overflow-y-auto shadow pl-10 text-sm">
+      <!--Search div-->
+    <ol class="w-full text-left my-3">
+      <p class="text-base font-medium	">Filter Clients:</p>
+      <button class="w-full text-left"><li class="my-0.5">- Individuals only</li></button>
+      <button class="w-full text-left"><li class="my-0.5">- Businesses only</li></button>
+    </ol>
+    <ol class="my-2">
+      <button class="w-full text-left"><li class="my-0.5">- Contract only</li></button>
+      <button class="w-full text-left"><li class="my-0.5">- No contract only</li></button>
+    </ol>
+    <button mat-raised-button class="addBtn" class="font-bold items-center text-center text-green-500 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-100 duration-300 w-5/6 " (click)="onSelectAdd()">Add new Client</button>
+  </div> 
+<div class="box row-start-2 row-end-6 col-start-3 col-end-11 mt-0">
+  
+  <div class="flex flex-wrap overflow-y-auto max-h-full border-md shadow">
+          <!--Place employee cards here-->
+          <table class="w-4/5 rounded-lg shadow ml-20">
+            <thead class="bg-gray-50 border-b-2 border-gray-200">
+                <tr>
+                    <th class="p-3 text-sm font-semibold tracking-wide text-left">Name</th>
+                    <th class="p-3 text-sm font-semibold tracking-wide text-left">private/business</th>
+                    <th class="p-3 text-sm font-semibold tracking-wide text-left">Running contract</th>
+                    <th class="p-3 text-sm font-semibold tracking-wide text-left">edit</th>
+                    <th class="p-3 text-sm font-semibold tracking-wide text-left">Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="shadow rounded-lg hover:bg-gray-200 " *ngFor="let client of clientsArray">
+                    <td class="p-3 text-sm">
+                        <span class="name">{{client.name}}</span>
+                    </td>
+                    <td class="p-3 text-sm">
+                      <span class="name">{{client.type}}</span>
+                    </td>
+                    <td class="p-3 text-sm">
+                        <!--if there is one or more running contracts, place each contract details behind one button-->
+                        <button *ngIf="client.contractNr; else elseBlock" class="p-1.5 text-xs font-medium uppercase tracking-wider text-yellow-800 bg-yellow-200 rounded-lg bg-opacity-50 hover:underline">
+                            Contract
+                        </button>
+                         <!--No running contract-->
+                         <ng-template #elseBlock>
+                            <button class="p-1.5 text-xs font-medium uppercase tracking-wider text-gray-800 bg-gray-200 rounded-lg bg-opacity-50">
+                              No Contract
+                            </button>
+                          </ng-template>
+                    </td>
+                    <td class="w-20 p-3 text-sm">
+                        <button mat-raised-button class="font-bold text-blue-500 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-100 duration-300" (click)="onSelectEdit(client)" >edit</button>
+                    </td>
+                    <td class="w-20 p-3 text-sm">
+                        <button mat-raised-button class="font-bold text-red-500 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-100 duration-300" (click)="onSelectRemove(client)">remove</button>
+                    </td>
+                </tr>
+            </tbody>
+          </table>
+      </div>
+    </div> 
+
+
+</div><div class="box row-start-6 row-end-6 col-start-1 col-end-11">
+  <!--Footer-->
+</div>

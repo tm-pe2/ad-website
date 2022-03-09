@@ -1,0 +1,8 @@
+<mat-dialog-content>
+<p>Are you sure you want to delete <strong>{{data.name}}</strong>?</p>
+
+</mat-dialog-content>
+<mat-dialog-actions class="flex justify-evenly">
+  <button mat-raised-button mat-primary mat-dialog-close mat-dialog-close="true" (click)="deleteClient(data.id)">Remove</button>
+  <button mat-raised-button mat-dialog-close mat-dialog-close="false" (click)="cancel()">Cancel</button>
+</mat-dialog-actions>

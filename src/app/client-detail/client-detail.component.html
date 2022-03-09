@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>Update {{data.name}}'s details</h2>  
+<mat-dialog-content [formGroup]="form">
+
+  <mat-form-field>
+    <input matInput #name
+    placeholder="Name"
+    formControlName="name">
+  </mat-form-field>
+<br>
+  <mat-form-field>  
+    <input matInput #lastname
+    placeholder="Lastname"
+    formControlName="lastname">
+  </mat-form-field>
+  <br>
+  <mat-form-field>  
+    <input matInput #type
+    placeholder="Type"
+    formControlName="type">
+  </mat-form-field> 
+
+</mat-dialog-content>
+  
+  <mat-dialog-actions class="flex justify-evenly">
+    <button mat-raised-button mat-primary mat-dialog-close mat-dialog-close="true" (click)="updateClient(data.id)">Update</button>
+    <button mat-raised-button mat-dialog-close mat-dialog-close="false" (click)="cancel()">Cancel</button>
+  </mat-dialog-actions>
+  
