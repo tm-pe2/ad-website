@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart, registerables} from 'chart.js';
+
 @Component({
   selector: 'app-graphs',
   templateUrl: './graphs.component.html',
@@ -13,9 +14,6 @@ export class GraphsComponent implements OnInit {
 
   ngOnInit(): void {
     const months = [
-      'January',
-      'February',
-      'March',
       'April',
       'May',
       'June',
@@ -25,14 +23,17 @@ export class GraphsComponent implements OnInit {
       'October',
       'November',
       'December',
+      'January',
+      'February',
+      'March',
     ];
   
     const data_months = {
       labels: months,
       datasets: [{
         label: 'Energy Usage',
-        backgroundColor: ['rgb(255, 99, 132)', 'rgb(255, 255, 0)'],
-        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: 'rgb(35, 170, 250)',
+        borderColor: 'rgb(35, 170, 250)',
         data: [0, 10, 5, 2, 20, 30, 45, 65, 32, 42, 14, 30],
       }]
     };
@@ -62,26 +63,26 @@ export class GraphsComponent implements OnInit {
     };
 
     const years = [
-      2000,
-      2001, 
-      2002,
-      2003,
-      2004,
-      2005,
-      2006,
-      2007,
-      2008,
-      2009,
-      2010,
+      2012,
+      2013, 
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
     ];
   
     const data_years = {
       labels: years,
       datasets: [{
         label: 'Energy Usage',
-        backgroundColor: ['rgb(255, 99, 132)', 'rgb(255, 255, 0)'],
-        borderColor: 'rgb(255, 99, 132)',
-        data: [0, 10, 5, 2, 20, 30, 45, 65, 32, 42],
+        backgroundColor: 'rgb(250, 200, 40)',
+        borderColor: 'rgb(250, 200, 40)',
+        data: [5000, 4500, 3600, 4800, 5200, 3900, 4005, 5500, 6000, 7000, 2500],
       }]
     };
   
@@ -112,5 +113,5 @@ export class GraphsComponent implements OnInit {
     const myChart = new Chart(<HTMLCanvasElement>document.getElementById('monthlyChart'), config_month);
     const yourChart = new Chart(<HTMLCanvasElement>document.getElementById('yearlyChart'), config_year);
   }
-
+  
 }
