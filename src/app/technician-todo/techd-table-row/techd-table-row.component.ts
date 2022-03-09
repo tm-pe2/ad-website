@@ -1,5 +1,6 @@
 import { Byte } from '@angular/compiler/src/util';
 import { Component, Input, OnInit } from '@angular/core';
+import {FilterParams} from '../technician-todo.component';
 
 @Component({
   selector: 'app-techd-table', //I know the filename has row but it's actually a full on table - I will NOT fix this because random stuff will break
@@ -13,39 +14,61 @@ export class TechdTableRowComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.QueriedShow(new FilterParams());
   }
 
   @Input() rows: Array<TableRow> = [
     new TableRow(['A', 'B', 'C', 'D'], false),
-    new TableRow(['A', 'B', 'C', 'D'], true),
+    new TableRow(['A', 'C', 'C', 'D'], true),
+    new TableRow(['F', 'B', 'C', 'D'], false),
+    new TableRow(['F', 'C', 'C', 'D'], true),
+    new TableRow(['G', 'B', 'C', 'D'], false),
+    new TableRow(['G', 'C', 'C', 'D'], true),
+    new TableRow(['H', 'B', 'C', 'D'], false),
+    new TableRow(['H', 'C', 'C', 'D'], true),
   ];;
 
   @Input() QueryState: number = 0x01
 
-  
+  @Input() LinesToShow: Array<TableRow> = new Array<TableRow>();
 
-  QueriedShow()
+  QueriedShow(FP: FilterParams)
   {
-    let LinesToShow: Array<TableRow>;
-    LinesToShow = new Array<TableRow>();
+    /*let LinesToShow: Array<TableRow>;
+    LinesToShow = new Array<TableRow>();*/
+    /*this.LinesToShow = new Array<TableRow>();
     if(this.QueryState == 0x01)
     {
-      return this.rows;
+      this.LinesToShow = this.rows;
+      return;
     }
     if(this.QueryState == 0x02)
     {
-      this.rows.forEach(function(value)
+      this.rows.forEach((value) =>
       {
         if(!value.Completed)
         {
-          LinesToShow.push(value);
+          this.LinesToShow.push(value);
         }
       })
-      return LinesToShow;
+    }*/
+
+    this.LinesToShow = Object.assign([], this.rows);
+    if(FP.CompletedOnly)
+    {
+      let pos = 0;
+      let buf = new Array<TableRow>();
+      this.LinesToShow.forEach((value) =>
+      {
+        if(value.Completed)
+        {
+          buf.push(value);
+        }
+      })
+      this.LinesToShow = Object.assign([], buf);
     }
 
-    return this.rows; //something went wrong HELP
+    return;
   }
 }
 

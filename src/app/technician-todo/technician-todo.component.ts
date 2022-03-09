@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { fakeAsync } from '@angular/core/testing';
 
 @Component({
   selector: 'app-technician-todo',
@@ -11,5 +12,9 @@ export class TechnicianTodoComponent implements OnInit {
 
   ngOnInit(): void {
   }
+}
 
+export class FilterParams
+{
+  CompletedOnly: boolean = false;
 }

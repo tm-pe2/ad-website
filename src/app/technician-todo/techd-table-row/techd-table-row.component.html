@@ -9,7 +9,8 @@
     <!-- <div [hidden]="Completed == false"> -->
         <!-- Completed: <input type="checkbox"> -->
     <!-- </div> -->
-    <div *ngFor="let row of QueriedShow()">
+    <app-tech-filter-buttons (DoFilter)="QueriedShow($event)"></app-tech-filter-buttons>
+    <div *ngFor="let row of LinesToShow">
         <div *ngFor="let i of row.Fields">
             {{i}}
         </div>
