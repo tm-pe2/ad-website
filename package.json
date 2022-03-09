@@ -10,7 +10,6 @@
     "test": "ng test --watch=false --browsers=ChromeHeadlessPuppeteer",
     "test:watch": "ng test",
     "test:prod": "npm run test && npm run build:prod"
-
   },
   "private": true,
   "dependencies": {
