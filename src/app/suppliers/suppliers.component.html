@@ -1,16 +1,23 @@
-<div class="border-2 border-black transition-all w-4/5 bg-gray-400 mx-auto my-1.5">Header</div>
+<div class="border-2 border-black transition-all w-4/5 bg-gray-400 mx-auto my-1.5 text-center">Header</div>
 
 <div class="border-2 border-black w-3/4 mx-auto my-1.5">
-    <div class="border-2 border-red-600 w-44 p-3 my-5 mx-auto">
-        <button class="text-2xl text-center">Add Supplier</button> 
+    <div class="w-fit p-3 my-5 mx-auto">
+        <button class="text-xl border-2 border-red-600 p-4" (click)="gotToAddPage('add-suplier')">Add Supplier</button> 
     </div>
 
-
+  
 <div class="border-2 border-black w-40 h-28 m-10 ">
     <p class="text-center">Supplier 1</p> 
     <p class="text-center text-xs">Electricity</p>    
     <p class="text-center text-xs mb-2">BierStraat 10</p>
-    <button class="border-2 border-black mx-5 w-12">Edit</button><button class="border-2 border-black w-12">Delete</button>
+    <button class="border-2 border-black mx-5 w-12">Edit</button>
+    <button class="border-2 border-black w-12" (click)="getName()">Delete</button>
 </div>
 
+
+
+
+
 </div>
+
+<div class="border-2 border-black transition-all w-4/5 bg-gray-400 mx-auto my-1.5 text-center">Footer</div>
