@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { LoginService } from './login.service';
 import { LoginData } from './loginData';
-import { Md5 } from 'ts-md5';
 
 @Component({
   selector: 'app-login',
@@ -41,7 +40,7 @@ export class LoginComponent implements OnInit {
   // Private
   private checkCreds(loginForm: NgForm)
   {
-    const loginData = new LoginData(loginForm.value.loginMail, Md5.hashStr(loginForm.value.loginPassword));
+    const loginData = new LoginData(loginForm.value.loginMail, loginForm.value.loginPassword);
     if (!this.service.authenticate(loginData))
     {
       this.invalidForm = false;

@@ -8,7 +8,7 @@ import { LoginData } from './loginData';
 
 export class LoginService {
   // Mockuser 
-  private readonly mockUser = new LoginData("johndoe@mail.com", "cc03e747a6afbbcbf8be7668acfebee5");
+  private readonly mockUser = new LoginData("johndoe@mail.com", "test123");
 
   // Variables
   authenticated = false;
