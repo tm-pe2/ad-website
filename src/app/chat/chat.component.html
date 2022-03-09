@@ -1,0 +1,30 @@
+<div class="ChatContainer">
+    <div class="Chatheader">
+        Helpdesk
+        <div  class="ChatHeaderButton" (click) = toggleDisplay()>
+            ^
+        </div>
+    </div>
+    <div id="Messagebox" *ngIf="ShowChat">
+        <div class="Messages" #scrollchat [scrollTop]="scrollchat.scrollHeight">
+
+            <div *ngFor="let chatMessage of webSocketService.chatMessages">
+                <div class="Message {{chatMessage.user}}" >
+                    <strong>{{chatMessage.user}}</strong>
+                    <p>{{chatMessage.message}}</p>
+                    <span class="time">{{chatMessage.hour}}:{{chatMessage.minutes}}</span>
+                </div>
+            </div >
+        </div>
+        <div class="MessageInput">
+            <form (ngSubmit)="sendMessage(sendForm)" #sendForm="ngForm">
+                <select name="user" id="input-user" ngModel>
+                    <option selected="selected" value="Helpdesk">Helpdesk</option>
+                    <option value="Customer">Customer</option>
+                </select><br>
+                <input type="text" name="message" id="input-message" placeholder="Type message here" ngModel>
+                <button type="submit" class="Button">Send</button>
+            </form>
+        </div>
+    </div>
+</div>
