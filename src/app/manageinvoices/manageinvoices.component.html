@@ -2,23 +2,23 @@
 
 <ul>
     <li class="Person" *ngFor="let person of people; let j = index;">
-        <div class="invoice-header">
+        <div class="Invoice-header">
             <h3>ClientName: {{person.FirstName}} {{person.LastName}}</h3>
             <button id="person.ID" action="ADD">+</button>
         </div>
-        <div class="Invoice" *ngFor="let bill of person.bills; let i = index">
-            <ul>
+        <div class="Invoice" *ngFor="let bill of bills; let i = index">
+            <ul *ngIf="bill.ClientID == person.ClientID">
                 <li><h3>INVOICE:</h3></li>
-                <li><strong>Invoice ID: </strong><span>{{bill.ID}}</span></li>
+                <li><strong>Invoice ID: </strong><span>{{bill.id}}</span></li>
                 <li><strong>Date: </strong><span>{{bill.Date}}</span></li>
                 <li><strong>Type: </strong><span>{{bill.Type}}</span></li>
-                <li><strong>Supplier: </strong><span>{{bill.Supplier}}</span></li>
+                <li><strong>Supplier: </strong><span>{{bill.SupplierID}}</span></li>
                 <li><strong>Amount: </strong><span>{{bill.Amount}}
                     <div *ngIf='bill.Type == "Gas"; then gasBlock else electricityBlock'></div>
                     <ng-template #gasBlock>L</ng-template>
                     <ng-template #electricityBlock>kWh</ng-template>
                 </span></li>
-                <li><strong>Charge: </strong><span>${{bill.Charge}}</span></li>
+                <li><strong>Charge: </strong><span>${{bill.Price}}</span></li>
                 <li><button id="bill.ID" action="EDIT">EDIT</button> <button id="bill.ID" action="DELETE">-</button></li>
             </ul>
         </div>
