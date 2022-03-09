@@ -12,7 +12,7 @@ import { GraphsComponent } from './graphs/graphs.component';
     AppComponent,
     DashboardComponent,
     TicketingComponent,
-    GraphsComponent
+    GraphsComponent,
   ],
   imports: [
     BrowserModule,

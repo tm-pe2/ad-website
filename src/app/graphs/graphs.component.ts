@@ -12,7 +12,7 @@ export class GraphsComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    const labels = [
+    const months = [
       'January',
       'February',
       'March',
@@ -27,8 +27,8 @@ export class GraphsComponent implements OnInit {
       'December',
     ];
   
-    const data = {
-      labels: labels,
+    const data_months = {
+      labels: months,
       datasets: [{
         label: 'Energy Usage',
         backgroundColor: ['rgb(255, 99, 132)', 'rgb(255, 255, 0)'],
@@ -37,9 +37,9 @@ export class GraphsComponent implements OnInit {
       }]
     };
   
-    const config: any = {
+    const config_month: any = {
       type: 'bar',
-      data: data,
+      data: data_months,
       options: {
         scales: {
           y: {
@@ -57,11 +57,60 @@ export class GraphsComponent implements OnInit {
           }
         },
         responsive: 'true',
+        maintainAspectRatio: 'true',
+      }
+    };
+
+    const years = [
+      2000,
+      2001, 
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+    ];
+  
+    const data_years = {
+      labels: years,
+      datasets: [{
+        label: 'Energy Usage',
+        backgroundColor: ['rgb(255, 99, 132)', 'rgb(255, 255, 0)'],
+        borderColor: 'rgb(255, 99, 132)',
+        data: [0, 10, 5, 2, 20, 30, 45, 65, 32, 42],
+      }]
+    };
+  
+    const config_year: any = {
+      type: 'bar',
+      data: data_years,
+      options: {
+        scales: {
+          y: {
+            title: {
+              display: 'true',
+              text: 'kWh',
+              align: 'center',
+              padding: 20,
+            }
+          },
+          x: {
+            ticks: {
+              padding: 20
+            }
+          }
+        },
         maintainAspectRatio: 'false',
+        responsive: 'true',
       }
     };
   
-    const myChart = new Chart(<HTMLCanvasElement>document.getElementById('monthlyChart'), config);
+    const myChart = new Chart(<HTMLCanvasElement>document.getElementById('monthlyChart'), config_month);
+    const yourChart = new Chart(<HTMLCanvasElement>document.getElementById('yearlyChart'), config_year);
   }
 
 }
