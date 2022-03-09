@@ -70,6 +70,11 @@ export class TechdTableRowComponent implements OnInit {
 
     return;
   }
+
+  UpdateTableItem(ID: number, CheckedMode: boolean)
+  {
+    this.LinesToShow[ID].Completed = CheckedMode;
+  }
 }
 
 export interface TableRowInt {

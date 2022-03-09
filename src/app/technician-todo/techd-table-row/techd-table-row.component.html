@@ -10,15 +10,12 @@
         <!-- Completed: <input type="checkbox"> -->
     <!-- </div> -->
     <app-tech-filter-buttons (DoFilter)="QueriedShow($event)"></app-tech-filter-buttons>
-    <div *ngFor="let row of LinesToShow">
+    <div *ngFor="let row of LinesToShow; let no = index">
         <div *ngFor="let i of row.Fields">
             {{i}}
         </div>
-        <div [hidden]="row.Completed == true">
-            Completed: <input type="checkbox" checked>
-        </div>
-        <div [hidden]="row.Completed == false">
-            Completed: <input type="checkbox">
-        </div>        
+        <div>
+            Completed: <input type="checkbox" [checked]="row.Completed" (change)="UpdateTableItem(no, !row.Completed)">
+        </div> 
     </div>
 </div>
