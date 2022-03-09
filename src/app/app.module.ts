@@ -21,8 +21,10 @@ import { ClientTicketsComponent } from './ticketing/client-tickets/client-ticket
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TicketingComponent } from './ticketing/ticketing.component';
 import { ManageEmployeesComponent } from './manage-employees/manage-employees.component';
-import { EmployeeCardComponent } from './employee-card/employee-card.component';
-import { AddEmployeeFormComponent } from './add-employee-form/add-employee-form.component';
+import { AddEmployeeFormComponent } from './manage-employees/add-employee-form/add-employee-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { EditEmployeeFormComponent } from './manage-employees/edit-employee-form/edit-employee-form.component';
+import { EmployeeCardComponent } from './manage-employees/employee-card/employee-card.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { AddEmployeeFormComponent } from './add-employee-form/add-employee-form.
     ManageEmployeesComponent,
     EmployeeCardComponent,
     AddEmployeeFormComponent,
+    EditEmployeeFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ import { AddEmployeeFormComponent } from './add-employee-form/add-employee-form.
       useClass: AuthInterceptor,
       multi: true
     }, 
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,42 @@
+<div class="w-full max-w-xs">
+    <form (ngSubmit)="onSubmit()" novalidate> 
+      <label for="addEmp">Edit Employee</label><br>
+      
+      <label for="Fname">First name: </label>
+        <input class="border-2" type="text" id="Fname" name="Fname" [(ngModel)]="FirstName" [(ngModel)]="emp.FirstName"><br>
+      
+      <label for="Lname">Last name: </label>
+      <input class="border-2" type="text" id="Lname" name="Lname" [(ngModel)]="LastName" [(ngModel)]="emp.LastName" ><br>
+      
+      <label for="birDate">BirthDate: </label>
+      <input class="border-2" type="text" id="birDate" name="birDate" [(ngModel)]="BirthDate" [(ngModel)]="emp.BirthDate"><br>
+      
+      <label for="email">Email:  </label>
+      <input class="border-2" type="text" id="email" name="email" [(ngModel)]="Email" [(ngModel)]="emp.Email"><br>
+      
+      <label for="phoneNR">Phone Number: </label>
+      <input class="border-2" type="text" id="phoneNR" name="phoneNR" [(ngModel)]="PhoneNumber" [(ngModel)]="emp.PhoneNumber"><br>
+      
+      <label for="address">Address: </label>
+      <input class="border-2" type="text" id="address" name="address" [(ngModel)]="Address" [(ngModel)]="emp.Address"><br>
+
+      <label for="HireDate">HireDate </label>
+      <input class="border-2" type="text" id="hiredate" name="hiredate" [(ngModel)]="HireDate" [(ngModel)]="emp.HireDate" ><br>
+  
+      
+      <!---
+      <label for="department">Department: </label>  
+      <select class="form-control" id="department" >
+        <option *ngFor="let dep of DepartmentOptions" [value]="dep" [(ngModel)]="Department" >{{dep}}</option>
+      </select><br>-->
+  
+      <input type="radio" id="M" name="gender" value="M" [(ngModel)]="Gender">
+      <label for="M">M</label><br>
+      <input type="radio" id="F" name="gender" value="F" [(ngModel)]="Gender">
+      <label for="F">F</label><br>
+      <input type="radio" id="X" name="gender" value="X" [(ngModel)]="Gender">
+      <label for="X">X</label><br>
+  
+      <button class="p-2 bg-blue-300 rounded" type="submit">Add</button> 
+    </form>
+    </div>

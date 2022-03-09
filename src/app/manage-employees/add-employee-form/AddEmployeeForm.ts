@@ -1,4 +1,4 @@
-export class AddEmployeeForm{
+export class Employee{
     constructor(
         public EmployeesID: number ,
         public FirstName: string,
