@@ -20,9 +20,10 @@ export class AddSuplierComponent implements OnInit {
    
   }
 
+  homePage="suppliers"
   addSupplier(suplierName:string):void{
-    
       alert("Supplier has been added");
+      this.router.navigate([`${this.homePage}`]);
   }
 
   backToHub(pageName:string):void{

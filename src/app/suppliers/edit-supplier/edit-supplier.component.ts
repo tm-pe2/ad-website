@@ -17,5 +17,12 @@ export class EditSupplierComponent implements OnInit {
     this.router.navigate([`${pageName}`]);
   }
 
+  homePage = "suppliers"
+
+  editSup():void{
+    alert("Supplier Has been edited");
+    this.router.navigate([`${this.homePage}`]);
+
+  }
 
 }
