@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-menubar',
-  templateUrl: './menubar.component.html',
-  styleUrls: ['./menubar.component.css']
+  selector: 'app-dropmenu',
+  templateUrl: './dropmenu.component.html',
+  styleUrls: ['./dropmenu.component.css']
 })
-export class MenubarComponent implements OnInit {
+export class DropmenuComponent implements OnInit {
 
   constructor() { }
 
   ngOnInit(): void {
-
     //dummy styling
     let menubar = document.getElementById("menubar");
     let menubox = document.getElementById("menubox");
@@ -18,24 +17,19 @@ export class MenubarComponent implements OnInit {
      
 
     let menubarClasses = ['w-full', 'border-solid', 'border-2', 'border-red-600'];
-    let menuboxClasses = ['max-w-fit', 'border-solid', 'border-2', 'border-blue-600', 'flex'];
-    let listClasses = ['flex'];
+    let menuboxClasses = ['max-w-fit', 'border-solid', 'border-2', 'border-blue-600'];
     let linkClasses = ['border-solid', 'border-2', 'border-green-600', 'ml-10', 'hidden'];
     
     this.addStyle(menubar, menubarClasses);
     this.addStyle(menubox, menuboxClasses);
-    this.addStyle(list, listClasses);
 
     let links = ['link1', 'link2', 'link3', 'link4'];
     let linkAddresses = ['','','',''];
     this.generateLinks(links, linkClasses, list, linkAddresses);
-
-
   }
-
-  //Functions
+   //Functions
   
-  showMenu() : void{
+   showMenu() : void{
     let links = document.getElementById("list")?.getElementsByTagName('a');
     for(let i = 0; i < links!.length; i++){
       document.getElementById('link' + i)?.style.setProperty('display', 'block');
