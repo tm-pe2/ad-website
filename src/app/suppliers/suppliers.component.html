@@ -1,18 +1,30 @@
 <div class="border-2 border-black transition-all w-4/5 bg-gray-400 mx-auto my-1.5 text-center">Header</div>
 
-<div class="border-2 border-black w-3/4 mx-auto my-1.5">
-    <div class="w-fit p-3 my-5 mx-auto">
-        <button class="text-xl border-2 border-red-600 p-4" (click)="gotToPage('add-suplier')">Add Supplier</button> <!-- page will redirect you to the add supplier page-->
-    </div>
+<div class="border-2 border-black w-3/4 mx-auto my-1.5 flex flex-row ">
+
+    
 
   
-<div class="border-2 border-black w-40 h-28 m-10 ">
-    <p class="text-center">Supplier 1</p> 
-    <p class="text-center text-xs">Electricity</p>    
-    <p class="text-center text-xs mb-2">BierStraat 10</p>
-    <button class="border-2 border-black mx-5 w-12" (click)="gotToPage('edit-supplier')">Edit</button> <!-- Button will redirect you to the edit page -->
-    <button class="border-2 border-black w-12" (click)="gotToPage('delete-supplier')">Delete</button> <!-- Buttonw ill reditect your to the Delete page -->
-</div>
+    <div class="border-2 border-black w-40 pt-2 pb-4 m-10 rounded-lg flex-initial">
+        <p class="text-center mt-2 text-2xl font-bold mb-3">Supplier 1</p> 
+        <p class="text-center text-base border-2 border-lime-600 w-fit mx-auto px-2 rounded-lg bg-lime-400 bg-opacity-45">Electricity</p>    
+        <p class="text-center text-base font-thin my-2">BierStraat 10</p>
+        <div class="my-3 w-fit mx-auto"><button class="border-2 border-black w-32 rounded-lg hover:bg-gray-400 duration-500" (click)="gotToPage('edit-supplier')">Edit</button></div>   <!-- Button will redirect you to the edit page -->
+        <div class="my-1 w-fit mx-auto"><button class="border-2 border-black w-32 rounded-lg hover:bg-gray-400 duration-500" (click)="gotToPage('delete-supplier')">Delete</button> </div> <!-- Buttonw ill reditect your to the Delete page -->
+    </div>
+    
+    <div class="border-2 border-black w-40 pt-2 pb-4 m-10 rounded-lg flex-initial">
+        <p class="text-center mt-2 text-2xl font-bold mb-3">Supplier 2</p> 
+        <p class="text-center text-base border-2 border-blue-600 w-fit mx-auto px-2 rounded-lg bg-blue-400 bg-opacity-45">Gas</p>    
+        <p class="text-center text-base font-thin my-2">StellaStraat 20</p>
+        <div class="my-3 w-fit mx-auto"><button class="border-2 border-black w-32 rounded-lg hover:bg-gray-400 duration-500" (click)="gotToPage('edit-supplier')">Edit</button></div>   <!-- Button will redirect you to the edit page -->
+        <div class="my-1 w-fit mx-auto"><button class="border-2 border-black w-32 rounded-lg hover:bg-gray-400 duration-500" (click)="gotToPage('delete-supplier')">Delete</button> </div> <!-- Buttonw ill reditect your to the Delete page -->
+    </div>
+
+    <div class="border-2 border-black w-40 pt-2 pb-4 m-10 rounded-lg flex-initial text-9xl text-center cursor-pointer" (click)="gotToPage('edit-supplier')">
+            +<br>
+            <p class="text-xl">Add Item</p>
+    </div>
 
 
 
