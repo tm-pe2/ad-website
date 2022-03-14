@@ -24,7 +24,11 @@ import { ManageEmployeesComponent } from './manage-employees/manage-employees.co
 import { AddEmployeeFormComponent } from './manage-employees/add-employee-form/add-employee-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditEmployeeFormComponent } from './manage-employees/edit-employee-form/edit-employee-form.component';
+<<<<<<< HEAD
 import { EmployeeCardComponent } from './manage-employees/employee-card/employee-card.component';
+=======
+import { EmployeeListItemComponent } from './manage-employees/employee-list-item/employee-list-item.component';
+>>>>>>> 79da152 (new employee-list component)
 
 @NgModule({
   declarations: [
@@ -46,6 +50,7 @@ import { EmployeeCardComponent } from './manage-employees/employee-card/employee
     EmployeeCardComponent,
     AddEmployeeFormComponent,
     EditEmployeeFormComponent,
+    EmployeeListItemComponent,
   ],
   imports: [
     BrowserModule,
