@@ -13,7 +13,7 @@ export class TicketingComponent implements OnInit {
   }
 
   tickets?: FieldData[];
-
+  filter: FilterData = {name: ""};
   errorField: FieldData= {name: "Something went wrong", issue: "We could not get the correct field!", description: "We are sorry, but something went wrong. Please try again later.", status: "Error"};
 
 
@@ -25,9 +25,9 @@ export class TicketingComponent implements OnInit {
     .then((tickets) => {
       console.table(tickets.tickets);
       this.tickets = tickets.tickets;
-    });
+  });
   }
-  }
+}
 
 @Component({
   selector: 'table-row',
@@ -76,11 +76,9 @@ export class TableRow {
     this.dcomponent?.destroy();
   }
 
-  limitDescription(description: String) {
-    if (description.length > 150) {
-      return description.substring(0, 150) + "...";
-    }
-    return description;
+  filterTable(username: string) {
+    this.parentPage!.filter!.name = username.toLowerCase();
+    return false;
   }
 }
 
@@ -90,4 +88,8 @@ export interface FieldData {
   description: String;
   id?: number;
   status?: String;
+}
+
+export interface FilterData {
+  name?: string;
 }
