@@ -22,7 +22,8 @@
 
             <app-big-card *ngIf="user?.type == 'Technician'"
             [title]="'Recent tickets'" [icon]="'assignment_turned_in'"
-            [buttonTitle]="'All tickets'" [buttonIcon]="'assignment'">
+            [buttonTitle]="'All tickets'" [buttonIcon]="'assignment'"
+            [buttonHref]="'ticketing'">
                 <div *ngFor="let ticket of tickets"
                 class="flex flex-row flex-nowrap
                 bg-slate-200

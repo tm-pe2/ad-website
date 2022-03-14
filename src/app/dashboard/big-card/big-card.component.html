@@ -3,7 +3,8 @@
     <mat-icon class="scale-[250%] mr-8 mt-5 ml-5">{{ icon }}</mat-icon> <!--Positioning of icons is not the best way of doing it-->
     <div class="flex flex-col w-full">
         <h2 class="text-xl font-bold">{{ title }}
-            <app-button *ngIf="buttonTitle!=''" class=" text-base font-normal">
+            <app-button *ngIf="buttonTitle!==undefined" class=" text-base font-normal"
+            [href]="buttonHref">
                 <mat-icon class="scale-150" [inline]="true">{{buttonIcon}}</mat-icon>
                 {{buttonTitle}}
             </app-button>
