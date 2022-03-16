@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent, GraphCanvasComponent } from './dashboard/dashboard.component';
 import { SmallCardComponent } from './dashboard/small-card/small-card.component';
 import { BigCardComponent } from './dashboard/big-card/big-card.component';
 import { ProfileCardComponent } from './dashboard/profile-card/profile-card.component';
@@ -22,6 +22,7 @@ import { MatIconModule } from '@angular/material/icon'
     ButtonComponent,
     TicketingComponent,
     GraphsComponent,
+    GraphCanvasComponent
   ],
   imports: [
     BrowserModule,
