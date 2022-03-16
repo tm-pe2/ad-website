@@ -5,7 +5,7 @@ import { GraphsComponent } from './graphs/graphs.component';
 import { TicketingComponent } from './ticketing/ticketing.component';
 
 const routes: Routes = [
-  {path: 'dashboard', component: DashboardComponent},
+  {path: 'dashboard/:userType', component: DashboardComponent},
   {path: 'ticketing', component: TicketingComponent},
   {path: 'graphs', component: GraphsComponent}
 ];

@@ -1,0 +1,12 @@
+<a class="cursor-pointer flex flex-col items-center bg-white shadow-lg rounded-lg p-5 transition-all hover:shadow-xl hover:-mt-2 h-full">
+    <img src="../../assets/img/dashboard/person.webp" alt="test" class="rounded-full h-32 ">
+    <h2 class="text-xl font-bold text-center">{{ title }}</h2>
+    <p class="p-1">{{ user?.name }}</p>
+    <p class="p-1">{{ user?.email }}</p>
+    <p class="p-1">{{ user?.birthday }}</p>
+    <p class="p-1">{{ user?.address }}</p>
+
+    <app-button>View profile</app-button>
+    <app-button *ngIf="user?.type == 'User'">View subscription</app-button>
+
+</a>
