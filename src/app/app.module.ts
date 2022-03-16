@@ -10,7 +10,6 @@ import { SmallGraphComponent } from './graphs/small-graph/small-graph.component'
 import { MediumGraphComponent } from './graphs/medium-graph/medium-graph.component';
 import { BigGraphComponent } from './graphs/big-graph/big-graph.component';
 import { ButtonComponent } from './dashboard/button/button.component';
-import { TicketingComponent } from './ticketing/ticketing.component';
 import { GraphsComponent } from './graphs/graphs.component';
 import { MonthlyUsageChartComponent } from './graphs/monthly-usage-chart/monthly-usage-chart.component';
 import { YearlyUsageChartComponent } from './graphs/yearly-usage-chart/yearly-usage-chart.component';
