@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Employee } from './AddEmployeeForm';
+import { Employee } from '../Employee';
 
 @Component({
   selector: 'app-add-employee-form',
@@ -13,7 +13,8 @@ export class AddEmployeeFormComponent{
   
   //DepartmentOptions = ['mangers','idk','the guys from it'];
 
-  //emp = new Employee();
+  // Some variables
+  id = 1;
   FirstName = "";
   LastName = "";
   BirthDate= "";
@@ -27,7 +28,9 @@ export class AddEmployeeFormComponent{
   
   
   onSubmit() {;
+    var id = 1;
     console.log(this.FirstName,this.LastName,this.BirthDate,this.Email,this.PhoneNumber,this.Address,this.HireDate,this.Department,this.Gender);
+    var emp = new Employee(id,this.FirstName,this.LastName,this.BirthDate,this.Email,this.PhoneNumber,this.Address,this.HireDate,this.Department,this.Gender);
   }
 
   
