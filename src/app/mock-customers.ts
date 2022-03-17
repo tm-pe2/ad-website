@@ -1,7 +1,7 @@
-import { Client } from "./clients/client";
+import { Customer } from "./customers/customer";
 
 
-export const CLIENTS: Client[] = [
+export const CUSTOMERS: Customer[] = [
   { id: 1, name: 'Dr Nice',lastname: 'Lorem11', type: 'Individual',contractNr: '1' },
   { id: 2, name: 'Narco',lastname: 'Lorem12', type: 'Business',contractNr: '2' },
   { id: 3, name: 'Bombasto',lastname: 'Lorem13', type: 'Individual',contractNr: '' },

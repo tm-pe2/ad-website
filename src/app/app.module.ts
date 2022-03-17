@@ -5,28 +5,28 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ClientDetailComponent } from './client-detail/client-detail.component';
-import { ClientsComponent } from './clients/clients.component';
+import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
+import { CustomerComponent } from './customers/customers.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { MaterialModule } from './material/material.module';
 import { TableRow, TicketingComponent } from './ticketing/ticketing.component';
 import { UtilService } from './util.service';
-import { AddClientDialogComponent } from './add-client-dialog/add-client-dialog.component';
+import { AddClientDialogComponent } from './add-client-dialog/add-customer-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     TicketingComponent,
-    ClientsComponent,
-    ClientDetailComponent,
+    CustomerComponent,
+    CustomerDetailComponent,
     ConfirmDialogComponent,
     TableRow,
     AddClientDialogComponent,
    
 
   ],
-  entryComponents:[ClientDetailComponent],
+  entryComponents:[CustomerDetailComponent],
     imports: [
     BrowserModule,
     AppRoutingModule,
@@ -37,8 +37,8 @@ import { AddClientDialogComponent } from './add-client-dialog/add-client-dialog.
     
   ],
   exports:[
-    ClientsComponent,
-    ClientDetailComponent,
+    CustomerComponent,
+    CustomerDetailComponent,
     ConfirmDialogComponent,
   ],
   providers: [UtilService],

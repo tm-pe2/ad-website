@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Form, FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { ClientDetailComponent } from '../client-detail/client-detail.component';
-import { CLIENTS } from '../mock-clients';
-import { Client } from '../clients/client';
+import { CustomerDetailComponent } from '../customer-detail/customer-detail.component';
+import { CUSTOMERS } from '../mock-customers';
+import { Customer } from '../customers/customer';
 
 @Component({
   selector: 'app-add-client-dialog',
-  templateUrl: './add-client-dialog.component.html',
-  styleUrls: ['./add-client-dialog.component.css']
+  templateUrl: './add-customer-dialog.component.html',
+  styleUrls: ['./add-customer-dialog.component.css']
 })
 export class AddClientDialogComponent implements OnInit {
   
@@ -16,7 +16,7 @@ export class AddClientDialogComponent implements OnInit {
   
   
   constructor(private formB: FormBuilder,
-    private dialRef: MatDialogRef<ClientDetailComponent> ){}
+    private dialRef: MatDialogRef<CustomerDetailComponent> ){}
 
   ngOnInit(): void {
  
@@ -31,15 +31,15 @@ export class AddClientDialogComponent implements OnInit {
   {
     this.dialRef.close(this.form);
     console.log(this.form);
-    console.log(CLIENTS.length);
-    var newId= (CLIENTS.length)+1;
-    let c: Client = {
+    console.log(CUSTOMERS.length);
+    var newId= (CUSTOMERS.length)+1;
+    let c: Customer = {
       id: newId,
       name: n,
       lastname: ln,
       type: t,
       contractNr: "A10"
     }
-    CLIENTS.push(c);
+    CUSTOMERS.push(c);
   }
 }

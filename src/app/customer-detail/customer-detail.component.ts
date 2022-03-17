@@ -1,16 +1,15 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CLIENTS } from '../mock-clients';
-
+import { CUSTOMERS } from '../mock-customers';
 
 
 @Component({
   selector: 'app-client-detail',
-  templateUrl: './client-detail.component.html',
-  styleUrls: ['./client-detail.component.css']
+  templateUrl: './customer-detail.component.html',
+  styleUrls: ['./customer-detail.component.css']
 })
-export class ClientDetailComponent implements OnInit {
+export class CustomerDetailComponent implements OnInit {
   
   form!: FormGroup;
   id:number;
@@ -20,7 +19,7 @@ export class ClientDetailComponent implements OnInit {
 
   constructor(
     private formB: FormBuilder,
-    private dialRef: MatDialogRef<ClientDetailComponent>,
+    private dialRef: MatDialogRef<CustomerDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
       this.id=data.id;
       this.name=data.name;
@@ -44,17 +43,15 @@ export class ClientDetailComponent implements OnInit {
     console.log(this.form.value);
     console.log(idToUpd);
     
-    CLIENTS.forEach((value,index)=>{
+    CUSTOMERS.forEach((value,index)=>{
       if(value.id==idToUpd) 
       {
-        CLIENTS[index].name=this.form.value.name;
-        CLIENTS[index].lastname=this.form.value.lastname;
-        CLIENTS[index].type=this.form.value.type;
+        CUSTOMERS[index].name=this.form.value.name;
+        CUSTOMERS[index].lastname=this.form.value.lastname;
+        CUSTOMERS[index].type=this.form.value.type;
       }
   });
-
-
-    
+   
   }
 
   cancel() {

@@ -1,8 +1,8 @@
 import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ClientDetailComponent } from '../client-detail/client-detail.component';
-import { CLIENTS } from '../mock-clients';
+import { CustomerDetailComponent } from '../customer-detail/customer-detail.component';
+import { CUSTOMERS } from '../mock-customers';
 
 @Component({
   selector: 'app-confirm-dialog',
@@ -15,7 +15,7 @@ export class ConfirmDialogComponent implements OnInit {
   id:number;
 
   constructor(
-    private dialRef: MatDialogRef<ClientDetailComponent>,
+    private dialRef: MatDialogRef<CustomerDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
       this.name=data.name;
       this.id=data.id;
@@ -27,8 +27,8 @@ export class ConfirmDialogComponent implements OnInit {
 
   deleteClient(idToDel: number) {
     console.log(idToDel);
-    CLIENTS.forEach((value,index)=>{
-      if(value.id==idToDel) CLIENTS.splice(index,1);
+    CUSTOMERS.forEach((value,index)=>{
+      if(value.id==idToDel) CUSTOMERS.splice(index,1);
       this.dialRef.close();
   });
 
