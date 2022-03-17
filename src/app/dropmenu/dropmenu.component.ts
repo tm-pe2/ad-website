@@ -18,7 +18,7 @@ export class DropmenuComponent implements OnInit {
 
     let menubarClasses = ['w-full', 'border-solid', 'border-2', 'border-red-600'];
     let menuboxClasses = ['max-w-fit', 'border-solid', 'border-2', 'border-blue-600'];
-    let linkClasses = ['border-solid', 'border-2', 'border-green-600', 'ml-10', 'hidden'];
+    let linkClasses = ['border-solid', 'border-2', 'border-green-600', 'ml-3', 'mt-2', 'hidden'];
     
     this.addStyle(menubar, menubarClasses);
     this.addStyle(menubox, menuboxClasses);

@@ -13,6 +13,9 @@ import { Box1Component } from './box1/box1.component';
 import { Box2Component } from './box2/box2.component';
 import { Box3Component } from './box3/box3.component';
 import { DropmenuComponent } from './dropmenu/dropmenu.component';
+import { Box4Component } from './box4/box4.component';
+import { TestpageComponent } from './testpage/testpage.component';
+import { Box5Component } from './box5/box5.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { DropmenuComponent } from './dropmenu/dropmenu.component';
     Box1Component,
     Box2Component,
     Box3Component,
-    DropmenuComponent
+    DropmenuComponent,
+    Box4Component,
+    TestpageComponent,
+    Box5Component
 
   ],
   imports: [
