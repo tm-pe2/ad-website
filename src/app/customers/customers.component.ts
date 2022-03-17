@@ -4,11 +4,11 @@ import{CUSTOMERS} from '../mock-customers'
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CustomerDetailComponent } from '../customer-detail/customer-detail.component';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
-import { AddClientDialogComponent } from '../add-client-dialog/add-customer-dialog.component';
+import { AddCustomerDialogComponent } from '../add-customer-dialog/add-customer-dialog.component';
 
 
 @Component({
-  selector: 'app-clients',
+  selector: 'app-customers',
   templateUrl: './customers.component.html',
   styleUrls: ['./customers.component.css']
 
@@ -71,7 +71,7 @@ export class CustomerComponent implements OnInit {
     const dialConfig=new MatDialogConfig();
     dialConfig.disableClose = true;
     dialConfig.autoFocus = true;
-    let dialRef=this.dialog.open(AddClientDialogComponent)
+    let dialRef=this.dialog.open(AddCustomerDialogComponent)
   }
   //constructor() { }
   ngOnInit(): void {

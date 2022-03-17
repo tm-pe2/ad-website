@@ -11,7 +11,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 import { MaterialModule } from './material/material.module';
 import { TableRow, TicketingComponent } from './ticketing/ticketing.component';
 import { UtilService } from './util.service';
-import { AddClientDialogComponent } from './add-client-dialog/add-customer-dialog.component';
+import { AddCustomerDialogComponent } from './add-customer-dialog/add-customer-dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { AddClientDialogComponent } from './add-client-dialog/add-customer-dialo
     CustomerDetailComponent,
     ConfirmDialogComponent,
     TableRow,
-    AddClientDialogComponent,
+    AddCustomerDialogComponent,
    
 
   ],

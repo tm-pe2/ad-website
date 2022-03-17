@@ -6,11 +6,11 @@ import { CUSTOMERS } from '../mock-customers';
 import { Customer } from '../customers/customer';
 
 @Component({
-  selector: 'app-add-client-dialog',
+  selector: 'app-add-customer-dialog',
   templateUrl: './add-customer-dialog.component.html',
   styleUrls: ['./add-customer-dialog.component.css']
 })
-export class AddClientDialogComponent implements OnInit {
+export class AddCustomerDialogComponent implements OnInit {
   
   form!: Form;
   
