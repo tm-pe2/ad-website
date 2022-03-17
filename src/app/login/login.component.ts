@@ -8,6 +8,7 @@ import { LoginData } from './loginData';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
   // Variables
   invalidForm = false;
@@ -40,7 +41,7 @@ export class LoginComponent implements OnInit {
   // Private
   private checkCreds(loginForm: NgForm)
   {
-    const loginData = new LoginData(loginForm.value.loginMail, loginForm.value.loginPassword);
+    const loginData: LoginData = { mail: loginForm.value.loginMail, password: loginForm.value.loginPassword }
     if (!this.service.authenticate(loginData))
     {
       this.invalidForm = false;
