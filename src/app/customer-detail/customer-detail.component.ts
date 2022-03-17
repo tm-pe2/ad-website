@@ -38,7 +38,7 @@ export class CustomerDetailComponent implements OnInit {
   })
   }
 
-  updateClient(idToUpd:number) {
+  updateCustomer(idToUpd:number) {
     this.dialRef.close(this.form.value);
     console.log(this.form.value);
     console.log(idToUpd);

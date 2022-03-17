@@ -25,7 +25,7 @@ export class ConfirmDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  deleteClient(idToDel: number) {
+  deleteCustomer(idToDel: number) {
     console.log(idToDel);
     CUSTOMERS.forEach((value,index)=>{
       if(value.id==idToDel) CUSTOMERS.splice(index,1);

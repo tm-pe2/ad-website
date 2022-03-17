@@ -27,7 +27,7 @@ export class AddClientDialogComponent implements OnInit {
     this.dialRef.close();
   }
 
-  addClient(n:string,ln:string,t:string)
+  addCustomer(n:string,ln:string,t:string)
   {
     this.dialRef.close(this.form);
     console.log(this.form);
