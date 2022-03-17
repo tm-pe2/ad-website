@@ -10,13 +10,6 @@ export class EmployeeListItemComponent implements OnInit {
 
   constructor() { }
 
-  employee: Employee = {
-    name: 'test',
-    description: 'description',
-    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7csvPWMdfAHEAnhIRTdJKCK5SPK4cHfskow&usqp=CAU',
-    department: 'department'
-  }
-
   ngOnInit(): void {
   }
 
