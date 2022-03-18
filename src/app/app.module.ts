@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TableRow, TicketingComponent } from './ticketing/ticketing.component';
 import { UtilService } from './util.service';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     TicketingComponent,
-    TableRow
+    TableRow,
+    HeaderComponent
 
   ],
   imports: [
