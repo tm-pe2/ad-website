@@ -30,11 +30,11 @@ export class TicketingComponent implements OnInit {
 }
 
 @Component({
-  selector: 'table-row',
-  templateUrl: './tablerow.component.html',
+  selector: 'manage-tickets',
+  templateUrl: './manage-tickets.component.html',
 })
 
-export class TableRow {
+export class ManageTickets {
 
 
   @ViewChild('modal', { read: ViewContainerRef }) entry?: ViewContainerRef;

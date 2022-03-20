@@ -1,5 +1,5 @@
 import { Component,  Input, OnInit } from '@angular/core';
-import { FieldData, TableRow } from '../ticketing.component';
+import { FieldData, ManageTickets } from '../ticketing.component';
 
 @Component({
   selector: 'app-edit-modal',
@@ -14,7 +14,7 @@ export class EditModalComponent implements OnInit {
   }
 
   @Input() data!: FieldData;
-  @Input() parent!:TableRow;
+  @Input() parent!:ManageTickets;
 
 
   removeModal(){

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FieldData, TableRow } from '../ticketing.component';
+import { FieldData, ManageTickets } from '../ticketing.component';
 
 @Component({
   selector: 'app-delete-modal',
@@ -11,7 +11,7 @@ export class DeleteModalComponent implements OnInit {
   constructor() { }
 
   @Input() data!: FieldData;
-  @Input() parent!: TableRow;
+  @Input() parent!: ManageTickets;
 
   ngOnInit(): void {
   }
