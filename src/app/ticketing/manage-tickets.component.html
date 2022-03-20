@@ -24,8 +24,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="shadow rounded-lg hover:bg-gray-200 " *ngFor = "let ticket of rows">
-                        <ng-container *ngIf="ticket.name.toLowerCase().includes(this.parentPage!.filter.name!)">
+                    <tr class="shadow rounded-lg hover:bg-gray-200 " *ngFor = "let ticket of tickets">
+                        <ng-container *ngIf="ticket.name.toLowerCase().includes(this.filter.name!)">
                         <td class="p-3 text-sm">
                             {{ticket.name}}
                         </td>

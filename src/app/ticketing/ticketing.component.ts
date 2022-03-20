@@ -1,4 +1,5 @@
-import { Component, ComponentRef, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { ChangeDetectorRef, Component, ComponentRef, Input, NgZone, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 import { EditModalComponent } from './edit-modal/edit-modal.component';
 
@@ -8,24 +9,24 @@ import { EditModalComponent } from './edit-modal/edit-modal.component';
   styleUrls: ['./ticketing.component.css'],
 })
 export class TicketingComponent implements OnInit {
+    
+  user?: TicketUser;
+
   //dummy data
-  constructor() {
+  constructor(private activatedRoute:ActivatedRoute) {
   }
-
-  tickets?: FieldData[];
-  filter: FilterData = {name: ""};
-  errorField: FieldData= {name: "Something went wrong", issue: "We could not get the correct field!", description: "We are sorry, but something went wrong. Please try again later.", status: "Error"};
-
 
 
 
   ngOnInit(): void {
-  fetch('http://localhost:6060/tickets')
-    .then((response) => response.json())
-    .then((tickets) => {
-      console.table(tickets.tickets);
-      this.tickets = tickets.tickets;
-  });
+    fetch('http://localhost:6060/tickets/user/' + Number(this.activatedRoute.snapshot.paramMap.getAll("userType")))
+    .then((res) => res.json())
+    .then((user: TicketUser) => {
+      this.user = user;
+      console.log(this.user)
+    })
+
+
   }
 }
 
@@ -40,14 +41,23 @@ export class ManageTickets {
   @ViewChild('modal', { read: ViewContainerRef }) entry?: ViewContainerRef;
   ecomponent?: ComponentRef<EditModalComponent>;
   dcomponent?: ComponentRef<DeleteModalComponent>;
+
   subscribtion: any;
-  constructor() { }
-  @Input() rows?: Array<FieldData>;
-  @Input() header: Boolean = false;
-  @Input() parentPage?: TicketingComponent;
+  constructor() { }  
+  tickets?: FieldData[];
+  filter: FilterData = {name: ""};
+  errorField: FieldData= {name: "Something went wrong", issue: "We could not get the correct field!", description: "We are sorry, but something went wrong. Please try again later.", status: "Error"};
 
 
+  ngOnInit(): void {
+    fetch('http://localhost:6060/tickets')
+    .then((response) => response.json())
+    .then((tickets) => {
+      console.table(tickets);
+      this.tickets = tickets;
+  }); 
 
+  }
 
   ngOnDestroy(): void {
     this.ecomponent?.destroy();
@@ -56,8 +66,8 @@ export class ManageTickets {
   createEditModal(id: number): void {
     this.entry?.clear();
     this.ecomponent = this.entry?.createComponent(EditModalComponent);
-    if(!this.parentPage?.tickets) return;
-    this.ecomponent!.instance.data = this.parentPage!.tickets.find(x => x.id === id) || this.parentPage!.errorField;
+    if(!this.tickets) return;
+    this.ecomponent!.instance.data = this.tickets.find(x => x.id === id) || this.errorField;
     this.ecomponent!.instance.parent = this;
   }
   destroyEditModal() {
@@ -67,8 +77,8 @@ export class ManageTickets {
   createDeleteModal(id: number): void {
     this.entry?.clear();
     this.dcomponent = this.entry?.createComponent(DeleteModalComponent);
-    if(!this.parentPage?.tickets) return;
-    this.dcomponent!.instance.data = this.parentPage!.tickets.find(x => x.id === id) || this.parentPage!.errorField;
+    if(!this.tickets) return;
+    this.dcomponent!.instance.data = this.tickets.find(x => x.id === id) || this.errorField;
     this.dcomponent!.instance.parent = this;
 
   }
@@ -77,7 +87,7 @@ export class ManageTickets {
   }
 
   filterTable(username: string) {
-    this.parentPage!.filter!.name = username.toLowerCase();
+    this.filter.name = username.toLowerCase();
     return false;
   }
 }
@@ -92,4 +102,9 @@ export interface FieldData {
 
 export interface FilterData {
   name?: string;
+}
+export interface TicketUser{
+  id: number;
+  name: string;
+  permissions: number;
 }

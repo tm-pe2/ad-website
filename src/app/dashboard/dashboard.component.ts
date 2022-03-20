@@ -35,8 +35,8 @@ export class DashboardComponent implements OnInit {
     fetch('http://localhost:6060/tickets')
       .then((res) => res.json())
       .then((data) => {
-        console.table(data.tickets);
-        this.tickets = data.tickets;
+        console.table(data);
+        this.tickets = data;
       })
       .catch((err) => {
         console.error('Error retrieving tickets', err);

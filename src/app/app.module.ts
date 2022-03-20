@@ -12,6 +12,7 @@ import { ManageTickets, TicketingComponent } from './ticketing/ticketing.compone
 import { GraphsComponent } from './graphs/graphs.component';
 import { MatIconModule } from '@angular/material/icon'
 import { UtilService } from './util.service';
+import { ClientTicketsComponent } from './ticketing/client-tickets/client-tickets.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { UtilService } from './util.service';
     ButtonComponent,
     TicketingComponent,
     GraphsComponent,
-    ManageTickets
+    ManageTickets,
+    ClientTicketsComponent
   ],
   imports: [
     BrowserModule,
