@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { DeleteModalComponent } from './delete-modal.component';
 
@@ -8,7 +9,8 @@ describe('DeleteModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DeleteModalComponent ]
+      declarations: [ DeleteModalComponent ],
+      imports: [RouterTestingModule]
     })
     .compileComponents();
   });
@@ -17,5 +19,8 @@ describe('DeleteModalComponent', () => {
     fixture = TestBed.createComponent(DeleteModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+  });
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 });
