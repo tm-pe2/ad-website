@@ -4,23 +4,31 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SmallCardComponent } from './dashboard/small-card/small-card.component';
+import { BigCardComponent } from './dashboard/big-card/big-card.component';
+import { ProfileCardComponent } from './dashboard/profile-card/profile-card.component';
+import { ButtonComponent } from './dashboard/button/button.component';
 import { ManageTickets, TicketingComponent } from './ticketing/ticketing.component';
+import { GraphsComponent } from './graphs/graphs.component';
+import { MatIconModule } from '@angular/material/icon'
 import { UtilService } from './util.service';
-import { DeleteModalComponent } from './ticketing/delete-modal/delete-modal.component';
-import { EditModalComponent } from './ticketing/edit-modal/edit-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
+    SmallCardComponent,
+    BigCardComponent,
+    ProfileCardComponent,
+    ButtonComponent,
     TicketingComponent,
-    ManageTickets,
-    DeleteModalComponent,
-    EditModalComponent
+    GraphsComponent,
+    ManageTickets
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatIconModule,
   ],
   providers: [UtilService],
   bootstrap: [AppComponent]
