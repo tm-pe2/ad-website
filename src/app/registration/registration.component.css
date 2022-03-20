@@ -1,0 +1,123 @@
+form
+{
+    display: flex;
+    margin-top: 2.5vh;
+    margin-left: 20vw;
+    max-height: 95vh;
+    width: 60vw;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    border: solid 1px #000000;
+    border-radius: 1rem;
+    box-shadow: 0.5rem 0.5rem 0.75rem #888888;
+    color: #B22222;
+
+}
+
+h2
+{
+    text-align: left;
+    width: 90%;
+    font-size: 2.5rem;
+    color: #444444;
+
+}
+
+.form-group
+{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: 0.75rem;
+
+}
+
+.form-label
+{
+    text-align: left;
+    padding-bottom: 0.5rem;
+
+}
+
+.form-control 
+{
+    width: 100%;
+    margin: auto;
+    padding: 0.5rem;
+    border: solid 1px #888888;
+    text-align: left;
+    border-radius: 0.75rem;
+
+}
+
+.form-buttons
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0.5rem;
+
+}
+
+.form-button
+{
+    background-color: #B22222;
+    color: #FFFFFF;
+    padding: 1rem;
+    width: 30%;
+    border: solid 1px #000000;
+    border-radius: 0.75rem;
+    box-shadow: 0.125rem 0.1 25rem 0.25rem #888888;
+    text-align: center;
+
+}
+
+.form-link
+{
+    padding: 1rem;
+    width: 30%;
+    text-align: center;
+    text-decoration: underline;
+
+}
+
+.error-alert
+{
+    margin-bottom: 1rem;
+    padding: 1rem;
+    width: 90%;
+    text-align: center;
+    color: #B22222;
+    background-color: #FFAAAA;
+    border: solid 1px #B22222;
+    border-radius: 0.75rem;
+
+}
+
+.form-dropdown
+{
+    width: 100%;
+    padding: 0.5rem;
+    border: solid 1px #888888;
+    text-indent: 5px;
+    border-radius: 0.75rem;
+    background-color: #FFFFFF;
+    color: #444444;
+
+}
+
+/* Remove arrows from input:number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button
+{
+    -webkit-appearance: none;
+    margin: 0;
+
+}
+
+input[type=number] { -moz-appearance: textfield; }

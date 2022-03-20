@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoginService } from './login/login.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ad-frontend';
+
+  // For login test
+  // Adds login service so you can access the authenticated variable
+  constructor (public service: LoginService) {}
+
 }
