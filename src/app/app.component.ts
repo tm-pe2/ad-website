@@ -14,7 +14,10 @@ export class AppComponent {
   // Adds login service so you can access the authenticated variable
   constructor (public service: LoginService, authService: AuthService) {
     authService.login('example', 'nohash')
-    .then(()=>console.log('Login succeeded'))
+    .then(()=> {
+      console.log('Login succeeded')
+      authService.logout().then(()=>console.log('logged out')).catch((err)=>console.error(err));
+    })
     .catch(()=>console.error('Login failed'));
   }
 

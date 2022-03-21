@@ -17,23 +17,41 @@ export class AuthService {
       this.http.post('http://localhost:6060' + '/auth/login', {
         email: email,
         password: password,
-      }).subscribe({
-          next(data) {
-            // console.log(data);
-            // todo save tokens
-            resolve();
-          },
-          error(err) {
-            reject(err);
-          }
-        });
+      })
+      .subscribe({
+        next: (res: any) => {
+          this.storeAccessToken(res.accessToken);
+          this.storeRefreshToken(res.refreshToken);
+          resolve();
+        },
+        error: (err) => {
+          reject(err);
+        }
       });
+    });
 
     return promise;
   }
 
-  logout(): void {
-    window.sessionStorage.clear();
+  logout(): Promise<void> {
+    const promise = new Promise<void>((resolve, reject) => {
+      this.http.post('http://localhost:6060' + '/auth/logout', {
+        refreshToken: this.getRefreshToken(),
+      },
+      { responseType: 'text' })
+      .subscribe({
+        next: () => {
+          window.sessionStorage.clear();
+          resolve();
+        },
+        error: (err) => {
+          reject(err);
+        }
+      });
+    });
+
+    return promise;
+    
     // TODO: redirect to login page.
   }
 
