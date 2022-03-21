@@ -55,10 +55,23 @@ export class AuthService {
     // TODO: redirect to login page.
   }
 
-  refreshAccessToken(refreshToken: string) {
-    return this.http.post('http://localhost:6060' + '/auth/token', {
-      refreshToken: refreshToken
-    }).subscribe((data) => console.error(data))
+  refreshAccessToken(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.http.post('http://localhost:6060' + '/auth/token', {
+      refreshToken: this.getRefreshToken()
+    }).subscribe({
+      next: (data: any) => {
+        this.storeAccessToken(data.accessToken)
+        resolve();
+      },
+      error: (err) => {
+        reject(err);
+      }
+    })
+    })
+    // return this.http.post('http://localhost:6060' + '/auth/token', {
+    //   refreshToken: this.getRefreshToken()
+    // }).subscribe((data) => console.error(data))
     // return this.http.get('https://www.google.com').subscribe((data) => console.error(data))
   }
 
@@ -79,6 +92,5 @@ export class AuthService {
   getRefreshToken(): string | null {
     return window.sessionStorage.getItem(REFRESHTOKEN);
   }
-
   // store/getUser?
 }
