@@ -8,11 +8,12 @@ import { SmallCardComponent } from './dashboard/small-card/small-card.component'
 import { BigCardComponent } from './dashboard/big-card/big-card.component';
 import { ProfileCardComponent } from './dashboard/profile-card/profile-card.component';
 import { ButtonComponent } from './dashboard/button/button.component';
-import { ManageTickets, TicketingComponent } from './ticketing/ticketing.component';
+import { TicketingComponent } from './ticketing/ticketing.component';
 import { GraphsComponent } from './graphs/graphs.component';
 import { MatIconModule } from '@angular/material/icon'
 import { UtilService } from './util.service';
-import { ClientTicketsComponent } from './ticketing/client-tickets/client-tickets.component';
+import { ClientTicketsComponent } from './ticketing/client-tickets/client-tickets.component'
+import { ManageTickets } from './ticketing/manage-tickets/manage-tickets.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { ClientTicketsComponent } from './ticketing/client-tickets/client-ticket
     TicketingComponent,
     GraphsComponent,
     ManageTickets,
-    ClientTicketsComponent
+    ClientTicketsComponent,
   ],
   imports: [
     BrowserModule,

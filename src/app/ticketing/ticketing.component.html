@@ -1,2 +1,4 @@
+<app-button [href]="'ticketing/0'">0</app-button>
+<app-button [href]="'ticketing/1'">1</app-button>
 <manage-tickets *ngIf="user?.permissions == 1"></manage-tickets>
 <client-tickets *ngIf="user?.permissions == 0"></client-tickets>
