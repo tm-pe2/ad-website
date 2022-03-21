@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Employee } from '../../interfaces/employee.interface';
+import { Employee } from '../Employee';
 
 @Component({
   selector: 'app-employee-list-item',
@@ -9,6 +9,8 @@ import { Employee } from '../../interfaces/employee.interface';
 export class EmployeeListItemComponent implements OnInit {
 
   constructor() { }
+
+  emp = new Employee(1,"Xander","Aerts","1/1/1","test@test.be","01234455","thuis","1/1/1","boekhouding","X");
 
   ngOnInit(): void {
   }
