@@ -10,6 +10,15 @@ export class ManageEmployeesComponent implements OnInit {
 
   constructor() { }
 
+  showAddEmpForm : boolean = false;
+  showEmpList : boolean = true;
+
   ngOnInit(): void {
+  }
+
+//once added the layout must change again
+  onAddButtonClick(){
+    this.showAddEmpForm = true;
+    this.showEmpList = false;
   }
 }

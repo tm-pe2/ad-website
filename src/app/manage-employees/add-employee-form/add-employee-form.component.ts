@@ -28,16 +28,12 @@ export class AddEmployeeFormComponent{
   
   
   onSubmit() {;
-    var id = 1;
-    console.log(this.FirstName,this.LastName,this.BirthDate,this.Email,this.PhoneNumber,this.Address,this.HireDate,this.Department,this.Gender);
-    var emp = new Employee(id,this.FirstName,this.LastName,this.BirthDate,this.Email,this.PhoneNumber,this.Address,this.HireDate,this.Department,this.Gender);
+    var emp = new Employee(this.id,this.FirstName,this.LastName,this.BirthDate,this.Email,this.PhoneNumber,this.Address,this.HireDate,this.Department,this.Gender);
   }
-
   
   ngOnInit(): void {
   }
 }
-
 
 
 
