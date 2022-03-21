@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon'
 import { UtilService } from './util.service';
 import { ClientTicketsComponent } from './ticketing/client-tickets/client-tickets.component'
 import { ManageTickets } from './ticketing/manage-tickets/manage-tickets.component';
+import { CreateModalComponent } from './ticketing/create-modal/create-modal.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ManageTickets } from './ticketing/manage-tickets/manage-tickets.compone
     GraphsComponent,
     ManageTickets,
     ClientTicketsComponent,
+    CreateModalComponent,
   ],
   imports: [
     BrowserModule,

@@ -28,18 +28,6 @@ export class TicketingComponent implements OnInit {
 }
 
 
-
-
-
-export interface FieldData {
-  name: String;
-  issue: String;
-  description: String;
-  id?: number;
-  status?: String;
-}
-
-
 export interface TicketUser{
   id: number;
   name: string;

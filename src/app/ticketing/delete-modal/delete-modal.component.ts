@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ManageTickets } from '../manage-tickets/manage-tickets.component';
-import { FieldData } from '../ticketing.component';
+import { FieldData } from '../manage-tickets/manage-tickets.component';
 
 @Component({
   selector: 'app-delete-modal',
@@ -18,7 +18,7 @@ export class DeleteModalComponent implements OnInit {
   }
   removeModal(){
     //TODO: implement delete ticket function
-   this.parent.destroyDeleteModal();
+    this.parent.destroyDeleteModal();
   }
 
 
