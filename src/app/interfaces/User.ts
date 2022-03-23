@@ -1,3 +1,4 @@
+// This interface makes it easy to make a new user variable somewhere when needed
 export interface User
 {
     id: number,

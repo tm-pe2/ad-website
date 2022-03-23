@@ -1,18 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 
-import { LoginService } from './login.service';
+import { UserdataService } from './userdata.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule } from '@angular/forms';
 
-
-describe('LoginService', () => {
-  let service: LoginService;
+describe('UserdataService', () => {
+  let service: UserdataService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, FormsModule]
     });
-    service = TestBed.inject(LoginService);
+    service = TestBed.inject(UserdataService);
   });
 
   it('should be created', () => {

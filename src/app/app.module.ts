@@ -8,9 +8,8 @@ import { TableRow, TicketingComponent } from './ticketing/ticketing.component';
 import { UtilService } from './util.service';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { RegistrationService } from './registration/registration.service';
 import { FormsModule } from '@angular/forms';
-import { LoginService } from './login/login.service';
+import { UserdataService } from './services/userdata.service';
 
 @NgModule({
   declarations: [
@@ -29,8 +28,7 @@ import { LoginService } from './login/login.service';
   ],
   providers: [
     UtilService,
-    RegistrationService,
-    LoginService
+    UserdataService
   ],
   bootstrap: [AppComponent]
 })

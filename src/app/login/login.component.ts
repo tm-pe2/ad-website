@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { LoginService } from './login.service';
-import { LoginData } from '../interfaces/loginData';
+import { UserdataService } from '../services/userdata.service';
+import { LoginData } from '../interfaces/LoginData';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   invalidCreds = false;
 
   // Constructor
-  constructor(private service: LoginService) { }
+  constructor(private userData: UserdataService) { }
 
   // On init
   ngOnInit(): void { }
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
   private checkCreds(loginForm: NgForm)
   {
     const loginData: LoginData = { mail: loginForm.value.loginMail, password: loginForm.value.loginPassword }
-    if (!this.service.authenticate(loginData))
+    if (!this.userData.authenticate(loginData))
     {
       this.invalidForm = false;
       this.invalidCreds = true;
