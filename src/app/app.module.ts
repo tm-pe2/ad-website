@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { RegistrationService } from './registration/registration.service';
 import { FormsModule } from '@angular/forms';
+import { LoginService } from './login/login.service';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { FormsModule } from '@angular/forms';
   providers: [
     UtilService,
     RegistrationService,
+    LoginService
   ],
   bootstrap: [AppComponent]
 })
