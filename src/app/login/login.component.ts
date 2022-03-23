@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UserdataService } from '../services/userdata.service';
-import { LoginData } from '../interfaces/LoginData';
+// on my own device it is supposed to be LoginData
+import { LoginData } from '../interfaces/loginData';
 
 @Component({
   selector: 'app-login',
