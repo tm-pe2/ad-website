@@ -12,6 +12,7 @@ import { DeleteSupplierComponent } from './suppliers/delete-supplier/delete-supp
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DetailsSupplierComponent } from './suppliers/details-supplier/details-supplier.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AddSuplierComponent,
     EditSupplierComponent,
     DeleteSupplierComponent,
+    DetailsSupplierComponent,
   ],
   imports: [
     BrowserModule,
