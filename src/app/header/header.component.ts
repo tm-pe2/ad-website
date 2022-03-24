@@ -13,4 +13,11 @@ export class HeaderComponent implements OnInit {
     
   }
 
+  toPage1(): void{
+
+  }
+  toPage2(): void{
+
+  }
+
 }

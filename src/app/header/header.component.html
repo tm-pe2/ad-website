@@ -1,8 +1,12 @@
 <div class="w-full h-16 border-2 border-red-600 flex p-1 bg-slate-300">
     <div class="border-2 border-blue-600 mr-1 hidden md:block">
-        <img src="../../assets/img/imgs/penLogoBig.png" class="h-full w-full ">
+        <img src="../../assets/img/imgs/penLogoBig.png" alt="PE2logo" class="h-full w-full ">
     </div>
     <div class="border-2 border-blue-600 mr-1 block md:hidden">
-        <img src="../../assets/img/imgs/penLogoSmall.png" class="h-full w-full ">
+        <img src="../../assets/img/imgs/penLogoSmall.png" alt="PE2logo" class="h-full w-full ">
+    </div>
+    <div class="border-2 border-green-600 mr-1 md:ml-4 flex justify-center items-center">
+        <button class="m-1 mr-3 w-20 bg-slate-400 text-slate-600" (click)="toPage1()">page 1</button>
+        <button class="m-1 w-20 bg-slate-400 text-slate-600" (click)="toPage2()">page 2</button>
     </div>
 </div>
