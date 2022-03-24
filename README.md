@@ -1,6 +1,9 @@
 # AdFrontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.4.
+## Install dependencies
+
+You will need Angular CLI, you can install this globally like so: `npm install -g @angular/cli`.
+Run `npm install` to install the needed dependencies for the project.
 
 ## Development server
 
@@ -25,3 +28,31 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+## Creating a web page
+
+To create a web page in angular we need to create a component and add it to the routing.
+Start off by generating a component with a name you want
+
+`ng generate component new`
+
+Now navigate to `app-routing.module.ts` In src/app
+In this file you will see a structure like this
+```ts
+const routes: Routes = [
+  {path: 'dashboard', component: DashboardComponent}
+];
+```
+
+To add your route, add a new object in the array for example:
+
+`{path: 'new', component: NewComponent}`
+
+If you are using vscode, the component will be automatically imported, if not at the top of the file you will have to add:
+
+`import { NewComponent } from './new/new.component';`
+
+Run `ng serve` to start the local web server and browse to `localhost:4200`
+Adding your route to the end of this like: `localhost:4200/new` will browse to your new page
+This page will display `new works!` if you did everything correctly, you can now start creating your page in this component!
