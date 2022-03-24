@@ -10,7 +10,6 @@ export class SmallGraphComponent implements OnInit {
   @Input() graph: Graph = {
     title: '',
     description: '',
-    imageUrl: 'https://images.nagwa.com/figures/explainers/245194820905/9.svg'
   }
   constructor() { }
 

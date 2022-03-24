@@ -3,13 +3,14 @@
 
 <div class="w-full flex justify-evenly p-20">
     <div class="w-full">
-        <h2 class="text-2xl p-5">Monthly overview</h2>
-        <app-big-graph><app-monthly-usage-chart></app-monthly-usage-chart></app-big-graph>
-            
+        <app-big-graph [graph]="{title: 'Monthly usage', description: 'This graph show an overview of your monthly energy usage'}">
+            <app-monthly-usage-chart></app-monthly-usage-chart>
+        </app-big-graph>    
     </div>
     <div class="w-full">
-        <h2 class="text-2xl p-5">Yearly overview</h2>
-        <app-big-graph><app-yearly-usage-chart></app-yearly-usage-chart></app-big-graph>
+        <app-big-graph [graph]="{title: 'Yearly usage', description: 'This graph shows an overview of your yearly energy usage.'}">
+            <app-yearly-usage-chart></app-yearly-usage-chart>
+        </app-big-graph>
     </div>
 </div>
 
