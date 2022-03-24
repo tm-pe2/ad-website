@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-workerapp',
@@ -6,7 +6,6 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./workerapp.component.css']
 })
 export class WorkerappComponent implements OnInit {
-  displayedpage = 1;
   constructor() { }
 
   ngOnInit(): void {
