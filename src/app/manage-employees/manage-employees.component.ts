@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Employee } from '../interfaces/employee.interface';
 
 @Component({
@@ -13,6 +13,8 @@ export class ManageEmployeesComponent implements OnInit {
   showAddEmpForm : boolean = false;
   showEmpList : boolean = true;
 
+  //@Input() AddFormCommited : boolean;
+
   ngOnInit(): void {
   }
 
@@ -20,5 +22,10 @@ export class ManageEmployeesComponent implements OnInit {
   onAddButtonClick(){
     this.showAddEmpForm = true;
     this.showEmpList = false;
+  }
+
+  onEmpAdded(){
+    this.showAddEmpForm = false;
+    this.showEmpList = true;
   }
 }
