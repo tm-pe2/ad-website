@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 
+import { LoginData } from '../interfaces/loginData';
+
 /*TODO: swap urls with env variables */
 
 const ACCESSTOKEN = 'auth-token';
@@ -12,11 +14,11 @@ const REFRESHTOKEN = 'auth-refreshtoken';
 export class AuthService {
   constructor(private http: HttpClient) { }
   
-  login(email: string, password: string): Promise<void> {
+  login(loginData: LoginData): Promise<void> {
     const promise = new Promise<void>((resolve, reject) => {
       this.http.post('http://localhost:6060' + '/auth/login', {
-        email: email,
-        password: password,
+        email: loginData.mail,
+        password: loginData.password,
       })
       .subscribe({
         next: (res: any) => {

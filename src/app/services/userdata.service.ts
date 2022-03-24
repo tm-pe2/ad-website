@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 
 // Interfaces
 import { User } from '../interfaces/User';
-// on my own device it is supposed to be LoginData
 import { LoginData } from '../interfaces/loginData';
 
 @Injectable({

@@ -13,7 +13,7 @@ export class AppComponent {
   // For login test
   // Adds login service so you can access the authenticated variable
   constructor (public service: UserdataService, authService: AuthService) {
-    authService.login('example', 'nohash')
+    authService.login({ mail: "email", password: "azerty"})
     .then(()=> {
       console.log('Login succeeded')
       authService.logout().then(()=>console.log('logged out')).catch((err)=>console.error(err));
