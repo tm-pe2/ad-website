@@ -1,6 +1,11 @@
-<div class="w-full max-w-xs">
+<div [style.display] ="showError ? 'block' : 'none' " >
+  {{error}}
+</div>
+
+
+
+<div class="w-full max-w-xs md:grid md:grid-cols-3 md:gap-6">
   <form (ngSubmit)="onAddFormSubmit()" novalidate> 
-    <label for="addEmp">Add Employee</label><br>
     
     <label for="Fname">First name: </label>
       <input class="border-2" type="text" id="Fname" name="Fname" [(ngModel)]="FirstName"><br>
@@ -37,10 +42,6 @@
     <input type="radio" id="X" name="gender" value="X" [(ngModel)]="Gender">
     <label for="X">X</label><br>
 
-    <button class="p-2 bg-blue-300 rounded" type="submit">Add</button> 
+    <button class="p-2 bg-blue-300 rounded" type="submit" >Add</button> 
   </form>
-  </div>
-
-  <div>
-
-  </div>
+</div>

@@ -22,14 +22,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="shadow rounded-lg hover:bg-gray-200 ">
+                    <tr  *ngFor='let e of employees' class="shadow rounded-lg hover:bg-gray-200 ">
                         <td class="p-3 text-sm">
                             <!--Name-->
-                            {{emp.FirstName +  " " + emp.LastName}}
+                            {{e.FirstName +  " " + e.LastName}}
                         </td>
                         <td class="p-3 text-sm">
                             <!--Department-->
-                            {{emp.Department}}
+                            {{e.Department}}
                         </td>
                         <td class="p-3 text-sm">
                             <!--place contract details behind button-->

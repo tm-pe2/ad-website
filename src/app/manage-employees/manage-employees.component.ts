@@ -1,17 +1,19 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Employee } from '../interfaces/employee.interface';
+import { Employee } from './Employee';
 
 @Component({
   selector: 'app-manage-employees',
   templateUrl: './manage-employees.component.html',
   styleUrls: ['./manage-employees.component.css']
 })
+
 export class ManageEmployeesComponent implements OnInit {
 
   constructor() { }
-
+  
   showAddEmpForm : boolean = false;
   showEmpList : boolean = true;
+  
 
   //@Input() AddFormCommited : boolean;
 
