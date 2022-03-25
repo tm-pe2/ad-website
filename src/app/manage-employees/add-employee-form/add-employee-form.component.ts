@@ -16,8 +16,9 @@ export class AddEmployeeFormComponent{
   //DepartmentOptions = ['mangers','idk','the guys from it'];
 
 
-  @Output() onEmployeeAdded = new EventEmitter<boolean>();
 
+  error = "";
+  showError = false;
 
   // Some variables
   id = 1;
@@ -31,13 +32,28 @@ export class AddEmployeeFormComponent{
   Department = "";
   Gender="";
   submitted = false;
+  FormCheck = true;
+  statusAddButton = false;
   
-  
-  onAddFormSubmit() {;
+  onAddFormSubmit() {
     var emp = new Employee(this.id,this.FirstName,this.LastName,this.BirthDate,this.Email,this.PhoneNumber,this.Address,this.HireDate,this.Department,this.Gender);
+
+    if(this.FirstName.length > 5){
+      this.error = "The firstname is too long";
+      this.showError = true;
+      return false;
+    }
+    if(this.LastName.length > 50){
+      this.error = "The lastname is to long";
+      this.showError = true;
+      return false;
+    }    
+
     this.parent?.onEmpAdded();
+    return true;
+
   }
-  
+ 
   ngOnInit(): void {
   }
 }
