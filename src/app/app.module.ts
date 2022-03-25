@@ -10,8 +10,9 @@ import { AddEmployeeFormComponent } from './manage-employees/add-employee-form/a
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { EditEmployeeFormComponent } from './manage-employees/edit-employee-form/edit-employee-form.component';
 import { EmployeeListItemComponent } from './manage-employees/employee-list-item/employee-list-item.component';
-import { TicketingComponent } from './ticketing/ticketing.component';
+import { TicketingComponent, TableRow } from './ticketing/ticketing.component';
 import { UtilService } from './util.service';
+
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { UtilService } from './util.service';
     AddEmployeeFormComponent,
     EditEmployeeFormComponent,
     EmployeeListItemComponent,
+    TableRow
 
   ],
   imports: [
