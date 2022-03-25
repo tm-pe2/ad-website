@@ -25,12 +25,20 @@ export class EmployeeListItemComponent implements OnInit {
    Department = "dqjfdfj";
    Gender="X";
  
-   emp = new Employee(this.id,this.FirstName,this.LastName,this.BirthDate,this.Email,this.PhoneNumber,this.Address,this.HireDate,this.Department,this.Gender);
-   emp2 = new Employee(this.id,this.FirstName,this.LastName,this.BirthDate,this.Email,this.PhoneNumber,this.Address,this.HireDate,this.Department,this.Gender)
+   emp = new Employee(1,this.FirstName,this.LastName,this.BirthDate,this.Email,this.PhoneNumber,this.Address,this.HireDate,this.Department,this.Gender);
+   emp2 = new Employee(2,this.FirstName,this.LastName,this.BirthDate,this.Email,this.PhoneNumber,this.Address,this.HireDate,this.Department,this.Gender)
    employees: Employee[] = [this.emp,this.emp2];
+
+
+   
    
 
   ngOnInit(): void {
+  }
+
+
+  deleteEmployee(id : number){
+    console.log(id);
   }
 
 }
