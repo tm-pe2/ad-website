@@ -1,46 +1,50 @@
 <form #regForm="ngForm" (ngSubmit)="onSubmit(regForm)">
-    <h2>Sign up!</h2>
-    <div class="form-group">
-        <input class="form-control" id="regNname" type="text" name="regNname" placeholder="Name" required autofocus ngModel />
-    </div>
-    <div class="form-group">
-        <input class="form-control" id="regMail" type="email" name="regMail" placeholder="Mail" required ngModel />
-    </div>
-    <div class="form-group">
-        <input class="form-control" id="regPhone" type="text" name="regPhone" placeholder="Phone" required ngModel />
-    </div>
-    <div class="form-group">
-        <select class="form-dropdown" id="regType" name="regType" required ngModel>
-            <option value="" disabled selected hidden>Choose a type of customer</option>
-            <option *ngFor="let type of types" value="{{ type }}">{{ type }}</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <input class="form-control" id="regCity" type="text" name="regCity" placeholder="City" required ngModel />
-    </div>
-    <div class="form-group">
-        <input class="form-control" id="regPostalcode" type="number" name="regPostalcode" placeholder="Postcal code" required ngModel />
-    </div>
-    <div class="form-group">
-        <input class="form-control" id="regStreet" type="text" name="regStreet" placeholder="Street" required ngModel />
-    </div>
-    <div class="form-group">
-        <input class="form-control" id="regNumber" type="text" name="regNumber" placeholder="House number" required ngModel />
-    </div>
-    <div class="form-group">
-        <input class="form-control" id="regPassword" type="password" name="regPassword" placeholder="Password" required ngModel />
-    </div>
-    <div class="form-group">
-        <input class="form-control" id="regConfPassword" type="password" name="regConfPassword" placeholder="Confirm password" required ngModel />
-    </div>
-    <div class="form-buttons">
-        <button class="form-button" id="regConfirm" type="submit">Sign up</button>
-        <a class="form-link" id="loginLink" type="submit" routerLink="/login">Sign in</a>
-    </div>
-    <div class="error-alert" role="alert" *ngIf="invalidForm">
-        Fill in all fields!
-    </div>
-    <div class="error-alert" role="alert" *ngIf="matchingPasswords">
-        The passwords don't match!
+    <div class="container mx-auto my-auto">
+        <div class="flex justify-center items-center">
+            <h2 class="flex justify-center items-center">Sign up!</h2>
+        </div>
+        <div class="form-group">
+            <input class="form-control" id="regNname" type="text" name="regNname" placeholder="Name" required autofocus ngModel />
+        </div>
+        <div class="form-group">
+            <input class="form-control" id="regMail" type="email" name="regMail" placeholder="Mail" required ngModel />
+        </div>
+        <div class="form-group">
+            <input class="form-control" id="regPhone" type="text" name="regPhone" placeholder="Phone" required ngModel />
+        </div>
+        <div class="form-group">
+            <select class="form-dropdown" id="regType" name="regType" required ngModel>
+                <option value="" disabled selected hidden>Choose a type of customer</option>
+                <option *ngFor="let type of types" value="{{ type }}">{{ type }}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input class="form-control" id="regCity" type="text" name="regCity" placeholder="City" required ngModel />
+        </div>
+        <div class="form-group">
+            <input class="form-control" id="regPostalcode" type="number" name="regPostalcode" placeholder="Postcal code" required ngModel />
+        </div>
+        <div class="form-group">
+            <input class="form-control" id="regStreet" type="text" name="regStreet" placeholder="Street" required ngModel />
+        </div>
+        <div class="form-group">
+            <input class="form-control" id="regNumber" type="text" name="regNumber" placeholder="House number" required ngModel />
+        </div>
+        <div class="form-group">
+            <input class="form-control" id="regPassword" type="password" name="regPassword" placeholder="Password" required ngModel />
+        </div>
+        <div class="form-group">
+            <input class="form-control" id="regConfPassword" type="password" name="regConfPassword" placeholder="Confirm password" required ngModel />
+        </div>
+        <div class="form-buttons">
+            <button class="form-button" id="regConfirm" type="submit">Sign up</button>
+            <a class="form-link" id="loginLink" type="submit" routerLink="/login">Sign in</a>
+        </div>
+        <div class="error-alert" role="alert" *ngIf="invalidForm">
+            Fill in all fields!
+        </div>
+        <div class="error-alert" role="alert" *ngIf="matchingPasswords">
+            The passwords don't match!
+        </div>
     </div>
 </form>
