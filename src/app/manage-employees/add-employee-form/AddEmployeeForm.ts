@@ -10,5 +10,5 @@ export class Employee{
         public HireDate: string,
         public Department: string,
         public Gender: string
-        ){}
+    ){}
 }
