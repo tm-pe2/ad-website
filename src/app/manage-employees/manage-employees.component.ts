@@ -1,22 +1,33 @@
-import { Component, OnInit } from '@angular/core';
-import { Employee } from '../interfaces/employee.interface';
+import { Component, OnInit, Input } from '@angular/core';
+import { Employee } from './Employee';
 
 @Component({
   selector: 'app-manage-employees',
   templateUrl: './manage-employees.component.html',
   styleUrls: ['./manage-employees.component.css']
 })
+
 export class ManageEmployeesComponent implements OnInit {
 
   constructor() { }
+  
+  showAddEmpForm : boolean = false;
+  showEmpList : boolean = true;
+  
+
+  //@Input() AddFormCommited : boolean;
 
   ngOnInit(): void {
   }
 
-  employee: Employee = {
-    name: 'test',
-    description: 'description',
-    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7csvPWMdfAHEAnhIRTdJKCK5SPK4cHfskow&usqp=CAU',
-    department: 'department'
+//once added the layout must change again
+  onAddButtonClick(){
+    this.showAddEmpForm = true;
+    this.showEmpList = false;
+  }
+
+  onEmpAdded(){
+    this.showAddEmpForm = false;
+    this.showEmpList = true;
   }
 }

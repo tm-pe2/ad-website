@@ -3,52 +3,27 @@
     <form (ngSubmit)="onSubmit()" novalidate> 
       <label for="addEmp" class="font-bold flex items-center justify-center pb-5">Edit Employee</label><br>
       
-      <div class="grid grid-cols-2 mb-3 gap-2">
-        <span>
-          <label for="Fname">First name: </label>
-          <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="Fname" name="Fname" [(ngModel)]="FirstName" [(ngModel)]="emp.FirstName"><br>
-          <label for="Lname">Last name: </label>
-          <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="Lname" name="Lname" [(ngModel)]="LastName" [(ngModel)]="emp.LastName" ><br>
-        </span>
-        <span class="flex items-center justify-center">
-          <span class="grid grid-rows-4">
-            Gender:
-            <span>
-              <input type="radio" id="M" name="gender" value="M" [(ngModel)]="Gender">
-              <label for="M" class="ml-2">M</label>
-            </span>
-            <span>
-              <input type="radio" id="F" name="gender" value="F" [(ngModel)]="Gender">
-              <label for="F" class="ml-2">F</label>
-            </span>
-            <span>
-              <input type="radio" id="X" name="gender" value="X" [(ngModel)]="Gender">
-              <label for="X" class="ml-2">X</label>
-            </span>
-          </span>
-        </span>
-      </div>
+      <label for="Fname">First name: </label>
+        <input class="border-2" type="text" id="Fname" name="Fname" [(ngModel)]="emp.FirstName" [(ngModel)]="emp.FirstName"><br>
+      
+      <label for="Lname">Last name: </label>
+      <input class="border-2" type="text" id="Lname" name="Lname" [(ngModel)]="emp.LastName" [(ngModel)]="emp.LastName" ><br>
+      
+      <label for="birDate">BirthDate: </label>
+      <input class="border-2" type="text" id="birDate" name="birDate" [(ngModel)]="emp.BirthDate" [(ngModel)]="emp.BirthDate"><br>
+      
+      <label for="email">Email:  </label>
+      <input class="border-2" type="text" id="email" name="email" [(ngModel)]="emp.Email" [(ngModel)]="emp.Email"><br>
+      
+      <label for="phoneNR">Phone Number: </label>
+      <input class="border-2" type="text" id="phoneNR" name="phoneNR" [(ngModel)]="emp.PhoneNumber" [(ngModel)]="emp.PhoneNumber"><br>
+      
+      <label for="address">Address: </label>
+      <input class="border-2" type="text" id="address" name="address" [(ngModel)]="emp.Address" [(ngModel)]="emp.Address"><br>
 
-      <div class="mb-5">
-        <label for="birDate">BirthDate: </label>
-        <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="birDate" name="birDate" [(ngModel)]="BirthDate" [(ngModel)]="emp.BirthDate"><br>
-      </div>
-      <div class="mb-5">
-        <label for="email">Email:  </label>
-        <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="email" name="email" [(ngModel)]="Email" [(ngModel)]="emp.Email"><br>
-      </div>
-      <div class="mb-5">
-        <label for="phoneNR">Phone Number: </label>
-        <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="phoneNR" name="phoneNR" [(ngModel)]="PhoneNumber" [(ngModel)]="emp.PhoneNumber"><br>
-      </div>
-      <div class="mb-5">
-        <label for="address">Address: </label>
-        <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="address" name="address" [(ngModel)]="Address" [(ngModel)]="emp.Address"><br>
-      </div>
-      <div class="mb-5">
-        <label for="HireDate">HireDate </label>
-        <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="hiredate" name="hiredate" [(ngModel)]="HireDate" [(ngModel)]="emp.HireDate" ><br>
-      </div>
+      <label for="HireDate">HireDate </label>
+      <input class="border-2" type="text" id="hiredate" name="hiredate" [(ngModel)]="emp.HireDate" [(ngModel)]="emp.HireDate" ><br>
+  
       
       <!---
       <label for="department">Department: </label>  
@@ -56,12 +31,14 @@
         <option *ngFor="let dep of DepartmentOptions" [value]="dep" [(ngModel)]="Department" >{{dep}}</option>
       </select><br>-->
   
-      
-      <div class="flex justify-between m-2 pt-5">
-        <button class="p-1.5 px-5 uppercase text-lg font-medium tracking-wider text-white bg-blue-400 rounded-lg hover:underline" type="submit">Safe Changes</button>
-        <!--Return button to cancel edit and go back to Manage page--> 
-        <a class="p-1.5 px-5 text-lg uppercase font-medium tracking-wider text-red-600 hover:underline hover:cursor-pointer">back</a>
-      </div>
+      <input type="radio" id="M" name="gender" value="M" [(ngModel)]="emp.Gender">
+      <label for="M">M</label><br>
+      <input type="radio" id="F" name="gender" value="F" [(ngModel)]="emp.Gender">
+      <label for="F">F</label><br>
+      <input type="radio" id="X" name="gender" value="X" [(ngModel)]="emp.Gender">
+      <label for="X">X</label><br>
+  
+      <button class="p-2 bg-blue-300 rounded" type="submit">Add</button> 
     </form>
   </div>
 </div>
