@@ -32,8 +32,6 @@ export class MonthlyUsageChartComponent implements OnInit {
       'February',
       'March',
     ];
-    console.log(123);
-    console.log(this.usage?.usage);
   
     const data = {
       labels: labels,
@@ -74,9 +72,6 @@ export class MonthlyUsageChartComponent implements OnInit {
       .then((usage: Usage) => {
         this.usage = usage;
         console.log("Fetch succeeded");
-        console.log(usage.id);
-        console.log(usage.usage);
-
         if (this.chart) {
             for (let monthData of this.usage.usage) {
               this.chart.data.datasets[0].data.push(monthData as any);
