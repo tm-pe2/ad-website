@@ -14,6 +14,7 @@ export class MonthlyUsageChartComponent implements OnInit {
   
   test_id: Number = 0;
   usage?: Usage;
+  chart?: Chart;
 
   ngOnInit(): void {
 
@@ -40,7 +41,7 @@ export class MonthlyUsageChartComponent implements OnInit {
         label: 'Energy Usage',
         backgroundColor: 'rgb(35, 170, 250)',
         borderColor: 'rgb(35, 170, 250)',
-        data: this.usage?.usage  ,
+        data: [],
       }]
     };
   
@@ -75,17 +76,24 @@ export class MonthlyUsageChartComponent implements OnInit {
         console.log("Fetch succeeded");
         console.log(usage.id);
         console.log(usage.usage);
+
+        if (this.chart) {
+            for (let monthData of this.usage.usage) {
+              this.chart.data.datasets[0].data.push(monthData as any);
+            }
+            this.chart.update();
+        }        
       })
       .catch((err) => {
         console.error('Error retrieving user', err);
     });
 
-    const myChart = new Chart(<HTMLCanvasElement>document.getElementById('monthlyChart'), config);
+    this.chart = new Chart(<HTMLCanvasElement>document.getElementById('monthlyChart'), config);
   }
 
 }
 
 export interface Usage {
   id: Number;
-  usage: Number[];
+  usage: number[];
 }
