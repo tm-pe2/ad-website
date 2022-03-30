@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Chart, registerables} from 'chart.js';
 
 @Component({
@@ -10,9 +10,13 @@ export class MonthlyUsageChartComponent implements OnInit {
 
   constructor() {
     Chart.register(...registerables);
-   }
+  }
+  
+  test_id: Number = 0;
+  usage?: Usage;
 
   ngOnInit(): void {
+
     const labels = [
       'April',
       'May',
@@ -27,6 +31,8 @@ export class MonthlyUsageChartComponent implements OnInit {
       'February',
       'March',
     ];
+    console.log(123);
+    console.log(this.usage?.usage);
   
     const data = {
       labels: labels,
@@ -34,7 +40,7 @@ export class MonthlyUsageChartComponent implements OnInit {
         label: 'Energy Usage',
         backgroundColor: 'rgb(35, 170, 250)',
         borderColor: 'rgb(35, 170, 250)',
-        data: [0, 10, 5, 2, 20, 30, 45, 65, 32, 42, 14, 30],
+        data: this.usage?.usage  ,
       }]
     };
   
@@ -62,7 +68,24 @@ export class MonthlyUsageChartComponent implements OnInit {
       }
     };
 
+    fetch('http://localhost:6060/energyUsage/' + this.test_id)
+      .then((res) => res.json())
+      .then((usage: Usage) => {
+        this.usage = usage;
+        console.log("Fetch succeeded");
+        console.log(usage.id);
+        console.log(usage.usage);
+      })
+      .catch((err) => {
+        console.error('Error retrieving user', err);
+    });
+
     const myChart = new Chart(<HTMLCanvasElement>document.getElementById('monthlyChart'), config);
   }
 
+}
+
+export interface Usage {
+  id: Number;
+  usage: Number[];
 }
