@@ -74,7 +74,7 @@ export class MonthlyUsageChartComponent implements OnInit {
         console.log("Fetch succeeded");
         if (this.chart) {
             for (let monthData of this.usage.usage) {
-              this.chart.data.datasets[0].data.push(monthData as any);
+              this.chart.data.datasets[0].data.push(monthData as number);
             }
             this.chart.update();
         }        
