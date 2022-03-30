@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { tap } from 'rxjs';
 import { LoginService } from './login/login.service';
 import { AuthService } from './services/auth.service';
 
@@ -12,13 +14,23 @@ export class AppComponent {
 
   // For login test
   // Adds login service so you can access the authenticated variable
-  constructor (public service: LoginService, authService: AuthService) {
-    authService.login('example', 'nohash')
-    .then(()=> {
-      console.log('Login succeeded')
-      authService.logout().then(()=>console.log('logged out')).catch((err)=>console.error(err));
-    })
-    .catch(()=>console.error('Login failed'));
+  constructor (public service: LoginService, authService: AuthService, private http: HttpClient) {
+    // authService.login('example', 'nohash')
+    // .then(()=> {
+    //   console.log('Login succeeded');
+    //   // authService.logout().then(()=>console.log('logged out')).catch((err)=>console.error(err));
+    // })
+    // .catch(()=>console.error('Login failed'));
+    this.http.get('http://localhost:6060/test').subscribe(
+      {
+        next: () => {
+          console.log('success');
+        },
+        error: (err) => {
+          console.error(err)
+        }
+      }          
+    )
   }
 
 }

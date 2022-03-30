@@ -42,6 +42,7 @@ export class AuthService {
       .subscribe({
         next: () => {
           window.sessionStorage.clear();
+          // TODO redirect
           resolve();
         },
         error: (err) => {
@@ -65,10 +66,21 @@ export class AuthService {
         resolve();
       },
       error: (err) => {
+        console.debug('in refreshAccessToken(), reject: ', err)
         reject(err);
       }
     })
     })
+    // return this.http.post('http://localhost:6060' + '/auth/token', {
+    //   refreshToken: this.getRefreshToken()
+    // }).subscribe((data) => console.error(data))
+    // return this.http.get('https://www.google.com').subscribe((data) => console.error(data))
+  }
+
+  refreshAccessTokenTest() {
+    return this.http.post('http://localhost:6060' + '/auth/token', {
+      refreshToken: this.getRefreshToken()
+    });
     // return this.http.post('http://localhost:6060' + '/auth/token', {
     //   refreshToken: this.getRefreshToken()
     // }).subscribe((data) => console.error(data))

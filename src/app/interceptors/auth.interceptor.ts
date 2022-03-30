@@ -18,14 +18,28 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(this.setAuthHeader(request)).pipe(
       tap({
         next: (res: HttpEvent<any>) => {
+          console.log('success continue req')
         },
         error: (err: HttpErrorResponse) => {
+          console.log('Error in request')
           if (err.status == 401) {
-            console.error('ERROR 401')
-            return this.authService.refreshAccessToken().then(() => {return ''})
-          }
-          if (err.status == 403) { // forbidden -> refresh token expired or invalid
-            // TODO redirect to logout page
+            console.log('401 => refreshing access token')
+            this.authService.refreshAccessTokenTest().subscribe(
+              {
+                next: (data: any) => {
+                  console.log('REFRESHED');
+                  this.authService.storeAccessToken(data.accessToken);
+                  return next.handle(this.setAuthHeader(request));
+                },
+                error: (err: HttpErrorResponse) => {
+                  console.log('RIP');
+                  if (err.status == 403) {
+                    console.error('ERROR 403');
+                    this.authService.logout();
+                  }
+                }
+              }
+            )
           }
           return err
         }
@@ -38,6 +52,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     if (!token) return request;
     // TODO: check if this causes issues with additional headers
+    // -> seems to be fine
     return request.clone({
       setHeaders: {
         Authorization: `Bearer ${token}`
