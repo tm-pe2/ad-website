@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { WorkerappComponent } from '../workerapp/workerapp.component';
 
 @Component({
   selector: 'app-header',
@@ -7,17 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  @Input() parent ?: WorkerappComponent 
+
   constructor() { }
 
   ngOnInit(): void {
-    
+    this.parent!.displayPage = 0
   }
 
-  toPage1(): void{
-
-  }
-  toPage2(): void{
-
+  goPage1(): void{
+    this.parent!.displayPage = 1
   }
 
+  goPage2(): void{
+    this.parent!.displayPage = 2
+  }
 }

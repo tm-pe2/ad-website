@@ -5,17 +5,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UtilService } from './util.service';
 import { HeaderComponent } from './header/header.component';
-import { Page1Component } from './page1/page1.component';
-import { Page2Component } from './page2/page2.component';
 import { WorkerappComponent } from './workerapp/workerapp.component';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { CientListComponent } from './cient-list/cient-list.component';
+import { CientPageComponent } from './cient-page/cient-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    Page1Component,
-    Page2Component,
-    WorkerappComponent
+    WorkerappComponent,
+    LoginPageComponent,
+    CientListComponent,
+    CientPageComponent
 
   ],
   imports: [

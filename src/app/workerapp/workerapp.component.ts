@@ -6,9 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./workerapp.component.css']
 })
 export class WorkerappComponent implements OnInit {
+  public displayPage : number = 1
   constructor() { }
+  
 
   ngOnInit(): void {
+
   }
 
 }
