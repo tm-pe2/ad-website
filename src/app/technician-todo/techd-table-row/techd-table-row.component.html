@@ -1,35 +1,18 @@
 <div>
-    <!-- <div *ngFor="let i of fields"> -->
-        <!-- Iterate over all input fields, display -->
-        <!-- {{i}} -->
-    <!-- </div> -->
-    <!-- <div [hidden]="Completed == true"> -->
-        <!-- Completed: <input type="checkbox" checked=> -->
-    <!-- </div>     -->
-    <!-- <div [hidden]="Completed == false"> -->
-        <!-- Completed: <input type="checkbox"> -->
-    <!-- </div> -->
-    <!-- <app-tech-filter-buttons (DoFilter)="QueriedShow($event)"></app-tech-filter-buttons> -->
+    
     <button (click)="RefreshData()">Refresh</button>
-    <div *ngFor="let row of rows; let no = index">
-        <!-- <div *ngFor="let i of row.Fields">
-            {{i}}
+    <div *ngFor="let row of rows; let no = index" class="border-2">
+        <div>
+            Name: {{row.Name}}
         </div>
         <div>
-            Completed: <input type="checkbox" [checked]="row.Completed" (change)="UpdateTableItem(no, !row.Completed)">
-        </div>  -->
-        <div>
-            {{row.Name}}
+            Locaton: {{row.Location}}
         </div>
         <div>
-            {{row.Location}}
+            Duedate: {{row.WhenDate}}
         </div>
         <div>
-            <!-- {{row.WhenDate.getFullYear()}} / {{row.WhenDate.getMonth()}} / {{row.WhenDate.getUTCDay()}}  -->
-            {{row.WhenDate}}
-        </div>
-        <div>
-            <input type="checkbox" [checked]="row.Completed">
+            Completed: <input type="checkbox" [checked]="row.Completed">
         </div>
     </div>
 </div>
