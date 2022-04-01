@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Employee } from '../Employee';
+import { Employee } from '../employee';
+import { Address } from '../address';
 import { ManageEmployeesComponent } from '../manage-employees.component';
 
 @Component({
@@ -20,9 +21,10 @@ export class EmployeeListItemComponent implements OnInit {
    BirthDate= "test";
    Email = "bbb";
    PhoneNumber = "bbb";
-   Address ="bbb";
+   Address =" ";
+   //Address: Address = {};
    HireDate ="hey";
-   Department = "dqjfdfj";
+   Department = "dkqdjf";
    Gender="X";
  
    emp = new Employee(1,this.FirstName,this.LastName,this.BirthDate,this.Email,this.PhoneNumber,this.Address,this.HireDate,this.Department,this.Gender);

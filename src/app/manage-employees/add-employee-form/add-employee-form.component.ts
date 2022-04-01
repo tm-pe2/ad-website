@@ -1,6 +1,6 @@
-import { Component, OnInit, Input,Output,EventEmitter} from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Employee } from '../Employee';
+import { Component, OnInit, Input,Output,EventEmitter, ViewChild} from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Employee } from '../employee';
 import { ManageEmployeesComponent } from '../manage-employees.component';
 
 @Component({
@@ -8,55 +8,41 @@ import { ManageEmployeesComponent } from '../manage-employees.component';
   templateUrl: './add-employee-form.component.html',
   styleUrls: ['./add-employee-form.component.css']
 })
-export class AddEmployeeFormComponent{
 
-  @Input() parent?: ManageEmployeesComponent
-  constructor() {}
+export class AddEmployeeFormComponent implements OnInit{ 
   
-  //DepartmentOptions = ['mangers','idk','the guys from it'];
+  
+  @Input() parent?: ManageEmployeesComponent;
+  constructor() {}
+    
 
-
-
+  
   error = "";
   showError = false;
-
+  Gender = 'X';
+  
   // Some variables
   id = 1;
-  FirstName = "";
-  LastName = "";
-  BirthDate= "";
-  Email = "";
-  PhoneNumber = "";
-  Address ="";
-  HireDate ="";
-  Department = "";
-  Gender="";
+  
   submitted = false;
   FormCheck = true;
   statusAddButton = false;
+
+  department = "testdep2";
+
   
-  onAddFormSubmit() {
-    var emp = new Employee(this.id,this.FirstName,this.LastName,this.BirthDate,this.Email,this.PhoneNumber,this.Address,this.HireDate,this.Department,this.Gender);
-
-    if(this.FirstName.length > 5){
-      this.error = "The firstname is too long";
-      this.showError = true;
-      return false;
-    }
-    if(this.LastName.length > 50){
-      this.error = "The lastname is to long";
-      this.showError = true;
-      return false;
-    }    
-
-    this.parent?.onEmpAdded();
-    return true;
-
+  
+  onAddFormSubmit(form : NgForm) {
+    
+    // get all the data and making a new object 
+    
+    console.log(form.value.Fname);
+    console.log(this.Gender);
+    this.parent?.onEmpAdded();    
+    // var newEmployee = new Employee(this.id,this.FirstName,this.LastName,this.BirthDate,this.Email,this.PhoneNumber,this.Address,this.HireDate,this.Department,this.genders[1]);
   }
- 
+  
   ngOnInit(): void {
   }
 }
-
-
 
