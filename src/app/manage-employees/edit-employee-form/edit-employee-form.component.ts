@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Employee } from '../Employee';
+import { Employee } from '../employee';
 
 @Component({
   selector: 'app-edit-employee-form',

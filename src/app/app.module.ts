@@ -16,11 +16,14 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ManageEmployeesComponent } from './manage-employees/manage-employees.component';
 import { EmployeeCardComponent } from './manage-employees/employee-card/employee-card.component';
 import { AddEmployeeFormComponent } from './manage-employees/add-employee-form/add-employee-form.component';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { EditEmployeeFormComponent } from './manage-employees/edit-employee-form/edit-employee-form.component';
 import { EmployeeListItemComponent } from './manage-employees/employee-list-item/employee-list-item.component';
+<<<<<<< HEAD
 import { TicketingComponent, TableRow } from './ticketing/ticketing.component';
 >>>>>>> ffb9a57 (Merge branch 'design-standards' into manageEmployees)
+=======
+>>>>>>> 12e1ccd (form validation add emp form)
 import { UtilService } from './util.service';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -46,6 +49,7 @@ import { EmployeeListItemComponent } from './manage-employees/employee-list-item
   declarations: [
     AppComponent,
     DashboardComponent,
+<<<<<<< HEAD
     SmallCardComponent,
     BigCardComponent,
     ProfileCardComponent,
@@ -58,20 +62,27 @@ import { EmployeeListItemComponent } from './manage-employees/employee-list-item
     ManageTickets,
     ClientTicketsComponent, 
     TicketingComponent,
+=======
+>>>>>>> 12e1ccd (form validation add emp form)
     ManageEmployeesComponent,
     EmployeeCardComponent,
     AddEmployeeFormComponent,
     EditEmployeeFormComponent,
+<<<<<<< HEAD
     EmployeeListItemComponent,
 <<<<<<< HEAD
 =======
     TableRow
+=======
+    EmployeeListItemComponent
+>>>>>>> 12e1ccd (form validation add emp form)
 
 >>>>>>> ffb9a57 (Merge branch 'design-standards' into manageEmployees)
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+<<<<<<< HEAD
     FormsModule,
     MatIconModule,
     HttpClientModule,
@@ -87,6 +98,9 @@ import { EmployeeListItemComponent } from './manage-employees/employee-list-item
     }, 
     FormsModule,
     ReactiveFormsModule
+=======
+    FormsModule
+>>>>>>> 12e1ccd (form validation add emp form)
   ],
   bootstrap: [AppComponent]
 })
