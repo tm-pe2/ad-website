@@ -1,3 +1,5 @@
+import { Address } from './interfaces/address';
+
 export class Employee{
     constructor(
         public EmployeesID: number ,
@@ -6,7 +8,7 @@ export class Employee{
         public BirthDate: string,
         public Email: string,
         public PhoneNumber: string,
-        public Address: string,
+        public Address: Address,
         public HireDate: string,
         public Department: string,
         public Gender: string

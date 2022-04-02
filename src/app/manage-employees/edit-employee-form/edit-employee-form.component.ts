@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Employee } from '../employee';
+import { Address } from '../interfaces/address';
 
 @Component({
   selector: 'app-edit-employee-form',
@@ -10,16 +11,16 @@ export class EditEmployeeFormComponent {
   
   constructor() {}
   
-  //DepartmentOptions = ['mangers','idk','the guys from it'];
   
-  emp = new Employee(1,"Jos","Van den Berg","1/1/1","josvandenberg@bedrijf.com","0412312312","thuis","1/1/2","managers","X"); 
+  Address:Address = {adressID:1,city:"bonheiden",postalcode:2820,street:"denayer",housNumber:111,country:"belgium"}
+  
+  emp = new Employee(1,"Jos","Van den Berg","1/1/1","josvandenberg@bedrijf.com","0412312312",this.Address,"1/1/2","managers","X"); 
 
   FirstName = "";
   LastName = "";
   BirthDate= "";
   Email = "";
   PhoneNumber = "";
-  Address ="";
   HireDate ="";
   Department = "";
   Gender="";

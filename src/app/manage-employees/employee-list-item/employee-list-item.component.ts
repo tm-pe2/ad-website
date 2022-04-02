@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Employee } from '../employee';
-import { Address } from '../address';
+import { Address } from '../interfaces/address';
 import { ManageEmployeesComponent } from '../manage-employees.component';
 
 @Component({
@@ -21,7 +21,7 @@ export class EmployeeListItemComponent implements OnInit {
    BirthDate= "test";
    Email = "bbb";
    PhoneNumber = "bbb";
-   Address =" ";
+   Address:Address = {adressID:1,city:"bonheiden",postalcode:2820,street:"denayer",housNumber:111,country:"belgium"}
    //Address: Address = {};
    HireDate ="hey";
    Department = "dkqdjf";
