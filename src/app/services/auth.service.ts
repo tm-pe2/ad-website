@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 
 import { LoginData } from '../interfaces/loginData';
+import { Router } from '@angular/router';
 
-/*TODO: swap urls with env variables */
+import { environment } from '../../environments/environment';
 
 const ACCESSTOKEN = 'auth-token';
 const REFRESHTOKEN = 'auth-refreshtoken';
@@ -12,11 +13,11 @@ const REFRESHTOKEN = 'auth-refreshtoken';
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
   
   login(loginData: LoginData): Promise<void> {
     const promise = new Promise<void>((resolve, reject) => {
-      this.http.post('http://localhost:6060' + '/auth/login', {
+      this.http.post(environment.apiUrl + '/auth/login', {
         email: loginData.mail,
         password: loginData.password,
       })
@@ -37,14 +38,15 @@ export class AuthService {
 
   logout(): Promise<void> {
     const promise = new Promise<void>((resolve, reject) => {
-      this.http.post('http://localhost:6060' + '/auth/logout', {
+      this.http.post(environment.apiUrl + '/auth/logout', {
         refreshToken: this.getRefreshToken(),
       },
       { responseType: 'text' })
       .subscribe({
         next: () => {
+          console.log('Logging out...')
           window.sessionStorage.clear();
-          // TODO redirect
+          this.router.navigate(['login']);
           resolve();
         },
         error: (err) => {
@@ -53,40 +55,16 @@ export class AuthService {
       });
     });
 
+
     return promise;
     
     // TODO: redirect to login page.
   }
 
-  refreshAccessToken(): Promise<void> {
-    return new Promise((resolve, reject) => {
-      this.http.post('http://localhost:6060' + '/auth/token', {
-      refreshToken: this.getRefreshToken()
-    }).subscribe({
-      next: (data: any) => {
-        this.storeAccessToken(data.accessToken)
-        resolve();
-      },
-      error: (err) => {
-        console.debug('in refreshAccessToken(), reject: ', err)
-        reject(err);
-      }
-    })
-    })
-    // return this.http.post('http://localhost:6060' + '/auth/token', {
-    //   refreshToken: this.getRefreshToken()
-    // }).subscribe((data) => console.error(data))
-    // return this.http.get('https://www.google.com').subscribe((data) => console.error(data))
-  }
-
-  refreshAccessTokenTest() {
-    return this.http.post('http://localhost:6060' + '/auth/token', {
+  refreshAccessToken() {
+    return this.http.post(environment.apiUrl + '/auth/token', {
       refreshToken: this.getRefreshToken()
     });
-    // return this.http.post('http://localhost:6060' + '/auth/token', {
-    //   refreshToken: this.getRefreshToken()
-    // }).subscribe((data) => console.error(data))
-    // return this.http.get('https://www.google.com').subscribe((data) => console.error(data))
   }
 
   // Storing tokens
@@ -106,5 +84,4 @@ export class AuthService {
   getRefreshToken(): string | null {
     return window.sessionStorage.getItem(REFRESHTOKEN);
   }
-  // store/getUser?
 }
