@@ -1,25 +1,45 @@
 <div class="min-h-screen flex items-center justify-center bg-gray-700">
 
   <div class="w-full md:w-1/2 sm:w-3/4 rounded shadow-2xl bg-white p-5 text-2xl">
+<<<<<<< HEAD
     <form (ngSubmit)="onSubmit()"> 
+=======
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm"> 
+>>>>>>> 00585af (git push)
       <label for="addEmp" class="font-bold flex items-center justify-center pb-5">Add Employee</label><br>
       
       <div class="grid grid-cols-2 mb-3 gap-2">
         <span>
           <label for="Fname">First name: </label>
           <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400 form-control"          
+<<<<<<< HEAD
             type="text" id="Fname" name="Fname" [(ngModel)]="current_Emp.FirstName"><br>
               
           
           <label for="Lname">Last name: </label>
           <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" 
             type="text" id="Lname" name="Lname" [(ngModel)]="current_Emp.LastName"><br>
+=======
+            type="text" id="Fname" name="Fname" ngModel required maxlength="5" #Fname="ngModel"><br>
+              
+          <div class="text-red-500" *ngIf="Fname.errors?.['maxlength']" >The name is to long. <br></div>
+          <div class="text-red-500" *ngIf="!Fname.valid && Fname.touched">Fill in the firstname. <br></div>
+
+          
+          <label for="Lname">Last name: </label>
+          <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" 
+            type="text" id="Lname" name="Lname" ngModel required maxlength="50" #Lname="ngModel"><br>
+          
+          <div class="text-red-500" *ngIf="!Lname.valid && Lname.touched">Fill in the lastname <br> </div>
+
+>>>>>>> 00585af (git push)
         </span>
         
         <span class="flex items-center justify-center">
           <span class="grid grid-rows-4">
             Gender:
             <span>
+<<<<<<< HEAD
               <input type="radio" id="M" name="gender" value="M" [(ngModel)]="current_Emp.Gender">
               <label for="M" class="ml-2">M</label>
             </span>
@@ -29,6 +49,17 @@
             </span>
             <span>
               <input type="radio" id="X" name="gender" value="X"  [(ngModel)]="current_Emp.Gender"> 
+=======
+              <input type="radio" id="M" name="gender" value="M" [(ngModel)]="gender">
+              <label for="M" class="ml-2">M</label>
+            </span>
+            <span>
+              <input type="radio" id="F" name="gender" value="F"  [(ngModel)]="gender" >
+              <label for="F" class="ml-2">F</label>
+            </span>
+            <span>
+              <input type="radio" id="X" name="gender" value="X"  [(ngModel)]="gender" > 
+>>>>>>> 00585af (git push)
               <label for="X" class="ml-2">X</label>
             </span>
           </span>
@@ -39,27 +70,47 @@
       <div class="mb-5">
         <label for="birthDate">BirthDate: </label>
         <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="birthDate" name="birthDate"
+<<<<<<< HEAD
         [(ngModel)]="current_Emp.BirthDate"><br>
 
+=======
+         ngModel #birthDate="ngModel" required ><br>
+
+         <div class="text-red-500" *ngIf="!birthDate.valid && birthDate.touched">Enter a valid birthdate (dd/mm/yyyy). <br> </div>
+>>>>>>> 00585af (git push)
       </div>
 
       <div class="mb-5">
         <label for="email">Email:  </label>
         <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="email" name="email"
+<<<<<<< HEAD
          [(ngModel)]="current_Emp.Email" ><br>
 
+=======
+         ngModel #email="ngModel" required email ><br>
+
+         <div class="text-red-500" *ngIf="!email.valid && email.touched">Fill in email.</div>
+         <div class="text-red-500" *ngIf="email.errors?.['email']">Enter a valid email.</div>
+>>>>>>> 00585af (git push)
       </div>
 
       <div class="mb-5">
         <label for="phoneNR">Phone Number: </label>
         <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="phoneNR" name="phoneNR" 
+<<<<<<< HEAD
          [(ngModel)]="current_Emp.PhoneNumber"><br>
+=======
+         ngModel #phoneNR="ngModel" required pattern="^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$"><br>
+
+         <div class="text-red-500" *ngIf="!phoneNR.valid && phoneNR.touched ">Fill in a correct phonenumber (+324123123)</div>
+>>>>>>> 00585af (git push)
       </div>
 
       <div class="mb-5">
 
          <label for="street">Street:</label>
          <input type="text" id="street" name="street"
+<<<<<<< HEAD
            [(ngModel)]="current_Emp.Address.street"> <br>
 
           
@@ -72,13 +123,45 @@
 
             <label for="houseNumber">Hous number:</label>
             <input type="text" id="housNumber" name="housNumber" [(ngModel)]="current_Emp.Address.housNumber" > <br>
+=======
+           ngModel #street="ngModel" required maxlength="50"> <br>
+
+          <div class="text-red-500" *ngIf="!street.valid && street.touched">Fill in the street.</div>
+
+
+          <label for="city">City:</label>
+          <input type="text" id="city" name="city"
+           ngModel #city="ngModel" required maxlength="50"> <br>
+
+           <div class="text-red-500" *ngIf="!city.valid && city.touched" >Fill in the City</div>
+
+           <label for="postalcode">Postalcode:</label>
+           <input type="text" id="postalcode" name="postalcode"
+            ngModel #postalcode="ngModel" required maxlenght="50"> <br>
+
+            <div class="text-red-500" *ngIf="!postalcode.valid && postalcode.touched">Fill in the postalcode</div>
+
+            <label for="houseNumber">Hous number:</label>
+            <input type="text" id="housNumber" name="housNumber"
+              ngModel #housNumber="ngModel" required maxlengt="50"> <br>
+
+            <div class="text-red-500" *ngIf="!housNumber.valid && housNumber.touched">Fill in the hous number</div>
+>>>>>>> 00585af (git push)
 
       </div>
 
       <div class="mb-5">
+<<<<<<< HEAD
         <label for="hiredate">HireDate </label>
         <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="hiredate" name="hiredate" 
          [(ngModel)]="current_Emp.HireDate"><br>
+=======
+        <label for="HireDate">HireDate </label>
+        <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="hiredate" name="hiredate" 
+         ngModel #hireDate="ngModel" required ><br>
+
+         <div class="test-rood-500" *ngIf="!hireDate.valid && hireDate.touched" ></div>
+>>>>>>> 00585af (git push)
 
       </div>
 
@@ -86,6 +169,7 @@
         <span class="grid grid-rows-4">
           Department:
           <span>
+<<<<<<< HEAD
             <input type="radio" id="test" name="department" value="testdep" [(ngModel)]="current_Emp.Department">
             <label for="test" class="ml-2">testdep</label>
           </span>
@@ -103,6 +187,25 @@
           </span>
           <span>
             <input type="radio" id="test5" name="department" value="testdep5"  [(ngModel)]="current_Emp.Department" > 
+=======
+            <input type="radio" id="test" name="department" value="testdep" [(ngModel)]="department">
+            <label for="test" class="ml-2">testdep</label>
+          </span>
+          <span>
+            <input type="radio" id="test2" name="department" value="testdep2"  [(ngModel)]="department" >
+            <label for="test2" class="ml-2">testdep2</label>
+          </span>
+          <span>
+            <input type="radio" id="test3" name="department" value="testdep3"  [(ngModel)]="department" > 
+            <label for="test3" class="ml-2">testdep3</label>
+          </span>
+          <span>
+            <input type="radio" id="test4" name="department" value="testdep4"  [(ngModel)]="department" > 
+            <label for="test4" class="ml-2">testdep4</label>
+          </span>
+          <span>
+            <input type="radio" id="test5" name="department" value="testdep5"  [(ngModel)]="department" > 
+>>>>>>> 00585af (git push)
             <label for="test5" class="ml-2">testdep5</label>
           </span>
         </span>
@@ -111,14 +214,22 @@
       
     
       <div class="flex justify-between m-2 pt-5">
+<<<<<<< HEAD
         <button class="p-1.5 px-5 uppercase text-lg font-medium tracking-wider text-white bg-blue-400 rounded-lg hover:underline"
+=======
+        <button [disabled]="!f.valid" class="p-1.5 px-5 uppercase text-lg font-medium tracking-wider text-white bg-blue-400 rounded-lg hover:underline"
+>>>>>>> 00585af (git push)
          type="submit">Add Employee</button>
         
         </div>
       </form>
       <!--Return button to cancel edit and go back to Manage page--> 
     <button class="p-1.5 px-5 text-lg uppercase font-medium tracking-wider text-black-600 hover:underline hover:cursor-pointer bg-red-400 rounded-lg"
+<<<<<<< HEAD
     (click)="onCancelEditEmp()">Back</button>
+=======
+    (click)="onCancelAddEmp()">Back</button>
+>>>>>>> 00585af (git push)
 
   </div>
 </div>
