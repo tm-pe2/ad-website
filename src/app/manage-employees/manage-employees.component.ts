@@ -26,8 +26,8 @@ export class ManageEmployeesComponent implements OnInit {
     this.showEmpList = false;
   }
 
-  onEmpAdded(){
-    this.showAddEmpForm = false;
-    this.showEmpList = true;
+  changeStatusEmpAddForm(){
+    this.showAddEmpForm = !this.showAddEmpForm;
+    this.showEmpList = !this.showEmpList;
   }
 }
