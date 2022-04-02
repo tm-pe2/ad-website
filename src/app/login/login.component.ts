@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { UserdataService } from '../services/userdata.service';
 // on my own device it is supposed to be LoginData
 import { LoginData } from '../interfaces/loginData';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +18,7 @@ export class LoginComponent implements OnInit {
   invalidCreds = false;
 
   // Constructor
-  constructor(private userData: UserdataService) { }
+  constructor(private userData: UserdataService, private authService: AuthService, private router: Router) { }
 
   // On init
   ngOnInit(): void { }
@@ -43,13 +45,16 @@ export class LoginComponent implements OnInit {
   private checkCreds(loginForm: NgForm)
   {
     const loginData: LoginData = { mail: loginForm.value.loginMail, password: loginForm.value.loginPassword }
-    if (!this.userData.authenticate(loginData))
-    {
+
+    this.authService.login(loginData)
+    .then(()=>{
+      this.userData.setAuthenticated(true); // Load user data in userData after log in
+      this.router.navigate(['']);
+    })
+    .catch(() => {
       this.invalidForm = false;
       this.invalidCreds = true;
-    
-    }
-
+    })
   }
 
 }
