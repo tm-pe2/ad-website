@@ -1,20 +1,26 @@
-<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
-    <h2>Please sign in</h2>
-    <div class="form-group">
-        <input class="form-control" id="logiMail" type="email" name="loginMail" placeholder="E-mail address" required autofocus ngModel />
+<div class="min-h-screen flex items-center justify-center bg-gray-700">
+    <div class="w-full md:w-1/2 sm:w-3/4 rounded shadow-2xl bg-white p-5 text-2xl">
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+            <h2 class="font-bold flex items-center justify-center pb-5">Please sign in</h2>
+            <div class="mb-3">
+                <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" id="logiMail" type="email" name="loginMail" placeholder="E-mail address" required autofocus ngModel />
+            </div>
+            <div class="mb-3">
+                <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" id="loginPassword" type="password" name="loginPassword"placeholder="Password" required ngModel />
+            </div>
+            <div class="flex justify-between m-2 pt-5">
+                <button class="p-1.5 px-5 uppercase text-lg font-medium tracking-wider text-white bg-red-600 rounded-lg hover:underline" id="loginConfirm" type="submit">Sign in</button>
+                <a class="p-1.5 px-5 text-lg uppercase font-medium tracking-wider text-red-600 hover:underline" id="regLink" type="submit" routerLink="/registration">Sign up</a>
+                <!-- <button class="form-button" id="linkReg" type="button" routerLink="/registration">Sign up</button> -->
+            </div>
+            <div class="bg-red-600 rounded p-5 bg-opacity-75" role="alert" *ngIf="invalidForm">
+                Make sure all fields are filled!
+            </div>
+            <div class="bg-red-600 rounded p-5 bg-opacity-75" role="alert" *ngIf="invalidCreds">
+                Invalid mail or password!
+            </div>
+        </form>
     </div>
-    <div class="form-group">
-        <input class="form-control" id="loginPassword" type="password" name="loginPassword"placeholder="Password" required ngModel />
-    </div>
-    <div class="form-buttons">
-        <button class="form-button" id="loginConfirm" type="submit">Sign in</button>
-        <a class="form-link" id="regLink" type="submit" routerLink="/registration">Sign up</a>
-        <!-- <button class="form-button" id="linkReg" type="button" routerLink="/registration">Sign up</button> -->
-    </div>
-    <div class="error-alert" role="alert" *ngIf="invalidForm">
-        Make sure all fields are filled!
-    </div>
-    <div class="error-alert" role="alert" *ngIf="invalidCreds">
-        Invalid mail or password!
-    </div>
-</form>
+</div>
+
+

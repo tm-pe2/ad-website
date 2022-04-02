@@ -8,8 +8,8 @@ import { TableRow, TicketingComponent } from './ticketing/ticketing.component';
 import { UtilService } from './util.service';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { RegistrationService } from './registration/registration.service';
 import { FormsModule } from '@angular/forms';
+import { UserdataService } from './services/userdata.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 
@@ -30,7 +30,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
   ],
   providers: [
     UtilService,
-    RegistrationService,
+    UserdataService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

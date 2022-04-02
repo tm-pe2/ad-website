@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { tap } from 'rxjs';
-import { LoginService } from './login/login.service';
+import { UserdataService } from './services/userdata.service';
 import { AuthService } from './services/auth.service';
 
 @Component({
@@ -14,7 +13,7 @@ export class AppComponent {
 
   // For login test
   // Adds login service so you can access the authenticated variable
-  constructor (public service: LoginService, authService: AuthService, private http: HttpClient) {
+  constructor (public service: UserdataService, authService: AuthService, private http: HttpClient) {
     // authService.login('example', 'nohash')
     // .then(()=> {
     //   console.log('Login succeeded');
@@ -32,5 +31,6 @@ export class AppComponent {
       }          
     )
   }
+
 
 }

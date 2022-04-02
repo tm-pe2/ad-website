@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { RegistrationService } from './registration.service';
 
 @Component({
   selector: 'app-registration',
@@ -11,10 +10,10 @@ export class RegistrationComponent implements OnInit {
   // Variables
   invalidForm = false;
   matchingPasswords = false;
-  types;
+  types = ["Private", "Company"];
 
   // Constructor
-  constructor(service: RegistrationService) { this.types = service.types; }
+  constructor() { }
 
   // On init
   ngOnInit(): void { }
