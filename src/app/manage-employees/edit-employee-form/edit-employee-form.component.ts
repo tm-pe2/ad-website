@@ -28,7 +28,7 @@ export class EditEmployeeFormComponent {
   
   submitted = false;
   
-  onSubmit() {;
+  onSubmit(form: form) {;
     console.log(this.emp.FirstName,this.emp.LastName,this.emp.BirthDate,this.emp.Email,this.emp.PhoneNumber,this.emp.Address,this.emp.HireDate,this.emp.Department,this.emp.Gender);
   }
   
