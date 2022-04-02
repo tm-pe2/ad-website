@@ -1,26 +1,25 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { DashboardComponent } from './dashboard.component';
+import { DeleteModalComponent } from './delete-modal.component';
 
-describe('DashboardComponent', () => {
-  let component: DashboardComponent;
-  let fixture: ComponentFixture<DashboardComponent>;
+describe('DeleteModalComponent', () => {
+  let component: DeleteModalComponent;
+  let fixture: ComponentFixture<DeleteModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DashboardComponent ],
+      declarations: [ DeleteModalComponent ],
       imports: [RouterTestingModule]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardComponent);
+    fixture = TestBed.createComponent(DeleteModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
   it('should create', () => {
     expect(component).toBeTruthy();
   });

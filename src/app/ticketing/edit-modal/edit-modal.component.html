@@ -1,0 +1,28 @@
+<div class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full" (click)="removeModal()">
+</div>
+<div class="fixed mx-auto inset-0 top-10 p-5 border h-fit w-1/3 shadow-lg rounded-md bg-white">
+    <div class="mt-3">
+        <h1 class="text-center font-semibold"> Edit Ticket</h1>
+        <form class="flex flex-col">
+            <label class="mb-1 font-bold" for="name">Name: </label>
+            <hr class="border border-black w-full">
+            <input type="text" class="border-b h-11 border-b-gray-500 pl-2 ml-2 my-4" placeholder="Name" name="name" value="{{data.name}}">
+            <label class= "mb-1 font-bold" for="issue">Issue: </label>
+            <hr class="border border-black w-full">
+            <input type="text" class="border-b pl-2 ml-2 my-4 h-11 border-b-gray-500" placeholder="Issue" name="issue" value="{{data.issue}}">
+            <label class="mb-1 font-bold" for="description">Description: </label>
+            <hr class="border border-black w-full">
+            <textarea class="border-b pl-2 ml-2 my-4 border-b-gray-500 h-32" placeholder="Description" name="description">{{data.description}}</textarea>
+            
+        </form>
+        <div class="flex px-4 py-3 space-x-3">
+            <button id="confirm-btn"  class="px-4 py-2 bg-green-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">
+                Apply
+            </button>
+            <button id="cancel-btn"  class="px-4 py-2 bg-gray-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300"
+                (click)="removeModal()">
+                Cancel
+            </button>
+        </div>
+    </div>
+</div>
