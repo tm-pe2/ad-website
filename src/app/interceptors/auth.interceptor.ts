@@ -15,39 +15,51 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    // TODO: ignore everything that isnt to API.
+
     return next.handle(this.setAuthHeader(request)).pipe(
       tap({
         next: (res: HttpEvent<any>) => {
-          console.log('success continue req')
+          console.log('Succesful request => forward response');
         },
         error: (err: HttpErrorResponse) => {
-          console.log('Error in request')
-          if (err.status == 401) {
-            console.log('401 => refreshing access token')
-            this.authService.refreshAccessTokenTest().subscribe(
-              {
-                next: (data: any) => {
-                  console.log('REFRESHED');
-                  this.authService.storeAccessToken(data.accessToken);
-                  return next.handle(this.setAuthHeader(request));
-                },
-                error: (err: HttpErrorResponse) => {
-                  console.log('RIP');
-                  if (err.status == 403) {
-                    console.error('ERROR 403');
-                    this.authService.logout();
-                  }
-                }
-              }
-            )
+          // TODO: Better way for excluding login? Failed login is also status code 401 -> loop
+          if (err.status == 401 && err.url?.includes('login')) {
+            return this.handleStatus401(request, next);
           }
-          return err
+          console.log('Error from request => forward error');
+          return err;
         }
       })
     );
   }
 
-  setAuthHeader(request: HttpRequest<any>) {
+  private handleStatus401(request: HttpRequest<any>, next: HttpHandler) {
+    console.log('401 => refreshing access token')
+    this.authService.refreshAccessToken().subscribe(
+      {
+        next: (data: any) => {
+          console.log('Refreshed access token');
+          this.authService.storeAccessToken(data.accessToken);
+          return next.handle(this.setAuthHeader(request));
+        },
+        error: (err: HttpErrorResponse) => {
+          console.log('Failed to refresh access token: ', err.status);
+          if (err.status == 403) {
+            this.handleStatus403();
+          }
+          return err;
+        }
+      }
+    )
+  }
+
+  private handleStatus403() {
+    console.error('Forbidden refresh => logging out');
+    this.authService.logout();
+  }
+
+  private setAuthHeader(request: HttpRequest<any>) {
     const token = this.authService.getAccessToken();
 
     if (!token) return request;
