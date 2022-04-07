@@ -18,7 +18,7 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    if (!request.url.startsWith(environment.apiUrl) || BLACKLIST.some((e) => request.url?.includes(e)))
+    if (!request.url.startsWith(environment.apiUrl) || BLACKLIST.some((rt) => request.url.slice(environment.apiUrl.length).startsWith(rt)))
       return next.handle(request);
 
     return next.handle(this.setAuthHeader(request)).pipe(
