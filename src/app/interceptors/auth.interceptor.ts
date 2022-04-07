@@ -10,7 +10,7 @@ import { Observable, tap } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { environment } from '../../environments/environment';
 
-const BLACKLIST = ['/login', '/register', '/logout']; // TODO create logout route
+const BLACKLIST = ['/auth/login', '/auth/register', '/auth/logout']; // TODO create logout route
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
