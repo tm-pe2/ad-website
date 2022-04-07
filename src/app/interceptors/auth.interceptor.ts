@@ -9,6 +9,8 @@ import {
 import { Observable, tap } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
+const BLACKLIST = ['/login'];
+
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
@@ -23,8 +25,7 @@ export class AuthInterceptor implements HttpInterceptor {
           console.log('Succesful request => forward response');
         },
         error: (err: HttpErrorResponse) => {
-          // TODO: Better way for excluding login? Failed login is also status code 401 -> loop
-          if (err.status == 401 && err.url?.includes('login')) {
+          if (err.status == 401 && !BLACKLIST.some((e) => err.url?.includes(e))) {
             return this.handleStatus401(request, next);
           }
           console.log('Error from request => forward error');
@@ -63,8 +64,7 @@ export class AuthInterceptor implements HttpInterceptor {
     const token = this.authService.getAccessToken();
 
     if (!token) return request;
-    // TODO: check if this causes issues with additional headers
-    // -> seems to be fine
+    
     return request.clone({
       setHeaders: {
         Authorization: `Bearer ${token}`

@@ -51,9 +51,15 @@ export class LoginComponent implements OnInit {
       this.userData.setAuthenticated(true); // Load user data in userData after log in
       this.router.navigate(['']);
     })
-    .catch(() => {
-      this.invalidForm = false;
-      this.invalidCreds = true;
+    .catch((err) => {
+      console.error(err);
+      if (err.status == 401) {
+        this.invalidForm = false;
+        this.invalidCreds = true;
+      }
+      else {
+        // TODO: Only say that its invalid if it actually is, the API could also simply be down.
+      }
     })
   }
 
