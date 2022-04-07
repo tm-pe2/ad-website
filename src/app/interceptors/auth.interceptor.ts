@@ -8,6 +8,7 @@ import {
 } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { AuthService } from '../services/auth.service';
+import { environment } from '../../environments/environment';
 
 const BLACKLIST = ['/login'];
 
@@ -17,7 +18,8 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    // TODO: ignore everything that isnt to API.
+    if (!request.url.startsWith(environment.apiUrl) || BLACKLIST.some((e) => request.url?.includes(e)))
+      return next.handle(request);
 
     return next.handle(this.setAuthHeader(request)).pipe(
       tap({
@@ -25,7 +27,7 @@ export class AuthInterceptor implements HttpInterceptor {
           console.log('Succesful request => forward response');
         },
         error: (err: HttpErrorResponse) => {
-          if (err.status == 401 && !BLACKLIST.some((e) => err.url?.includes(e))) {
+          if (err.status == 401) {
             return this.handleStatus401(request, next);
           }
           console.log('Error from request => forward error');
