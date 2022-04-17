@@ -1,14 +1,18 @@
 // Angular imports
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { catchError, Observable } from 'rxjs';
 
 // Interfaces
 import { User } from '../interfaces/User';
 import { LoginData } from '../interfaces/loginData';
+import { RegistrationData } from '../interfaces/registrationData';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserdataService
 {
   // Mockusers
@@ -28,11 +32,15 @@ export class UserdataService
 
   }
 
+  // API connection
+  readonly ROOT_URL = 'http://localhost:6060';
+  customers!: Observable<any>;
+
   // Variables
   authenticated = false;
 
   // Constructor
-  constructor(private router: Router) { }
+  constructor(private router: Router, private http: HttpClient) { }
 
   // Functions
   // Login functions
@@ -68,6 +76,11 @@ export class UserdataService
   { return password === this.mockUser.password; }
 
   // Registration functions
-  // Nothing yet...
+  
+
+  // API Connection
+  addCustomer(customer: RegistrationData): Observable<RegistrationData>
+  { return this.customers = this.http.post<RegistrationData>(this.ROOT_URL + '/customers', customer); }
+  
 
 }

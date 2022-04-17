@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { RegistrationData } from '../interfaces/registrationData';
+import { UserdataService } from '../services/userdata.service';
 
 @Component({
   selector: 'app-registration',
@@ -14,7 +15,7 @@ export class RegistrationComponent implements OnInit {
   types = ["Private", "Company"];
 
   // Constructor
-  constructor() { }
+  constructor(private service: UserdataService) { }
 
   // On init
   ngOnInit(): void { }
@@ -63,7 +64,7 @@ export class RegistrationComponent implements OnInit {
 
     // Print out the data to the console for demo
     // Delete this later when you can send it to the API
-    console.log(regData);
+    this.service.addCustomer(regData);
 
   }
 
