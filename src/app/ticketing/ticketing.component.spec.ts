@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TicketingComponent } from './ticketing.component';
+import { TicketingComponent, TableRow } from './ticketing.component';
 
 describe('TicketingComponent', () => {
   let component: TicketingComponent;
@@ -8,7 +8,7 @@ describe('TicketingComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TicketingComponent ]
+      declarations: [ TicketingComponent, TableRow ]
     })
     .compileComponents();
   });
