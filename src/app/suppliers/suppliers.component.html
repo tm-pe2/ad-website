@@ -4,7 +4,7 @@
     </div>
     <div class="box row-start-2 row-end-6 col-start-1 col-end-3 overflow-y-auto shadow">
         <!--Search div-->
-        <div class="border-2 border-black w-40 pt-2 pb-4 m-10 rounded-lg flex-initial text-9xl text-center cursor-pointer" (click)="gotToPage('edit-supplier')">
+        <div class="border-2 border-black w-40 pt-2 pb-4 m-10 rounded-lg flex-initial text-9xl text-center cursor-pointer" (click)="gotToPage('add-suplier')">
             +<br>
             <p class="text-xl">Add Item</p>
         </div>
@@ -34,7 +34,7 @@
                         </td>
                         <td class="p-3 text-sm">
                             <!--if there is one or more running contracts, place each contract details behind one button-->
-                            <button class="p-1.5 text-xs font-medium uppercase tracking-wider text-yellow-800 bg-yellow-200 rounded-lg bg-opacity-50 hover:underline">
+                            <button class="p-1.5 text-xs font-medium uppercase tracking-wider text-yellow-800 bg-yellow-200 rounded-lg bg-opacity-50 hover:underline" (click)="gotToPage('contract-overview')">
                                 Contract
                             </button>
                              <!--No running contract-->

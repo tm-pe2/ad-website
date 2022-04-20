@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddSuplierComponent } from './add-suplier.component';
+import { ManageContractComponent } from './manage-contract.component';
 
-describe('AddSuplierComponent', () => {
-  let component: AddSuplierComponent;
-  let fixture: ComponentFixture<AddSuplierComponent>;
+describe('ManageContractComponent', () => {
+  let component: ManageContractComponent;
+  let fixture: ComponentFixture<ManageContractComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddSuplierComponent ]
+      declarations: [ ManageContractComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddSuplierComponent);
+    fixture = TestBed.createComponent(ManageContractComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

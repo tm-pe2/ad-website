@@ -1,7 +1,18 @@
 <div class="border-2 border-black transition-all w-4/5 bg-gray-400 mx-auto my-1.5 text-center">Header</div>
 
+
+
 <div class="border-2 border-black w-3/4 mx-auto my-1.5">
  
+<!-- Correct msg -->
+<div *ngIf="showSuccesMsg" class="border-2 border-green-600 w-72 bg-green-300 mx-auto mt-2">
+    <p class="text-center">Supplier has been added</p>
+</div>
+<!-- Error msg -->
+<div *ngIf="showErrorMsg" class="border-2 border-red-600 w-72 bg-red-300 mx-auto mb-2 ">
+    <p class="text-center">ERROR  {{ errorMsg }}</p>
+</div>
+
 <!-- 
     INFO:
         - This page will show you a form to add a new supplier. 
@@ -46,7 +57,7 @@
                 </td>
             </tr>
             <tr>
-                <th colspan="2"><button class="border-2 border-black w-52" (click)="addSupplier('supplierName')">Add</button></th>
+                <th colspan="2"><button class="border-2 border-black w-52" type="button" (click)="addSupplier()">Add</button></th>
             </tr>
             <tr>
                 <th colspan="2"><button class="border-2 border-black w-36 mt-4" (click)="backToHub('suppliers')">Back to Supplier</button></th>
@@ -55,7 +66,6 @@
     </form>
 
 </div>
-
 
 
 
