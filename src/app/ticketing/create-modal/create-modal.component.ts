@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ClientTicketsComponent } from '../client-tickets/client-tickets.component';
 
 @Component({
@@ -9,7 +9,8 @@ import { ClientTicketsComponent } from '../client-tickets/client-tickets.compone
 export class CreateModalComponent implements OnInit {
 
   @Input() parent!: ClientTicketsComponent;
-
+  @ViewChild('issue', { read: ElementRef }) issue?: ElementRef;
+  @ViewChild('description', { read: ElementRef }) description?: ElementRef;
   constructor() { }
 
   ngOnInit(): void {
@@ -17,5 +18,8 @@ export class CreateModalComponent implements OnInit {
 
   removeModal(){
     this.parent.destroyCreateModal();
+  }
+  confirmModal(){
+    this.parent.createTicket( this.issue?.nativeElement.value , this.description?.nativeElement.value);
   }
 }

@@ -33,3 +33,10 @@ export interface TicketUser{
   name: string;
   permissions: number;
 }
+export interface FieldData {
+  name: String;
+  issue: String;
+  description: String;
+  id?: number;
+  status?: String;
+}

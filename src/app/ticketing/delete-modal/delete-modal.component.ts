@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ManageTickets } from '../manage-tickets/manage-tickets.component';
-import { FieldData } from '../manage-tickets/manage-tickets.component';
+import { FieldData } from '../ticketing.component';
 
 @Component({
   selector: 'app-delete-modal',

@@ -1,7 +1,7 @@
 import { Component, ComponentRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
 import { EditModalComponent } from '../edit-modal/edit-modal.component';
-
+import { FieldData } from '../ticketing.component';
 @Component({
   selector: 'manage-tickets',
   templateUrl: './manage-tickets.component.html',
@@ -68,10 +68,3 @@ export interface FilterData {
   name?: string;
 }
 
-export interface FieldData {
-  name: String;
-  issue: String;
-  description: String;
-  id?: number;
-  status?: String;
-}
