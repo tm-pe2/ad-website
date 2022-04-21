@@ -30,6 +30,7 @@
                     <div class="w-2/4">{{ ticket.issue }}</div>
                     <div class="w-1/4">{{ ticket.status }}</div>
                 </div>
+                
 
                 <div class="bg-blue-500 w-full h-1/2"></div>
                 <div class="bg-yellow-300 w-full h-1/2"></div>
@@ -45,6 +46,11 @@
 
 
             <app-profile-card [user]="user"></app-profile-card>
+
+            <app-big-card *ngIf="user?.type == 'Technician'"
+            [title]="'My Tasks'">                
+                <app-techd-table class="overflow-auto"></app-techd-table>
+            </app-big-card>
         <div>
     </div>
     <div class="2xl:w-1/6"></div>
