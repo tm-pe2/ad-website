@@ -21,7 +21,7 @@ export class WorkerappComponent implements OnInit {
   }
   
   ngOnInit(): void{
-    this.createCust();
+    
   }
 
   createCust(): void{
