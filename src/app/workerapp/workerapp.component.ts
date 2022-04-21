@@ -21,7 +21,7 @@ export class WorkerappComponent implements OnInit {
   }
   
   ngOnInit(): void{
-    
+
   }
 
   createCust(): void{
@@ -33,7 +33,7 @@ export class WorkerappComponent implements OnInit {
     this.custData.forEach(cust => {
       var html : string = `<div #element class="m-4 p-2 pl-4 pr-4 rounded-2xl bg-slate-200 text-slate-300 drop-shadow-md flex items-center justify-between"><div class="bg-slate-500 drop-shadow-md rounded-2xl p-2 pr-4 pl-4 mr-2"><p>${cust.name}</p></div><div class="bg-slate-500 drop-shadow-md rounded-2xl mr-2 p-2 pr-4 pl-4"><p>${cust.addr}</p></div><div><div class="flex w-80 justify-end"><div class="bg-slate-500 drop-shadow-md rounded-2xl p-2 pr-4 pl-4 mr-2"><p>${cust.status}</p></div><button class="bg-slate-500 drop-shadow-md rounded-2xl p-2 pr-4 pl-4 ml-2">Go ></button></div></div>` // :)
       if(cust.empID == this.eid){
-        cl!.insertAdjacentHTML("beforeend", html);
+        cl?.insertAdjacentHTML("beforeend", html);
       }
     });
   }
