@@ -13,14 +13,15 @@ import {} from '@angular/core';
 export class WorkerappComponent implements OnInit {
   public displayPage : number = 1;
   public eid : number = 5;
-  public nCust : number = 70;
+  public nCust : number = 10;
   public custData: Array<Cust> = [];
-  public selectedCust : number = 0;
+  public selectedCust : number = 2;
 
-  constructor() { }
+  constructor() {
+  }
   
   ngOnInit(): void{
-    this.go();
+    this.createCust();
   }
 
   createCust(): void{
@@ -36,22 +37,17 @@ export class WorkerappComponent implements OnInit {
       }
     });
   }
-
-  go() : void{
-    this.displayPage = 2;
-    console.log("euh");
-  }
-
 }
 
 class Cust {
-  name?: string;
-  custID?: number;
-  empID?: number;
-  addr?: string;
-  currentDate?: Date;
-  nextDate?: Date;
-  status?: string;
+  name: string;
+  custID: number;
+  empID: number;
+  addr: string;
+  currentDate: Date;
+  nextDate: Date;
+  status: string;
+  meterType: number; // 0 = elek // 1 = gas // 2 = both 
   constructor(cid : number, eid : number){
     this.custID = cid;
     this.empID = eid;
@@ -60,5 +56,22 @@ class Cust {
     this.currentDate = new Date("2404/04/04");
     this.nextDate = new Date("2303/03/03");
     this.status = "not done"
+    this.meterType = 2;
+  }
+
+  getName() : string{
+    return this!.name;
+  }
+  getID() : number{
+    return this.custID;
+  }
+  getAdr() : string{
+    return this.addr;
+  }
+  getStatus() : string{
+    return this.status;
+  }
+  getMeterType(): number{
+    return this.meterType;
   }
 }
