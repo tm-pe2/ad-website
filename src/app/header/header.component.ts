@@ -8,19 +8,19 @@ import { WorkerappComponent } from '../workerapp/workerapp.component';
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() parent ?: WorkerappComponent 
+  @Input() parent ?: WorkerappComponent; 
 
   constructor() { }
 
   ngOnInit(): void {
-    this.parent!.displayPage = 0
+    this.parent!.displayPage = 1;
   }
 
   goPage1(): void{
-    this.parent!.displayPage = 1
+    this.parent!.displayPage = 1;
   }
 
   goPage2(): void{
-    this.parent!.displayPage = 2
+    this.parent!.displayPage = 2;
   }
 }

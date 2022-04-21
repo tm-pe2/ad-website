@@ -9,6 +9,7 @@ import { WorkerappComponent } from './workerapp/workerapp.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { CientListComponent } from './cient-list/cient-list.component';
 import { CientPageComponent } from './cient-page/cient-page.component';
+import { ListElementComponent } from './list-element/list-element.component';
 
 @NgModule({
   declarations: [
@@ -17,9 +18,10 @@ import { CientPageComponent } from './cient-page/cient-page.component';
     WorkerappComponent,
     LoginPageComponent,
     CientListComponent,
-    CientPageComponent
-
+    CientPageComponent,
+    ListElementComponent
   ],
+  entryComponents: [],
   imports: [
     BrowserModule,
     AppRoutingModule

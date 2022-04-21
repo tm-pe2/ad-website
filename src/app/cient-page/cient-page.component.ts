@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { WorkerappComponent } from '../workerapp/workerapp.component';
 
 @Component({
   selector: 'app-cient-page',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cient-page.component.css']
 })
 export class CientPageComponent implements OnInit {
-
+  @Input() parent ?: WorkerappComponent;
   constructor() { }
 
   ngOnInit(): void {
