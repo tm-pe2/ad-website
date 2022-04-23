@@ -1,28 +1,37 @@
-<div class="border-2 border-black mx-auto my-4 w-11/12">
-    <div class="">
-        <div class="text-center text-3xl font-bold underline underline-offset-2">Company Details</div>
-        <table class="border-2 border-black mx-auto my-5">
-            <tr class="border-2 border-black">
-                <th class="pr-48">ID:</th><td class="">0</td>
-            </tr>
-            <tr>
-                <th class=" pr-48">Naam:</th><td class="">Company name</td>
-            </tr>
-            <tr class="border-2 border-black">
-                <th class="pr-48">Adres:</th><td class="">Bierstraat 12</td>
-            </tr>
-            <tr>
-                <th class="pr-48">Gemeente:</th><td class="">2627 Schelle</td>
-            </tr>
-            <tr>
-                <th class=" pr-48">Supplies:</th><td class="">Gas</td>
-            </tr>
-            <tr class="border-2 border-black">                
-                <th class="pr-48">Ritten</th><td class="">0</td>
-            </tr>
-            <tr >
-                <td colspan="2" class="p-2"><button class="border-2 border-black-2 content-center m-auto block" (click)="gotToPage('suppliers')">Back To suppliers</button></td>
-            </tr>
-        </table>
+<div class="min-h-screen flex items-center justify-center bg-gray-700">
+
+    <div class="rounded shadow-2xl bg-white p-5 text-2xl">
+       
+        <label class="font-bold flex items-center justify-center pb-5">Company Details</label><br>
+
+        <div class="grid grid-cols-2 mb-3 gap-2">
+            <span>ID:</span>
+            <span>0</span>
+        </div>
+        <div class="grid grid-cols-2 mb-3 gap-2">
+            <span>Name:</span>
+            <span>Company name</span>
+        </div>
+        <div class="grid grid-cols-2 mb-3 gap-2">
+            <span>Adress:</span>
+            <span>Bierstraat 12</span>
+        </div>
+        <div class="grid grid-cols-2 mb-3 gap-2">
+            <span>City:</span>
+            <span>2627 Schelle</span>
+        </div>
+        <div class="grid grid-cols-2 mb-3 gap-2">
+            <span>Supplies:</span>
+            <span>Gas</span>
+        </div>
+        <div class="grid grid-cols-2 mb-3 gap-2">
+            <span>Ritten</span>
+            <span>0</span>
+        </div>
+
+        <div class="flex justify-center m-2 pt-5">
+            <button class="p-1.5 px-5 text-lg uppercase font-medium tracking-wider text-black-600 hover:underline hover:cursor-pointer bg-red-400 rounded-lg" (click)="gotToPage('suppliers')">Back</button>
+        </div>
+
     </div>
 </div>
