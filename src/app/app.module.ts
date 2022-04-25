@@ -18,12 +18,15 @@ import { EmployeeCardComponent } from './manage-employees/employee-card/employee
 import { AddEmployeeFormComponent } from './manage-employees/add-employee-form/add-employee-form.component';
 import { FormsModule } from '@angular/forms';
 import { EditEmployeeFormComponent } from './manage-employees/edit-employee-form/edit-employee-form.component';
+<<<<<<< HEAD
 import { EmployeeListItemComponent } from './manage-employees/employee-list-item/employee-list-item.component';
 <<<<<<< HEAD
 import { TicketingComponent, TableRow } from './ticketing/ticketing.component';
 >>>>>>> ffb9a57 (Merge branch 'design-standards' into manageEmployees)
 =======
 >>>>>>> 12e1ccd (form validation add emp form)
+=======
+>>>>>>> 5b501ba (pre-merge)
 import { UtilService } from './util.service';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -69,6 +72,7 @@ import { EmployeeListItemComponent } from './manage-employees/employee-list-item
     AddEmployeeFormComponent,
     EditEmployeeFormComponent,
 <<<<<<< HEAD
+<<<<<<< HEAD
     EmployeeListItemComponent,
 <<<<<<< HEAD
 =======
@@ -76,6 +80,8 @@ import { EmployeeListItemComponent } from './manage-employees/employee-list-item
 =======
     EmployeeListItemComponent
 >>>>>>> 12e1ccd (form validation add emp form)
+=======
+>>>>>>> 5b501ba (pre-merge)
 
 >>>>>>> ffb9a57 (Merge branch 'design-standards' into manageEmployees)
   ],
