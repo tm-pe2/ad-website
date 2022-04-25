@@ -9,7 +9,6 @@ import { EmployeeCardComponent } from './manage-employees/employee-card/employee
 import { AddEmployeeFormComponent } from './manage-employees/add-employee-form/add-employee-form.component';
 import { FormsModule } from '@angular/forms';
 import { EditEmployeeFormComponent } from './manage-employees/edit-employee-form/edit-employee-form.component';
-import { EmployeeListItemComponent } from './manage-employees/employee-list-item/employee-list-item.component';
 import { UtilService } from './util.service';
 
 
@@ -21,7 +20,6 @@ import { UtilService } from './util.service';
     EmployeeCardComponent,
     AddEmployeeFormComponent,
     EditEmployeeFormComponent,
-    EmployeeListItemComponent
 
   ],
   imports: [

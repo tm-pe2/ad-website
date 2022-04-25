@@ -1,68 +1,124 @@
-
 <div class="min-h-screen flex items-center justify-center bg-gray-700">
+
   <div class="w-full md:w-1/2 sm:w-3/4 rounded shadow-2xl bg-white p-5 text-2xl">
-    <form (ngSubmit)="onSubmit()" novalidate> 
-      <label for="addEmp" class="font-bold flex items-center justify-center pb-5">Edit Employee</label><br>
+    <form (ngSubmit)="onSubmit()"> 
+      <label for="addEmp" class="font-bold flex items-center justify-center pb-5">Add Employee</label><br>
       
       <div class="grid grid-cols-2 mb-3 gap-2">
         <span>
           <label for="Fname">First name: </label>
-          <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="Fname" name="Fname" [(ngModel)]="FirstName" [(ngModel)]="emp.FirstName"><br>
+          <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400 form-control"          
+            type="text" id="Fname" name="Fname" [(ngModel)]="current_Emp.FirstName"><br>
+              
+          
           <label for="Lname">Last name: </label>
-          <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="Lname" name="Lname" [(ngModel)]="LastName" [(ngModel)]="emp.LastName" ><br>
+          <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" 
+            type="text" id="Lname" name="Lname" [(ngModel)]="current_Emp.LastName"><br>
         </span>
+        
         <span class="flex items-center justify-center">
           <span class="grid grid-rows-4">
             Gender:
             <span>
-              <input type="radio" id="M" name="gender" value="M" [(ngModel)]="Gender">
+              <input type="radio" id="M" name="gender" value="M" [(ngModel)]="current_Emp.Gender">
               <label for="M" class="ml-2">M</label>
             </span>
             <span>
-              <input type="radio" id="F" name="gender" value="F" [(ngModel)]="Gender">
+              <input type="radio" id="F" name="gender" value="F"  [(ngModel)]="current_Emp.Gender">
               <label for="F" class="ml-2">F</label>
             </span>
             <span>
-              <input type="radio" id="X" name="gender" value="X" [(ngModel)]="Gender">
+              <input type="radio" id="X" name="gender" value="X"  [(ngModel)]="current_Emp.Gender"> 
               <label for="X" class="ml-2">X</label>
             </span>
           </span>
         </span>
+
       </div>
 
       <div class="mb-5">
-        <label for="birDate">BirthDate: </label>
-        <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="birDate" name="birDate" [(ngModel)]="BirthDate" [(ngModel)]="emp.BirthDate"><br>
+        <label for="birthDate">BirthDate: </label>
+        <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="birthDate" name="birthDate"
+        [(ngModel)]="current_Emp.BirthDate"><br>
+
       </div>
+
       <div class="mb-5">
         <label for="email">Email:  </label>
-        <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="email" name="email" [(ngModel)]="Email" [(ngModel)]="emp.Email"><br>
+        <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="email" name="email"
+         [(ngModel)]="current_Emp.Email" ><br>
+
       </div>
+
       <div class="mb-5">
         <label for="phoneNR">Phone Number: </label>
-        <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="phoneNR" name="phoneNR" [(ngModel)]="PhoneNumber" [(ngModel)]="emp.PhoneNumber"><br>
+        <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="phoneNR" name="phoneNR" 
+         [(ngModel)]="current_Emp.PhoneNumber"><br>
       </div>
+
       <div class="mb-5">
-        <label for="address">Address: </label>
-        <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="address" name="address" [(ngModel)]="Address" [(ngModel)]="emp.Address"><br>
+
+         <label for="street">Street:</label>
+         <input type="text" id="street" name="street"
+           [(ngModel)]="current_Emp.Address.street"> <br>
+
+          
+          <label for="city">City:</label>
+          <input type="text" id="city" name="city" [(ngModel)]="current_Emp.Address.city"> <br>
+
+          
+           <label for="postalcode">Postalcode:</label>
+           <input type="text" id="postalcode" name="postalcode" [(ngModel)]="current_Emp.Address.postalcode" > <br>
+
+            <label for="houseNumber">Hous number:</label>
+            <input type="text" id="housNumber" name="housNumber" [(ngModel)]="current_Emp.Address.housNumber" > <br>
+
       </div>
+
       <div class="mb-5">
-        <label for="HireDate">HireDate </label>
-        <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="hiredate" name="hiredate" [(ngModel)]="HireDate" [(ngModel)]="emp.HireDate" ><br>
+        <label for="hiredate">HireDate </label>
+        <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="hiredate" name="hiredate" 
+         [(ngModel)]="current_Emp.HireDate"><br>
+
       </div>
+
+   <span class="flex items-center justify-center">
+        <span class="grid grid-rows-4">
+          Department:
+          <span>
+            <input type="radio" id="test" name="department" value="testdep" [(ngModel)]="current_Emp.Department">
+            <label for="test" class="ml-2">testdep</label>
+          </span>
+          <span>
+            <input type="radio" id="test2" name="department" value="testdep2"  [(ngModel)]="current_Emp.Department" >
+            <label for="test2" class="ml-2">testdep2</label>
+          </span>
+          <span>
+            <input type="radio" id="test3" name="department" value="testdep3"  [(ngModel)]="current_Emp.Department" > 
+            <label for="test3" class="ml-2">testdep3</label>
+          </span>
+          <span>
+            <input type="radio" id="test4" name="department" value="testdep4"  [(ngModel)]="current_Emp.Department" > 
+            <label for="test4" class="ml-2">testdep4</label>
+          </span>
+          <span>
+            <input type="radio" id="test5" name="department" value="testdep5"  [(ngModel)]="current_Emp.Department" > 
+            <label for="test5" class="ml-2">testdep5</label>
+          </span>
+        </span>
+      </span> 
+
       
-      <!---
-      <label for="department">Department: </label>  
-      <select class="form-control" id="department" >
-        <option *ngFor="let dep of DepartmentOptions" [value]="dep" [(ngModel)]="Department" >{{dep}}</option>
-      </select><br>-->
-  
-      
+    
       <div class="flex justify-between m-2 pt-5">
-        <button class="p-1.5 px-5 uppercase text-lg font-medium tracking-wider text-white bg-blue-400 rounded-lg hover:underline" type="submit">Safe Changes</button>
-        <!--Return button to cancel edit and go back to Manage page--> 
-        <a class="p-1.5 px-5 text-lg uppercase font-medium tracking-wider text-red-600 hover:underline hover:cursor-pointer">back</a>
-      </div>
-    </form>
+        <button class="p-1.5 px-5 uppercase text-lg font-medium tracking-wider text-white bg-blue-400 rounded-lg hover:underline"
+         type="submit">Add Employee</button>
+        
+        </div>
+      </form>
+      <!--Return button to cancel edit and go back to Manage page--> 
+    <button class="p-1.5 px-5 text-lg uppercase font-medium tracking-wider text-black-600 hover:underline hover:cursor-pointer bg-red-400 rounded-lg"
+    (click)="onCancelEditEmp()">Back</button>
+
   </div>
 </div>
