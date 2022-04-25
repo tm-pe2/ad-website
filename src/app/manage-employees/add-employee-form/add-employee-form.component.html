@@ -68,80 +68,91 @@
       </div>
 
       <div class="mb-5">
+        <div class="grid grid-cols-2 mb-3 gap-2">
+          <span>
+            <label for="street">Street:</label>
+            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="street" name="street"
+              ngModel #street="ngModel" required maxlength="50"> <br>
 
-         <label for="street">Street:</label>
-         <input type="text" id="street" name="street"
-           ngModel #street="ngModel" required maxlength="50"> <br>
-
-          <div class="text-red-500" *ngIf="!street.valid && street.touched">Fill in the street.</div>
-
-
-          <label for="city">City:</label>
-          <input type="text" id="city" name="city"
-           ngModel #city="ngModel" required maxlength="50"> <br>
-
-           <div class="text-red-500" *ngIf="!city.valid && city.touched" >Fill in the City</div>
-
-           <label for="postalcode">Postalcode:</label>
-           <input type="text" id="postalcode" name="postalcode"
-            ngModel #postalcode="ngModel" required maxlenght="50"> <br>
-
-            <div class="text-red-500" *ngIf="!postalcode.valid && postalcode.touched">Fill in the postalcode</div>
-
+            <div class="text-red-500" *ngIf="!street.valid && street.touched">Fill in the street.</div>
+          </span>
+          <span>
             <label for="houseNumber">Hous number:</label>
-            <input type="text" id="housNumber" name="housNumber"
+            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="housNumber" name="housNumber"
               ngModel #housNumber="ngModel" required maxlengt="50"> <br>
 
             <div class="text-red-500" *ngIf="!housNumber.valid && housNumber.touched">Fill in the hous number</div>
-
+          </span>
+        </div>
+      </div>
+      
+      
+      <div class="mb-5">
+        <div class="grid grid-cols-2 mb-3 gap-2">
+          <span>
+            <label for="city">City:</label>
+            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="city" name="city"
+              ngModel #city="ngModel" required maxlength="50"> <br>
+  
+            <div class="text-red-500" *ngIf="!city.valid && city.touched" >Fill in the City</div>
+          </span>
+          <span>
+            <label for="postalcode">Postalcode:</label>
+            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="postalcode" name="postalcode"
+             ngModel #postalcode="ngModel" required maxlenght="50"> <br>
+  
+            <div class="text-red-500" *ngIf="!postalcode.valid && postalcode.touched">Fill in the postalcode</div>
+          </span>
+        </div>
       </div>
 
       <div class="mb-5">
-        <label for="HireDate">HireDate </label>
-        <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="hiredate" name="hiredate" 
-         ngModel #hireDate="ngModel" required ><br>
+        <div class="grid grid-cols-2 mb-3 gap-2">
+          <span>
+            <label for="HireDate">HireDate </label>
+            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="hiredate" name="hiredate" 
+            ngModel #hireDate="ngModel" required ><br>
 
-         <div class="test-rood-500" *ngIf="!hireDate.valid && hireDate.touched" ></div>
-
+            <div class="test-rood-500" *ngIf="!hireDate.valid && hireDate.touched" ></div>
+          </span>
+          <span class="flex items-center justify-left ml-5 mt-10">
+            <span class="grid grid-rows-4">
+              Department:
+              <span>
+                <input type="radio" id="test" name="department" value="testdep" [(ngModel)]="department">
+                <label for="test" class="ml-2">testdep</label>
+              </span>
+              <span>
+                <input type="radio" id="test2" name="department" value="testdep2"  [(ngModel)]="department" >
+                <label for="test2" class="ml-2">testdep2</label>
+              </span>
+              <span>
+                <input type="radio" id="test3" name="department" value="testdep3"  [(ngModel)]="department" > 
+                <label for="test3" class="ml-2">testdep3</label>
+              </span>
+              <span>
+                <input type="radio" id="test4" name="department" value="testdep4"  [(ngModel)]="department" > 
+                <label for="test4" class="ml-2">testdep4</label>
+              </span>
+              <span>
+                <input type="radio" id="test5" name="department" value="testdep5"  [(ngModel)]="department" > 
+                <label for="test5" class="ml-2">testdep5</label>
+              </span>
+            </span>
+          </span>
+        </div>
       </div>
 
-   <span class="flex items-center justify-center">
-        <span class="grid grid-rows-4">
-          Department:
-          <span>
-            <input type="radio" id="test" name="department" value="testdep" [(ngModel)]="department">
-            <label for="test" class="ml-2">testdep</label>
-          </span>
-          <span>
-            <input type="radio" id="test2" name="department" value="testdep2"  [(ngModel)]="department" >
-            <label for="test2" class="ml-2">testdep2</label>
-          </span>
-          <span>
-            <input type="radio" id="test3" name="department" value="testdep3"  [(ngModel)]="department" > 
-            <label for="test3" class="ml-2">testdep3</label>
-          </span>
-          <span>
-            <input type="radio" id="test4" name="department" value="testdep4"  [(ngModel)]="department" > 
-            <label for="test4" class="ml-2">testdep4</label>
-          </span>
-          <span>
-            <input type="radio" id="test5" name="department" value="testdep5"  [(ngModel)]="department" > 
-            <label for="test5" class="ml-2">testdep5</label>
-          </span>
-        </span>
-      </span> 
-
-      
-    
-      <div class="flex justify-between m-2 pt-5">
+      <div class="float-left m-2 pt-5">
         <button [disabled]="!f.valid" class="p-1.5 px-5 uppercase text-lg font-medium tracking-wider text-white bg-blue-400 rounded-lg hover:underline"
-         type="submit">Add Employee</button>
-        
+          type="submit">Add Employee</button>
         </div>
-      </form>
-      <!--Return button to cancel edit and go back to Manage page--> 
-    <button class="p-1.5 px-5 text-lg uppercase font-medium tracking-wider text-black-600 hover:underline hover:cursor-pointer bg-red-400 rounded-lg"
-    (click)="onCancelAddEmp()">Back</button>
+    </form>
+    <!--Return button to cancel edit and go back to Manage page--> 
+    <div class="float-right m-2 pt-5">
+      <button class="p-1.5 px-5 text-lg uppercase font-medium tracking-wider text-black-600 hover:underline hover:cursor-pointer bg-red-400 rounded-lg"
+      (click)="onCancelAddEmp()">Back</button>
+    </div>  
 
   </div>
 </div>
