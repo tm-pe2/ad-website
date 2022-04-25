@@ -105,6 +105,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       .then((res) => res.json())
       .then((data) => {
         this.tickets = data.tickets;
+        console.table(data);
       })
       .catch((err) => {
         console.error('Error retrieving tickets', err);
