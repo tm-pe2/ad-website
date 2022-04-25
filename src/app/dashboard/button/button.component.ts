@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ButtonComponent implements OnInit {
   @Input() type: 'info' | 'warning' | 'error' | 'success' = 'info';
-  @Input() href: String = '';
+  @Input() href?: String;
 
   constructor() { }
   
