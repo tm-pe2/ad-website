@@ -1,28 +1,54 @@
-<h2 mat-dialog-title>Update {{data.name}}'s details</h2>  
-<mat-dialog-content [formGroup]="form">
-
+<h2 mat-dialog-title>Update {{data.name}}'s details</h2> 
+<mat-dialog-content>
+<form [formGroup]="form" (ngSubmit)="Submit()" >
+  
+  <mat-form-field>  
+    <input matInput formControlName="RoleID"
+    placeholder="Type">
+  </mat-form-field>
+<br>
   <mat-form-field>
-    <input matInput #name
-    placeholder="Name"
-    formControlName="name">
+    <input matInput formControlName="FirstName"
+    placeholder="Name">
   </mat-form-field>
 <br>
   <mat-form-field>  
-    <input matInput #lastname
-    placeholder="Lastname"
-    formControlName="lastname">
+    <input matInput formControlName="LastName"
+    placeholder="Lastname">
+  </mat-form-field>
+  <br>
+  <!-- <mat-form-field appearance="fill">
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="BirthDate">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+<br>
+<mat-form-field>  
+  <input matInput formControlName="AddressID" value="1" class="hidden">
+</mat-form-field>
+<br>
+  <mat-form-field>  
+    <input matInput formControlName="Email"
+    placeholder="Email">
   </mat-form-field>
   <br>
   <mat-form-field>  
-    <input matInput #type
-    placeholder="Type"
-    formControlName="type">
+    <input matInput formControlName="PhoneNumber"
+    placeholder="Phone Number">
   </mat-form-field> 
 
-</mat-dialog-content>
+  <mat-form-field>
+    <input matInput formControlName="Password"
+    placeholder="Password">
+  </mat-form-field> -->
+
+
   
   <mat-dialog-actions class="flex justify-evenly">
-    <button mat-raised-button mat-primary mat-dialog-close mat-dialog-close="true" (click)="updateCustomer(data.id)">Update</button>
+    <button mat-raised-button mat-dialog-close mat-dialog-close="false" type="submit">Submit</button>
     <button mat-raised-button mat-dialog-close mat-dialog-close="false" (click)="cancel()">Cancel</button>
   </mat-dialog-actions>
-  
+  </form>
+</mat-dialog-content>

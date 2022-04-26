@@ -1,8 +1,10 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CustomerDetailComponent } from '../customer-detail/customer-detail.component';
-import { CUSTOMERS } from '../mock-customers';
+import { Customer } from '../customers/customer';
+//import { CUSTOMERS } from '../mock-customers';
 
 @Component({
   selector: 'app-confirm-dialog',
@@ -13,9 +15,11 @@ export class ConfirmDialogComponent implements OnInit {
   
   name:string;
   id:number;
+  customers!:Customer[];
 
   constructor(
     private dialRef: MatDialogRef<CustomerDetailComponent>,
+    private httpClient:HttpClient,
     @Inject(MAT_DIALOG_DATA) public data: any) {
       this.name=data.name;
       this.id=data.id;
@@ -23,14 +27,34 @@ export class ConfirmDialogComponent implements OnInit {
   
 
   ngOnInit(): void {
+    this.getCustomers();
   }
-
+  getCustomers()
+  {
+    this.httpClient.get<any>('http://172.20.10.12:6060/api/customers').subscribe(
+    response=>{
+      console.log(response);
+      this.customers=response;
+    }
+    );
+  }
   deleteCustomer(idToDel: number) {
     console.log(idToDel);
-    CUSTOMERS.forEach((value,index)=>{
-      if(value.id==idToDel) CUSTOMERS.splice(index,1);
+        const options = {
+          headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+          }),
+          body: {
+            id: idToDel,
+          },
+        };
+      console.log(options);
+        this.httpClient.delete('http://172.20.10.12:6060/api/customers/'+idToDel,options)
+          .subscribe((s) => {
+            console.log(s);
+          });
+
       this.dialRef.close();
-  });
 
     
   } 

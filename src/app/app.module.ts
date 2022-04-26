@@ -12,6 +12,10 @@ import { MaterialModule } from './material/material.module';
 import { TableRow, TicketingComponent } from './ticketing/ticketing.component';
 import { UtilService } from './util.service';
 import { AddCustomerDialogComponent } from './add-customer-dialog/add-customer-dialog.component';
+import { ContractComponent } from './contract/contract.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MatSelectModule } from '@angular/material/select';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -23,8 +27,7 @@ import { AddCustomerDialogComponent } from './add-customer-dialog/add-customer-d
     ConfirmDialogComponent,
     TableRow,
     AddCustomerDialogComponent,
-   
-
+    ContractComponent
   ],
   entryComponents:[CustomerDetailComponent],
     imports: [
@@ -34,7 +37,9 @@ import { AddCustomerDialogComponent } from './add-customer-dialog/add-customer-d
     MaterialModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    
+    HttpClientModule,
+    MatSelectModule,
+    MatNativeDateModule
   ],
   exports:[
     CustomerComponent,

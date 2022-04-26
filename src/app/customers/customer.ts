@@ -1,11 +1,16 @@
-export interface Customer {
-    id: number;
-    name: string;
-    lastname:string;
-    type: string;
-    contractNr: string
-    //email : string,
-    //mobile: number,
-    //city : string,
-    //gender: string
-  }
+export interface User {
+  UserID: number,
+  RoleID: number,
+  FirstName: string,
+  LastName: string,
+  BirthDate: Date,
+  AddressID: number,
+  Email: string,
+  PhoneNumber: string,
+  Password: string,
+}
+export interface Customer extends User {
+  CustomerID: number,
+  GasType: number,
+  Electricitytype: number
+}

@@ -1,8 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Form, FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { CustomerDetailComponent } from '../customer-detail/customer-detail.component';
-import { CUSTOMERS } from '../mock-customers';
 import { Customer } from '../customers/customer';
 
 @Component({
@@ -12,34 +12,66 @@ import { Customer } from '../customers/customer';
 })
 export class AddCustomerDialogComponent implements OnInit {
   
-  form!: Form;
-  
+  form!: FormGroup;
+  customers!:Customer[];
   
   constructor(private formB: FormBuilder,
-    private dialRef: MatDialogRef<CustomerDetailComponent> ){}
+    private httpClient:HttpClient,
+    private dialRef: MatDialogRef<CustomerDetailComponent> ){
+      this.form=this.formB.group({
+        RoleID:[],
+        FirstName:[],
+        LastName:[],
+        BirthDate:[],
+        AddressID:[],
+        Email:[],
+        PhoneNumber:[],
+        Password:[]
+      })
+    }
 
   ngOnInit(): void {
- 
+    this.getCustomers();
   }  
 
+  getCustomers()
+  {
+    this.httpClient.get<any>('http://172.20.10.12:6060/api/customers').subscribe(
+    response=>{
+      console.log(response);
+      this.customers=response;
+    }
+    );
+  }
 
   cancel() {
     this.dialRef.close();
   }
-
-  addCustomer(n:string,ln:string,t:string)
+  
+  Submit()
   {
-    this.dialRef.close(this.form);
-    console.log(this.form);
-    console.log(CUSTOMERS.length);
-    var newId= (CUSTOMERS.length)+1;
-    let c: Customer = {
-      id: newId,
-      name: n,
-      lastname: ln,
-      type: t,
-      contractNr: "A10"
+    let user: Customer = {
+      RoleID: Number(this.form.get('RoleID')),
+      FirstName: this.form.get('FirstName')?.value,
+      LastName: this.form.get('LastName')?.value,
+      BirthDate: this.form.get('BirthDate')?.value,
+      AddressID: Number(this.form.get('AddressID')?.value),
+      Email: this.form.get('Email')?.value,
+      PhoneNumber: this.form.get('PhoneNumber')?.value,
+      Password: this.form.get('Password')?.value,
+      CustomerID: 0,
+      GasType: 0,
+      Electricitytype: 0,
+      UserID: 0,
+     
     }
-    CUSTOMERS.push(c);
+
+    this.httpClient.post('http://172.20.10.12:6060/api/customers',user)
+    .subscribe({
+      next:(response) => console.log(response),
+      error: (error) => console.log(error),
+    });
+
   }
+
 }
