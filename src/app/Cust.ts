@@ -9,14 +9,15 @@ export class Cust {
   meterType: number; // 0 = elek // 1 = gas // 2 = both 
   lastMeting : number;
   constructor(cid: number, eid: number) {
-    this.custID = cid;
-    this.empID = eid;
-    this.name = "Name Customer " + cid;
-    this.addr = "Addr of customer " + cid;
-    this.currentDate = new Date("2404/04/04");
-    this.nextDate = new Date("2303/03/03");
-    this.status = "not done";
-    this.meterType = 2;
+    // comments zijn als marker voor de API stuff in worker-app.service.ts
+    this.custID = cid; // done
+    this.empID = eid; // done
+    this.name = "Name Customer " + cid; // done
+    this.addr = "Addr of customer " + cid; // done
+    this.currentDate = new Date("2404/04/04"); // done
+    this.nextDate = new Date("2303/03/03"); // use post to add this
+    this.status = "not done"; // done
+    this.meterType = 2; // done
     this.lastMeting = 404;
   }
 
