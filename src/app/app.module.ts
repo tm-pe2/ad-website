@@ -18,6 +18,9 @@ import { UserdataService } from './services/userdata.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ClientTicketsComponent } from './ticketing/client-tickets/client-tickets.component';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { AuthService } from './services/auth.service';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -31,9 +34,9 @@ import { ClientTicketsComponent } from './ticketing/client-tickets/client-ticket
     LoginComponent,
     RegistrationComponent,
     GraphsComponent,
-    GraphCanvasComponent,
     ManageTickets,
-    ClientTicketsComponent, 
+    ClientTicketsComponent,
+    LogoutComponent, 
   ],
   imports: [
     BrowserModule,
@@ -41,6 +44,13 @@ import { ClientTicketsComponent } from './ticketing/client-tickets/client-ticket
     FormsModule,
     MatIconModule,
     HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return AuthService.getAccessToken();
+        },
+      }
+    }),
   ],
   providers: [
     UtilService,
@@ -50,7 +60,8 @@ import { ClientTicketsComponent } from './ticketing/client-tickets/client-ticket
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }, 
+    },
+    JwtHelperService
   ],
   bootstrap: [AppComponent]
 })
