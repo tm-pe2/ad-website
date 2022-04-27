@@ -10,7 +10,6 @@ import { Cust } from '../Cust';
 })
 export class ListElementComponent implements OnInit {
   @Input() parent ?: CientListComponent;
-  @Input() index ? : number;
   custArr : Array<Cust> = [];
   constructor(private cData: UtilService) { 
     this.custArr = cData.custData;

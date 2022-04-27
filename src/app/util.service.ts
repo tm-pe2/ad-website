@@ -8,7 +8,7 @@ export class UtilService {
   nCust : number = 10;
   custData : Array<Cust> = [];
   eid : number = 5;
-  selectedCust : number = 3;
+  selectedCust : number = 0;
   generatedElements : number = 0;
 
   constructor() {

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { WorkerappComponent } from '../workerapp/workerapp.component';
+import { UtilService } from '../util.service';
 import { Cust } from '../Cust';
-import { WorkerAppService } from '../services/worker-app.service';
 
 @Component({
   selector: 'app-cient-list',
@@ -11,11 +11,10 @@ import { WorkerAppService } from '../services/worker-app.service';
 export class CientListComponent implements OnInit{
   @Input() parent?: WorkerappComponent;
   custArr : Array<Cust> = [];
-  constructor(private cData: WorkerAppService) {
+  constructor(private cData: UtilService) {
     this.custArr = cData.custData;
   }
 
   ngOnInit(): void {
-    //this.parent!.createCust();
   }
 }

@@ -52,11 +52,13 @@ export class WorkerAppService {
   nCust : number = 10;
   custData : Array<Cust> = [];
   eid : number = 5;
-  selectedCust : number = 3;
 
   // Constructor
   constructor(private http: HttpClient)
   {
+    for (let i = 0; i < this.nCust; i++) {
+      this.custData.push(new Cust(i, this.eid));
+    }
 
   }
 
