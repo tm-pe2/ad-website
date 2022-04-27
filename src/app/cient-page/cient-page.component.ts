@@ -1,7 +1,7 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { WorkerappComponent } from '../workerapp/workerapp.component';
+import { UtilService } from '../util.service';
 import { Cust } from '../Cust';
-import { WorkerAppService } from '../services/worker-app.service';
 
 @Component({
   selector: 'app-cient-page',
@@ -15,7 +15,7 @@ export class CientPageComponent implements OnInit {
   adr : string;
   mtype : number;
 
-  constructor(private cData: WorkerAppService) {
+  constructor(private cData: UtilService) {
     this.name = cData.custData[cData.selectedCust].name;
     this.adr = cData.custData[cData.selectedCust].addr;
     this.mtype = cData.custData[cData.selectedCust].meterType;
