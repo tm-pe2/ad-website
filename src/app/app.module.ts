@@ -18,6 +18,8 @@ import { UserdataService } from './services/userdata.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ClientTicketsComponent } from './ticketing/client-tickets/client-tickets.component';
+import { NavigationComponent } from './navigation/navigation.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { ClientTicketsComponent } from './ticketing/client-tickets/client-ticket
     GraphsComponent,
     GraphCanvasComponent,
     ManageTickets,
-    ClientTicketsComponent, 
+    ClientTicketsComponent,
+    NavigationComponent,
+    FooterComponent, 
   ],
   imports: [
     BrowserModule,
