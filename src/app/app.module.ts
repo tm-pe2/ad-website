@@ -10,6 +10,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { CientListComponent } from './cient-list/cient-list.component';
 import { CientPageComponent } from './cient-page/cient-page.component';
 import { ListElementComponent } from './list-element/list-element.component';
+import { WorkerAppService } from './services/worker-app.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { ListElementComponent } from './list-element/list-element.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [UtilService],
+  providers: [UtilService, WorkerAppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

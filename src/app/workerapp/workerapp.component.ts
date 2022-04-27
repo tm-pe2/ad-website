@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CientListComponent } from '../cient-list/cient-list.component';
-import {} from '@angular/core';
 import { UtilService } from '../util.service';
+import {} from '@angular/core';
 import { Cust } from '../Cust';
 import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
+import { WorkerAppService } from '../services/worker-app.service';
 
 @Component({
   selector: 'app-workerapp',
@@ -14,7 +15,6 @@ import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 export class WorkerappComponent implements OnInit {
   displayPage : number = 1;
   constructor(private cData: UtilService) {
-
   }
   
   ngOnInit(): void{
