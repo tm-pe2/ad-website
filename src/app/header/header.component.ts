@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { UtilService } from '../util.service';
 import { WorkerappComponent } from '../workerapp/workerapp.component';
 
 @Component({
@@ -10,17 +11,9 @@ export class HeaderComponent implements OnInit {
 
   @Input() parent ?: WorkerappComponent; 
 
-  constructor() { }
+  constructor(private cData : UtilService) {}
 
   ngOnInit(): void {
-    this.parent!.displayPage = 1;
-  }
 
-  goPage1(): void{
-    this.parent!.displayPage = 1;
-  }
-
-  goPage2(): void{
-    this.parent!.displayPage = 2;
   }
 }

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CientListComponent } from '../cient-list/cient-list.component';
 import { UtilService } from '../util.service';
+import { Cust } from '../Cust';
 
 @Component({
   selector: 'app-list-element',
@@ -9,17 +10,18 @@ import { UtilService } from '../util.service';
 })
 export class ListElementComponent implements OnInit {
   @Input() parent ?: CientListComponent;
-
+  @Input() index ? : number;
+  custArr : Array<Cust> = [];
   constructor(private cData: UtilService) { 
-
+    this.custArr = cData.custData;
   }
 
   ngOnInit(): void {
-    
+
   }
 
-  selectCustomer(): void{
-    this.cData.selectedCust = 4;
+  selectCustomer(i : number): void{
+    this.cData.selectedCust = i;
   }
 
 }

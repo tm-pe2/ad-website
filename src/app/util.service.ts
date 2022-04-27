@@ -9,11 +9,11 @@ export class UtilService {
   custData : Array<Cust> = [];
   eid : number = 5;
   selectedCust : number = 3;
+  generatedElements : number = 0;
 
   constructor() {
     for (let i = 0; i < this.nCust; i++) {
       this.custData.push(new Cust(i, this.eid));
-      console.log("Added: " + this.custData[i].name);
     }
   }
 }

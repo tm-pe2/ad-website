@@ -1,16 +1,16 @@
-<div #element class="m-4 p-2 pl-4 pr-4 rounded-2xl bg-slate-200 text-slate-300 drop-shadow-md flex items-center justify-between">
+<div *ngFor="let customer of custArr; let i = index" class="m-4 p-2 pl-4 pr-4 rounded-2xl bg-slate-200 text-slate-300 drop-shadow-md flex items-center justify-between">
     <div class="bg-slate-500 drop-shadow-md rounded-2xl p-2 pr-4 pl-4 mr-2">
-        <p>name</p>
+        <p>{{custArr[i].name}}</p>
     </div>
     <div class="bg-slate-500 drop-shadow-md rounded-2xl mr-2 p-2 pr-4 pl-4">
-        <p>addr</p>
+        <p>{{custArr[i].addr}}</p>
     </div>
     <div>
         <div class="flex w-80 justify-end">
             <div class="bg-slate-500 drop-shadow-md rounded-2xl p-2 pr-4 pl-4 mr-2">
-                <p>status</p>
+                <p>{{custArr[i].status}}</p>
             </div>
-            <button (click)="selectCustomer()" class="bg-slate-500 drop-shadow-md rounded-2xl p-2 pr-4 pl-4 ml-2">Go ></button>
+            <button (click)="selectCustomer(i); this.parent?.parent?.goPage2();" class="bg-slate-500 drop-shadow-md rounded-2xl p-2 pr-4 pl-4 ml-2">Go ></button>
         </div>
     </div>
 </div>
