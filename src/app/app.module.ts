@@ -26,6 +26,9 @@ import { EmployeeCardComponent } from './manage-employees/employee-card/employee
 import { ClientTicketsComponent } from './ticketing/client-tickets/client-tickets.component';
 import { ManageTickets } from './ticketing/manage-tickets/manage-tickets.component';
 
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { AuthService } from './services/auth.service';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,6 @@ import { ManageTickets } from './ticketing/manage-tickets/manage-tickets.compone
     LoginComponent,
     RegistrationComponent,
     GraphsComponent,
-    GraphCanvasComponent,
     ManageTickets,
     ClientTicketsComponent, 
     TicketingComponent,
@@ -47,6 +49,8 @@ import { ManageTickets } from './ticketing/manage-tickets/manage-tickets.compone
     EmployeeCardComponent,
     AddEmployeeFormComponent,
     EditEmployeeFormComponent,
+    ClientTicketsComponent,
+    LogoutComponent, 
   ],
   imports: [
     BrowserModule,
@@ -54,6 +58,13 @@ import { ManageTickets } from './ticketing/manage-tickets/manage-tickets.compone
     FormsModule,
     MatIconModule,
     HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return AuthService.getAccessToken();
+        },
+      }
+    }),
   ],
   providers: [
     UtilService,
@@ -65,7 +76,9 @@ import { ManageTickets } from './ticketing/manage-tickets/manage-tickets.compone
       multi: true
     }, 
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    JwtHelperService
+    
   ],
   bootstrap: [AppComponent]
 })

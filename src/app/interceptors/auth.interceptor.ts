@@ -43,7 +43,7 @@ export class AuthInterceptor implements HttpInterceptor {
       {
         next: (data: any) => {
           console.log('Refreshed access token');
-          this.authService.storeAccessToken(data.accessToken);
+          AuthService.storeAccessToken(data.accessToken);
           return next.handle(this.setAuthHeader(request));
         },
         error: (err: HttpErrorResponse) => {
@@ -63,7 +63,7 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   private setAuthHeader(request: HttpRequest<any>) {
-    const token = this.authService.getAccessToken();
+    const token = AuthService.getAccessToken();
 
     if (!token) return request;
     
