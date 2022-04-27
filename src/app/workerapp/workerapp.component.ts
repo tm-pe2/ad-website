@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CientListComponent } from '../cient-list/cient-list.component';
 import {} from '@angular/core';
+import { UtilService } from '../util.service';
+import { Cust } from '../Cust';
+import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 
 @Component({
   selector: 'app-workerapp',
@@ -8,29 +11,27 @@ import {} from '@angular/core';
   styleUrls: ['./workerapp.component.css']
 })
 
-
-
 export class WorkerappComponent implements OnInit {
-  public displayPage : number = 1;
-  public eid : number = 5;
-  public nCust : number = 10;
-  public custData: Array<Cust> = [];
-  public selectedCust : number = 2;
+  displayPage : number = 1;
+  eid : number = 5;
+  nCust : number = 10;
+  custData: Array<Cust> = [];
+  selectedCust : number;
 
-  constructor() {
+  constructor(private cData: UtilService) {
+    this.selectedCust = cData.selectedCust;
   }
   
   ngOnInit(): void{
-
+    for (let i = 0; i < this.nCust; i++) {
+      this.custData.push(new Cust(i, this.eid));
+    }
   }
 
   createCust(): void{
     var cl = document.getElementById('list');
-    //let newcomp = new CientListComponent()
-    for (let i = 0; i < this.nCust; i++) {
-      this.custData.push(new Cust(i, this.eid));
-    }
     this.custData.forEach(cust => {
+      //TIJDELIJK
       var html : string = `<div #element class="m-4 p-2 pl-4 pr-4 rounded-2xl bg-slate-200 text-slate-300 drop-shadow-md flex items-center justify-between"><div class="bg-slate-500 drop-shadow-md rounded-2xl p-2 pr-4 pl-4 mr-2"><p>${cust.name}</p></div><div class="bg-slate-500 drop-shadow-md rounded-2xl mr-2 p-2 pr-4 pl-4"><p>${cust.addr}</p></div><div><div class="flex w-80 justify-end"><div class="bg-slate-500 drop-shadow-md rounded-2xl p-2 pr-4 pl-4 mr-2"><p>${cust.status}</p></div><button class="bg-slate-500 drop-shadow-md rounded-2xl p-2 pr-4 pl-4 ml-2">Go ></button></div></div>` // :)
       if(cust.empID == this.eid){
         cl?.insertAdjacentHTML("beforeend", html);
@@ -39,39 +40,3 @@ export class WorkerappComponent implements OnInit {
   }
 }
 
-class Cust {
-  name: string;
-  custID: number;
-  empID: number;
-  addr: string;
-  currentDate: Date;
-  nextDate: Date;
-  status: string;
-  meterType: number; // 0 = elek // 1 = gas // 2 = both 
-  constructor(cid : number, eid : number){
-    this.custID = cid;
-    this.empID = eid;
-    this.name = "Name Customer " + cid;
-    this.addr = "Addr of customer " + cid;
-    this.currentDate = new Date("2404/04/04");
-    this.nextDate = new Date("2303/03/03");
-    this.status = "not done"
-    this.meterType = 2;
-  }
-
-  getName() : string{
-    return this!.name;
-  }
-  getID() : number{
-    return this.custID;
-  }
-  getAdr() : string{
-    return this.addr;
-  }
-  getStatus() : string{
-    return this.status;
-  }
-  getMeterType(): number{
-    return this.meterType;
-  }
-}

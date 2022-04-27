@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CientListComponent } from '../cient-list/cient-list.component';
-import { WorkerappComponent } from '../workerapp/workerapp.component';
+import { UtilService } from '../util.service';
 
 @Component({
   selector: 'app-list-element',
@@ -9,13 +9,17 @@ import { WorkerappComponent } from '../workerapp/workerapp.component';
 })
 export class ListElementComponent implements OnInit {
   @Input() parent ?: CientListComponent;
-  constructor() { }
+
+  constructor(private cData: UtilService) { 
+
+  }
 
   ngOnInit(): void {
+    
   }
 
   selectCustomer(): void{
-    this.parent!.parent.displayPage = 2;
+    this.cData.selectedCust = 4;
   }
 
 }
