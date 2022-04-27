@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -8,10 +9,12 @@ import { AuthService } from '../services/auth.service';
 })
 export class LogoutComponent implements OnInit {
 
-  constructor(private auth: AuthService) { }
+  constructor(private titleService: Title, private auth: AuthService) {
+    this.titleService.setTitle('Logging out...');
+    this.auth.logout();
+  }
 
   ngOnInit(): void {
-    this.auth.logout();
   }
 
 }

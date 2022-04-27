@@ -8,6 +8,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { RoleGuardService } from './services/role-guard.service';
 import { LogoutComponent } from './logout/logout.component';
+import { StatuscodepageComponent } from './statuscodepage/statuscodepage.component';
 
 const routes: Routes = [
   {
@@ -25,7 +26,8 @@ const routes: Routes = [
   {path: 'logout', component: LogoutComponent},
   {path: 'registration', component: RegistrationComponent},
   {path: 'ticketing/:userType', component: TicketingComponent},
-  {path: 'graphs', component: GraphsComponent}
+  {path: 'graphs', component: GraphsComponent},
+  {path: 'statuscode/:statusCode', component: StatuscodepageComponent}
 ];
 
 @NgModule({

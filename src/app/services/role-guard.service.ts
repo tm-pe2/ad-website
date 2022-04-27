@@ -11,14 +11,14 @@ export class RoleGuardService {
   // TODO: instead of redirecting to login, show a message to the user
   canActivate(route: ActivatedRouteSnapshot) {
     if (!this.auth.isAuthenticated()) {
-      this.router.navigate(['login']);
+      this.router.navigate(['/statuscode/401']);
       return false;
     }
 
     const token = AuthService.getAccessToken();
 
     if (token == null) {
-      this.router.navigate(['login']);
+      this.router.navigate(['/statuscode/401']);
       return false;
     }
     
@@ -29,12 +29,7 @@ export class RoleGuardService {
       return true;
     }
 
-    this.router.navigate(['login']);
+    this.router.navigate(['/statuscode/403']);
     return false;
   }
-}
-
-interface JwtPayload {
-  id: string;
-  role: string;
 }

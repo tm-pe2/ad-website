@@ -97,7 +97,6 @@ export class AuthService {
   }
 
   // Storing tokens
-  // TODO: is sessionstorage ok?
   static storeAccessToken(token: string): void {
     window.localStorage.removeItem(ACCESSTOKEN);
     window.localStorage.setItem(ACCESSTOKEN, token);

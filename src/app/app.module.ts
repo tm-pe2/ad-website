@@ -21,6 +21,7 @@ import { ClientTicketsComponent } from './ticketing/client-tickets/client-ticket
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { AuthService } from './services/auth.service';
 import { LogoutComponent } from './logout/logout.component';
+import { StatuscodepageComponent } from './statuscodepage/statuscodepage.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { LogoutComponent } from './logout/logout.component';
     GraphsComponent,
     ManageTickets,
     ClientTicketsComponent,
-    LogoutComponent, 
+    LogoutComponent,
+    StatuscodepageComponent, 
   ],
   imports: [
     BrowserModule,
