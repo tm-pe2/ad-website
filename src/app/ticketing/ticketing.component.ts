@@ -1,7 +1,8 @@
-import { ChangeDetectorRef, Component, ComponentRef, Input, NgZone, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import {  Component, ComponentRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DeleteModalComponent } from './delete-modal/delete-modal.component';
-import { EditModalComponent } from './edit-modal/edit-modal.component';
+import { DeleteModalComponent } from '../manage-employees/employee-card/delete-modal/delete-modal.component';
+import { EditModalComponent } from '../manage-employees/employee-card/edit-modal/edit-modal.component';
+
 
 @Component({
   selector: 'app-ticketing',
