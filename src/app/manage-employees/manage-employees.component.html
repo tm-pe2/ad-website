@@ -48,10 +48,22 @@
                             <button class="font-bold text-blue-500 hover:underline" (click)="showDetails(e.EmployeesID)">Details</button>
                         </td>
                         <td class="w-20 p-3 text-sm">
-                            <button class="font-bold text-blue-500 hover:underline" (click)="startEditEmployee(e.EmployeesID)">edit</button>
+                            <button 
+                            [ngClass]="{
+                                'text-blue-500': (this.role == 'employeeManager'),
+                                'hover:underline': (this.role == 'employeeManager'),
+                                'text-gray-500': (this.role == 'employee')
+                            }" 
+                            class="font-bold" (click)="startEditEmployee(e.EmployeesID)" [disabled]='role!= "employeeManager"'>edit</button>
                         </td>
                         <td class="w-20 p-3 text-sm">
-                            <button class="font-bold text-red-500 hover:underline" (click)="deleteEmployee(e.EmployeesID)" >remove</button>
+                            <button
+                            [ngClass]="{
+                                'text-red-500': (this.role == 'employeeManager'),
+                                'hover:underline': (this.role == 'employeeManager'),
+                                'text-gray-500': (this.role == 'employee')
+                            }" 
+                             class="font-bold" (click)="deleteEmployee(e.EmployeesID)" [disabled]='role!= "employeeManager"'>remove</button>
                         </td>
                     </tr>  
                 </tbody>

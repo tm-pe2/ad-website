@@ -2,21 +2,33 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Employee } from './employee';
 import { EmployeeCardComponent } from './employee-card/employee-card.component';
 import { Address } from '../interfaces/address';
+import { AuthGuardService } from '../services/auth-guard.service';
+import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-manage-employees',
   templateUrl: './manage-employees.component.html',
   styleUrls: ['./manage-employees.component.css'],
 })
 
-export class ManageEmployeesComponent{
+export class ManageEmployeesComponent implements OnInit{
   
-  constructor() { }
-  
+  constructor(private auth : AuthService) { }
+
+
   showEmpList : boolean = true;
   showAddEmpForm : boolean = false;
   showAddEmpButton : boolean = true;
   showEditEmpForm : boolean = false;
+  role ?: string | null;
 
+  ngOnInit(){
+    this.role = this.auth.getUserRole()
+    console.log("yo")
+    if(this.role != 'employeeManager'){
+      this.showAddEmpButton = false;
+      console.log("hello")
+    }
+  }
   // dummy data
     id = 1;
     FirstName = "xander";
@@ -80,7 +92,4 @@ export class ManageEmployeesComponent{
   showDetails(id : number){
     console.log("test");
   }
-
-  ngOnInit(): void {
-    }
 }
