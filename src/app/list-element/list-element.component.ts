@@ -14,13 +14,16 @@ export class ListElementComponent implements OnInit {
   constructor(private cData: UtilService) { 
     this.custArr = cData.custData;
   }
-
   ngOnInit(): void {
 
   }
-
   selectCustomer(i : number): void{
     this.cData.selectedCust = i;
+    this.cData.custData[i].status = "in progress"
+    for (let i = 0; i < this.cData.custData.length; i++) {
+      if(this.cData.custData[i] != this.cData.custData[this.cData.selectedCust]) this.cData.custData[i].status = "not done";
+      
+    }
   }
 
 }

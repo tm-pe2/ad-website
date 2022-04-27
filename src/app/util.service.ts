@@ -15,5 +15,14 @@ export class UtilService {
     for (let i = 0; i < this.nCust; i++) {
       this.custData.push(new Cust(i, this.eid));
     }
+    this.custData[0].meterType = 0;
+    this.custData[1].meterType = 0;
+    this.custData[2].meterType = 0;
+    this.custData[3].meterType = 1;
+    this.custData[4].meterType = 1;
+    this.custData[5].meterType = 1;
+    this.custData[6].meterType = 2;
+    this.custData[7].meterType = 2;
+    this.custData[8].meterType = 2;
   }
 }

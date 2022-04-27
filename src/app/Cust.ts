@@ -7,7 +7,10 @@ export class Cust {
   nextDate: Date;
   status: string;
   meterType: number; // 0 = elek // 1 = gas // 2 = both 
-  lastMeting : number;
+  lastMetingG : number;
+  lastMetingE : number;
+  newMetingG : number;
+  newMetingE : number;
   constructor(cid: number, eid: number) {
     this.custID = cid;
     this.empID = eid;
@@ -17,7 +20,10 @@ export class Cust {
     this.nextDate = new Date("2303/03/03");
     this.status = "not done";
     this.meterType = 2;
-    this.lastMeting = 404;
+    this.lastMetingG = 0;
+    this.lastMetingE = 0;
+    this.newMetingG = 0;
+    this.newMetingE = 0;
   }
 
   getName(): string {

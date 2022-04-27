@@ -3,25 +3,25 @@
         <div class="bg-slate-500 rounded-2xl p-1 pr-4 pl-4">
             {{name}}
         </div>
-        <div class="bg-slate-500 rounded-2xl p-1 pr-4 pl-4">
+        <div class="bg-slate-500 rounded-2xl p-1 ml-2 md:ml-0 pr-4 pl-4">
             {{adr}}
         </div>
     </div>
 
-    <div class="flex m-2 bg-slate-200 rounded-2xl p-4 justify-between">
+    <div class="block md:flex m-2 bg-slate-200 rounded-2xl p-4 justify-between">
         <div id="gasfield" class="bg-slate-500 rounded-2xl p-1 pr-4 pl-4">
-            <input type="text" class="rounded" placeholder=" Gas">
+            <input *ngIf="mtype == 1 || mtype == 2" type="text" (change)="setGas($event)" class="text-slate-600 rounded pl-2" placeholder=" Gas">
         </div>
-        <div id="elecfield" class="bg-slate-500 rounded-2xl p-1 pr-4 pl-4">
-            <input type="text" class="rounded" placeholder=" Electricity">
+        <div id="elecfield" class="bg-slate-500 rounded-2xl p-1 pr-4 pl-4 mt-2 md:mt-0">
+            <input *ngIf="mtype == 0 || mtype == 2" type="text" (change)="setElek($event)" class="text-slate-600 rounded pl-2" placeholder=" Electricity">
         </div>
     </div>
 
     <div class="flex m-2 bg-slate-200 rounded-2xl p-4 justify-between">
         <div class="bg-slate-500 rounded-2xl p-1 pr-4 pl-4">
-            Next checkup : <input type="date" class="rounded" placeholder=" Electricity">
+            Next checkup : <input type="date" class="text-slate-600 rounded pl-2" (change)="setDate($event)">
         </div>
-        <button class="bg-slate-500 rounded-2xl p-1 pr-4 pl-4">
+        <button (click)="submit()" class="md:ml-0 ml-2 bg-slate-500 rounded-2xl p-1 pr-4 pl-4">
             submit
         </button>   
     </div>
