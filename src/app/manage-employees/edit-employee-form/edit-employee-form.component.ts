@@ -1,7 +1,7 @@
 import { Component, OnInit,Input, OnChanges } from '@angular/core';
 import { Employee } from '../employee';
 import { Address } from '../interfaces/address';
-import { NgForm } from '@angular/forms';
+import { Form, NgForm } from '@angular/forms';
 import { ManageEmployeesComponent } from '../manage-employees.component';
 
 @Component({
@@ -26,7 +26,7 @@ export class EditEmployeeFormComponent {
   
 
   
-  onSubmit() {
+  onSubmit(f : Form) {
 
     //edit the data in de db;
   }
