@@ -26,16 +26,9 @@ export class EditEmployeeFormComponent {
   
 
   
-<<<<<<< HEAD
   onSubmit() {
 
     //edit the data in de db;
-=======
-  submitted = false;
-  
-  onSubmit(form: form) {;
-    console.log(this.emp.FirstName,this.emp.LastName,this.emp.BirthDate,this.emp.Email,this.emp.PhoneNumber,this.emp.Address,this.emp.HireDate,this.emp.Department,this.emp.Gender);
->>>>>>> 00585af (git push)
   }
   current_Emp = this.parent?.getEmp();
   
