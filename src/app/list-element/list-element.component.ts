@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CientListComponent } from '../cient-list/cient-list.component';
-import { UtilService } from '../util.service';
+import { WorkerAppService } from '../services/worker-app.service';
 
 @Component({
   selector: 'app-list-element',
@@ -10,7 +10,7 @@ import { UtilService } from '../util.service';
 export class ListElementComponent implements OnInit {
   @Input() parent ?: CientListComponent;
 
-  constructor(private cData: UtilService) { 
+  constructor(private cData: WorkerAppService	) { 
 
   }
 

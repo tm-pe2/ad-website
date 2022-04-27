@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CientListComponent } from '../cient-list/cient-list.component';
 import {} from '@angular/core';
-import { UtilService } from '../util.service';
 import { Cust } from '../Cust';
 import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
+import { WorkerAppService } from '../services/worker-app.service';
 
 @Component({
   selector: 'app-workerapp',
@@ -18,7 +18,7 @@ export class WorkerappComponent implements OnInit {
   custData: Array<Cust> = [];
   selectedCust : number;
 
-  constructor(private cData: UtilService) {
+  constructor(private cData: WorkerAppService) {
     this.selectedCust = cData.selectedCust;
   }
   
