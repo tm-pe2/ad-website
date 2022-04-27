@@ -1,6 +1,6 @@
 import { Component, OnInit,Input, OnChanges } from '@angular/core';
 import { Employee } from '../employee';
-import { Address } from '../interfaces/address';
+import { Address } from '../../interfaces/address';
 import { Form, NgForm } from '@angular/forms';
 import { ManageEmployeesComponent } from '../manage-employees.component';
 
@@ -10,7 +10,8 @@ import { ManageEmployeesComponent } from '../manage-employees.component';
   styleUrls: ['./edit-employee-form.component.css'],
 })
 export class EditEmployeeFormComponent {
-  
+  gender:string = "";
+  department: string = "";
   @Input() parent?: ManageEmployeesComponent;
   constructor() {}  
 

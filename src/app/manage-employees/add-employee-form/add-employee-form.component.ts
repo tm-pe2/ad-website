@@ -1,7 +1,7 @@
 import { Component, OnInit, Input,Output,EventEmitter, ViewChild} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Employee } from '../employee';
-import { Address } from '../interfaces/address';
+import { Address } from '../../interfaces/address';
 import { ManageEmployeesComponent } from '../manage-employees.component';
 
 @Component({

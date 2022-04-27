@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Employee } from './employee';
-import { Address } from './interfaces/address';
 import { EmployeeCardComponent } from './employee-card/employee-card.component';
-
+import { Address } from '../interfaces/address';
 @Component({
   selector: 'app-manage-employees',
   templateUrl: './manage-employees.component.html',

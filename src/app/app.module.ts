@@ -7,7 +7,6 @@ import { SmallCardComponent } from './dashboard/small-card/small-card.component'
 import { BigCardComponent } from './dashboard/big-card/big-card.component';
 import { ProfileCardComponent } from './dashboard/profile-card/profile-card.component';
 import { ButtonComponent } from './dashboard/button/button.component';
-import { ManageTickets } from './ticketing/ticketing.component';
 import { GraphsComponent } from './graphs/graphs.component';
 import { MatIconModule } from '@angular/material/icon'
 import { UtilService } from './util.service';
@@ -24,7 +23,8 @@ import { AddEmployeeFormComponent } from './manage-employees/add-employee-form/a
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditEmployeeFormComponent } from './manage-employees/edit-employee-form/edit-employee-form.component';
 import { EmployeeCardComponent } from './manage-employees/employee-card/employee-card.component';
-import { ClientTicketsComponent } from './manage-employees/employee-card/client-tickets/client-tickets.component';
+import { ClientTicketsComponent } from './ticketing/client-tickets/client-tickets.component';
+import { ManageTickets } from './ticketing/manage-tickets/manage-tickets.component';
 
 
 @NgModule({
