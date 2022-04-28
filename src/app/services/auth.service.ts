@@ -5,6 +5,7 @@ import { LoginData } from '../interfaces/loginData';
 import { Router } from '@angular/router';
 
 import { environment } from '../../environments/environment';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 const ACCESSTOKEN = 'auth-token';
 const REFRESHTOKEN = 'auth-refreshtoken';
@@ -13,7 +14,7 @@ const REFRESHTOKEN = 'auth-refreshtoken';
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, public jwtHelper: JwtHelperService) { }
   
   login(loginData: LoginData): Promise<void> {
     const promise = new Promise<void>((resolve, reject) => {
@@ -23,8 +24,8 @@ export class AuthService {
       })
       .subscribe({
         next: (res: any) => {
-          this.storeAccessToken(res.accessToken);
-          this.storeRefreshToken(res.refreshToken);
+          AuthService.storeAccessToken(res.accessToken);
+          AuthService.storeRefreshToken(res.refreshToken);
           resolve();
         },
         error: (err) => {
@@ -39,13 +40,13 @@ export class AuthService {
   logout(): Promise<void> {
     const promise = new Promise<void>((resolve, reject) => {
       this.http.post(environment.apiUrl + '/auth/logout', {
-        refreshToken: this.getRefreshToken(),
+        refreshToken: AuthService.getRefreshToken(),
       },
       { responseType: 'text' })
       .subscribe({
         next: () => {
           console.log('Logging out...')
-          window.sessionStorage.clear();
+          window.localStorage.clear();
           this.router.navigate(['login']);
           resolve();
         },
@@ -61,27 +62,64 @@ export class AuthService {
     // TODO: redirect to login page.
   }
 
+  isAuthenticated(): boolean {
+    const token = AuthService.getAccessToken();
+    if (!token) {
+      return false;
+    }
+    return !this.jwtHelper.isTokenExpired(token);
+  }
+
+  // Returns null if id cannot be retrieved from access token
+  getUserId(): number | null {
+    const token = AuthService.getAccessToken();
+    if (!token) {
+      return null;
+    }
+    const payload = this.jwtHelper.decodeToken(token);
+    return Number(payload.id);
+  }
+
+  // Returns null if role cannot be retrieved from access token
+  getUserRole(): string | null {
+    const token = AuthService.getAccessToken();
+    if (!token) {
+      return null;
+    }
+    const payload = this.jwtHelper.decodeToken(token);
+    return payload.role;
+  }
+
   refreshAccessToken() {
     return this.http.post(environment.apiUrl + '/auth/token', {
-      refreshToken: this.getRefreshToken()
+      refreshToken: AuthService.getRefreshToken()
     });
   }
 
   // Storing tokens
-  // TODO: is sessionstorage ok?
-  storeAccessToken(token: string): void {
-    window.sessionStorage.removeItem(ACCESSTOKEN);
-    window.sessionStorage.setItem(ACCESSTOKEN, token);
+  static storeAccessToken(token: string): void {
+    window.localStorage.removeItem(ACCESSTOKEN);
+    window.localStorage.setItem(ACCESSTOKEN, token);
   }
-  getAccessToken(): string | null {
-    return window.sessionStorage.getItem(ACCESSTOKEN);
+  static getAccessToken(): string | null {
+    return window.localStorage.getItem(ACCESSTOKEN);
   }
 
-  storeRefreshToken(token: string): void {
-    window.sessionStorage.removeItem(REFRESHTOKEN);
-    window.sessionStorage.setItem(REFRESHTOKEN, token);
+  static storeRefreshToken(token: string): void {
+    window.localStorage.removeItem(REFRESHTOKEN);
+    window.localStorage.setItem(REFRESHTOKEN, token);
   }
-  getRefreshToken(): string | null {
-    return window.sessionStorage.getItem(REFRESHTOKEN);
+
+  static getRefreshToken(): string | null {
+    return window.localStorage.getItem(REFRESHTOKEN);
   }
+
+  // static removeAccessToken(): void {
+  //   window.localStorage.removeItem(ACCESSTOKEN);
+  // }
+
+  // static removeRefreshToken(): void {
+  //   window.localStorage.removeItem(REFRESHTOKEN);
+  // }
+
 }

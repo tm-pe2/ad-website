@@ -5,6 +5,7 @@ import { UserdataService } from '../services/userdata.service';
 import { LoginData } from '../interfaces/loginData';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,9 @@ export class LoginComponent implements OnInit {
   invalidCreds = false;
 
   // Constructor
-  constructor(private userData: UserdataService, private authService: AuthService, private router: Router) { }
+  constructor(private titleService: Title, private userData: UserdataService, private authService: AuthService, private router: Router) {
+    this.titleService.setTitle('Login');
+  }
 
   // On init
   ngOnInit(): void { }
