@@ -6,9 +6,7 @@ export class Cust {
   currentDate: Date;
   nextDate: Date;
   status: string;
-  meterType: number; // 0 = elek // 1 = gas // 2 = both
-  gMeterID : number;
-  eMeterID : number;
+  meterType: number; // 0 = elek // 1 = gas // 2 = both 
   lastMetingG : number;
   lastMetingE : number;
   newMetingG : number;
@@ -22,8 +20,6 @@ export class Cust {
     this.nextDate = new Date('01/01/2020'); // use post to add this
     this.status = "not done"; // done
     this.meterType = 2; // done
-    this.gMeterID = 0;
-    this.eMeterID = 0;
     this.lastMetingG = 0;
     this.lastMetingE = 0;
     this.newMetingG = 0;

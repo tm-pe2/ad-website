@@ -60,7 +60,7 @@ export class CientPageComponent implements OnInit {
       this.cData.custData[this.cData.selectedCust].nextDate = this.nDate;
       console.log("Next meeting: " + this.cData.custData[this.cData.selectedCust].nextDate);
     }
-    else console.log("Automatically plan next check-up (no date entered)")
+    else console.log("Automatically plan next check-up")
     this.cData.custData[this.cData.selectedCust].nextDate = this.nDate;
     switch (this.cData.custData[this.cData.selectedCust].meterType) {
       case 0:
@@ -69,7 +69,7 @@ export class CientPageComponent implements OnInit {
           this.cData.custData[this.cData.selectedCust].newMetingE = this.eMeter;
         }
         else{
-          console.log("Elec entry invalid");
+          console.log("no valid data");
           valid = false;
         } 
         break;
@@ -79,7 +79,7 @@ export class CientPageComponent implements OnInit {
           this.cData.custData[this.cData.selectedCust].newMetingG = this.gMeter;
         }
         else{
-          console.log("Gas entry invalid");
+          console.log("no valid data");
           valid = false;
         }
         break;
@@ -93,7 +93,7 @@ export class CientPageComponent implements OnInit {
           this.cData.custData[this.cData.selectedCust].newMetingE = this.eMeter;
         }
         else{
-          console.log("Entries invalid")
+          console.log("no valid data")
           valid = false;
         }
         break;
@@ -103,9 +103,7 @@ export class CientPageComponent implements OnInit {
     }
     if(valid){
       this.cData.custData[this.cData.selectedCust].status = 'done';
-      console.log("success");
-    }
-    else console.log("failed");
+    };
   }
 }
 
