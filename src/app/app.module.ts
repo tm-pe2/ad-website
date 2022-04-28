@@ -12,7 +12,6 @@ import { CientPageComponent } from './cient-page/cient-page.component';
 import { ListElementComponent } from './list-element/list-element.component';
 import { WorkerAppService } from './services/worker-app.service';
 import { DatePipe } from '@angular/common';
-import { TestpageComponent } from './testpage/testpage.component';
 
 @NgModule({
   declarations: [
@@ -22,8 +21,7 @@ import { TestpageComponent } from './testpage/testpage.component';
     LoginPageComponent,
     CientListComponent,
     CientPageComponent,
-    ListElementComponent,
-    TestpageComponent
+    ListElementComponent
   ],
   entryComponents: [],
   imports: [
