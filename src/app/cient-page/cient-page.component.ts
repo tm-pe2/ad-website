@@ -54,17 +54,14 @@ export class CientPageComponent implements OnInit {
   }
 
   submit(){
-    let valid = false;
+    let valid = true;
     //0 = gas 1 = elek 2 = both
     if(this.nDate != 'Invalid Date'){
       this.cData.custData[this.cData.selectedCust].nextDate = this.nDate;
-      valid = true;
+      console.log("Next meeting: " + this.cData.custData[this.cData.selectedCust].nextDate);
     }
-    else{
-      valid = false;
-    }
+    else console.log("Automatically plan next check-up")
     this.cData.custData[this.cData.selectedCust].nextDate = this.nDate;
-    console.log("Next meeting: " + this.cData.custData[this.cData.selectedCust].nextDate);
     switch (this.cData.custData[this.cData.selectedCust].meterType) {
       case 0:
         if((this.eMeter >= this.cData.custData[this.cData.selectedCust].lastMetingE) && (this.eMeter != 0)){
