@@ -88,7 +88,7 @@ export class CientPageComponent implements OnInit {
         break;
       case 2:
         if((this.gMeter >= this.cData.custData[this.cData.selectedCust].lastMetingG) && (this.gMeter != 0)){
-          console.log("submitted " + this.gMeter);
+          console.log("submitted " + "elek: " + this.eMeter + " gas: " + this.gMeter);
           this.cData.custData[this.cData.selectedCust].newMetingG = this.gMeter;
         }
         else if((this.eMeter >= this.cData.custData[this.cData.selectedCust].lastMetingE) && (this.eMeter != 0)){
