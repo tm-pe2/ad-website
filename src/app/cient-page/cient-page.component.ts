@@ -61,7 +61,6 @@ export class CientPageComponent implements OnInit {
       valid = true;
     }
     else{
-      console.log("REEEEEE")
       valid = false;
     }
     this.cData.custData[this.cData.selectedCust].nextDate = this.nDate;
