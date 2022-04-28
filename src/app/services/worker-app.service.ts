@@ -3,11 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Cust } from '../Cust';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-
+/*
 @Injectable({
   providedIn: 'root'
 })
-
+*/
 // Interfaces
 interface Planning 
 {
@@ -62,6 +62,8 @@ export class WorkerAppService {
 
   }
 
+
+  /*
   // Functions
   // Get planning
   // |-> get employee ids, status & date
@@ -80,4 +82,5 @@ export class WorkerAppService {
   // I have no idea if that's how the routes work tho, gotsta ask it to someone who does
   getAdres(adresID: Number): Observable<Address>
   { return this.http.get<Address>(environment.apiUrl + '/addresses/:' + adresID); }
+  */
 }

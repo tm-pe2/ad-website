@@ -11,6 +11,7 @@ import { CientListComponent } from './cient-list/cient-list.component';
 import { CientPageComponent } from './cient-page/cient-page.component';
 import { ListElementComponent } from './list-element/list-element.component';
 import { WorkerAppService } from './services/worker-app.service';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { WorkerAppService } from './services/worker-app.service';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [UtilService, WorkerAppService],
+  providers: [UtilService,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

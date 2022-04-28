@@ -16,8 +16,8 @@ export class Cust {
     this.empID = eid; // done
     this.name = "Name Customer " + cid; // done
     this.addr = "Addr of customer " + cid; // done
-    this.currentDate = new Date("2404/04/04"); // done
-    this.nextDate = new Date("2303/03/03"); // use post to add this
+    this.currentDate = new Date('01/01/2020'); // done
+    this.nextDate = new Date('01/01/2020'); // use post to add this
     this.status = "not done"; // done
     this.meterType = 2; // done
     this.lastMetingG = 0;

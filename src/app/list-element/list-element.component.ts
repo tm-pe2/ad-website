@@ -19,10 +19,11 @@ export class ListElementComponent implements OnInit {
   }
   selectCustomer(i : number): void{
     this.cData.selectedCust = i;
-    this.cData.custData[i].status = "in progress"
+    if(this.cData.custData[i].status != "done")this.cData.custData[i].status = "in progress"
     for (let i = 0; i < this.cData.custData.length; i++) {
-      if(this.cData.custData[i] != this.cData.custData[this.cData.selectedCust]) this.cData.custData[i].status = "not done";
-      
+      if(this.cData.custData[i] != this.cData.custData[this.cData.selectedCust]){
+        if(this.cData.custData[i].status != "done") this.cData.custData[i].status = "not done";
+      }
     }
   }
 
