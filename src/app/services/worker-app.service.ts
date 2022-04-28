@@ -3,11 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Cust } from '../Cust';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-
+/*
 @Injectable({
   providedIn: 'root'
 })
-
+*/
 // Interfaces
 interface Planning 
 {
@@ -63,7 +63,7 @@ export class WorkerAppService {
 
   }
 
-
+/*
   
   // Functions
   // Get planning
@@ -84,4 +84,5 @@ export class WorkerAppService {
   getAdres(adresID: Number): Observable<Address>
   { return this.http.get<Address>(environment.apiUrl + '/addresses/:' + adresID); }
   
+  */
 }
