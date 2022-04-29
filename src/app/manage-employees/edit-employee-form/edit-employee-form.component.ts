@@ -3,6 +3,7 @@ import { Employee } from '../employee';
 import { Address } from '../../interfaces/address';
 import { Form, NgForm } from '@angular/forms';
 import { ManageEmployeesComponent } from '../manage-employees.component';
+import { EmployeeService } from '../services/employee.service';
 
 @Component({
   selector: 'app-edit-employee-form',
@@ -10,28 +11,19 @@ import { ManageEmployeesComponent } from '../manage-employees.component';
   styleUrls: ['./edit-employee-form.component.css'],
 })
 export class EditEmployeeFormComponent {
-  gender:string = "";
-  department: string = "";
+  
+
   @Input() parent?: ManageEmployeesComponent;
-  constructor() {}  
+  constructor(public employeeService: EmployeeService) {}
 
-  //some dummy data
   
-  //get data out of the db and put it in the emp user
   
-  //Address:Address = {adressID:1,city:"bonheiden",postalcode:2820,street:"denayer",housNumber:111,country:"belgium"}
-  
-  //current_Emp = new Employee(1,"FirstNameJos","Van den Berg","1/1/1","josvandenberg@bedrijf.com","0412312312",this.Address,"1/1/2","managers","X"); 
-  
-  //current_Emp = this.parent?.getEmp();
-  
-
+  //current_Emp = this.employeeService.getEmp();
   
   onSubmit(f : Form) {
 
     //edit the data in de db;
   }
-  current_Emp = this.parent?.getEmp();
   
   onCancelEditEmp(){
     this.parent?.changeStatusEmpEditForm();

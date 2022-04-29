@@ -11,6 +11,7 @@ export class Employee{
         public Address: Address,
         public HireDate: string,
         public Department: string,
-        public Gender: string
+        public Gender: string,
+        public Salary: number
         ){}
 }

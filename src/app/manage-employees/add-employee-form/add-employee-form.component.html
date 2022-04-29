@@ -115,6 +115,14 @@
 
             <div class="test-rood-500" *ngIf="!hireDate.valid && hireDate.touched" ></div>
           </span>
+        
+          <span>
+            <label for="Salary">Salary</label>
+            <input type="text" id="Salary" name="salary" ngModel #salary="ngModel" required> <br>
+            <div class="test-rood-500" *ngIf="!salary.valid && salary.touched" >Fill in the salary</div>
+            
+          </span>
+
           <span class="flex items-center justify-left ml-5 mt-10">
             <span class="grid grid-rows-4">
               Department:

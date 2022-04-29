@@ -35,7 +35,7 @@ export class AddEmployeeFormComponent implements OnInit{
     this.parent?.changeStatusEmpAddForm();
 
     var address: Address = {adressID:1,city:form.value.city,street: form.value.street,postalcode: form.value.postalcode,housNumber: form.value.housNumber,country:form.value.country}
-    var newEmployee = new Employee(id,form.value.Fname,form.value.Lname,form.value.birthDate,form.value.email,form.value.phoneNR,address,form.value.hireDate,form.value.department,form.value.gender);
+    var newEmployee = new Employee(id,form.value.Fname,form.value.Lname,form.value.birthDate,form.value.email,form.value.phoneNR,address,form.value.hireDate,form.value.department,form.value.gender,form.value.salary);
   }
   
 
