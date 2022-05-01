@@ -20,6 +20,10 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ClientTicketsComponent } from './ticketing/client-tickets/client-tickets.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { FooterComponent } from './footer/footer.component';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { AuthService } from './services/auth.service';
+import { LogoutComponent } from './logout/logout.component';
+import { StatuscodepageComponent } from './statuscodepage/statuscodepage.component';
 
 @NgModule({
   declarations: [
@@ -33,11 +37,12 @@ import { FooterComponent } from './footer/footer.component';
     LoginComponent,
     RegistrationComponent,
     GraphsComponent,
-    GraphCanvasComponent,
     ManageTickets,
-    ClientTicketsComponent,
     NavigationComponent,
     FooterComponent, 
+    ClientTicketsComponent,
+    LogoutComponent,
+    StatuscodepageComponent, 
   ],
   imports: [
     BrowserModule,
@@ -45,6 +50,13 @@ import { FooterComponent } from './footer/footer.component';
     FormsModule,
     MatIconModule,
     HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return AuthService.getAccessToken();
+        },
+      }
+    }),
   ],
   providers: [
     UtilService,
@@ -54,7 +66,8 @@ import { FooterComponent } from './footer/footer.component';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }, 
+    },
+    JwtHelperService
   ],
   bootstrap: [AppComponent]
 })
