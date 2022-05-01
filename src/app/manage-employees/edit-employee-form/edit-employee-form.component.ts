@@ -20,14 +20,12 @@ export class EditEmployeeFormComponent {
   
   //current_Emp = this.employeeService.getEmp();
   
-  onSubmit(f : Form) {
-
-    //edit the data in de db;
+  onSubmit(f : NgForm) {
+   console.log(f.value);
   }
   
   onCancelEditEmp(){
     this.parent?.changeStatusEmpEditForm();
-    console.log("het")
   }
   
   

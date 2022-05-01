@@ -17,7 +17,7 @@ export class EmployeeService {
   PhoneNumber = "bbb";
   Address:Address = {adressID:1,city:"skw",postalcode:1234,street:"denayer",housNumber:111,country:"belgium"}
   HireDate ="hey";
-  Department = "dkqdjf";
+  Department = "testdep";
   Gender="X";
   Salary=2000
     
