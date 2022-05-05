@@ -22,6 +22,7 @@ import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { AuthService } from './services/auth.service';
 import { LogoutComponent } from './logout/logout.component';
 import { StatuscodepageComponent } from './statuscodepage/statuscodepage.component';
+import { SupportComponent } from './support/support.component';
 
 @NgModule({
   declarations: [
@@ -35,10 +36,11 @@ import { StatuscodepageComponent } from './statuscodepage/statuscodepage.compone
     LoginComponent,
     RegistrationComponent,
     GraphsComponent,
-    ManageTickets,
     ClientTicketsComponent,
     LogoutComponent,
     StatuscodepageComponent, 
+    SupportComponent,
+    ManageTickets,
   ],
   imports: [
     BrowserModule,
