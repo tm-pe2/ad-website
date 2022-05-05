@@ -3,13 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CustomerComponent } from './customers/customers.component';
 import { TicketingComponent } from './ticketing/ticketing.component';
-import { ContractComponent } from './contract/contract.component';
+import { ConsumptionEstimationComponent } from './consumption-estimation/consumption-estimation.component';
+import { RegisterCustomerComponent } from './register-customer/register-customer.component';
 
 const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
   {path: 'ticketing', component: TicketingComponent},
   {path:'manage-customers',component:CustomerComponent},
-  {path:'contract',component:ContractComponent}
+  {path:'consumption-estimation',component:ConsumptionEstimationComponent},
+  {path:'register-customer',component:RegisterCustomerComponent}
 ];
 
 @NgModule({

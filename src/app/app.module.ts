@@ -12,10 +12,11 @@ import { MaterialModule } from './material/material.module';
 import { TableRow, TicketingComponent } from './ticketing/ticketing.component';
 import { UtilService } from './util.service';
 import { AddCustomerDialogComponent } from './add-customer-dialog/add-customer-dialog.component';
-import { ContractComponent } from './contract/contract.component';
+import { ConsumptionEstimationComponent } from './consumption-estimation/consumption-estimation.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
+import { RegisterCustomerComponent } from './register-customer/register-customer.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     ConfirmDialogComponent,
     TableRow,
     AddCustomerDialogComponent,
-    ContractComponent
+    ConsumptionEstimationComponent,
+    RegisterCustomerComponent
   ],
   entryComponents:[CustomerDetailComponent],
     imports: [

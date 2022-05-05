@@ -3,11 +3,11 @@ import { FormControl,FormGroup,Validators,FormBuilder, FormArray } from '@angula
 
 
 @Component({
-  selector: 'app-contract',
-  templateUrl: './contract.component.html',
-  styleUrls: ['./contract.component.css']
+  selector: 'app-consumption-estimation',
+  templateUrl: './consumption-estimation.component.html',
+  styleUrls: ['./consumption-estimation.component.css']
 })
-export class ContractComponent implements OnInit {
+export class ConsumptionEstimationComponent implements OnInit {
 
   serviceChoiceForm!:FormGroup;
   familyAdressCompoundForm!: FormGroup;
@@ -125,7 +125,7 @@ previous()
   
 }
 
-calculateConsumtion():number 
+calculateConsumption()
 {
   let estimation:number=0;
   let nrOfPeople : number = this.familyAdressCompoundForm.get('members')?.value;
@@ -194,7 +194,7 @@ submit()
     console.error();
     return
     }
-    this.estimation=this.calculateConsumtion();
+    this.estimation=this.calculateConsumption() 
     let monthlyEst:number= this.estimation*30;
     let annual:number=this.estimation*365;
     console.log(this.serviceChoiceForm.value,this.familyAdressCompoundForm.value,this.meterTypeForm.value,this.consumptionDetailsForm.value);

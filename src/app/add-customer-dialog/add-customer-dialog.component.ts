@@ -41,7 +41,7 @@ export class AddCustomerDialogComponent implements OnInit {
       console.log(response);
       this.customers=response;
     }
-    );
+    );5
   }
 
   cancel() {
