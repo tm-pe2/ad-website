@@ -16,6 +16,7 @@ export class ConfirmDialogComponent implements OnInit {
   name:string;
   id:number;
   customers!:Customer[];
+  baseUrl: String = "http://192.168.0.209:6060/api/";
 
   constructor(
     private dialRef: MatDialogRef<CustomerDetailComponent>,
@@ -31,7 +32,7 @@ export class ConfirmDialogComponent implements OnInit {
   }
   getCustomers()
   {
-    this.httpClient.get<any>('http://172.20.10.12:6060/api/customers').subscribe(
+    this.httpClient.get<any>(this.baseUrl+'customers').subscribe(
     response=>{
       console.log(response);
       this.customers=response;
@@ -49,7 +50,7 @@ export class ConfirmDialogComponent implements OnInit {
           },
         };
       console.log(options);
-        this.httpClient.delete('http://172.20.10.12:6060/api/customers/'+idToDel,options)
+        this.httpClient.delete(this.baseUrl+'customers/'+idToDel,options)
           .subscribe((s) => {
             console.log(s);
           });

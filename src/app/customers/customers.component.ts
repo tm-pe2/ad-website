@@ -12,22 +12,22 @@ interface CustomerContract
 {
   UserID: number,
    RoleID: number,
-   FirstName: string,
-   LastName: string,
+   first_name: string,
+   last_name: string,
    ContractID: number
 }
 interface CustomerExtend
 {
   UserID: number,
   RoleID: number,
-  FirstName: string,
-  LastName: string,
+  first_name: string,
+  last_name: string,
   BirthDate: Date,
   AddressID: number,
   Email: string,
   PhoneNumber: string,
   Password: string,
-   ContractID: number
+  ContractID: number
 }
 
 @Component({
@@ -39,6 +39,7 @@ interface CustomerExtend
 export class CustomerComponent implements OnInit {
  
   clientsArray!:CustomerContract[];
+  baseUrl: String = "http://192.168.0.209:6060/api/";
 
   constructor(public dialog : MatDialog){}
   
@@ -50,27 +51,11 @@ export class CustomerComponent implements OnInit {
 
   async getCustomers()
   {
-    let result = await axios.get("http://172.20.10.12:6060/api/customerss/contracts");
+    let result = await axios.get(this.baseUrl+"customers/contracts");
     this.clientsArray = result.data.customers;
     
   }
-  // async getAllCustomers()
-  // {
-  //   let result = await axios.get("http://192.168.0.209:6060/api/customers");
-  //   this.selectedCustomer = result.data.customers;
-    
-  // }
-
-  // individ()
-  // {
-  //   this.clientsArray.forEach(client =>
-  //     {
-  //       if(client.RoleID==1)
-  //       {
-          
-  //       }
-  //     });
-  // }
+ 
 
    onSelectEdit(customer:CustomerContract)
   {  
@@ -81,8 +66,8 @@ export class CustomerComponent implements OnInit {
 
     dialConfig.data={
       id:this.selectedCustomer.UserID,
-      name: this.selectedCustomer.FirstName, 
-      lastname: this.selectedCustomer.LastName, 
+      name: this.selectedCustomer.first_name, 
+      last_name: this.selectedCustomer.last_name, 
       type: this.selectedCustomer.RoleID, 
       contractNr: this.selectedCustomer.ContractID,
       // birthdate:this.selectedCustomer.BirthDate,
@@ -110,7 +95,7 @@ export class CustomerComponent implements OnInit {
     dialConfig.autoFocus = true;
 
     dialConfig.data = {
-      name: this.selectedCustomer.FirstName,
+      name: this.selectedCustomer.first_name,
       id: this.selectedCustomer.UserID
     }
     //open dialog with selected client's data

@@ -76,7 +76,7 @@
             <tbody>
                 <tr class="shadow rounded-lg hover:bg-gray-200 " *ngFor="let customer of clientsArray">
                     <td class="p-3 text-sm">
-                        <span class="name">{{customer.FirstName}}</span>
+                        <span class="name">{{customer.first_name}} {{customer.last_name}}</span>
                     </td>
                     <td class="p-3 text-sm">
                       <span class="name" *ngIf="customer.RoleID==1; else elseBlockRole">Private</span>

@@ -14,6 +14,7 @@ export class AddCustomerDialogComponent implements OnInit {
   
   form!: FormGroup;
   customers!:Customer[];
+  baseUrl: String = "http://192.168.0.209:6060/api/";
   
   constructor(private formB: FormBuilder,
     private httpClient:HttpClient,
@@ -36,7 +37,7 @@ export class AddCustomerDialogComponent implements OnInit {
 
   getCustomers()
   {
-    this.httpClient.get<any>('http://172.20.10.12:6060/api/customers').subscribe(
+    this.httpClient.get<any>(this.baseUrl+'customers').subscribe(
     response=>{
       console.log(response);
       this.customers=response;
@@ -66,7 +67,7 @@ export class AddCustomerDialogComponent implements OnInit {
      
     }
 
-    this.httpClient.post('http://172.20.10.12:6060/api/customers',user)
+    this.httpClient.post(this.baseUrl+'customers',user)
     .subscribe({
       next:(response) => console.log(response),
       error: (error) => console.log(error),
