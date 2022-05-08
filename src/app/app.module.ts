@@ -10,6 +10,9 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { RegistrationService } from './registration/registration.service';
 import { FormsModule } from '@angular/forms';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -18,13 +21,16 @@ import { FormsModule } from '@angular/forms';
     TicketingComponent,
     TableRow,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent  
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,    
+    MatDatepickerModule,
+    BrowserAnimationsModule,
+
   ],
   providers: [
     UtilService,

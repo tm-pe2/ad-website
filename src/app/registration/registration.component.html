@@ -1,10 +1,23 @@
+<h2><span style="color:#00AAFF; font-weight:600">register</span><br><span style="color:gray; font-weight: 100;">to go further</span></h2>
 <form #regForm="ngForm" (ngSubmit)="onSubmit(regForm)">
-    <h2>Sign up!</h2>
-    <div class="form-group">
-        <input class="form-control" id="regNname" type="text" name="regNname" placeholder="Name" required autofocus ngModel />
+    <div class="warning">
+        <p>
+        *It is your responsibility to correctly fill every field.
+        </p>
+        <p>
+        *Please read them carefully before submiting:
+        </p> 
+    </div>
+    <div class="form-group1">
+        <input class="form-control-att" id="regNname" type="text" name="regNname" placeholder="First Name" required autofocus ngModel />
+        <input class="form-control-att" id="regLname" type="text" name="regLname" placeholder="Last/Family Name" required autofocus ngModel />
+    </div>
+    <div class="form-group1">
+        <input class="form-control-att" id="regBdate" type="date" name="regBdate" placeholder="Birthdate" required autofocus ngModel />
+        <input class="form-control-att" id="regNationalNr" type="text" name="regNationalNr" placeholder="National Register Number" required ngModel />
     </div>
     <div class="form-group">
-        <input class="form-control" id="regMail" type="email" name="regMail" placeholder="Mail" required ngModel />
+        <input class="form-control" id="regMail" type="email" name="regMail" placeholder="E-mail" required ngModel />
     </div>
     <div class="form-group">
         <input class="form-control" id="regPhone" type="text" name="regPhone" placeholder="Phone" required ngModel />
@@ -15,17 +28,13 @@
             <option *ngFor="let type of types" value="{{ type }}">{{ type }}</option>
         </select>
     </div>
-    <div class="form-group">
-        <input class="form-control" id="regCity" type="text" name="regCity" placeholder="City" required ngModel />
+    <div class="form-group1">
+        <input class="form-control-att-big" id="regStreet" type="text" name="regStreet" placeholder="Street" required ngModel />
+        <input class="form-control-att" id="regNumber" type="text" name="regNumber" placeholder="House number" required ngModel />
     </div>
-    <div class="form-group">
-        <input class="form-control" id="regPostalcode" type="number" name="regPostalcode" placeholder="Postcal code" required ngModel />
-    </div>
-    <div class="form-group">
-        <input class="form-control" id="regStreet" type="text" name="regStreet" placeholder="Street" required ngModel />
-    </div>
-    <div class="form-group">
-        <input class="form-control" id="regNumber" type="text" name="regNumber" placeholder="House number" required ngModel />
+    <div class="form-group1">
+        <input class="form-control-att-big" id="regCity" type="text" name="regCity" placeholder="City" required ngModel />
+        <input class="form-control-att" id="regPostalcode" type="number" name="regPostalcode" placeholder="Postcal code" required ngModel />
     </div>
     <div class="form-group">
         <input class="form-control" id="regPassword" type="password" name="regPassword" placeholder="Password" required ngModel />

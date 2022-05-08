@@ -2,8 +2,10 @@ form
 {
     display: flex;
     margin-top: 2.5vh;
-    margin-left: 20vw;
-    max-height: 95vh;
+    margin-left: 33%;
+    margin-right: 30%;
+    max-width: 800px;
+    /*max-height: 95vh;*/
     width: 60vw;
     flex-direction: column;
     flex-wrap: wrap;
@@ -13,16 +15,16 @@ form
     border-radius: 1rem;
     box-shadow: 0.5rem 0.5rem 0.75rem #888888;
     color: #B22222;
-
+    
 }
 
 h2
 {
-    text-align: left;
-    width: 90%;
+    text-align: center;
+    width: 100%;
     font-size: 2.5rem;
-    color: #444444;
-
+    margin-top: 2%;
+    margin-left: 10%;
 }
 
 .form-group
@@ -34,7 +36,15 @@ h2
     margin: 0.75rem;
 
 }
+.form-group1
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 90%;
+    margin: 0.75rem;
 
+}
 .form-label
 {
     text-align: left;
@@ -53,6 +63,28 @@ h2
 
 }
 
+.form-control-att
+{
+    width: 100%;
+    margin: auto;
+    margin-right: 1%;
+    padding: 0.5rem;
+    border: solid 1px #888888;
+    text-align: left;
+    border-radius: 0.75rem;
+}
+
+.form-control-att-big
+{
+    width: 250%;
+    margin: auto;
+    margin-right: 1%;
+    padding: 0.5rem;
+    border: solid 1px #888888;
+    text-align: left;
+    border-radius: 0.75rem;
+}
+
 .form-buttons
 {
     display: flex;
@@ -66,15 +98,16 @@ h2
 
 .form-button
 {
-    background-color: #B22222;
+    background-color: #00AAff;
     color: #FFFFFF;
     padding: 1rem;
-    width: 30%;
-    border: solid 1px #000000;
-    border-radius: 0.75rem;
+    width: 25%;
+    border: solid 1px #0079b6;
+    border-radius: 1rem;
     box-shadow: 0.125rem 0.1 25rem 0.25rem #888888;
     text-align: center;
-
+    margin-left: 40%;
+    margin-right: 40%;
 }
 
 .form-link
@@ -83,7 +116,8 @@ h2
     width: 30%;
     text-align: center;
     text-decoration: underline;
-
+    margin-left: 40%;
+    margin-right: 40%;
 }
 
 .error-alert
@@ -109,6 +143,14 @@ h2
     background-color: #FFFFFF;
     color: #444444;
 
+}
+
+.warning
+{
+    font-size: small;
+    padding-left: 2%;
+    width: 90%;
+    padding-top: 3%;
 }
 
 /* Remove arrows from input:number */
