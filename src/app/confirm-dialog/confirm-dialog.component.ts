@@ -1,10 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ValueConverter } from '@angular/compiler/src/render3/view/template';
+
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { environment } from 'src/environments/environment';
 import { CustomerDetailComponent } from '../customer-detail/customer-detail.component';
 import { Customer } from '../customers/customer';
-//import { CUSTOMERS } from '../mock-customers';
+
 
 @Component({
   selector: 'app-confirm-dialog',
@@ -16,7 +17,7 @@ export class ConfirmDialogComponent implements OnInit {
   name:string;
   id:number;
   customers!:Customer[];
-  baseUrl: String = "http://192.168.0.209:6060/api/";
+  
 
   constructor(
     private dialRef: MatDialogRef<CustomerDetailComponent>,
@@ -32,7 +33,7 @@ export class ConfirmDialogComponent implements OnInit {
   }
   getCustomers()
   {
-    this.httpClient.get<any>(this.baseUrl+'customers').subscribe(
+    this.httpClient.get<any>(environment.baseUrl+'customers').subscribe(
     response=>{
       console.log(response);
       this.customers=response;
@@ -50,7 +51,7 @@ export class ConfirmDialogComponent implements OnInit {
           },
         };
       console.log(options);
-        this.httpClient.delete(this.baseUrl+'customers/'+idToDel,options)
+        this.httpClient.delete(environment.baseUrl+'customers/'+idToDel,options)
           .subscribe((s) => {
             console.log(s);
           });

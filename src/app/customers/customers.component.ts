@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 //import { Customer } from './customer';
-import axios,{ AxiosResponse } from 'axios';
+import axios from 'axios';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CustomerDetailComponent } from '../customer-detail/customer-detail.component';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { AddCustomerDialogComponent } from '../add-customer-dialog/add-customer-dialog.component';
 import { Customer } from './customer';
+import { environment } from 'src/environments/environment';
 
 
 interface CustomerContract
@@ -39,8 +40,7 @@ interface CustomerExtend
 export class CustomerComponent implements OnInit {
  
   clientsArray!:CustomerContract[];
-  baseUrl: String = "http://192.168.0.209:6060/api/";
-
+  
   constructor(public dialog : MatDialog){}
   
   ngOnInit(): void {
@@ -51,7 +51,7 @@ export class CustomerComponent implements OnInit {
 
   async getCustomers()
   {
-    let result = await axios.get(this.baseUrl+"customers/contracts");
+    let result = await axios.get(environment.baseUrl+"customers/contracts");
     this.clientsArray = result.data.customers;
     
   }

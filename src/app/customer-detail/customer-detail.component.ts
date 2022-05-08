@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit,Inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { environment } from 'src/environments/environment';
 import { Customer } from '../customers/customer';
 //import { CUSTOMERS } from '../mock-customers';
 
@@ -15,7 +16,7 @@ export class CustomerDetailComponent implements OnInit {
   
   form!: FormGroup;
   customers!: Customer[];
-  baseUrl: String = "http://192.168.0.209:6060/api/";
+  
   
   constructor(
     private httpClient:HttpClient,
@@ -41,7 +42,7 @@ export class CustomerDetailComponent implements OnInit {
 
   getCustomers()
   {
-    this.httpClient.get<any>(this.baseUrl+'customers').subscribe(
+    this.httpClient.get<any>(environment.baseUrl+'customers').subscribe(
     response=>{
       console.log(response);
       this.customers=response;
@@ -68,7 +69,7 @@ export class CustomerDetailComponent implements OnInit {
     }
     console.log(user);
     
-    this.httpClient.put(this.baseUrl+'customers',user)
+    this.httpClient.put(environment.baseUrl+'customers',user)
     .subscribe({
       next:(response) => console.log(response),
       error: (error) => console.log(error),
