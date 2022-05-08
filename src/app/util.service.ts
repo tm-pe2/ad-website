@@ -13,7 +13,7 @@ export class UtilService {
 
   constructor() {
     for (let i = 0; i < this.nCust; i++) {
-      this.custData.push(new Cust(i, this.eid));
+      this.custData.push(new Cust(this.eid));
     }
     this.custData[0].meterType = 0;
     this.custData[1].meterType = 0;

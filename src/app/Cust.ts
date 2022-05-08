@@ -11,19 +11,19 @@ export class Cust {
   lastMetingE : number;
   newMetingG : number;
   newMetingE : number;
-  constructor(cid: number, eid: number) {
-    this.custID = cid; // done
-    this.empID = eid; // done
-    this.name = "Name Customer " + cid; // done
-    this.addr = "Addr of customer " + cid; // done
-    this.currentDate = new Date('01/01/2020'); // done
+  constructor(eid: number) {
+    this.custID = 0; // from planning stuff
+    this.empID = eid; // Via login
+    this.name = "Name Customer "; // via customer table
+    this.addr = "Addr of customer "; // via adresID in customer table
+    this.currentDate = new Date('01/01/2020'); // date.today()
     this.nextDate = new Date('01/01/2020'); // use post to add this
-    this.status = "not done"; // done
-    this.meterType = 2; // done
-    this.lastMetingG = 0;
-    this.lastMetingE = 0;
-    this.newMetingG = 0;
-    this.newMetingE = 0;
+    this.status = "not done"; // planning status
+    this.meterType = 2; // still needed?
+    this.lastMetingG = 0; // Where to get this
+    this.lastMetingE = 0; // Where to get this
+    this.newMetingG = 0; // Where to put this
+    this.newMetingE = 0; // Where to put this
   }
 
   getName(): string {
@@ -41,4 +41,15 @@ export class Cust {
   getMeterType(): number {
     return this.meterType;
   }
+
+  // Set functions
+  setCid(variable: number) { this.custID = variable; }
+  setName(variable: string) { this.name = variable; }
+  setAddress(variable: string) { this.addr = variable; }
+  setCurrentDate(variable: Date) { this.currentDate = variable; }
+  setNextDate(variable: Date) { this.nextDate = variable; }
+  setStatus(variable: string) { this.status = variable; }
+  setType(variable: number) { this.meterType = variable; }
+  setLastG(variable: number) { this.lastMetingG = variable; }
+  setLastE(variable: number) { this.lastMetingE = variable; } 
 }
