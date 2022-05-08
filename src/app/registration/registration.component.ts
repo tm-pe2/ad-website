@@ -28,7 +28,7 @@ export class RegistrationComponent implements OnInit {
     // use registerdata 
     const regData: RegistrationData =
     {
-      name: regForm.value.regName,
+      name: regForm.value.regFName,
       mail: regForm.value.regMail,
       password: regForm.value.regPassword,
       confirmPassword: regForm.value.regConfPassword,
