@@ -8,11 +8,13 @@ import { TableRow, TicketingComponent } from './ticketing/ticketing.component';
 import { UtilService } from './util.service';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { RegistrationService } from './registration/registration.service';
 import { FormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UserdataService } from './services/userdata.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TableRow,
     LoginComponent,
     RegistrationComponent  
-
   ],
   imports: [
     BrowserModule,
@@ -31,10 +32,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatDatepickerModule,
     BrowserAnimationsModule,
 
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [
     UtilService,
-    RegistrationService,
+    UserdataService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

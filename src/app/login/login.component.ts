@@ -1,20 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { LoginService } from './login.service';
-import { LoginData } from './loginData';
+import { UserdataService } from '../services/userdata.service';
+// on my own device it is supposed to be LoginData
+import { LoginData } from '../interfaces/loginData';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
   // Variables
   invalidForm = false;
   invalidCreds = false;
 
   // Constructor
-  constructor(private service: LoginService) { }
+  constructor(private userData: UserdataService) { }
 
   // On init
   ngOnInit(): void { }
@@ -40,8 +42,8 @@ export class LoginComponent implements OnInit {
   // Private
   private checkCreds(loginForm: NgForm)
   {
-    const loginData = new LoginData(loginForm.value.loginMail, loginForm.value.loginPassword);
-    if (!this.service.authenticate(loginData))
+    const loginData: LoginData = { mail: loginForm.value.loginMail, password: loginForm.value.loginPassword }
+    if (!this.userData.authenticate(loginData))
     {
       this.invalidForm = false;
       this.invalidCreds = true;
