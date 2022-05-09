@@ -4,32 +4,66 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { CustomerComponent } from './customers/customers.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { MaterialModule } from './material/material.module';
-import { TableRow, TicketingComponent } from './ticketing/ticketing.component';
-import { UtilService } from './util.service';
+import { TicketingComponent,ManageTickets } from './ticketing/ticketing.component';
 import { AddCustomerDialogComponent } from './add-customer-dialog/add-customer-dialog.component';
 import { ConsumptionEstimationComponent } from './consumption-estimation/consumption-estimation.component';
-import { HttpClientModule } from '@angular/common/http';
 import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
 import { RegisterCustomerComponent } from './register-customer/register-customer.component';
+import { DashboardComponent, GraphCanvasComponent } from './dashboard/dashboard.component';
+import { SmallCardComponent } from './dashboard/small-card/small-card.component';
+import { BigCardComponent } from './dashboard/big-card/big-card.component';
+import { ProfileCardComponent } from './dashboard/profile-card/profile-card.component';
+import { SmallGraphComponent } from './graphs/small-graph/small-graph.component';
+import { MediumGraphComponent } from './graphs/medium-graph/medium-graph.component';
+import { BigGraphComponent } from './graphs/big-graph/big-graph.component';
+import { ButtonComponent } from './dashboard/button/button.component';
+import { GraphsComponent } from './graphs/graphs.component';
+import { MatIconModule } from '@angular/material/icon'
+import { UtilService } from './util.service';
+import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { UserdataService } from './services/userdata.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { ClientTicketsComponent } from './ticketing/client-tickets/client-tickets.component';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { AuthService } from './services/auth.service';
+import { LogoutComponent } from './logout/logout.component';
+import { StatuscodepageComponent } from './statuscodepage/statuscodepage.component';
+import { SupportComponent } from './support/support.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
+    SmallCardComponent,
+    BigCardComponent,
+    ProfileCardComponent,
+    SmallGraphComponent,
+    MediumGraphComponent,
+    BigGraphComponent,
+    ButtonComponent,
     TicketingComponent,
     CustomerComponent,
     CustomerDetailComponent,
     ConfirmDialogComponent,
-    TableRow,
     AddCustomerDialogComponent,
     ConsumptionEstimationComponent,
-    RegisterCustomerComponent
+    RegisterCustomerComponent,
+    LoginComponent,
+    RegistrationComponent,
+    GraphsComponent,
+    ClientTicketsComponent,
+    LogoutComponent,
+    StatuscodepageComponent, 
+    SupportComponent,
+    ManageTickets
   ],
   entryComponents:[CustomerDetailComponent],
     imports: [
@@ -41,14 +75,35 @@ import { RegisterCustomerComponent } from './register-customer/register-customer
     ReactiveFormsModule,
     HttpClientModule,
     MatSelectModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return AuthService.getAccessToken();
+        },
+      }
+    }),
+    
   ],
   exports:[
     CustomerComponent,
     CustomerDetailComponent,
     ConfirmDialogComponent,
+    MatIconModule,
+    HttpClientModule,
+    
   ],
-  providers: [UtilService],
+  providers: [
+    UtilService,
+    UserdataService,
+    HttpClientModule,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    JwtHelperService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

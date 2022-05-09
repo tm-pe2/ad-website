@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-//import { Customer } from './customer';
 import axios from 'axios';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CustomerDetailComponent } from '../customer-detail/customer-detail.component';
@@ -80,7 +79,7 @@ export class CustomerComponent implements OnInit {
     let dialRef=this.dialog.open(CustomerDetailComponent,dialConfig);
    
     // differ which button was pressed (true -> update | false -> cancel)
-    dialRef.afterClosed().subscribe(result =>{
+    dialRef.afterClosed().subscribe((result: any) =>{
       console.log(`Action was: ${result}`);
     });
 
@@ -102,7 +101,7 @@ export class CustomerComponent implements OnInit {
     let dialRef=this.dialog.open(ConfirmDialogComponent,dialConfig);
    
     // differ which button was pressed (true -> update | false -> cancel)
-    dialRef.afterClosed().subscribe(result => {
+    dialRef.afterClosed().subscribe((result: any) => {
       console.log(`Action was: ${result}`);
     });
 
