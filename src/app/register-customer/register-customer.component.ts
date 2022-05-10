@@ -53,17 +53,7 @@ export class RegisterCustomerComponent implements OnInit {
   get familyAddress() { return this.familyAdressCompoundForm.controls; }
   get meterDetails() {return this.meterDetailsForm.controls;}
 
-  // onCheckboxChange(event: any) {
-  //   const selectedEquipments = (this.consumption['selectedEquipments'] as FormArray);
-  //   if (event.target.checked) {
-  //     selectedEquipments.push(new FormControl(event.target.value));
-  //   } else {
-  //     const index = selectedEquipments.controls.findIndex(x => x.value === event.target.value);
-  //     selectedEquipments.removeAt(index);
-  //   }
-  // }
-
-
+ 
 next()
 {
   if(this.step==1)

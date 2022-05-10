@@ -1,10 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment';
 import { CustomerDetailComponent } from '../customer-detail/customer-detail.component';
-import { Customer } from '../customers/customer';
+import { Customer } from '../interfaces/customer';
 
 
 @Component({
@@ -22,9 +21,9 @@ export class ConfirmDialogComponent implements OnInit {
   constructor(
     private dialRef: MatDialogRef<CustomerDetailComponent>,
     private httpClient:HttpClient,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
-      this.name=data.name;
-      this.id=data.id;
+    @Inject(MAT_DIALOG_DATA) public data: Customer) {
+      this.name=data.first_name;
+      this.id=data.customer_id;
     }
   
 
@@ -34,7 +33,7 @@ export class ConfirmDialogComponent implements OnInit {
   getCustomers()
   {
     this.httpClient.get<any>(environment.baseUrl+'customers').subscribe(
-    response=>{
+      (    response: Customer[])=>{
       console.log(response);
       this.customers=response;
     }
@@ -52,7 +51,7 @@ export class ConfirmDialogComponent implements OnInit {
         };
       console.log(options);
         this.httpClient.delete(environment.baseUrl+'customers/'+idToDel,options)
-          .subscribe((s) => {
+          .subscribe((s: any) => {
             console.log(s);
           });
 

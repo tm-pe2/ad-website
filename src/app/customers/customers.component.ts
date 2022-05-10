@@ -4,31 +4,9 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CustomerDetailComponent } from '../customer-detail/customer-detail.component';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { AddCustomerDialogComponent } from '../add-customer-dialog/add-customer-dialog.component';
-import { Customer } from './customer';
+import { Customer, CustomerContract } from '../interfaces/customer';
 import { environment } from 'src/environments/environment';
 
-
-interface CustomerContract
-{
-  UserID: number,
-   RoleID: number,
-   first_name: string,
-   last_name: string,
-   ContractID: number
-}
-interface CustomerExtend
-{
-  UserID: number,
-  RoleID: number,
-  first_name: string,
-  last_name: string,
-  BirthDate: Date,
-  AddressID: number,
-  Email: string,
-  PhoneNumber: string,
-  Password: string,
-  ContractID: number
-}
 
 @Component({
   selector: 'app-customers',
@@ -38,7 +16,7 @@ interface CustomerExtend
 })
 export class CustomerComponent implements OnInit {
  
-  clientsArray!:CustomerContract[];
+  clientsArray:CustomerContract[]=[];
   
   constructor(public dialog : MatDialog){}
   

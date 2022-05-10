@@ -3,8 +3,7 @@ import { Component, OnInit,Inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment';
-import { Customer } from '../customers/customer';
-//import { CUSTOMERS } from '../mock-customers';
+import { Customer } from '../interfaces/customer';
 
 
 @Component({
@@ -22,12 +21,11 @@ export class CustomerDetailComponent implements OnInit {
     private httpClient:HttpClient,
     private formB: FormBuilder,
     private dialRef: MatDialogRef<CustomerDetailComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
-      console.log(data);
+    @Inject(MAT_DIALOG_DATA) public data: Customer) {
       this.form=this.formB.group({
-        RoleID:data.type,
-        FirstName:data.name,
-        LastName:data.lastname,
+        RoleID:data.role_id,
+        FirstName:data.first_name,
+        LastName:data.last_name,
         // BirthDate:data.BirthDate,
         // AddressID:data.AddressID,
         // Email:data.Email,
@@ -43,7 +41,7 @@ export class CustomerDetailComponent implements OnInit {
   getCustomers()
   {
     this.httpClient.get<any>(environment.baseUrl+'customers').subscribe(
-    response=>{
+      (    response: Customer[])=>{
       console.log(response);
       this.customers=response;
     }
@@ -53,26 +51,33 @@ export class CustomerDetailComponent implements OnInit {
   Submit()
   {
     let user: Customer = {
-      RoleID: Number(this.form.get('RoleID')),
-      FirstName: this.form.get('FirstName')?.value,
-      LastName: this.form.get('LastName')?.value,
-      BirthDate: this.form.get('BirthDate')?.value,
-      AddressID: Number(this.form.get('AddressID')?.value),
-      Email: this.form.get('Email')?.value,
-      PhoneNumber: this.form.get('PhoneNumber')?.value,
-      Password: this.form.get('Password')?.value,
-      CustomerID: 0,
-      GasType: 0,
-      Electricitytype: 0,
-      UserID: 0,
-     
+      role_id: Number(this.form.get('RoleID')),
+      first_name: this.form.get('FirstName')?.value,
+      last_name: this.form.get('LastName')?.value,
+      birth_date: this.form.get('BirthDate')?.value,
+      address_id: Number(this.form.get('AddressID')?.value),
+      email: this.form.get('Email')?.value,
+      phone_number: this.form.get('PhoneNumber')?.value,
+      password: this.form.get('Password')?.value,
+      customer_id: 0,
+      gas_type: 0,
+      electricity_type: 0,
+      user_id: 0,
+      gas_meter_id: 0,
+      electricity_meter_id: 0,
+      national_registry_number: '',
+      city: '',
+      street: '',
+      house_number: '',
+      postal_code: '',
+      country: ''
     }
     console.log(user);
     
     this.httpClient.put(environment.baseUrl+'customers',user)
     .subscribe({
-      next:(response) => console.log(response),
-      error: (error) => console.log(error),
+      next:(response: any) => console.log(response),
+      error: (error: any) => console.log(error),
     });
 
   }
