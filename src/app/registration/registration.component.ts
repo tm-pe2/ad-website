@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { RegistrationData } from '../interfaces/registrationData';
+import { RegistrationData, Address } from '../interfaces/registrationData';
 import { UserdataService } from '../services/userdata.service';
 
 
@@ -14,6 +14,7 @@ export class RegistrationComponent implements OnInit {
   invalidForm = false;
   matchingPasswords = false;
   types = ["Private", "Company"];
+  addressList: Address[] = [];
 
   // Constructor
   constructor(private service: UserdataService) { }
@@ -25,22 +26,6 @@ export class RegistrationComponent implements OnInit {
   // Public
   onSubmit(regForm: NgForm) 
   {
-    // use registerdata 
-    const regData: RegistrationData =
-    {
-      name: regForm.value.regFName,
-      mail: regForm.value.regMail,
-      password: regForm.value.regPassword,
-      confirmPassword: regForm.value.regConfPassword,
-      phone: regForm.value.regPhone,
-      type: regForm.value.regType,
-      city: regForm.value.regCity,
-      zipcode: regForm.value.regPostalcode,
-      street: regForm.value.regStreet,
-      house: regForm.value.regNumber
-
-    }
-
     // Check if all the fields are filled in
     // Set invalidForm to true so the error message displays
     // Set matchingPasswords to false so the error message doesn't display
@@ -55,17 +40,54 @@ export class RegistrationComponent implements OnInit {
     // Check if the passwords match
     // Set matchingPasswords to true so the error message displays
     // Set invalidForm to false so the error message doesn't display
-    if (!(regData.password == regData.confirmPassword))
+    if (!(regForm.value.regPassword == regForm.value.regConfPassword))
     {
       this.invalidForm = false;
       this.matchingPasswords = true;
       return;
 
     }
+    
+    // Address stuff
+    const formAddress: Address  = 
+    {
+      city: regForm.value.regCity,
+      street: regForm.value.regStreet,
+      house_number: regForm.value.regNumber,
+      postal_code: regForm.value.regPostalcode,
+      country: 'Belgium'
+
+    }
+
+    this.service.getAddress().subscribe(addresses => { this.addressList = addresses as Address[] });
+
+    
+    this.addressList.forEach  // Does it give false on the if statement cuz formAddress doesn't have an ID yet?
+    (address =>  { if (formAddress == address) { formAddress.address_id = address.address_id; } })
+
+    if (formAddress.address_id == null)
+    { this.service.addAddress(formAddress); }
+
+    // User stuff
+    const regData: RegistrationData =
+    {
+      role_id: 1,
+      first_name: regForm.value.regFname,
+      last_name: regForm.value.regLname,
+      birth_date: regForm.value.regBdate,
+      address_id: 0,
+      email: regForm.value.regMain,
+      phone_number: regForm.value.regPhone,
+      password: regForm.value.regPassword,
+      national_registry_number: regForm.value.regNatianalNr
+      
+    }
+
+    this.service.addCustomer(regData);
 
     // Print out the data to the console for demo
     // Delete this later when you can send it to the API
-    this.service.addCustomer(regData);
+    // this.service.addCustomer(regData);
 
   }
 

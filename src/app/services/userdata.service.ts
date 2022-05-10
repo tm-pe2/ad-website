@@ -7,7 +7,8 @@ import { catchError, Observable } from 'rxjs';
 // Interfaces
 import { User } from '../interfaces/User';
 import { LoginData } from '../interfaces/loginData';
-import { RegistrationData } from '../interfaces/registrationData';
+import { RegistrationData, Address } from '../interfaces/registrationData';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -79,8 +80,14 @@ export class UserdataService
   
 
   // API Connection
+  getAddress(): Observable<Address[]>
+  { return this.http.get<Address[]>(this.ROOT_URL + '/addresses'); }
+
+  addAddress(address: Address)
+  { this.http.post<Address>(this.ROOT_URL + '/addresses', address); }
+
   addCustomer(customer: RegistrationData): Observable<RegistrationData>
-  { return this.customers = this.http.post<RegistrationData>(this.ROOT_URL + '/customers', customer); }
+  { return this.http.post<RegistrationData>(this.ROOT_URL + '/customers', customer); }
   
 
 }
