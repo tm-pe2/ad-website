@@ -9,15 +9,15 @@
       <div class="grid grid-cols-2 mb-3 gap-2">
         <span>
           <label for="Fname">First name: </label>
-          <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400 form-control"          
-          type="text" id="Fname" name="Fname" ngModel required maxlength="5" #Fname="ngModel" [(ngModel)]="employeeService.current_Emp.FirstName"><br>
+          <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black form-control"          
+          type="text" id="Fname" name="Fname" ngModel required maxlength="50" #Fname="ngModel" [(ngModel)]="employeeService.current_Emp.FirstName"><br>
               
           <div class="text-red-500" *ngIf="Fname.errors?.['maxlength']" >The name is to long. <br></div>
           <div class="text-red-500" *ngIf="!Fname.valid && Fname.touched">Fill in the firstname. <br></div>
 
           
           <label for="Lname">Last name: </label>
-          <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" 
+          <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" 
           type="text" id="Lname" name="Lname" ngModel required maxlength="50" #Lname="ngModel" [(ngModel)]="employeeService.current_Emp.LastName"><br>
           
           <div class="text-red-500" *ngIf="!Lname.valid && Lname.touched">Fill in the lastname <br> </div>
@@ -46,21 +46,21 @@
 
       <div class="mb-5">
         <label for="birthDate">BirthDate: </label>
-        <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="birthDate" name="birthDate"
+        <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" type="text" id="birthDate" name="birthDate"
         [(ngModel)]="employeeService.current_Emp.BirthDate"><br>
 
       </div>
 
       <div class="mb-5">
         <label for="email">Email:  </label>
-        <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="email" name="email"
+        <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" type="text" id="email" name="email"
          [(ngModel)]="employeeService.current_Emp.Email" ><br>
 
       </div>
 
       <div class="mb-5">
         <label for="phoneNR">Phone Number: </label>
-        <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="phoneNR" name="phoneNR" 
+        <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" type="text" id="phoneNR" name="phoneNR" 
          [(ngModel)]="employeeService.current_Emp.PhoneNumber"><br>
       </div>
 
@@ -71,13 +71,13 @@
         <div class="grid grid-cols-2 mb-3 gap-2">
           <span>
             <label for="street">Street:</label>
-            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="street" name="street"
+            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" type="text" id="street" name="street"
             [(ngModel)]="employeeService.current_Emp.Address.street"> <br>
 
           </span>
           <span>
             <label for="houseNumber">Hous number:</label>
-            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="housNumber" name="housNumber"
+            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" type="text" id="housNumber" name="housNumber"
             [(ngModel)]="employeeService.current_Emp.Address.housNumber"> <br>
 
           </span>
@@ -88,13 +88,13 @@
         <div class="grid grid-cols-2 mb-3 gap-2">
           <span>
             <label for="city">City:</label>
-            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="city" name="city"
+            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" type="text" id="city" name="city"
             [(ngModel)]="employeeService.current_Emp.Address.city"> <br>
   
           </span>
           <span>
             <label for="postalcode">Postalcode:</label>
-            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="postalcode" name="postalcode"
+            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" type="text" id="postalcode" name="postalcode"
             [(ngModel)]="employeeService.current_Emp.Address.postalcode"> <br>
   
           </span>
@@ -106,11 +106,11 @@
         <div class="grid grid-cols-2 mb-3 gap-2">
           <span>
             <label for="HireDate">HireDate </label>
-            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400 mb-5" type="text" id="hiredate" name="hiredate" 
+            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black mb-5" type="text" id="hiredate" name="hiredate" 
             [(ngModel)]="employeeService.current_Emp.HireDate"><br>
           
             <label for="Salary">Salary</label>
-            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="Salary" name="salary" 
+            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" type="text" id="Salary" name="salary" 
             ngModel #salary="ngModel" required [(ngModel)]="employeeService.current_Emp.Salary"> <br>
             
             <div class="text-red-500" *ngIf="!salary.valid && salary.touched" >Fill in the salary</div>    

@@ -15,8 +15,8 @@ const routes: Routes = [
   {
     path: 'manage-employees', 
     component: ManageEmployeesComponent,
-    canActivate: [RoleGuardService],
-    data: { roles: ['employee', 'employeeManager']  }
+    //canActivate: [RoleGuardService],
+    //data: { roles: ['employee', 'employeeManager']  }
   },
   {path: 'ticketing', component: TicketingComponent},
   {

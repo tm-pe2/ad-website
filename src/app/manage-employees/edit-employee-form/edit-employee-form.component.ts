@@ -9,6 +9,7 @@ import { EmployeeService } from '../services/employee.service';
   selector: 'app-edit-employee-form',
   templateUrl: './edit-employee-form.component.html',
   styleUrls: ['./edit-employee-form.component.css'],
+  providers: [EmployeeService]
 })
 export class EditEmployeeFormComponent {
   

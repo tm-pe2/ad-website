@@ -1,32 +1,36 @@
-import { Injectable, Output } from '@angular/core';
+import { Injectable, OnInit, Output } from '@angular/core';
 import { Employee } from '../employee';
 import { Address } from '../../interfaces/address';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
-
-  constructor() { }
-
-  id = 1;
-  FirstName = "test";
-  LastName = "test";
-  BirthDate= "test";
-  Email = "bbb";
-  PhoneNumber = "bbb";
-  Address:Address = {adressID:1,city:"skw",postalcode:1234,street:"denayer",housNumber:111,country:"belgium"}
-  HireDate ="hey";
-  Department = "testdep";
-  Gender="X";
-  Salary=2000
-    
-  emp = new Employee(1,this.FirstName,this.LastName,this.BirthDate,this.Email,this.PhoneNumber,this.Address,this.HireDate,this.Department,this.Gender,this.Salary);
-  emp2 = new Employee(2,this.FirstName,this.LastName,this.BirthDate,this.Email,this.PhoneNumber,this.Address,this.HireDate,this.Department,this.Gender,this.Salary);
   
+  Address:Address = {adressID:1,city:"",postalcode:123,street:"",housNumber:111,country:""};  
+  emp = new Employee(1,"fname","lname","1/1/1","test","test",this.Address,"test","test","test",123);  
   current_Emp : Employee = this.emp;
   
- // current_Emp?: Employee;
-  employees: Employee[] = [this.emp,this.emp2]; //this array is the one where all the emp have to get in
+  employees: Employee[] = [this.emp]; //this array is the one where all the emp have to get in
 
+
+  showEmpList : boolean = true;
+  showAddEmpForm : boolean = false;
+  showAddEmpButton : boolean = true;
+  showEditEmpForm : boolean = false;
+  showEmpCard : boolean = false;
+
+  
+  constructor(private http:HttpClient) { 
+    this.http.get(environment.apiUrl + '/employees').subscribe(
+      {
+        next: (res: any) => {
+          this.employees = res;
+        },
+      }
+    );
+  }
 }
+

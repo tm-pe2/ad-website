@@ -1,6 +1,6 @@
-<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" [style.display]="showAddEmpButton ? 'block' : 'none'" (click)="onAddButtonClick()">Add Employee</button>
+<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" [style.display]="employeeService.showAddEmpButton ? 'block' : 'none'" (click)="onAddButtonClick()">Add Employee</button>
 
-<div [style.display]="showEmpList ? 'block' : 'none' ">
+<div [style.display]="employeeService.showEmpList ? 'block' : 'none' ">
     <div class="grid overflow-hidden grid-cols-10 grid-rows-6 gap-px h-screen">
         <div class="box row-start-1 row-end-1 col-start-1 col-end-11">
         <!--Header-->
@@ -84,6 +84,8 @@
 
 
 
-<app-add-employee-form [style.display]="showAddEmpForm ? 'block' : 'none'"  [parent]="this"></app-add-employee-form>
+<app-add-employee-form [style.display]="employeeService.showAddEmpForm ? 'block' : 'none'"  ></app-add-employee-form>
 
-<app-edit-employee-form [style.display]="showEditEmpForm ? 'block' : 'none' " [parent]="this"></app-edit-employee-form>
+<app-edit-employee-form [style.display]="employeeService.showEditEmpForm ? 'block' : 'none' " ></app-edit-employee-form>
+
+<app-employee-card [style.disoplay]="employeeService.showEmpCard ? 'block' : 'none' "></app-employee-card>

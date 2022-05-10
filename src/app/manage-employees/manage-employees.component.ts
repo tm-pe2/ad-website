@@ -19,51 +19,47 @@ export class ManageEmployeesComponent implements OnInit{
   constructor(private auth : AuthService,public employeeService: EmployeeService ) { }
 
 
-  showEmpList : boolean = true;
+  /*showEmpList : boolean = true;
   showAddEmpForm : boolean = false;
   showAddEmpButton : boolean = true;
-  showEditEmpForm : boolean = false;
-  employees : Employee[] = [];
+  showEditEmpForm : boolean = false;*/
   role ?: string | null;
 
 
   ngOnInit(){
 
-    this.role = this.auth.getUserRole()
-    console.log("yo")
+    //this.role = this.auth.getUserRole()
+    this.role = 'employeeManager'
     if(this.role != 'employeeManager'){
-      this.showAddEmpButton = false;
+      this.employeeService.showAddEmpButton = false;
       console.log("hello")
     }
   }
   // dummy data
     
     onAddButtonClick(){
-    this.showAddEmpForm = true;
-    this.showAddEmpButton = false;
-    this.showEmpList = false;
+    this.employeeService.showAddEmpForm = true;
+    this.employeeService.showAddEmpButton = false;
+    this.employeeService.showEmpList = false;
 
   }
   
   changeStatusEmpAddForm(){
-    this.showAddEmpForm = !this.showAddEmpForm;
-    this.showAddEmpButton = !this.showAddEmpButton;
-    this.showEmpList = !this.showEmpList;
+    this.employeeService.showAddEmpForm = !this.employeeService.showAddEmpForm;
+    this.employeeService.showAddEmpButton = !this.employeeService.showAddEmpButton;
+    this.employeeService.showEmpList = !this.employeeService.showEmpList;
     
   }
 
   changeStatusEmpEditForm(){
-    this.showEmpList = !this.showEmpList;
-    console.log(this.showEmpList,"test");
+    this.employeeService.showEmpList = !this.employeeService.showEmpList;
+    console.log(this.employeeService.showEmpList,"test");
 
-    this.showEditEmpForm = !this.showEditEmpForm;
-    this.showAddEmpButton = !this.showAddEmpButton;
+    this.employeeService.showEditEmpForm = !this.employeeService.showEditEmpForm;
+    this.employeeService.showAddEmpButton = !this.employeeService.showAddEmpButton;
   }
     
   startEditEmployee(id: number){
-    //var emps =  this.employeeService.getEmployees();
-    //this.employeeService.pushEmp(emps[id-1]); 
-
     this.employeeService.current_Emp = this.employeeService.employees[id-1];
     this.changeStatusEmpEditForm();
   }
@@ -73,6 +69,7 @@ export class ManageEmployeesComponent implements OnInit{
   }
 
   showDetails(id : number){
-    console.log("test");
+    this.employeeService.current_Emp = this.employeeService.employees[id-1];
+    this.employeeService.showEmpList = !this.employeeService.showEmpList;
   }
 }
