@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { UserdataService } from './services/userdata.service';
 import { AuthService } from './services/auth.service';
@@ -12,13 +13,8 @@ export class AppComponent {
 
   // For login test
   // Adds login service so you can access the authenticated variable
-  constructor (public service: UserdataService, authService: AuthService) {
-    authService.login({ mail: "email", password: "azerty"})
-    .then(()=> {
-      console.log('Login succeeded')
-      authService.logout().then(()=>console.log('logged out')).catch((err)=>console.error(err));
-    })
-    .catch(()=>console.error('Login failed'));
+  constructor (public service: UserdataService, authService: AuthService, private http: HttpClient) {
   }
+
 
 }

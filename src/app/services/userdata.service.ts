@@ -7,8 +7,9 @@ import { catchError, Observable } from 'rxjs';
 // Interfaces
 import { User } from '../interfaces/User';
 import { LoginData } from '../interfaces/loginData';
-import { RegistrationData, Address } from '../interfaces/registrationData';
+import { RegistrationData } from '../interfaces/registrationData';
 import { environment } from 'src/environments/environment';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class UserdataService
 {
   // Mockusers
   // Will use API to get user info later on
-  private readonly mockUser: User =
+  private readonly user: User =
   { 
     id: 0,
     name: "John Doe",
@@ -43,26 +44,12 @@ export class UserdataService
   // Constructor
   constructor(private router: Router, private http: HttpClient) { }
 
-  // Functions
-  // Login functions
-  authenticate(loginData: LoginData): boolean
-  {
-    // If the user has the correct login data he/she will be send to the home page
-    // authenticed variable is set to true so logged in user can access new parts of site
-    // (check app.component.ts & app.component.html for inmplementation)
-    if (this.checkCredentials(loginData))
-    {
-      this.authenticated = true;
-      this.router.navigate(['']);
-      return this.authenticated;
+  setAuthenticated(bool: boolean) {this.authenticated = bool}
+  getAuthenticated() {return this.authenticated}
 
-    } else
-    {
-      this.authenticated = false;
-      return this.authenticated;
-
-    }
-
+  getUser() {return this.user}
+  setUser() {
+    // Set user data after login
   }
 
   // Check if mail and password are correct using private functions for each
@@ -71,23 +58,9 @@ export class UserdataService
 
   // Check mail and password from the mockuser
   private checkMail(mail: string): boolean
-  { return mail === this.mockUser.mail; }
+  { return mail === this.user.mail; }
 
   private checkPassword(password: string): boolean
-  { return password === this.mockUser.password; }
-
-  // Registration functions
-  
-
-  // API Connection
-  getAddress(): Observable<Address[]>
-  { return this.http.get<Address[]>(this.ROOT_URL + '/addresses'); }
-
-  addAddress(address: Address)
-  { this.http.post<Address>(this.ROOT_URL + '/addresses', address); }
-
-  addCustomer(customer: RegistrationData): Observable<RegistrationData>
-  { return this.http.post<RegistrationData>(this.ROOT_URL + '/customers', customer); }
-  
+  { return password === this.user.password; }
 
 }

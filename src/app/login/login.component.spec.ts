@@ -5,6 +5,7 @@ import { LoginComponent } from './login.component';
 
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -12,7 +13,7 @@ describe('LoginComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule, FormsModule, HttpClientTestingModule],
+      imports: [RouterTestingModule, FormsModule, HttpClientTestingModule, HttpClientModule],
       declarations: [ LoginComponent ]
     })
     .compileComponents();

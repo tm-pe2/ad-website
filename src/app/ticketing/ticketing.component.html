@@ -1,4 +1,2 @@
-<div>
-    <table-row [fields] = "['name', 'issue', 'short description']" [header] = "true"></table-row>
-    <table-row [fields] = "['test', 'input', 'please']"></table-row>
-</div>
+<manage-tickets *ngIf="user?.permissions == 1"></manage-tickets>
+<client-tickets *ngIf="user?.permissions == 0"></client-tickets>
