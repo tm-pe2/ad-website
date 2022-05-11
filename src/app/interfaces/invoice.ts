@@ -4,11 +4,21 @@ export interface Invoice {
     SupplierID: number,
     Date: Date,
     DueDate: Date,
-    StatusID: number,
+    Statusid: InvoiceStatus,
     GasAmount: number,
     ElectricityType: number,
-    price: number,
+    Price: number,
     Tax: number,
-    startDate: Date, //?
-    endDate: Date, //?
+    StartDate: Date, //?
+    EndDate: Date, //?
 }
+
+//move to db table?
+export enum InvoiceStatus {
+    sent,
+    paid,
+    overdue,
+    void,
+    writeOff,
+    draft 
+ }

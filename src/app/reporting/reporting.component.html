@@ -7,6 +7,7 @@
             <tr>
                 <th>customerID</th>
                 <th>type</th>
+                <th>status</th>
                 <th>due</th>
             </tr>
 
@@ -15,6 +16,7 @@
             <tr *ngFor="let x of invoices">
                 <td>{{ x.CustomerID }}</td>
                 <td>{{ x.ElectricityType }}</td>
+                <td>{{invoiceStatusToString(x.Statusid)}}</td>
                 <td>{{x.DueDate.toLocaleString()}}</td>
             </tr>
         </tbody>
