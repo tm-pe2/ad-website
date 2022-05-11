@@ -1,1 +1,22 @@
-<p>reporting works!</p>
+<div>
+
+</div>
+<div class="flex flex-col">
+    <table class="min-w-full border text-center">
+        <thead>
+            <tr>
+                <th>customerID</th>
+                <th>type</th>
+                <th>due</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            <tr *ngFor="let x of invoices">
+                <td>{{ x.CustomerID }}</td>
+                <td>{{ x.ElectricityType }}</td>
+                <td>{{x.DueDate.toLocaleString()}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
