@@ -30,6 +30,8 @@ export class ReportingComponent implements OnInit {
                 return "sent"
             case InvoiceStatus.paid:
                 return "paid"
+            case InvoiceStatus.overdue:
+                return "overdue"
             default:
                 return `invoice status (${status}) not defined in converter`
         }
