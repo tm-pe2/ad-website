@@ -17,9 +17,7 @@ import { AuthService } from './auth.service';
 
 export class UserdataService
 {
-  // Mockusers
-  // Will use API to get user info later on
-  private readonly user: User =
+  user: User =
   { 
     id: 0,
     name: "John Doe",
@@ -31,36 +29,29 @@ export class UserdataService
     zipcode: 2800,
     street: "Koningin Astridlaan",
     house: "10"
-
   }
 
-  // API connection
-  readonly ROOT_URL = 'http://localhost:6060';
-  customers!: Observable<any>;
-
-  // Variables
-  authenticated = false;
-
-  // Constructor
-  constructor(private router: Router, private http: HttpClient) { }
-
-  setAuthenticated(bool: boolean) {this.authenticated = bool}
-  getAuthenticated() {return this.authenticated}
-
-  getUser() {return this.user}
-  setUser() {
-    // Set user data after login
+  constructor(private router: Router, private http: HttpClient, private authService: AuthService) {
+    this.loadUser();
   }
 
-  // Check if mail and password are correct using private functions for each
-  private checkCredentials(loginData: LoginData): boolean
-  { return this.checkMail(loginData.mail) && this.checkPassword(loginData.password); }
-
-  // Check mail and password from the mockuser
-  private checkMail(mail: string): boolean
-  { return mail === this.user.mail; }
-
-  private checkPassword(password: string): boolean
-  { return password === this.user.password; }
-
+  loadUser(): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      if (this.authService.isAuthenticated()) {
+        this.http.get<User>(environment.apiUrl + '/user/' + this.authService.getUserId())
+        .subscribe({
+          next: (res: User) => {
+            this.user = res;
+            resolve();
+          },
+          error: (err) => {
+            reject(err);
+          }
+        })
+      }
+      else {
+        reject();
+      }
+    });
+    }
 }
