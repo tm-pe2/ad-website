@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UtilService } from '../util.service';
-import { WorkerappComponent } from '../workerapp/workerapp.component';
+import { UtilService } from 'src/app/util.service';
+import { WorkerappComponent } from '../workerapp.component';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
 
   @Input() parent ?: WorkerappComponent; 
 
-  constructor(private cData : UtilService) {}
+  constructor() {}
 
   ngOnInit(): void {
 

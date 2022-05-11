@@ -1,6 +1,6 @@
 import { Component, OnInit, Input} from '@angular/core';
-import { WorkerappComponent } from '../workerapp/workerapp.component';
-import { UtilService } from '../util.service';
+import { WorkerappComponent } from '../workerapp.component';
+import { UtilService } from 'src/app/util.service';
 import { DatePipe } from '@angular/common';
 
 @Component({

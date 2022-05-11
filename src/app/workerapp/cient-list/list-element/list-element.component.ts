@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CientListComponent } from '../cient-list/cient-list.component';
-import { UtilService } from '../util.service';
-import { Cust } from '../Cust';
+import { CientListComponent } from '../cient-list.component';
+import { UtilService } from 'src/app/util.service';
+import { Cust } from 'src/app/Cust';
 
 @Component({
   selector: 'app-list-element',

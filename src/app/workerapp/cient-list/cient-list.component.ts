@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { WorkerappComponent } from '../workerapp/workerapp.component';
-import { UtilService } from '../util.service';
-import { Cust } from '../Cust';
+import { WorkerappComponent } from '../workerapp.component';
+import { UtilService } from 'src/app/util.service';
+import { ListElementComponent } from './list-element/list-element.component';
+import { Cust } from 'src/app/Cust';
 
 @Component({
   selector: 'app-cient-list',
