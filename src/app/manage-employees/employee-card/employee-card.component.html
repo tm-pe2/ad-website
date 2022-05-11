@@ -6,8 +6,16 @@
         
         <!--Make clicking div go to details page to edit employee-->
         <div class="p-6 hover:bg-gray-700 hover:text-white transition duration-300 ease-in cursor-pointer">
-            <h1 class="text-2xl font-medium text-indigo-300 mb-1">{{employeeService.current_Emp.BirthDate}}</h1>
-            <h1 class="text-lg font-semibold mb-3">test</h1>            
+            <h1 class="text-2xl font-medium text-indigo-300 mb-1"> Birthdate: {{employeeService.current_Emp.BirthDate}}</h1>
+            <h1 class="text-2xl font-medium text-indigo-300 mb-1">Email: {{employeeService.current_Emp.Email}} </h1>
+            <h1 class="text-2xl font-medium text-indigo-300 mb-1">Phonenumber: {{employeeService.current_Emp.PhoneNumber}} </h1>
+            <h1 class="text-2xl font-medium text-indigo-300 mb-1">Hiredate: {{employeeService.current_Emp.HireDate}} </h1>
+            <h1 class="text-2xl font-medium text-indigo-300 mb-1">Address: {{employeeService.Address.street}} {{employeeService.Address.housNumber}} </h1>
+            <h1 class="text-2cl font-medium text-indigo-300 mb-1">{{employeeService.Address.city}} {{employeeService.Address.postalcode}} {{employeeService.Address.country}}</h1>
+            <h1 class="text-2xl font-medium text-indigo-300 mb-1">Hiredate: {{employeeService.current_Emp.HireDate}} </h1>
+            <h1 class="text-2xl font-medium text-indigo-300 mb-1">Department: {{employeeService.current_Emp.Department}} </h1>
+            <h1 class="text-2xl font-medium text-indigo-300 mb-1">Gender: {{employeeService.current_Emp.Gender}} </h1>
+            <h1 class="text-2xl font-medium text-indigo-300 mb-1">Salary: {{employeeService.current_Emp.Salary}} </h1>
         </div>
     </div>
 </div>

@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class EmployeeService {
   
-  Address:Address = {adressID:1,city:"",postalcode:123,street:"",housNumber:111,country:""};  
+  Address:Address = {adressID:1,city:"Sint-Katelijne-Waver",postalcode:123,street:"deNayer",housNumber:111,country:"Belgie"};  
   emp = new Employee(1,"fname","lname","1/1/1","test","test",this.Address,"test","test","test",123);  
   current_Emp : Employee = this.emp;
   
