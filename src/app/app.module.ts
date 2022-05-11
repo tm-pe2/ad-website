@@ -26,6 +26,7 @@ import { AuthService } from './services/auth.service';
 import { LogoutComponent } from './logout/logout.component';
 import { StatuscodepageComponent } from './statuscodepage/statuscodepage.component';
 import { SupportComponent } from './support/support.component';
+import { ReportingComponent } from './reporting/reporting.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { SupportComponent } from './support/support.component';
     StatuscodepageComponent, 
     SupportComponent,
     ManageTickets,
+    ReportingComponent,
   ],
   imports: [
     BrowserModule,
