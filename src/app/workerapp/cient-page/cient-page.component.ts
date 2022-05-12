@@ -1,7 +1,6 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { WorkerappComponent } from '../workerapp.component';
 import { UtilService } from 'src/app/util.service';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-cient-page',
@@ -24,7 +23,7 @@ export class CientPageComponent implements OnInit {
   fixedDateG: any = new Date();
   isDone:boolean;
 
-  constructor(public cData: UtilService, public datepipe: DatePipe) {
+  constructor(public cData: UtilService) {
     this.name = cData.custData[cData.selectedCust].name;
     this.adr = cData.custData[cData.selectedCust].addr;
     this.mtype = cData.custData[cData.selectedCust].meterType;

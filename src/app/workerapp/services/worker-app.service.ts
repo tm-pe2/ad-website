@@ -23,7 +23,6 @@ export class WorkerAppService {
   // Constructor
   constructor(private http: HttpClient)
   { }
-/*
   // Functions
   // Get planning
   // |-> get employee ids, status & date
@@ -46,5 +45,4 @@ export class WorkerAppService {
   // Get data from invoice (sort on highest ID?)
   getInvoices(): Observable<Invoice[]>
   { return this.http.get<Invoice[]>(environment.apiUrl + '/invoices'); }
-  */
 }

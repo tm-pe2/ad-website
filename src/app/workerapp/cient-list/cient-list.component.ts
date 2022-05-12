@@ -14,11 +14,12 @@ import { Planning, Customer, Address, Invoice } from 'src/app/interfaces/worker-
 export class CientListComponent implements OnInit{
   @Input() parent?: WorkerappComponent;
   custArr : Array<Cust> = [];
-  /*
+  
   constructor(private cData: UtilService) {
     this.custArr = cData.custData;
   }
-  */
+
+  /*
   planningList: Planning[] = [];
   invoicesList: Invoice[] = [];
   today: Date = new Date();
@@ -63,9 +64,14 @@ export class CientListComponent implements OnInit{
     this.employeeID = service.eid;
     this.tempCust = new Cust(this.employeeID);
   }
+
+  */
   ngOnInit(): void
   {
-/*
+
+
+
+    /*
     // Get planning
     this.service.getPlanning()
     .subscribe(plannings => 
@@ -127,6 +133,13 @@ export class CientListComponent implements OnInit{
       });
 
     this.service.clientList = this.custArr;
-*/
+
+
+    */
   }
+
+
+
+
+
 }
