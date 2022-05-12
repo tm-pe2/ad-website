@@ -19,7 +19,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ClientTicketsComponent } from './ticketing/client-tickets/client-tickets.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { FooterComponent } from './footer/footer.component';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { AuthService } from './services/auth.service';
 import { LogoutComponent } from './logout/logout.component';
@@ -38,8 +37,7 @@ import { StatuscodepageComponent } from './statuscodepage/statuscodepage.compone
     RegistrationComponent,
     GraphsComponent,
     ManageTickets,
-    NavigationComponent,
-    FooterComponent, 
+    NavigationComponent, 
     ClientTicketsComponent,
     LogoutComponent,
     StatuscodepageComponent, 
