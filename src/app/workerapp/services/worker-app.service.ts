@@ -6,11 +6,11 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Planning, Customer, Address, Invoice } from 'src/app/interfaces/worker-interfaces';
 
-/*
+
 @Injectable({
   providedIn: 'root'
 })
-*/
+
 
 // Class
 export class WorkerAppService {
@@ -23,7 +23,6 @@ export class WorkerAppService {
   // Constructor
   constructor(private http: HttpClient)
   { }
-
 /*
   // Functions
   // Get planning
@@ -47,6 +46,5 @@ export class WorkerAppService {
   // Get data from invoice (sort on highest ID?)
   getInvoices(): Observable<Invoice[]>
   { return this.http.get<Invoice[]>(environment.apiUrl + '/invoices'); }
-*/
-
+  */
 }
