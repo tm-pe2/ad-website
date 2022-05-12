@@ -15,9 +15,8 @@ export class ReportingComponent implements OnInit {
     ngOnInit(): void {
         //either update the status from here or update the status every day to update status, then get status
         this.http.get<{ invoice: Invoice[] }>(environment.apiUrl + "/invoices/overdue").subscribe({
-            next: (data) => {this.invoices = data.invoice;
-            this.invoices.map(e => e.Statusid = InvoiceStatus.overdue)},
-            //complete: () => console.log(this.invoices)
+            next: (data) => {this.invoices = data.invoice;},
+            complete: () => console.log(this.invoices.forEach(e => e.DueDate = new Date(e.DueDate)))
 
         })
     }
