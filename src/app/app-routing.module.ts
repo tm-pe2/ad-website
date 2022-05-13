@@ -13,6 +13,7 @@ import { RoleGuardService } from './services/role-guard.service';
 import { LogoutComponent } from './logout/logout.component';
 import { StatuscodepageComponent } from './statuscodepage/statuscodepage.component';
 import { SupportComponent } from './support/support.component';
+import { ValidateContractComponent } from './validate-contract/validate-contract.component';
 
 const routes: Routes = [
   {
@@ -37,7 +38,8 @@ const routes: Routes = [
   {path: 'ticketing', component: TicketingComponent},
   {path:'manage-customers',component:CustomerComponent},
   {path:'consumption-estimation',component:ConsumptionEstimationComponent},
-  {path:'register-customer',component:RegisterCustomerComponent}
+  {path:'register-customer',component:RegisterCustomerComponent},
+  {path:'validate-contract',component:ValidateContractComponent},
 ]
 
 @NgModule(

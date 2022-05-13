@@ -40,7 +40,7 @@ export class CustomerDetailComponent implements OnInit {
 
   getCustomers()
   {
-    this.httpClient.get<any>(environment.baseUrl+'customers').subscribe(
+    this.httpClient.get<any>(environment.apiUrl+'/customers').subscribe(
       (    response: Customer[])=>{
       console.log(response);
       this.customers=response;
@@ -51,7 +51,8 @@ export class CustomerDetailComponent implements OnInit {
   Submit()
   {
     let user: Customer = {
-      role_id: Number(this.form.get('RoleID')),
+      role_id: 1,
+      customer_type:(this.form.get('Type'))?.value,
       first_name: this.form.get('FirstName')?.value,
       last_name: this.form.get('LastName')?.value,
       birth_date: this.form.get('BirthDate')?.value,
@@ -59,12 +60,8 @@ export class CustomerDetailComponent implements OnInit {
       email: this.form.get('Email')?.value,
       phone_number: this.form.get('PhoneNumber')?.value,
       password: this.form.get('Password')?.value,
-      customer_id: 0,
-      gas_type: 0,
-      electricity_type: 0,
-      user_id: 0,
-      gas_meter_id: 0,
-      electricity_meter_id: 0,
+      customer_id: -1,
+      user_id: -1,
       national_registry_number: '',
       city: '',
       street: '',
@@ -74,7 +71,7 @@ export class CustomerDetailComponent implements OnInit {
     }
     console.log(user);
     
-    this.httpClient.put(environment.baseUrl+'customers',user)
+    this.httpClient.put(environment.apiUrl+'/customers',user)
     .subscribe({
       next:(response: any) => console.log(response),
       error: (error: any) => console.log(error),

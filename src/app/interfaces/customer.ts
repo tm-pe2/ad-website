@@ -1,3 +1,13 @@
+import { NumberValueAccessor } from "@angular/forms"
+
+export interface Address {
+  address_id: number,
+  city: string,
+  street: string,
+  house_number: string,
+  postal_code: string,
+  country: string,
+}
 export interface User extends Address {
   user_id: number,
   role_id: number,
@@ -12,24 +22,12 @@ export interface User extends Address {
 }
 export interface Customer extends User {
   customer_id: number,
-  gas_type: number,
-  electricity_type: number,
-  gas_meter_id: number,
-  electricity_meter_id: number
+  customer_type:string,
 }
-export interface Address {
-  address_id: number,
-  city: string,
-  street: string,
-  house_number: string,
-  postal_code: string,
-  country: string,
-}
-
-export interface CustomerContract
+export interface CustomerContract extends Customer
 {
   UserID: number,
-   RoleID: number,
+   customer_type: string,
    first_name: string,
    last_name: string,
    ContractID: number
@@ -46,4 +44,21 @@ export interface CustomerExtend
   PhoneNumber: string,
   Password: string,
   ContractID: number
+}
+export interface Estimation {
+  estimation_id: number,
+  service_type: number,
+  address_id: number,
+  building_type: number,
+  family_size: number,
+  meters_number:number,
+  meter_type:string,
+  meter_value: number,
+  meter_type2:string,
+  meter_value2:number,
+  meter_type3:string,
+  meter_value3:number,
+  equipments: number[],
+  past_consumption: number,
+  estimated_consumption:number,
 }

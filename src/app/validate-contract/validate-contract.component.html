@@ -4,7 +4,7 @@
 <div class="row"> 
     <div class="col-md-12 col-md-offset-3">
         <!-- 1st Form : Service-->
-        <form [formGroup]="serviceChoiceForm" id="forms">
+        <form [formGroup]="meterTypeForm" id="forms">
             <ul id="progressbar">
                 <li [ngClass]="step>=1 ? 'active ' : 'inactive'">Service</li>
                 <li [ngClass]="step>=2 ? 'active' : 'inactive'">Family Compound</li>
@@ -12,76 +12,8 @@
                 <li [ngClass]="step==4 ? 'active' : 'inactive'">Consumption</li>
             </ul>
             <fieldset  *ngIf="step == 1" >
-                <h2 class="form-header">Service</h2>
-                
-                <mat-radio-group formControlName="choice" class="flex place-content-evenly">
-                    <mat-radio-button name="Electricity" [ngClass]="{ 'is-invalid': service_step && service['choice'].errors }" value="0" class="block px-3.5">Electricity</mat-radio-button>
-                    <mat-radio-button name="Gas" [ngClass]="{ 'is-invalid': service_step && service['choice'].errors }" value="1" class="block px-3.5">Gas</mat-radio-button>
-                </mat-radio-group>
-
-                <div *ngIf="service_step && serviceChoiceForm.controls['choice'].errors">
-                    <div class="required" *ngIf="service['choice'].errors?.['required']">*Choice is required</div>
-                </div>
-
-                <input (click)="next()" type="button" name="next" class="next action-button" value="Next"/>
-           
-            </fieldset>
-        </form> 
-        <!--2nd Form : Address and family-->
-         <form [formGroup]="familyAdressCompoundForm" id="forms">
-            <fieldset *ngIf="step == 2" >
-                <h2 class="form-header">Address</h2>
-            
-                <div class="flex place-content-evenly ">
-                    <mat-select formControlName="addressID" [(value)]="selectedAddressID">
-                        <mat-option  *ngFor="let address of fullAddresses; let i=index" [value]="addressesIDs[i]">{{address}}</mat-option>
-                      </mat-select>
-                </div>
-
-                <div class="flex place-content-evenly ">
-                    <div *ngIf="familyAdress_step && familyAdressCompoundForm.controls['addressID'].errors">
-                        <div class="required" *ngIf="familyAddress['addressID'].errors?.['required']">*Address is required</div>
-                    </div>
-                </div>
-                
-                <br>
-                
-                <h2 class="form-header">What type of house do you have?</h2>
-                
-                <mat-radio-group formControlName="houseType" class="flex place-content-evenly">
-                    <mat-radio-button [ngClass]="{ 'is-invalid': familyAdress_step && familyAddress['houseType'].errors }" value="0" class="block px-3.5">Apartment</mat-radio-button>
-                    <mat-radio-button [ngClass]="{ 'is-invalid': familyAdress_step && familyAddress['houseType'].errors }" value="1" class="block">Closed building</mat-radio-button>
-                    <mat-radio-button [ngClass]="{ 'is-invalid': familyAdress_step && familyAddress['houseType'].errors }" value="2" class="block">Semi-detached building</mat-radio-button>
-                    <mat-radio-button [ngClass]="{ 'is-invalid': familyAdress_step && familyAddress['houseType'].errors }" value="3" class="block">Open building</mat-radio-button>
-                </mat-radio-group>
-
-                <div *ngIf="familyAdress_step && familyAdressCompoundForm.controls['houseType'].errors">
-                    <div class="required" *ngIf="familyAddress['houseType'].errors?.['required']">*House type is required</div>
-                </div>
-                <br>
-                <h2 class="form-header">Family Details</h2>
-                
-                <mat-radio-group formControlName="members" class="flex place-content-evenly">
-                    <mat-radio-button [ngClass]="{ 'is-invalid': familyAdress_step && familyAddress['members'].errors }" value="1" class="block">1 person</mat-radio-button>
-                    <mat-radio-button [ngClass]="{ 'is-invalid': familyAdress_step && familyAddress['members'].errors }" value="2" class="block">2 persons</mat-radio-button>
-                    <mat-radio-button [ngClass]="{ 'is-invalid': familyAdress_step && familyAddress['members'].errors }" value="3" class="block">3 persons</mat-radio-button>
-                    <mat-radio-button [ngClass]="{ 'is-invalid': familyAdress_step && familyAddress['members'].errors }" value="4" class="block">4 persons or more</mat-radio-button>
-                </mat-radio-group>
-
-                <div *ngIf="familyAdress_step && familyAdressCompoundForm.controls['members'].errors">
-                    <div class="required" *ngIf="familyAddress['members'].errors?.['required']">*Family Compound is required</div>
-                </div>
-
-                <input (click)="previous()" type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                <input  (click)="next()" type="button" name="next" class="next action-button" value="Next"/>
-            
-            </fieldset>
-        </form>
-        <!--3rd Form : Meter(s) type -->
-        <form [formGroup]="meterTypeForm" id="forms">
-            <fieldset *ngIf="step == 3">
                 <h2 class="form-header">Meter</h2>
-                <label for="metersNumber">How many meters do you have?</label>
+                <label for="metersNumber">Enter the validated meter readings:</label>
                 <br>
                 <mat-form-field name="metersNumber" appearance="fill" ngDefaultControl  class="flex place-content-evenly">
                     <mat-select formControlName="metersNumber" [(value)]="selectedMeterNr">
@@ -172,7 +104,7 @@
                                 <br>
                                 <mat-form-field name="metersValue">
                                     <mat-label>Meter no.1 value:</mat-label>
-                                    <input matInput formControlName="metersValue">
+                                    <input matInput formControlName="metersValue" [value]="metersValueVal">
                                 </mat-form-field>
                                 <br>            
                                 <div *ngIf="meterType_step && meterTypeForm.controls['metersValue'].errors">
@@ -232,37 +164,9 @@
             </fieldset>
         </form>
         <!--4th Form : Consumption -->
-        <form [formGroup]="consumptionDetailsForm" id="forms">
-            <fieldset *ngIf="step == 4">
-                <h2 class="form-header">Consumption</h2>
-                <label>Check all devices you use frequently:</label>
-                <div class="allDevices">
-                <div *ngFor="let equipment of equipments; let i=index" class="inline">
-                    <input type="checkbox" formArrayName="selectedEquipments" [value]="equipment.value" (change)="onCheckboxChange($event)"/>
-                    <strong>{{equipment.name}}</strong>
-                </div>
-            </div>
-                <br>
-                <br>
-                <h2>DO YOU KNOW YOUR CONSUMPTION?</h2>
-                <br>
-                <mat-radio-button  value="1" (change)="selectedAnswer=1" class="block px-3.5">Yes</mat-radio-button>
-                <mat-radio-button  value="2" (change)="selectedAnswer=0" class="block px-3.5">No</mat-radio-button>
-                <br>
-
-                <div *ngIf="selectedAnswer== 1; else elseBlock;" class="flex place-content-evenly">     
-                    <strong>Approximate yearly consumption:</strong>
-                    <input type="text" formControlName="annualConsumption" placeholder="Consumption in kW"/>
-                    <div *ngIf="consumption_step && consumptionDetailsForm.controls['annualConsumption'].errors">
-                        <div class="required" *ngIf="consumption['annualConsumption'].errors?.['required']">*Consumption is required</div>
-                    </div>
-                </div>
-                <ng-template #elseBlock>
-                    <p> Your estimated annual consumtion in kWh is: <span>{{annualEstimation}}</span></p>
-                </ng-template>
+        
                 <input (click)="previous()" type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                 <input (click)="submit()"type="submit" name="submit" class="submit action-button" value="Submit"/>
-            </fieldset>
-        </form>
+            
     </div>
 </div>

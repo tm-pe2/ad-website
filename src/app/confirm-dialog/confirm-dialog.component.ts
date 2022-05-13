@@ -32,7 +32,7 @@ export class ConfirmDialogComponent implements OnInit {
   }
   getCustomers()
   {
-    this.httpClient.get<any>(environment.baseUrl+'customers').subscribe(
+    this.httpClient.get<any>(environment.apiUrl+'/customers').subscribe(
       (    response: Customer[])=>{
       console.log(response);
       this.customers=response;
@@ -50,7 +50,7 @@ export class ConfirmDialogComponent implements OnInit {
           },
         };
       console.log(options);
-        this.httpClient.delete(environment.baseUrl+'customers/'+idToDel,options)
+        this.httpClient.delete(environment.apiUrl+'/customers/'+idToDel,options)
           .subscribe((s: any) => {
             console.log(s);
           });

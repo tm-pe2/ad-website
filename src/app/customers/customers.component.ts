@@ -28,7 +28,7 @@ export class CustomerComponent implements OnInit {
 
   async getCustomers()
   {
-    let result = await axios.get(environment.baseUrl+"customers/contracts");
+    let result = await axios.get(environment.apiUrl+"/customers/contracts");
     this.clientsArray = result.data.customers;
     
   }
@@ -45,8 +45,9 @@ export class CustomerComponent implements OnInit {
       id:this.selectedCustomer.UserID,
       name: this.selectedCustomer.first_name, 
       last_name: this.selectedCustomer.last_name, 
-      type: this.selectedCustomer.RoleID, 
+      type: this.selectedCustomer.customer_type, 
       contractNr: this.selectedCustomer.ContractID,
+
       // birthdate:this.selectedCustomer.BirthDate,
       // address:this.selectedCustomer.AddressID,
       // email:this.selectedCustomer.Email,

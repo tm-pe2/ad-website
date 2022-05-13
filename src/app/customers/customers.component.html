@@ -57,7 +57,7 @@
       <button class="w-full text-left"><li class="my-0.5">- Contract only</li></button>
       <button class="w-full text-left"><li class="my-0.5">- No contract only</li></button>
     </ol>
-    <button mat-raised-button class="addBtn" class="font-bold items-center text-center text-green-500 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-100 duration-300 w-5/6 " (click)="onSelectAdd()">Add new Customer</button>
+    <button mat-raised-button class="addBtn" class="font-bold items-center text-center text-green-500 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-100 duration-300 w-5/6 " (click)="onSelectAdd()">New Customer</button>
   </div> 
 <div class="box row-start-2 row-end-6 col-start-3 col-end-11 mt-0">
   
@@ -79,10 +79,7 @@
                         <span class="name">{{customer.first_name}} {{customer.last_name}}</span>
                     </td>
                     <td class="p-3 text-sm">
-                      <span class="name" *ngIf="customer.RoleID==1; else elseBlockRole">Private</span>
-                      <ng-template #elseBlockRole>
-                        <span class="name">Business</span>
-                      </ng-template>
+                        <span class="name">{{customer.customer_type}}</span>
                     </td>
                     <td class="p-3 text-sm">
                         <!--if there is one or more running contracts, place each contract details behind one button-->

@@ -36,6 +36,7 @@ import { AuthService } from './services/auth.service';
 import { LogoutComponent } from './logout/logout.component';
 import { StatuscodepageComponent } from './statuscodepage/statuscodepage.component';
 import { SupportComponent } from './support/support.component';
+import { ValidateContractComponent } from './validate-contract/validate-contract.component';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { SupportComponent } from './support/support.component';
     LogoutComponent,
     StatuscodepageComponent, 
     SupportComponent,
-    ManageTickets
+    ManageTickets,
+    ValidateContractComponent
   ],
   entryComponents:[CustomerDetailComponent],
     imports: [
