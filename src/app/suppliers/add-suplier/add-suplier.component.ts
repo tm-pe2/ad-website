@@ -1,6 +1,8 @@
 import { Component, NgModule, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { SupplierData } from 'src/app/interfaces/suppliersData';
+
 
 
 
@@ -19,9 +21,9 @@ export class AddSuplierComponent implements OnInit {
   constructor(private router: Router) { }   
  
   // Error msg
-  showSuccesMsg:boolean=false;
-  showErrorMsg:boolean=false;
-  errorMsg:string = "";
+
+  allfilled = false;
+  invalidF = false;
 
   tester = 1;
 
@@ -29,29 +31,27 @@ export class AddSuplierComponent implements OnInit {
    
   }
 
-
-  clickButton(logForm: NgForm){
-    if(!logForm.valid){
-      this.formNotValid = true
-      this.credentialsNotValid = false;
-      return
+  onSubmit(addSupplierForm: NgForm){
+    if(!addSupplierForm.valid){
+      this.invalidF = true;
+      this.allfilled = true;
+      return;
     }
+    this.control(addSupplierForm);
+
+  }
+
+  private control(addSupplierForm: NgForm){
+   const suppliersData: SupplierData =  { 
+    name: addSupplierForm.value.addNameSup,
+    addres: addSupplierForm.value.addNameSup.addAddressSup, 
+    city: addSupplierForm.value.addCitySup, 
+    zip: addSupplierForm.value.addZipSup, 
+    type: addSupplierForm.value.addTypeSup
+    };
   }
 
 
-
-  
-  addSupplier()
-  {/*
-    // form not valid? --> error msg
-    if(this.tester != 0){
-      this.errorMsg = "Name Field Empty"
-      this.showErrorMsg=!this.showErrorMsg
-    }
-    else{
-      this.showSuccesMsg=!this.showSuccesMsg
-    }*/
-  }
   
   backToHub(pageName:string):void{
     this.router.navigate([`${pageName}`]);

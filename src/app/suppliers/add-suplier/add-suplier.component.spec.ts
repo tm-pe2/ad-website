@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { AddSuplierComponent } from './add-suplier.component';
 
+
 describe('AddSuplierComponent', () => {
   let component: AddSuplierComponent;
   let fixture: ComponentFixture<AddSuplierComponent>;

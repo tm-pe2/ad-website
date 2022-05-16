@@ -16,6 +16,7 @@ import { DetailsSupplierComponent } from './suppliers/details-supplier/details-s
 import { ContactSupplierComponent } from './suppliers/contact-supplier/contact-supplier.component';
 import { ContractOverveiwComponent } from './suppliers/contract-overveiw/contract-overveiw.component';
 import { ManageContractComponent } from './suppliers/manage-contract/manage-contract.component';
+import { FormsModule }   from '@angular/forms';
 
 
 
@@ -37,7 +38,8 @@ import { ManageContractComponent } from './suppliers/manage-contract/manage-cont
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
