@@ -1,0 +1,48 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-700">
+    <div class="w-full md:w-1/2 sm:w-3/4 rounded shadow-2xl bg-white p-5 text-2xl">
+        <form #regForm="ngForm" (ngSubmit)="onSubmit(regForm)">
+            
+            <h2 class="font-bold flex items-center justify-center pb-5">Sign up!</h2>
+            <div class="mb-3">
+                <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" id="regNname" type="text" name="regNname" placeholder="Name" required autofocus ngModel />
+            </div>
+            <div class="mb-3">
+                <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" id="regMail" type="email" name="regMail" placeholder="Mail" required ngModel />
+            </div>
+            <div class="mb-3">
+                <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" id="regPhone" type="text" name="regPhone" placeholder="Phone" required ngModel />
+            </div>
+            <div class="mb-3">
+                <select class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" id="regType" name="regType" required ngModel>
+                    <option value="" disabled selected hidden>Choose a type of customer</option>
+                    <option *ngFor="let type of types" value="{{ type }}">{{ type }}</option>
+                </select>
+            </div>
+            <div class="grid grid-cols-2 mb-3 gap-2">
+                <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" id="regCity" type="text" name="regCity" placeholder="City" required ngModel />
+                <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" id="regPostalcode" type="number" name="regPostalcode" placeholder="Postcal code" required ngModel />
+            </div>
+            <div class="grid grid-cols-2 mb-3 gap-2">
+                <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" id="regStreet" type="text" name="regStreet" placeholder="Street" required ngModel />
+                <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" id="regNumber" type="text" name="regNumber" placeholder="House number" required ngModel />
+            </div>
+            <div class="mb-3">
+                <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" id="regPassword" type="password" name="regPassword" placeholder="Password" required ngModel />
+            </div>
+            <div class="mb-3">
+                <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" id="regConfPassword" type="password" name="regConfPassword" placeholder="Confirm password" required ngModel />
+            </div>
+            <div class="flex justify-between m-2 pt-5">
+                <button class="p-1.5 px-5 uppercase text-lg font-medium tracking-wider text-white bg-red-600 rounded-lg hover:underline" id="regConfirm" type="submit">Sign up</button>
+                <a class="p-1.5 px-5 text-lg uppercase font-medium tracking-wider text-red-600 hover:underline" id="loginLink" type="submit" routerLink="/login">Sign in</a>
+            </div>
+            <div class="bg-red-600 rounded p-5 bg-opacity-75" role="alert" *ngIf="invalidForm">
+                Fill in all fields!
+            </div>
+            <div class="bg-red-600 rounded p-5 bg-opacity-75" role="alert" *ngIf="matchingPasswords">
+                The passwords don't match!
+            </div>
+                
+        </form>
+    </div>
+</div>

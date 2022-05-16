@@ -9,6 +9,10 @@ import { Component, Input, OnInit } from '@angular/core';
 export class BigCardComponent implements OnInit {
 
   @Input() title: string = 'Default title';
+  @Input() icon: string = 'input';
+  @Input() buttonIcon?: string;
+  @Input() buttonTitle?: string;
+  @Input() buttonHref?: string
 
   constructor() { }
 
