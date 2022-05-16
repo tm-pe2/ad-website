@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { SupplierData } from 'src/app/interfaces/suppliersData';
+
+
 
 @Component({
   selector: 'app-edit-supplier',
@@ -18,11 +22,30 @@ export class EditSupplierComponent implements OnInit {
   }
 
   homePage = "suppliers"
+  allfilled = false;
+  invalidF = false;
 
-  editSup():void{
-    alert("Supplier Has been edited");
-    this.router.navigate([`${this.homePage}`]);
+  onSubmit(addSupplierForm: NgForm){
+    if(!addSupplierForm.valid){
+      this.invalidF = true;
+      this.allfilled = true;
+      return;
+    }
+    this.control(addSupplierForm);
 
   }
+
+  private control(addSupplierForm: NgForm){
+   const suppliersData: SupplierData =  { 
+    name: addSupplierForm.value.addNameSup,
+    addres: addSupplierForm.value.addNameSup.addAddressSup, 
+    city: addSupplierForm.value.addCitySup, 
+    zip: addSupplierForm.value.addZipSup, 
+    type: addSupplierForm.value.addTypeSup
+    };
+  }
+
+
+
 
 }
