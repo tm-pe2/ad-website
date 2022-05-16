@@ -17,6 +17,9 @@ import { UtilService } from './util.service';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { FormsModule } from '@angular/forms';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserdataService } from './services/userdata.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
@@ -53,6 +56,9 @@ import { SupportComponent } from './support/support.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,    
+    MatDatepickerModule,
+    BrowserAnimationsModule,
     FormsModule,
     MatIconModule,
     HttpClientModule,

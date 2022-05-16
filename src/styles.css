@@ -3,4 +3,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+html, body { height: 100%; }
+body 
+{ 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    max-width: 83%;
+    background-image: url("../../ad-website/src/assets/PisvqJ.jpg");
+    background-repeat:round;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 

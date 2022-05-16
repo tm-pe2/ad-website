@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { RegistrationData, Address } from '../interfaces/registrationData';
+import { UserdataService } from '../services/userdata.service';
+
 
 @Component({
   selector: 'app-registration',
@@ -11,9 +14,10 @@ export class RegistrationComponent implements OnInit {
   invalidForm = false;
   matchingPasswords = false;
   types = ["Private", "Company"];
+  addressList: Address[] = [];
 
   // Constructor
-  constructor() { }
+  constructor(private service: UserdataService) { }
 
   // On init
   ngOnInit(): void { }
@@ -44,9 +48,24 @@ export class RegistrationComponent implements OnInit {
 
     }
 
+    // User stuff
+    const regData: RegistrationData =
+    {
+      user_id: -1,
+      role_id: 1,
+      first_name: regForm.value.regFname,
+      last_name: regForm.value.regLname,
+      birth_date: regForm.value.regBdate,
+      email: regForm.value.regMain,
+      phone_number: regForm.value.regPhone,
+      password: regForm.value.regPassword,
+      national_registry_number: regForm.value.regNatianalNr
+      
+    }
+
     // Print out the data to the console for demo
     // Delete this later when you can send it to the API
-    console.log(regForm.value);
+    // this.service.addCustomer(regData);
 
   }
 
