@@ -1,24 +1,13 @@
 <div class="bg-slate-100 min-h-screen flex flex-row">
     <div class="2xl:w-1/6"></div>
     <div class="2xl:w-4/6 w-full">
-        <app-button [href]="'dashboard/0'">0</app-button>
-        <app-button [href]="'dashboard/1'">1</app-button>
-        <app-button [href]="'dashboard/2'">2</app-button>
         <h1 class="text-5xl font-bold p-5">{{ title }}
         </h1>
         <div class="flex flex-wrap overflow">
-
-            <app-small-card *ngIf="user?.type == 'Employee'" [title]="'Manage suppliers'" [icon]="'archive'" [href]="'manage-suppliers'"></app-small-card>
-            <app-small-card *ngIf="user?.type == 'Employee'" [title]="'Manage clients'" [icon]="'group icon'" [href]="'manage-clients'"></app-small-card>
-            <app-small-card *ngIf="user?.type == 'Employee'" [title]="'Manage invoices'" [icon]="'file_copy'"  [href]="'manage-invoices'"></app-small-card>
-
-            <app-big-card *ngIf="user?.type == 'Employee'"
             [title]="'Prices'" [icon]="'show_chart'"
             [buttonTitle]="'View details'" [buttonIcon]="'bar_chart'">
                 <!-- <graph></graph> -->
-            </app-big-card>
 
-            <app-big-card *ngIf="user?.type == 'Technician'"
             [title]="'Recent tickets'" [icon]="'assignment_turned_in'"
             [buttonTitle]="'All tickets'" [buttonIcon]="'assignment'"
             [buttonHref]="'ticketing'">
@@ -35,18 +24,12 @@
                 <div class="bg-blue-500 w-full h-1/2"></div>
                 <div class="bg-yellow-300 w-full h-1/2"></div>
 
-            </app-big-card>
 
-            <app-big-card *ngIf="user?.type == 'User'"
             [title]="'Recent consumption'" [icon]="'show_chart'"
             [buttonTitle]="'View details'" [buttonIcon]="'bar_chart'">
                 <!-- <img class="h-full" src="../../assets/img/dashboard/examplechart.png" alt="chart" /> -->
                     <!-- <graph></graph> -->
                     <!-- <canvas #monthlyChart></canvas> -->
-            </app-big-card>
-
-
-            <app-profile-card [user]="user"></app-profile-card>
         <div>
     </div>
     <div class="2xl:w-1/6"></div>

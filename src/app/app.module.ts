@@ -44,7 +44,6 @@ import { SupportComponent } from './support/support.component';
     GraphsComponent,
     MonthlyUsageChartComponent,
     YearlyUsageChartComponent,
-    TableRow,
     LoginComponent,
     RegistrationComponent,
     GraphsComponent,
