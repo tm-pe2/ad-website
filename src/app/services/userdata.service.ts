@@ -49,9 +49,36 @@ export class UserdataService
           }
         })
       }
-      else {
-        reject();
-      }
+      else { reject(); }
     });
-    }
+  }
+
+  registerUser(regDate: RegistrationData): Promise<void> 
+  {
+    const promise = new Promise<void>((resolve, reject) =>
+    {
+      this.http.post(environment.apiUrl + '/users', regDate)
+      .subscribe(
+        {
+          next: (res: any) => 
+          {
+            // What needs to go here?
+            // I just put a resolve here atm but idk if I need this
+            resolve(res);
+
+          },
+          error: (err) =>
+          {
+            reject(err);
+
+          }
+
+        });
+
+    });
+
+    return promise;
+
+  }
+
 }
