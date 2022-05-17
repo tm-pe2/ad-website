@@ -5,10 +5,16 @@
 <div class="min-h-screen flex items-center justify-center bg-gray-700">
 
 <div class="w-full md:w-1/2 sm:w-3/4 rounded shadow-2xl bg-white p-5 text-2xl">
+    <form #deleteSupplierForm="ngForm" (ngSubmit)="onSubmit(deleteSupplierForm)">
     <div class="flex items-center justify-center p-5">
-        <button class="p-1.5 px-5 text-lg uppercase font-medium tracking-wider text-black-600 hover:underline hover:cursor-pointer bg-red-400 rounded">Delete Supplier</button>
+        <button class="p-1.5 px-5 uppercase text-lg font-medium tracking-wider text-black bg-red-500 rounded-lg hover:underline" id="delSup" type="submit">Delete Supplier</button>
     </div>
+    <div class="bg-red-600 rounded p-5 bg-opacity-75" role="alert" *ngIf="presDeleted">
+        Supplier Has been deleted
+        <button class="p-1.5 px-5 text-lg uppercase font-medium tracking-wider text-black-600 hover:underline hover:cursor-pointer bg-red-700 rounded-lg" (click)="backToHub('suppliers')" >Back</button>
 
+    </div>
+    </form>
 </div>
 
 </div>
