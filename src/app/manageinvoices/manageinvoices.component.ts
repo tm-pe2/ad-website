@@ -1,4 +1,4 @@
-import { Component, OnInit, NgModule } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-manageinvoices',
@@ -20,10 +20,6 @@ export class ManageinvoicesComponent implements OnInit {
   {"id":4,"CustomerName":"John Doe","SupplierID":3,"Date":"12/6/2021","GasAmount":763,ElectricityAmount:0,"Price":167,"Tax":5.70, ClientType: "Business", StatusID: 3, Status: "Betaald"},
   {"id":5,"CustomerName":"John Doe","SupplierID":3,"Date":"12/6/2021","GasAmount":763,ElectricityAmount:0,"Price":167,"Tax":5.70, ClientType: "Business", StatusID: 0, Status: "Not Generated"},
   {"id":6,"CustomerName":"John Doe","SupplierID":3,"Date":"12/6/2021","GasAmount":763,ElectricityAmount:0,"Price":167,"Tax":5.70, ClientType: "Business", StatusID: 1, Status: "Generated"}];
-  public contracts = 
-  [{"ContractID":1,"CustomerName":1,"ClientType":"Company"},
-  {"ContractID":2,"CustomerName":1,"ClientType":"Individual"},
-  {"ContractID":3,"CustomerName":2,"ClientType":"Individual"}];
 
   constructor() {}
 
@@ -55,7 +51,6 @@ export class Invoice {
   public contractType: string;
   public statusID: number;
   public status: string;
-
 
   constructor (iId: number = 0, iCName: string = "", iSName = "", iDate = "", iDueDate = "", iGasAmount = 0, iElectricityAmount = 0, iPrice = 0, iTax = 0, iContractType = "", iStatusID = 0, iStatus = "") {
     this.id = iId;
