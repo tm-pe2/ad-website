@@ -5,11 +5,12 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, Observable } from 'rxjs';
 
 // Interfaces
-import { User } from '../interfaces/User';
+import { User, UserRole } from '../interfaces/User';
 import { LoginData } from '../interfaces/loginData';
 import { RegistrationData } from '../interfaces/registrationData';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -19,35 +20,38 @@ export class UserdataService
 {
   user: User =
   { 
-    id: 0,
-    name: "John Doe",
-    mail: "johndoe@mail.com", 
-    password: "test123",
-    phone: "0123/45 67 89",
-    type: "private",
-    city: "Mechelen",
-    zipcode: 2800,
-    street: "Koningin Astridlaan",
-    house: "10"
+    user_id: 0,
+    role_id: UserRole.CUSTOMER,
+    first_name: '',
+    last_name: '',
+    birth_date: new Date(),
+    address_id: 0,
+    email: '',
+    phone_number: '',
+    password: 'WhyAreWeSendingTheHashedPasswords?',
+    national_registry_number: ''
   }
 
   constructor(private router: Router, private http: HttpClient, private authService: AuthService) {
-    this.loadUser();
+    this.loadUser().then(() => {
+      console.log(this.user)
+    })
+    .catch((err) => console.log(err))
   }
 
   loadUser(): Promise<void> {
     return new Promise<void>((resolve, reject) => {
       if (this.authService.isAuthenticated()) {
-        this.http.get<User>(environment.apiUrl + '/user/' + this.authService.getUserId())
-        .subscribe({
-          next: (res: User) => {
-            this.user = res;
-            resolve();
-          },
-          error: (err) => {
-            reject(err);
-          }
-        })
+        this.http.get<User>(environment.apiUrl + '/users/self')
+          .subscribe({
+            next: (res: User) => {
+              this.user = res;
+              resolve();
+            },
+            error: (err) => {
+              reject(err);
+            }
+          })
       }
       else { reject(); }
     });

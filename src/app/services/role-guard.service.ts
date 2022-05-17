@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Router } from '@angular/router';
+import { UserRole } from '../interfaces/User';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -22,8 +23,8 @@ export class RoleGuardService {
       return false;
     }
     
-    const roles = route.data['roles'] as Array<string>; // TODO string enum for roles
-    const userRole = this.auth.getUserRole();
+    const roles = route.data['roles'] as Array<UserRole>; // TODO string enum for roles
+    const userRole = this.auth.getUserRoleId();
 
     if (userRole != null && roles.includes(userRole)) {
       return true;

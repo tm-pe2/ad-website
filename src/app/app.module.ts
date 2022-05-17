@@ -24,6 +24,7 @@ import { UserdataService } from './services/userdata.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ClientTicketsComponent } from './ticketing/client-tickets/client-tickets.component';
+import { NavigationComponent } from './navigation/navigation.component';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { AuthService } from './services/auth.service';
 import { LogoutComponent } from './logout/logout.component';
@@ -45,11 +46,12 @@ import { SupportComponent } from './support/support.component';
     LoginComponent,
     RegistrationComponent,
     GraphsComponent,
+    ManageTickets,
+    NavigationComponent, 
     ClientTicketsComponent,
     LogoutComponent,
     StatuscodepageComponent, 
     SupportComponent,
-    ManageTickets,
   ],
   imports: [
     BrowserModule,
