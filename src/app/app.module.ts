@@ -27,22 +27,10 @@ import { LogoutComponent } from './logout/logout.component';
 import { StatuscodepageComponent } from './statuscodepage/statuscodepage.component';
 import { SupportComponent } from './support/support.component';
 import { WorkerappComponent } from './workerapp/workerapp.component';
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 import { ListElementComponent } from './workerapp/cient-list/list-element/list-element.component';
 import { CientListComponent } from './workerapp/cient-list/cient-list.component';
-<<<<<<< HEAD
 import { CientPageComponent } from './workerapp/cient-page/cient-page.component';
 import { HeaderComponent } from './workerapp/header/header.component';
-=======
->>>>>>> parent of d0a21fc (nog altij kpot)
-=======
->>>>>>> parent of d0a21fc (nog altij kpot)
-=======
->>>>>>> parent of d0a21fc (nog altij kpot)
-=======
->>>>>>> parent of d48b3d8 (no errors?)
 
 @NgModule({
   declarations: [
@@ -65,22 +53,10 @@ import { HeaderComponent } from './workerapp/header/header.component';
     SupportComponent,
     ManageTickets,
     WorkerappComponent,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     ListElementComponent,
     CientListComponent,
-<<<<<<< HEAD
     HeaderComponent,
     CientPageComponent,
-=======
->>>>>>> parent of d0a21fc (nog altij kpot)
-=======
->>>>>>> parent of d0a21fc (nog altij kpot)
-=======
->>>>>>> parent of d0a21fc (nog altij kpot)
-=======
->>>>>>> parent of d48b3d8 (no errors?)
   ],
   imports: [
     BrowserModule,
