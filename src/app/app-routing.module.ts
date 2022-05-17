@@ -10,6 +10,7 @@ import { RoleGuardService } from './services/role-guard.service';
 import { LogoutComponent } from './logout/logout.component';
 import { StatuscodepageComponent } from './statuscodepage/statuscodepage.component';
 import { SupportComponent } from './support/support.component';
+import { ManageinvoicesComponent } from './manageinvoices/manageinvoices.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,7 @@ const routes: Routes = [
   {path: 'ticketing/:userType', component: TicketingComponent},
   {path: 'graphs', component: GraphsComponent},
   {path: 'statuscode/:statusCode', component: StatuscodepageComponent},
+  {path: 'manageinvoices', component: ManageinvoicesComponent, canActivate: [AuthGuardService]}
 ];
 
 @NgModule({
