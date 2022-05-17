@@ -27,6 +27,8 @@ import { LogoutComponent } from './logout/logout.component';
 import { StatuscodepageComponent } from './statuscodepage/statuscodepage.component';
 import { SupportComponent } from './support/support.component';
 import { WorkerappComponent } from './workerapp/workerapp.component';
+import { ListElementComponent } from './workerapp/cient-list/list-element/list-element.component';
+import { CientListComponent } from './workerapp/cient-list/cient-list.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,8 @@ import { WorkerappComponent } from './workerapp/workerapp.component';
     SupportComponent,
     ManageTickets,
     WorkerappComponent,
+    ListElementComponent,
+    CientListComponent,
   ],
   imports: [
     BrowserModule,
