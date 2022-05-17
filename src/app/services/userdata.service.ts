@@ -7,7 +7,7 @@ import { catchError, Observable } from 'rxjs';
 // Interfaces
 import { User, UserRole } from '../interfaces/User';
 import { LoginData } from '../interfaces/loginData';
-import { Address, RegistrationData } from '../interfaces/registrationData';
+import { RegistrationData } from '../interfaces/registrationData';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 
@@ -53,20 +53,36 @@ export class UserdataService
             }
           })
       }
-      else {
-        reject('Not authenticated');
-      }
+      else { reject(); }
     });
   }
 
-      // API Connection
-  getAddress(): Observable<Address[]>
-  { return this.http.get<Address[]>(environment.apiUrl + '/addresses'); }
+  registerUser(regDate: RegistrationData): Promise<void> 
+  {
+    const promise = new Promise<void>((resolve, reject) =>
+    {
+      this.http.post(environment.apiUrl + '/users', regDate)
+      .subscribe(
+        {
+          next: (res: any) => 
+          {
+            // What needs to go here?
+            // I just put a resolve here atm but idk if I need this
+            resolve(res);
 
-  addAddress(address: Address)
-  { this.http.post<Address>(environment.apiUrl + '/addresses', address); }
+          },
+          error: (err) =>
+          {
+            reject(err);
 
-  addCustomer(customer: RegistrationData): Observable<RegistrationData>
-  { return this.http.post<RegistrationData>(environment.apiUrl + '/customers', customer); }
-  
+          }
+
+        });
+
+    });
+
+    return promise;
+
+  }
+
 }

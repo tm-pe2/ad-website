@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { RegistrationData, Address } from '../interfaces/registrationData';
+import { RegistrationData } from '../interfaces/registrationData';
 import { UserdataService } from '../services/userdata.service';
 
 
@@ -14,10 +14,9 @@ export class RegistrationComponent implements OnInit {
   invalidForm = false;
   matchingPasswords = false;
   types = ["Private", "Company"];
-  addressList: Address[] = [];
 
   // Constructor
-  constructor(private service: UserdataService) { }
+  constructor() { }
 
   // On init
   ngOnInit(): void { }
@@ -47,43 +46,21 @@ export class RegistrationComponent implements OnInit {
       return;
 
     }
-    
-    // Address stuff
-    const formAddress: Address  = 
-    {
-      city: regForm.value.regCity,
-      street: regForm.value.regStreet,
-      house_number: regForm.value.regNumber,
-      postal_code: regForm.value.regPostalcode,
-      country: 'Belgium'
-
-    }
-
-    this.service.getAddress().subscribe(addresses => { this.addressList = addresses as Address[] });
-
-    
-    this.addressList.forEach  // Does it give false on the if statement cuz formAddress doesn't have an ID yet?
-    (address =>  { if (formAddress == address) { formAddress.address_id = address.address_id; } })
-
-    if (formAddress.address_id == null)
-    { this.service.addAddress(formAddress); }
 
     // User stuff
     const regData: RegistrationData =
     {
+      user_id: -1,
       role_id: 1,
       first_name: regForm.value.regFname,
       last_name: regForm.value.regLname,
       birth_date: regForm.value.regBdate,
-      address_id: 0,
       email: regForm.value.regMain,
       phone_number: regForm.value.regPhone,
       password: regForm.value.regPassword,
       national_registry_number: regForm.value.regNatianalNr
       
     }
-
-    this.service.addCustomer(regData);
 
     // Print out the data to the console for demo
     // Delete this later when you can send it to the API
