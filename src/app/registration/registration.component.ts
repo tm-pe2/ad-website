@@ -16,7 +16,7 @@ export class RegistrationComponent implements OnInit {
   types = ["Private", "Company"];
 
   // Constructor
-  constructor(private service: UserdataService) { }
+  constructor() { }
 
   // On init
   ngOnInit(): void { }
