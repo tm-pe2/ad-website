@@ -1,0 +1,57 @@
+<div class="bg-slate-300 m-3 drop-shadow-md h-fit rounded-lg p-3 text-slate-300" id="list">
+    <div class="flex m-2 bg-slate-200 rounded-2xl p-4 justify-between">
+        <div class="bg-slate-500 rounded-2xl p-1 pr-4 pl-4">
+            {{name}}
+        </div>
+        <div class="bg-slate-500 rounded-2xl p-1 ml-2 md:ml-0 pr-4 pl-4">
+            {{adr}}
+        </div>
+    </div>
+
+    <div class="block md:flex m-2 bg-slate-200 rounded-2xl p-4 justify-between">
+        <div id="gasfield" class="bg-slate-500 rounded-2xl p-1 pr-4 pl-4 pb-2">
+            <div class="flex">
+                <p class="mr-2">Meter ID: </p>
+                <div>
+                    insert value from db
+               </div>
+            </div>
+            <div class="flex">
+                <p class="mr-2">Last checkup: </p>
+                <div>
+                     insert value from db
+                </div>
+            </div>
+            <input *ngIf="mtype == 1 || mtype == 2" type="text" (change)="setGas($event)" class="text-slate-600 rounded pl-2 mt-2" placeholder=" Gas">
+        </div>
+        <div id="elecfield" class="bg-slate-500 rounded-2xl p-1 pr-4 pl-4  pb-2 mt-2 md:mt-0">
+            <div class="flex">
+                <p class="mr-2">Meter ID:</p>
+                <div>
+                    insert value from db
+               </div>
+            </div>
+            <div class="flex">
+                <p class="mr-2">Last checkup: </p>
+                <div>
+                    insert value from db
+               </div>
+            </div>
+            <input *ngIf="mtype == 0 || mtype == 2" type="text" (change)="setElek($event)" class="text-slate-600 rounded pl-2 mt-2" placeholder=" Electricity">
+        </div>
+    </div>
+
+    <div class="flex m-2 bg-slate-200 rounded-2xl p-4 justify-between">
+        <div class="bg-slate-500 rounded-2xl p-1 pr-4 pl-4">
+            Next checkup : <input type="date" class="text-slate-600 rounded pl-2" (change)="setDate($event)">
+        </div>
+        <button (click)="submit()" class="md:ml-0 ml-2 bg-slate-500 rounded-2xl p-1 pr-4 pl-4">
+            submit
+        </button>   
+    </div>
+    <div class="flex m-2 mt-10 bg-slate-200 rounded-2xl p-4 justify-between">
+        <button (click)="replan()" class="bg-slate-500 rounded-2xl p-1 pr-4 pl-4">
+            Customer didn't answer
+        </button>   
+    </div>
+</div>
