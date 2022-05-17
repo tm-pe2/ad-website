@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { RegistrationData, Address } from '../interfaces/registrationData';
+import { RegistrationData } from '../interfaces/registrationData';
 import { UserdataService } from '../services/userdata.service';
 
 
@@ -14,7 +14,6 @@ export class RegistrationComponent implements OnInit {
   invalidForm = false;
   matchingPasswords = false;
   types = ["Private", "Company"];
-  addressList: Address[] = [];
 
   // Constructor
   constructor(private service: UserdataService) { }
