@@ -24,10 +24,11 @@ export class EmployeeService {
 
   
   constructor(private http:HttpClient) { 
-    this.http.get(environment.apiUrl + '/employees').subscribe(
+    this.http.get(environment.apiUrl + 'employees').subscribe(
       {
         next: (res: any) => {
           this.employees = res;
+          console.log("result",res);
         },
       }
     );

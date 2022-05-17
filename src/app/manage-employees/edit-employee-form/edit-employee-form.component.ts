@@ -26,6 +26,7 @@ export class EditEmployeeFormComponent {
   }
   
   onCancelEditEmp(){
+    console.log("disapear");
     this.parent?.changeStatusEmpEditForm();
   }
   

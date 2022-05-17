@@ -84,8 +84,8 @@
 
 
 
-<app-add-employee-form [style.display]="employeeService.showAddEmpForm ? 'block' : 'none'"  ></app-add-employee-form>
+<app-add-employee-form [style.display]="employeeService.showAddEmpForm ? 'block' : 'none'"  [parent]="this"></app-add-employee-form>
 
-<app-edit-employee-form [style.display]="employeeService.showEditEmpForm ? 'block' : 'none' " ></app-edit-employee-form>
+<app-edit-employee-form [style.display]="employeeService.showEditEmpForm ? 'block' : 'none' " [parent]="this"></app-edit-employee-form>
 
 <app-employee-card [style.disoplay]="employeeService.showEmpCard ? 'block' : 'none' "></app-employee-card>
