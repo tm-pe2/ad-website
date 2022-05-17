@@ -29,10 +29,13 @@ import { SupportComponent } from './support/support.component';
 import { WorkerappComponent } from './workerapp/workerapp.component';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { ListElementComponent } from './workerapp/cient-list/list-element/list-element.component';
 import { CientListComponent } from './workerapp/cient-list/cient-list.component';
 import { CientPageComponent } from './workerapp/cient-page/cient-page.component';
 import { HeaderComponent } from './workerapp/header/header.component';
+=======
+>>>>>>> parent of d0a21fc (nog altij kpot)
 =======
 >>>>>>> parent of d0a21fc (nog altij kpot)
 =======
@@ -61,10 +64,13 @@ import { HeaderComponent } from './workerapp/header/header.component';
     WorkerappComponent,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     ListElementComponent,
     CientListComponent,
     HeaderComponent,
     CientPageComponent,
+=======
+>>>>>>> parent of d0a21fc (nog altij kpot)
 =======
 >>>>>>> parent of d0a21fc (nog altij kpot)
 =======
