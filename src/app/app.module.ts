@@ -32,6 +32,7 @@ import { WorkerappComponent } from './workerapp/workerapp.component';
 <<<<<<< HEAD
 import { ListElementComponent } from './workerapp/cient-list/list-element/list-element.component';
 import { CientListComponent } from './workerapp/cient-list/cient-list.component';
+<<<<<<< HEAD
 import { CientPageComponent } from './workerapp/cient-page/cient-page.component';
 import { HeaderComponent } from './workerapp/header/header.component';
 =======
@@ -40,6 +41,8 @@ import { HeaderComponent } from './workerapp/header/header.component';
 >>>>>>> parent of d0a21fc (nog altij kpot)
 =======
 >>>>>>> parent of d0a21fc (nog altij kpot)
+=======
+>>>>>>> parent of d48b3d8 (no errors?)
 
 @NgModule({
   declarations: [
@@ -67,6 +70,7 @@ import { HeaderComponent } from './workerapp/header/header.component';
 <<<<<<< HEAD
     ListElementComponent,
     CientListComponent,
+<<<<<<< HEAD
     HeaderComponent,
     CientPageComponent,
 =======
@@ -75,6 +79,8 @@ import { HeaderComponent } from './workerapp/header/header.component';
 >>>>>>> parent of d0a21fc (nog altij kpot)
 =======
 >>>>>>> parent of d0a21fc (nog altij kpot)
+=======
+>>>>>>> parent of d48b3d8 (no errors?)
   ],
   imports: [
     BrowserModule,
