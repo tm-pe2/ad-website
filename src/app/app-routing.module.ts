@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { GraphsComponent } from './graphs/graphs.component';
@@ -10,6 +10,7 @@ import { RoleGuardService } from './services/role-guard.service';
 import { LogoutComponent } from './logout/logout.component';
 import { StatuscodepageComponent } from './statuscodepage/statuscodepage.component';
 import { SupportComponent } from './support/support.component';
+import { WorkerappComponent } from './workerapp/workerapp.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,7 @@ const routes: Routes = [
   {path: 'ticketing/:userType', component: TicketingComponent},
   {path: 'graphs', component: GraphsComponent},
   {path: 'statuscode/:statusCode', component: StatuscodepageComponent},
+  {path: 'workerapp', component: WorkerappComponent},
 ];
 
 @NgModule({
