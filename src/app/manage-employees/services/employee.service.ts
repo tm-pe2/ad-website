@@ -24,6 +24,10 @@ export class EmployeeService {
 
   
   constructor(private http:HttpClient) { 
+  
+  }
+
+  loadEmp(){
     this.http.get<Employee[]>(environment.apiUrl + '/employees').subscribe(
       {
         next: (res: Employee[]) => {

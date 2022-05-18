@@ -5,6 +5,7 @@ import { Address } from '../interfaces/address';
 import { AuthGuardService } from '../services/auth-guard.service';
 import { AuthService } from '../services/auth.service';
 import { EmployeeService } from './services/employee.service';
+import { UserdataService } from '../services/userdata.service';
 
 
 @Component({
@@ -16,18 +17,22 @@ import { EmployeeService } from './services/employee.service';
 
 export class ManageEmployeesComponent implements OnInit{
   
-  constructor(private auth : AuthService,public employeeService: EmployeeService ) { }
-
-  role ?: string | null;
-
+  constructor(private auth : AuthService,public employeeService: EmployeeService,public userdataService: UserdataService) {
+    
+  }
+  
+  role ?: number | null;
+  
   ngOnInit(){
+    this.employeeService.loadEmp();
 
-    //this.role = this.auth.getUserRole()
+    //this.userdataService.loadUser();
+    this.role = this.auth.getUserRoleId()
 
-    this.role = 'employeeManager'
-    if(this.role != 'employeeManager'){
+    if(this.role != 6){
       this.employeeService.showAddEmpButton = false;
     }
+    
   }
     
     onAddButtonClick(){

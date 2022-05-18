@@ -26,6 +26,7 @@ const routes: Routes = [
     canActivate: [RoleGuardService],
     data: { roles: [UserRole.ADMIN, UserRole.TECHNICIAN] }, // E.g. how to user roleguard service
   },
+
   {path: 'support', component: SupportComponent},
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: LogoutComponent},
@@ -33,6 +34,7 @@ const routes: Routes = [
   {path: 'ticketing/:userType', component: TicketingComponent},
   {path: 'graphs', component: GraphsComponent},
   {path: 'statuscode/:statusCode', component: StatuscodepageComponent},
+  {path: 'manage-employees',component:ManageEmployeesComponent, canActivate: [RoleGuardService], data:{roles:[UserRole.MANAGER,UserRole.HR_MANAGER,UserRole.ADMIN,UserRole.EMPLOYEE]}},
 ];
 
 @NgModule({

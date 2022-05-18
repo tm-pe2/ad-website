@@ -22,7 +22,7 @@ export class AddEmployeeFormComponent implements OnInit{
   // Some variables
   
   gender = "X";
-  department = "testdep2";
+  department = "HR";
   submitted = false;
   FormCheck = true;
   statusAddButton = false;

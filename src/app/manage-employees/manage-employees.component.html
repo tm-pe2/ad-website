@@ -1,14 +1,7 @@
-
-<div [style.display]="employeeService.showEmpList ? 'block' : 'none' ">
-    <div class="grid overflow-hidden grid-cols-10 grid-rows-6 gap-px h-screen">
-        <div class="box row-start-1 row-end-1 col-start-1 col-end-11">
-            <!--Header-->
-        </div>
-        <div class="box row-start-2 row-end-6 col-start-1 col-end-3 overflow-y-auto shadow">
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" [style.display]="employeeService.showAddEmpButton ? 'block' : 'none'" (click)="changeStatusEmpAddForm()">Add Employee</button>
-        <!--filter div-->
-    </div>
-    <div class="box row-start-2 row-end-6 col-start-3 col-end-11">
+<div class="box row-start-2 row-end-6 col-start-1 col-end-3 overflow-y-auto shadow">
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" [style.display]="employeeService.showAddEmpButton ? 'block' : 'none'" (click)="changeStatusEmpAddForm()">Add Employee</button>
+</div> 
+    <div class="box row-start-2 row-end-6 col-start-3 col-end-11" [style.display]="employeeService.showEmpList ? 'block' : 'none'"> 
         <div class="flex flex-wrap overflow-y-auto max-h-full border-md shadow">          
             <!--Place employee cards here-->
             
@@ -50,20 +43,20 @@
                         <td class="w-20 p-3 text-sm">
                             <button 
                             [ngClass]="{
-                                'text-blue-500': (this.role == 'employeeManager'),
-                                'hover:underline': (this.role == 'employeeManager'),
-                                'text-gray-500': (this.role == 'employee')
+                                'text-blue-500': (this.role == 6),
+                                'hover:underline': (this.role == 6),
+                                'text-gray-500': (this.role == 7)
                             }" 
-                            class="font-bold" (click)="startEditEmployee(i)" [disabled]='role!= "employeeManager"'>edit</button>
+                            class="font-bold" (click)="startEditEmployee(i)" [disabled]='role!= 6'>edit</button>
                         </td>
                         <td class="w-20 p-3 text-sm">
                             <button
                             [ngClass]="{
-                                'text-red-500': (this.role == 'employeeManager'),
-                                'hover:underline': (this.role == 'employeeManager'),
-                                'text-gray-500': (this.role == 'employee')
+                                'text-red-500': (this.role == 6),
+                                'hover:underline': (this.role == 6),
+                                'text-gray-500': (this.role == 7)
                             }" 
-                             class="font-bold" (click)="deleteEmployee(i)" [disabled]='role!= "employeeManager"'>remove</button>
+                             class="font-bold" (click)="deleteEmployee(i)" [disabled]='role!= 6'>remove</button>
                         </td>
                     </tr>  
                 </tbody>
@@ -73,9 +66,7 @@
     <div class="box row-start-6 row-end-6 col-start-1 col-end-11">
         <!--Footer-->
     </div>
-</div>
 
-</div>
 
 
 

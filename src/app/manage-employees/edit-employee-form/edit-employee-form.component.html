@@ -116,12 +116,6 @@
             <div class="text-red-500" *ngIf="!salary.valid && salary.touched" >Fill in the salary</div>    
           </span>
 
-          <span>
-            <label for="password">Password</label>
-            <input type="password" class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black"
-              ngModel #password="ngModel" required id="password" name="password">
-              <div class="text-red-500" *ngIf="!password.valid && password.touched" >Fill in the password</div>
-          </span>
 
           <span>
             <label for="national_registry_number">national registry number</label>
@@ -142,16 +136,16 @@
             <span class="grid grid-rows-4">
               Department:
               <span>
-                <input type="radio" id="test" name="department" value="testdep" [(ngModel)]="employeeService.current_Emp.department">
+                <input type="radio" id="test" name="department" value="HR" [(ngModel)]="employeeService.current_Emp.department">
                 <label for="test" class="ml-2">HR</label>
               </span>
               <span>
-                <input type="radio" id="test2" name="department" value="testdep2"  [(ngModel)]="employeeService.current_Emp.department" >
-                <label for="test2" class="ml-2">testdep2</label>
+                <input type="radio" id="test2" name="department" value="Support"  [(ngModel)]="employeeService.current_Emp.department" >
+                <label for="test2" class="ml-2">Support</label>
               </span>
               <span>
-                <input type="radio" id="test3" name="department" value="testdep3"  [(ngModel)]="employeeService.current_Emp.department" > 
-                <label for="test3" class="ml-2">testdep3</label>
+                <input type="radio" id="test3" name="department" value="Technician"  [(ngModel)]="employeeService.current_Emp.department" > 
+                <label for="test3" class="ml-2">Technician</label>
               </span>
               </span>
             </span>
