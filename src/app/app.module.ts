@@ -2,6 +2,16 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
+import { CustomerComponent } from './customers/customers.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { MaterialModule } from './material/material.module';
+import { TicketingComponent,ManageTickets } from './ticketing/ticketing.component';
+import { AddCustomerDialogComponent } from './add-customer-dialog/add-customer-dialog.component';
+import { ConsumptionEstimationComponent } from './consumption-estimation/consumption-estimation.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatNativeDateModule } from '@angular/material/core';
+import { RegisterCustomerComponent } from './register-customer/register-customer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SmallCardComponent } from './dashboard/small-card/small-card.component';
 import { BigCardComponent } from './dashboard/big-card/big-card.component';
@@ -11,7 +21,6 @@ import { MediumGraphComponent } from './graphs/medium-graph/medium-graph.compone
 import { BigGraphComponent } from './graphs/big-graph/big-graph.component';
 import { ButtonComponent } from './dashboard/button/button.component';
 import { MonthlyUsageChartComponent } from './graphs/monthly-usage-chart/monthly-usage-chart.component';
-import { ManageTickets } from './ticketing/ticketing.component';
 import { GraphsComponent } from './graphs/graphs.component';
 import { MatIconModule } from '@angular/material/icon'
 import { UtilService } from './util.service';
@@ -29,7 +38,7 @@ import { AuthService } from './services/auth.service';
 import { LogoutComponent } from './logout/logout.component';
 import { StatuscodepageComponent } from './statuscodepage/statuscodepage.component';
 import { SupportComponent } from './support/support.component';
-import { TicketingComponent } from './ticketing/ticketing.component';
+import { ValidateContractComponent } from './validate-contract/validate-contract.component';
 import { SuppliersComponent } from './suppliers/suppliers.component';
 import { AddSuplierComponent } from './suppliers/add-suplier/add-suplier.component';
 import { EditSupplierComponent } from './suppliers/edit-supplier/edit-supplier.component';
@@ -56,6 +65,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     BigGraphComponent,
     ButtonComponent,
     TicketingComponent,
+    CustomerComponent,
+    CustomerDetailComponent,
+    ConfirmDialogComponent,
+    AddCustomerDialogComponent,
+    ConsumptionEstimationComponent,
+    RegisterCustomerComponent,
     GraphsComponent,
     MonthlyUsageChartComponent,
     LoginComponent,
@@ -66,6 +81,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     LogoutComponent,
     StatuscodepageComponent, 
     SupportComponent,
+    ManageTickets,
+    ValidateContractComponent,
     TicketingComponent,
     SuppliersComponent,
     AddSuplierComponent,
@@ -77,15 +94,20 @@ import { ReactiveFormsModule } from '@angular/forms';
     ManageContractComponent,
     ManageTickets
   ],
-  imports: [
+  entryComponents:[CustomerDetailComponent],
+    imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,    
     MatDatepickerModule,
     BrowserAnimationsModule,
     FormsModule,
-    MatIconModule,
+    MaterialModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
     HttpClientModule,
+    MatSelectModule,
+    MatNativeDateModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: () => {
@@ -93,6 +115,15 @@ import { ReactiveFormsModule } from '@angular/forms';
         },
       }
     }),
+    
+  ],
+  exports:[
+    CustomerComponent,
+    CustomerDetailComponent,
+    ConfirmDialogComponent,
+    HttpClientModule,
+    MatIconModule,
+    
   ],
   providers: [
     UtilService,
