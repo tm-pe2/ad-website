@@ -11,7 +11,6 @@ import { MediumGraphComponent } from './graphs/medium-graph/medium-graph.compone
 import { BigGraphComponent } from './graphs/big-graph/big-graph.component';
 import { ButtonComponent } from './dashboard/button/button.component';
 import { MonthlyUsageChartComponent } from './graphs/monthly-usage-chart/monthly-usage-chart.component';
-import { YearlyUsageChartComponent } from './graphs/yearly-usage-chart/yearly-usage-chart.component';
 import { ManageTickets } from './ticketing/ticketing.component';
 import { GraphsComponent } from './graphs/graphs.component';
 import { MatIconModule } from '@angular/material/icon'
@@ -59,7 +58,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     TicketingComponent,
     GraphsComponent,
     MonthlyUsageChartComponent,
-    YearlyUsageChartComponent,
     LoginComponent,
     RegistrationComponent,
     GraphsComponent,
