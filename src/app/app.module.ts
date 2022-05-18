@@ -27,10 +27,12 @@ import { MatIconModule } from '@angular/material/icon'
 import { UtilService } from './util.service';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { UserdataService } from './services/userdata.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ClientTicketsComponent } from './ticketing/client-tickets/client-tickets.component';
+import { NavigationComponent } from './navigation/navigation.component';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { AuthService } from './services/auth.service';
 import { LogoutComponent } from './logout/logout.component';
@@ -60,6 +62,8 @@ import { ValidateContractComponent } from './validate-contract/validate-contract
     LoginComponent,
     RegistrationComponent,
     GraphsComponent,
+    ManageTickets,
+    NavigationComponent, 
     ClientTicketsComponent,
     LogoutComponent,
     StatuscodepageComponent, 
@@ -71,6 +75,9 @@ import { ValidateContractComponent } from './validate-contract/validate-contract
     imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,    
+    MatDatepickerModule,
+    BrowserAnimationsModule,
     FormsModule,
     MaterialModule,
     BrowserAnimationsModule,

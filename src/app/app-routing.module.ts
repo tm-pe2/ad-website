@@ -14,6 +14,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { StatuscodepageComponent } from './statuscodepage/statuscodepage.component';
 import { SupportComponent } from './support/support.component';
 import { ValidateContractComponent } from './validate-contract/validate-contract.component';
+import { UserRole } from './interfaces/User';
 
 const routes: Routes = [
   {
@@ -25,7 +26,7 @@ const routes: Routes = [
     path: 'ticketing',
     component: TicketingComponent,
     canActivate: [RoleGuardService],
-    data: { roles: ['client', 'admin'] }, // Only users with the role 'client' or 'admin' can access this route
+    data: { roles: [UserRole.ADMIN, UserRole.TECHNICIAN] }, // E.g. how to user roleguard service
   },
   {path: 'support', component: SupportComponent},
   {path: 'login', component: LoginComponent},
