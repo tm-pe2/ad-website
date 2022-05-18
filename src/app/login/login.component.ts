@@ -5,6 +5,7 @@ import { UserdataService } from '../services/userdata.service';
 import { LoginData } from '../interfaces/loginData';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -13,21 +14,17 @@ import { Router } from '@angular/router';
 })
 
 export class LoginComponent implements OnInit {
-  // Variables
   invalidForm = false;
   invalidCreds = false;
 
-  // Constructor
-  constructor(private userData: UserdataService, private authService: AuthService, private router: Router) { }
+  constructor(private titleService: Title, private userData: UserdataService, private authService: AuthService, private router: Router) {
+    this.titleService.setTitle('Login');
+  }
 
-  // On init
   ngOnInit(): void { }
 
-  // Functions
-  // Public
   onSubmit(loginForm: NgForm)
   {
-    // Check if all required inputs are filled
     if (!loginForm.valid)
     { 
       this.invalidForm = true;
@@ -35,20 +32,15 @@ export class LoginComponent implements OnInit {
       return;
     
     }
-
-    // Check if input fields have correct mail/password combo
     this.checkCreds(loginForm);
-  
   }
 
-  // Private
   private checkCreds(loginForm: NgForm)
   {
     const loginData: LoginData = { mail: loginForm.value.loginMail, password: loginForm.value.loginPassword }
 
     this.authService.login(loginData)
     .then(()=>{
-      this.userData.setAuthenticated(true); // Load user data in userData after log in
       this.router.navigate(['']);
     })
     .catch((err) => {

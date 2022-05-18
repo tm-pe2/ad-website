@@ -9,16 +9,12 @@ import { RegistrationComponent } from './registration/registration.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { RoleGuardService } from './services/role-guard.service';
 import { LogoutComponent } from './logout/logout.component';
+import { StatuscodepageComponent } from './statuscodepage/statuscodepage.component';
+import { SupportComponent } from './support/support.component';
+import { UserRole } from './interfaces/User';
 
 const routes: Routes = [
-  {path: 'dashboard', component: DashboardComponent},
-  {
-    path: 'manage-employees', 
-    component: ManageEmployeesComponent,
-    //canActivate: [RoleGuardService],
-    //data: { roles: ['employee', 'employeeManager']  }
-  },
-  {path: 'ticketing', component: TicketingComponent},
+  {path: "", redirectTo: "dashboard", pathMatch: "full"},
   {
     path: 'dashboard',
     component: DashboardComponent,
@@ -28,17 +24,16 @@ const routes: Routes = [
     path: 'ticketing',
     component: TicketingComponent,
     canActivate: [RoleGuardService],
-    data: { roles: ['client', 'admin'] }, // Only users with the role 'client' or 'admin' can access this route
+    data: { roles: [UserRole.ADMIN, UserRole.TECHNICIAN] }, // E.g. how to user roleguard service
   },
+  {path: 'support', component: SupportComponent},
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: LogoutComponent},
   {path: 'registration', component: RegistrationComponent},
   {path: 'ticketing/:userType', component: TicketingComponent},
-  {path: 'graphs', component: GraphsComponent}
-]
-
-
-
+  {path: 'graphs', component: GraphsComponent},
+  {path: 'statuscode/:statusCode', component: StatuscodepageComponent},
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
