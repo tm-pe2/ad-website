@@ -1,11 +1,11 @@
-<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" [style.display]="employeeService.showAddEmpButton ? 'block' : 'none'" (click)="onAddButtonClick()">Add Employee</button>
 
 <div [style.display]="employeeService.showEmpList ? 'block' : 'none' ">
     <div class="grid overflow-hidden grid-cols-10 grid-rows-6 gap-px h-screen">
         <div class="box row-start-1 row-end-1 col-start-1 col-end-11">
-        <!--Header-->
-    </div>
-    <div class="box row-start-2 row-end-6 col-start-1 col-end-3 overflow-y-auto shadow">
+            <!--Header-->
+        </div>
+        <div class="box row-start-2 row-end-6 col-start-1 col-end-3 overflow-y-auto shadow">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" [style.display]="employeeService.showAddEmpButton ? 'block' : 'none'" (click)="changeStatusEmpAddForm()">Add Employee</button>
         <!--filter div-->
     </div>
     <div class="box row-start-2 row-end-6 col-start-3 col-end-11">
@@ -25,14 +25,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr  *ngFor='let e of employeeService.employees' class="shadow rounded-lg hover:bg-gray-200 ">
+                    <tr  *ngFor='let e of employeeService.employees; index as i;' class="shadow rounded-lg hover:bg-gray-200 ">
                         <td class="p-3 text-sm">
                             <!--Name-->
-                            {{e.FirstName +  " " + e.LastName}}
+                            {{e.first_name +  " " + e.last_name}}
                         </td>
                         <td class="p-3 text-sm">
                             <!--Department-->
-                            {{e.Department}}
+                            {{e.department}}
                         </td>
                         <td class="p-3 text-sm">
                             <!--place contract details behind button-->
@@ -45,7 +45,7 @@
                             <button class="font-bold text-blue-500 hover:underline">Contact</button>
                         </td>
                         <td class="w-20 p-3 text-sm">
-                            <button class="font-bold text-blue-500 hover:underline" (click)="showDetails(e.EmployeesID)">Details</button>
+                            <button class="font-bold text-blue-500 hover:underline" (click)="showDetails(i)">Details</button>
                         </td>
                         <td class="w-20 p-3 text-sm">
                             <button 
@@ -54,7 +54,7 @@
                                 'hover:underline': (this.role == 'employeeManager'),
                                 'text-gray-500': (this.role == 'employee')
                             }" 
-                            class="font-bold" (click)="startEditEmployee(e.EmployeesID)" [disabled]='role!= "employeeManager"'>edit</button>
+                            class="font-bold" (click)="startEditEmployee(i)" [disabled]='role!= "employeeManager"'>edit</button>
                         </td>
                         <td class="w-20 p-3 text-sm">
                             <button
@@ -63,7 +63,7 @@
                                 'hover:underline': (this.role == 'employeeManager'),
                                 'text-gray-500': (this.role == 'employee')
                             }" 
-                             class="font-bold" (click)="deleteEmployee(e.EmployeesID)" [disabled]='role!= "employeeManager"'>remove</button>
+                             class="font-bold" (click)="deleteEmployee(i)" [disabled]='role!= "employeeManager"'>remove</button>
                         </td>
                     </tr>  
                 </tbody>
@@ -88,4 +88,4 @@
 
 <app-edit-employee-form [style.display]="employeeService.showEditEmpForm ? 'block' : 'none' " [parent]="this"></app-edit-employee-form>
 
-<app-employee-card [style.disoplay]="employeeService.showEmpCard ? 'block' : 'none' "></app-employee-card>
+<app-employee-card [style.display]="employeeService.showEmpCard ? 'block' : 'none' "></app-employee-card>

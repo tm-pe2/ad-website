@@ -10,7 +10,7 @@
         <span>
           <label for="Fname">First name: </label>
           <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black form-control"          
-          type="text" id="Fname" name="Fname" ngModel required maxlength="50" #Fname="ngModel" [(ngModel)]="employeeService.current_Emp.FirstName"><br>
+          type="text" id="Fname" name="Fname" ngModel required maxlength="50" #Fname="ngModel" [(ngModel)]="employeeService.current_Emp.first_name"><br>
               
           <div class="text-red-500" *ngIf="Fname.errors?.['maxlength']" >The name is to long. <br></div>
           <div class="text-red-500" *ngIf="!Fname.valid && Fname.touched">Fill in the firstname. <br></div>
@@ -18,7 +18,7 @@
           
           <label for="Lname">Last name: </label>
           <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" 
-          type="text" id="Lname" name="Lname" ngModel required maxlength="50" #Lname="ngModel" [(ngModel)]="employeeService.current_Emp.LastName"><br>
+          type="text" id="Lname" name="Lname" ngModel required maxlength="50" #Lname="ngModel" [(ngModel)]="employeeService.current_Emp.last_name"><br>
           
           <div class="text-red-500" *ngIf="!Lname.valid && Lname.touched">Fill in the lastname <br> </div>
 
@@ -28,15 +28,15 @@
           <span class="grid grid-rows-4">
             Gender:
             <span>
-              <input type="radio" id="M" name="gender" value="M" [(ngModel)]="employeeService.current_Emp.Gender">
+              <input type="radio" id="M" name="gender" value="M" [(ngModel)]="employeeService.current_Emp.gender">
               <label for="M" class="ml-2">M</label>
             </span>
             <span>
-              <input type="radio" id="F" name="gender" value="F"  [(ngModel)]="employeeService.current_Emp.Gender">
+              <input type="radio" id="F" name="gender" value="F"  [(ngModel)]="employeeService.current_Emp.gender">
               <label for="F" class="ml-2">F</label>
             </span>
             <span>
-              <input type="radio" id="X" name="gender" value="X"  [(ngModel)]="employeeService.current_Emp.Gender"> 
+              <input type="radio" id="X" name="gender" value="X"  [(ngModel)]="employeeService.current_Emp.gender"> 
               <label for="X" class="ml-2">X</label>
             </span>
           </span>
@@ -47,21 +47,21 @@
       <div class="mb-5">
         <label for="birthDate">BirthDate: </label>
         <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" type="text" id="birthDate" name="birthDate"
-        [(ngModel)]="employeeService.current_Emp.BirthDate"><br>
+        [(ngModel)]="employeeService.current_Emp.birth_date"><br>
 
       </div>
 
       <div class="mb-5">
         <label for="email">Email:  </label>
         <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" type="text" id="email" name="email"
-         [(ngModel)]="employeeService.current_Emp.Email" ><br>
+         [(ngModel)]="employeeService.current_Emp.email" ><br>
 
       </div>
 
       <div class="mb-5">
         <label for="phoneNR">Phone Number: </label>
         <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" type="text" id="phoneNR" name="phoneNR" 
-         [(ngModel)]="employeeService.current_Emp.PhoneNumber"><br>
+         [(ngModel)]="employeeService.current_Emp.phone_number"><br>
       </div>
 
       
@@ -72,13 +72,13 @@
           <span>
             <label for="street">Street:</label>
             <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" type="text" id="street" name="street"
-            [(ngModel)]="employeeService.current_Emp.Address.street"> <br>
+            [(ngModel)]="employeeService.current_Emp.street"> <br>
 
           </span>
           <span>
             <label for="houseNumber">Hous number:</label>
             <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" type="text" id="housNumber" name="housNumber"
-            [(ngModel)]="employeeService.current_Emp.Address.housNumber"> <br>
+            [(ngModel)]="employeeService.current_Emp.house_number"> <br>
 
           </span>
         </div>
@@ -89,13 +89,13 @@
           <span>
             <label for="city">City:</label>
             <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" type="text" id="city" name="city"
-            [(ngModel)]="employeeService.current_Emp.Address.city"> <br>
+            [(ngModel)]="employeeService.current_Emp.city"> <br>
   
           </span>
           <span>
             <label for="postalcode">Postalcode:</label>
             <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" type="text" id="postalcode" name="postalcode"
-            [(ngModel)]="employeeService.current_Emp.Address.postalcode"> <br>
+            [(ngModel)]="employeeService.current_Emp.postal_code"> <br>
   
           </span>
         </div>
@@ -107,15 +107,16 @@
           <span>
             <label for="HireDate">HireDate </label>
             <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black mb-5" type="text" id="hiredate" name="hiredate" 
-            [(ngModel)]="employeeService.current_Emp.HireDate"><br>
+            [(ngModel)]="employeeService.current_Emp.hire_date"><br>
           
             <label for="Salary">Salary</label>
             <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" type="text" id="Salary" name="salary" 
-            ngModel #salary="ngModel" required [(ngModel)]="employeeService.current_Emp.Salary"> <br>
+            ngModel #salary="ngModel" required [(ngModel)]="employeeService.current_Emp.salary"> <br>
             
             <div class="text-red-500" *ngIf="!salary.valid && salary.touched" >Fill in the salary</div>    
           </span>
 
+        <!--
           <span class="flex items-center justify-left ml-5">
             <span class="grid grid-rows-4">
               Department:
@@ -141,9 +142,9 @@
               </span>
             </span>
           </span>
+        -->
         </div>
       </div>
-
 
       <div class="float-left m-2 pt-5">
         <button class="p-1.5 px-5 uppercase text-lg font-medium tracking-wider text-white bg-blue-400 rounded-lg hover:underline"

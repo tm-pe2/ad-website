@@ -7,15 +7,15 @@
       <div class="grid grid-cols-2 mb-3 gap-2">
         <span>
           <label for="Fname">First name: </label>
-          <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400 form-control"          
-            type="text" id="Fname" name="Fname" ngModel required maxlength="5" #Fname="ngModel"><br>
+          <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black form-control"          
+            type="text" id="Fname" name="Fname" ngModel required maxlength="50" #Fname="ngModel"><br>
               
           <div class="text-red-500" *ngIf="Fname.errors?.['maxlength']" >The name is to long. <br></div>
           <div class="text-red-500" *ngIf="!Fname.valid && Fname.touched">Fill in the firstname. <br></div>
 
           
           <label for="Lname">Last name: </label>
-          <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" 
+          <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" 
             type="text" id="Lname" name="Lname" ngModel required maxlength="50" #Lname="ngModel"><br>
           
           <div class="text-red-500" *ngIf="!Lname.valid && Lname.touched">Fill in the lastname <br> </div>
@@ -44,7 +44,7 @@
 
       <div class="mb-5">
         <label for="birthDate">BirthDate: </label>
-        <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="birthDate" name="birthDate"
+        <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" type="text" id="birthDate" name="birthDate"
          ngModel #birthDate="ngModel" required ><br>
 
          <div class="text-red-500" *ngIf="!birthDate.valid && birthDate.touched">Enter a valid birthdate (dd/mm/yyyy). <br> </div>
@@ -52,7 +52,7 @@
 
       <div class="mb-5">
         <label for="email">Email:  </label>
-        <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="email" name="email"
+        <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" type="text" id="email" name="email"
          ngModel #email="ngModel" required email ><br>
 
          <div class="text-red-500" *ngIf="!email.valid && email.touched">Fill in email.</div>
@@ -61,7 +61,7 @@
 
       <div class="mb-5">
         <label for="phoneNR">Phone Number: </label>
-        <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="phoneNR" name="phoneNR" 
+        <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" type="text" id="phoneNR" name="phoneNR" 
          ngModel #phoneNR="ngModel" required pattern="^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$"><br>
 
          <div class="text-red-500" *ngIf="!phoneNR.valid && phoneNR.touched ">Fill in a correct phonenumber (+324123123)</div>
@@ -71,17 +71,24 @@
         <div class="grid grid-cols-2 mb-3 gap-2">
           <span>
             <label for="street">Street:</label>
-            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="street" name="street"
+            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" type="text" id="street" name="street"
               ngModel #street="ngModel" required maxlength="50"> <br>
 
             <div class="text-red-500" *ngIf="!street.valid && street.touched">Fill in the street.</div>
           </span>
           <span>
             <label for="houseNumber">Hous number:</label>
-            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="housNumber" name="housNumber"
+            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" type="text" id="housNumber" name="housNumber"
               ngModel #housNumber="ngModel" required maxlengt="50"> <br>
 
             <div class="text-red-500" *ngIf="!housNumber.valid && housNumber.touched">Fill in the hous number</div>
+          </span>
+
+          <span>
+            <label for="country">country</label>
+            <input type="country" class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black"
+              ngModel #country="ngModel" required id="country" name="country">
+              <div class="text-red-500" *ngIf="!country.valid && country.touched" >Fill in the country</div>
           </span>
         </div>
       </div>
@@ -91,14 +98,14 @@
         <div class="grid grid-cols-2 mb-3 gap-2">
           <span>
             <label for="city">City:</label>
-            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="city" name="city"
+            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" type="text" id="city" name="city"
               ngModel #city="ngModel" required maxlength="50"> <br>
   
             <div class="text-red-500" *ngIf="!city.valid && city.touched" >Fill in the City</div>
           </span>
           <span>
             <label for="postalcode">Postalcode:</label>
-            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="postalcode" name="postalcode"
+            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" type="text" id="postalcode" name="postalcode"
              ngModel #postalcode="ngModel" required maxlenght="50"> <br>
   
             <div class="text-red-500" *ngIf="!postalcode.valid && postalcode.touched">Fill in the postalcode</div>
@@ -110,23 +117,46 @@
         <div class="grid grid-cols-2 mb-3 gap-2">
           <span>
             <label for="HireDate">HireDate </label>
-            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400 mb-5" type="text" id="hiredate" name="hiredate" 
+            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black mb-5" type="text" id="hiredate" name="hiredate" 
             ngModel #hireDate="ngModel" required ><br>
 
             <div class="text-red-500" *ngIf="!hireDate.valid && hireDate.touched" ></div>
           
             <label for="Salary">Salary</label>
-            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400" type="text" id="Salary" name="salary" ngModel #salary="ngModel" required> <br>
+            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" type="text" id="Salary" name="salary" ngModel #salary="ngModel" required> <br>
             
             <div class="text-red-500" *ngIf="!salary.valid && salary.touched" >Fill in the salary</div>
           </span>
+
+
+          <span>
+            <label for="password">Password</label>
+            <input type="password" class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black"
+              ngModel #password="ngModel" required id="password" name="password">
+              <div class="text-red-500" *ngIf="!password.valid && password.touched" >Fill in the password</div>
+          </span>
+
+          <span>
+            <label for="national_registry_number">national registry number</label>
+            <input type="national_registry_number" class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black"
+              ngModel #national_registry_number="ngModel" required id="national_registry_number" name="national_registry_number">
+              <div class="text-red-500" *ngIf="!national_registry_number.valid && national_registry_number.touched" >Fill in the national_registry_number</div>
+          </span>
+
+          <span>
+            <label for="permissions">permissions</label>
+            <input type="permissions" class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black"
+              ngModel #permissions="ngModel" required id="permissions" name="permissions">
+              <div class="text-red-500" *ngIf="!permissions.valid && permissions.touched" >Fill in the permissions</div>
+          </span>
+          
 
           <span class="flex items-center justify-left ml-5">
             <span class="grid grid-rows-4">
               Department:
               <span>
                 <input type="radio" id="test" name="department" value="testdep" [(ngModel)]="department">
-                <label for="test" class="ml-2">testdep</label>
+                <label for="test" class="ml-2">HR</label>
               </span>
               <span>
                 <input type="radio" id="test2" name="department" value="testdep2"  [(ngModel)]="department" >
@@ -136,16 +166,9 @@
                 <input type="radio" id="test3" name="department" value="testdep3"  [(ngModel)]="department" > 
                 <label for="test3" class="ml-2">testdep3</label>
               </span>
-              <span>
-                <input type="radio" id="test4" name="department" value="testdep4"  [(ngModel)]="department" > 
-                <label for="test4" class="ml-2">testdep4</label>
-              </span>
-              <span>
-                <input type="radio" id="test5" name="department" value="testdep5"  [(ngModel)]="department" > 
-                <label for="test5" class="ml-2">testdep5</label>
-              </span>
             </span>
-          </span>
+          </span> 
+
         </div>
       </div>
 

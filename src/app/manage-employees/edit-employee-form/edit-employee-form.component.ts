@@ -15,7 +15,9 @@ export class EditEmployeeFormComponent {
   
 
   @Input() parent?: ManageEmployeesComponent;
-  constructor(public employeeService: EmployeeService) {}
+  constructor(public employeeService: EmployeeService) {
+
+  }
 
   
   

@@ -32,10 +32,8 @@ export class ManageEmployeesComponent implements OnInit{
     this.role = 'employeeManager'
     if(this.role != 'employeeManager'){
       this.employeeService.showAddEmpButton = false;
-      console.log("hello")
     }
   }
-  // dummy data
     
     onAddButtonClick(){
     this.employeeService.showAddEmpForm = true;
@@ -53,15 +51,17 @@ export class ManageEmployeesComponent implements OnInit{
 
   changeStatusEmpEditForm(){
     this.employeeService.showEmpList = !this.employeeService.showEmpList;
-    console.log(this.employeeService.showEmpList,"test");
 
     this.employeeService.showEditEmpForm = !this.employeeService.showEditEmpForm;
     this.employeeService.showAddEmpButton = !this.employeeService.showAddEmpButton;
   }
     
   startEditEmployee(id: number){
-    this.employeeService.current_Emp = this.employeeService.employees[id-1];
+    console.log("id",id);
+    this.employeeService.current_Emp = this.employeeService.employees[id];
+    console.log(this.employeeService.current_Emp);
     this.changeStatusEmpEditForm();
+    console.log(this.employeeService.current_Emp);
   }
 
   deleteEmployee(id : number){
@@ -71,5 +71,6 @@ export class ManageEmployeesComponent implements OnInit{
   showDetails(id : number){
     this.employeeService.current_Emp = this.employeeService.employees[id-1];
     this.employeeService.showEmpList = !this.employeeService.showEmpList;
+    this.employeeService.showEmpCard = !this.employeeService.showEmpCard;
   }
 }

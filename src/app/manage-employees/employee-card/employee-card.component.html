@@ -2,20 +2,19 @@
 <div class="p-4 max-w-xs">
     <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden shadow-xl">
     
-            <h2 class="text-4xl">{{employeeService.current_Emp.FirstName}} {{employeeService.current_Emp.LastName}}</h2>
+            <h2 class="text-4xl">{{employeeService.current_Emp.first_name}} {{employeeService.current_Emp.last_name}}</h2>
         
         <!--Make clicking div go to details page to edit employee-->
         <div class="p-6 hover:bg-gray-700 hover:text-white transition duration-300 ease-in cursor-pointer">
-            <h1 class="text-2xl font-medium text-indigo-300 mb-1"> Birthdate: {{employeeService.current_Emp.BirthDate}}</h1>
-            <h1 class="text-2xl font-medium text-indigo-300 mb-1">Email: {{employeeService.current_Emp.Email}} </h1>
-            <h1 class="text-2xl font-medium text-indigo-300 mb-1">Phonenumber: {{employeeService.current_Emp.PhoneNumber}} </h1>
-            <h1 class="text-2xl font-medium text-indigo-300 mb-1">Hiredate: {{employeeService.current_Emp.HireDate}} </h1>
-            <h1 class="text-2xl font-medium text-indigo-300 mb-1">Address: {{employeeService.Address.street}} {{employeeService.Address.housNumber}} </h1>
-            <h1 class="text-2cl font-medium text-indigo-300 mb-1">{{employeeService.Address.city}} {{employeeService.Address.postalcode}} {{employeeService.Address.country}}</h1>
-            <h1 class="text-2xl font-medium text-indigo-300 mb-1">Hiredate: {{employeeService.current_Emp.HireDate}} </h1>
-            <h1 class="text-2xl font-medium text-indigo-300 mb-1">Department: {{employeeService.current_Emp.Department}} </h1>
-            <h1 class="text-2xl font-medium text-indigo-300 mb-1">Gender: {{employeeService.current_Emp.Gender}} </h1>
-            <h1 class="text-2xl font-medium text-indigo-300 mb-1">Salary: {{employeeService.current_Emp.Salary}} </h1>
+            <h1 class="text-2xl font-medium text-indigo-300 mb-1"> Birthdate: {{employeeService.current_Emp.birth_date}}</h1>
+            <h1 class="text-2xl font-medium text-indigo-300 mb-1">Email: {{employeeService.current_Emp.email}} </h1>
+            <h1 class="text-2xl font-medium text-indigo-300 mb-1">Phonenumber: {{employeeService.current_Emp.phone_number}} </h1>
+            <h1 class="text-2xl font-medium text-indigo-300 mb-1">Hiredate: {{employeeService.current_Emp.hire_date}} </h1>
+            <h1 class="text-2xl font-medium text-indigo-300 mb-1">Address: {{employeeService.current_Emp}} {{employeeService.current_Emp.housNumber}} </h1>
+            <h1 class="text-2cl font-medium text-indigo-300 mb-1">{{employeeService.current_Emp.city}} {{employeeService.current_Emp.postalcode}} {{employeeService.current_Emp.country}}</h1>
+            <h1 class="text-2xl font-medium text-indigo-300 mb-1">Department: {{employeeService.current_Emp.department}} </h1>
+            <h1 class="text-2xl font-medium text-indigo-300 mb-1">Gender: {{employeeService.current_Emp.gender}} </h1>
+            <h1 class="text-2xl font-medium text-indigo-300 mb-1">Salary: {{employeeService.current_Emp.salary}} </h1>
         </div>
     </div>
 </div>
