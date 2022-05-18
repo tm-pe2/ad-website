@@ -29,17 +29,17 @@
          <ul class="list-reset md:flex md:items-center">
            <li class="md:ml-4">
              <a class="block no-underline hover:underline py-2 text-grey-darkest hover:text-black md:border-none md:p-0" href="#">
-               Products
+               Dashboard
              </a>
            </li>
            <li class="md:ml-4">
              <a class="border-t block no-underline hover:underline py-2 text-grey-darkest hover:text-black md:border-none md:p-0" href="#">
-               About
+               Manage Employees
              </a>
            </li>
            <li class="md:ml-4">
              <a class="border-t block no-underline hover:underline py-2 text-grey-darkest hover:text-black md:border-none md:p-0" href="#">
-               Contact
+               Log Out
              </a>
            </li>
          </ul>
@@ -57,7 +57,7 @@
       <button class="w-full text-left"><li class="my-0.5">- Contract only</li></button>
       <button class="w-full text-left"><li class="my-0.5">- No contract only</li></button>
     </ol>
-    <button mat-raised-button class="addBtn" class="font-bold items-center text-center text-green-500 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-100 duration-300 w-5/6 " (click)="onSelectAdd()">New Customer</button>
+    <button mat-raised-button class="addBtn" class="font-bold items-center text-center text-green-500 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-100 duration-300 w-5/6 " routerLink="/registration">New Customer</button>
   </div> 
 <div class="box row-start-2 row-end-6 col-start-3 col-end-11 mt-0">
   
@@ -74,7 +74,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="shadow rounded-lg hover:bg-gray-200 " *ngFor="let customer of clientsArray">
+                <tr class="shadow rounded-lg hover:bg-gray-200 " *ngFor="let customer of customerData">
                     <td class="p-3 text-sm">
                         <span class="name">{{customer.first_name}} {{customer.last_name}}</span>
                     </td>

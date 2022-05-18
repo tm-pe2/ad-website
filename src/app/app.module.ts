@@ -122,8 +122,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CustomerComponent,
     CustomerDetailComponent,
     ConfirmDialogComponent,
-    MatIconModule,
     HttpClientModule,
+    MatIconModule,
     
   ],
   providers: [

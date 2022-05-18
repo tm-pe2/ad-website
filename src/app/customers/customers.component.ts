@@ -6,6 +6,7 @@ import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.compone
 import { AddCustomerDialogComponent } from '../add-customer-dialog/add-customer-dialog.component';
 import { Customer, CustomerContract } from '../interfaces/customer';
 import { environment } from 'src/environments/environment';
+import { PostConfigService } from '../services/post-config.service';
 
 
 @Component({
@@ -16,9 +17,10 @@ import { environment } from 'src/environments/environment';
 })
 export class CustomerComponent implements OnInit {
  
-  clientsArray:CustomerContract[]=[];
+  customerData: CustomerContract[]=[];
   
-  constructor(public dialog : MatDialog){}
+  constructor(public dialog : MatDialog,
+              private postService :PostConfigService){}
   
   ngOnInit(): void {
     this.getCustomers();
@@ -26,13 +28,16 @@ export class CustomerComponent implements OnInit {
 
   selectedCustomer? : CustomerContract;
 
-  async getCustomers()
+  getCustomers()
   {
-    let result = await axios.get(environment.apiUrl+"/customers/contracts");
-    this.clientsArray = result.data.customers;
-    
+    this.postService.getAllCustomers().subscribe(
+      (response) =>{
+        this.customerData=response.customers;
+      },
+      (error)=>console.log('error: ',error),
+      ()=> console.log('ready!')
+    );      
   }
- 
 
    onSelectEdit(customer:CustomerContract)
   {  
@@ -47,12 +52,6 @@ export class CustomerComponent implements OnInit {
       last_name: this.selectedCustomer.last_name, 
       type: this.selectedCustomer.customer_type, 
       contractNr: this.selectedCustomer.ContractID,
-
-      // birthdate:this.selectedCustomer.BirthDate,
-      // address:this.selectedCustomer.AddressID,
-      // email:this.selectedCustomer.Email,
-      // phone:this.selectedCustomer.PhoneNumber,
-      // pass:this.selectedCustomer.Password
     }
     //open dialog with selected client's data
     let dialRef=this.dialog.open(CustomerDetailComponent,dialConfig);
@@ -87,12 +86,7 @@ export class CustomerComponent implements OnInit {
 
   }
   
-  onSelectAdd():void{
-    const dialConfig=new MatDialogConfig();
-    dialConfig.disableClose = true;
-    dialConfig.autoFocus = true;
-    let dialRef=this.dialog.open(AddCustomerDialogComponent)
-  }
+
   
   
 }
