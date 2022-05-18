@@ -442,17 +442,6 @@ submit()
     })
   }
 
-  onAddContract()
-  {
-    console.log(this.contract);
-     this.postService.addContract(this.contract).subscribe(
-      (response: any)=>{
-        console.log('Contract added:',response);
-        this.addSmartMeter();
-      },
-      (error: any)=>console.log('error:',error)
-     )
-  }
    onAddContract(): Promise<number>
     {
       return new Promise<number>((resolve,reject) => {
