@@ -22,10 +22,19 @@ export class WorkerAppService {
   selectedCustomer: number =  0;
   planningIDs: Array<number> = [];
   detailsList: Array<Details> = [];
+  
+
+  //dummer data
+  dmcusmet1 : WorkerlistMeter = {meter_id: 69420, meter_type: "gaas" , physical_id: 1231310 , lastValue: 690}
+  dmcusmet2 : WorkerlistMeter = {meter_id: 69421, meter_type: "elek" , physical_id: 1231311 , lastValue: 691}
+  dmcusmet3 : WorkerlistMeter = {meter_id: 69422, meter_type: "elega" , physical_id: 1231312 , lastValue: 692}
+  dumcus : WorkerlistItem = {planningID: 0, contractID: 0, planningStatus: 0, customerName: "Ronny Flex", address: "sheeshbaan 69 helewijd", meters: [this.dmcusmet1, this.dmcusmet2, this.dmcusmet3]};
 
   // Constructor
   constructor(private http: HttpClient)
-  { }
+  { 
+    this.customerList.push(this.dumcus);
+  }
 
   getPlanning(): Promise<void>
   {

@@ -21,37 +21,40 @@ export class CientPageComponent implements OnInit {
   adr : string;
   mtype : number;
 
+
+
+
   gMeter : number;
   eMeter : number;
   nDate : any;
 
   fixedDateE: any = new Date();
   fixedDateG: any = new Date();
-  isDone: boolean;
+  isDone: number;
+  meterid : number[];
+  lastmeting : number[];
 
   constructor(public cData: UtilService, private service: WorkerAppService) {
     this.selectedCustomer = service.selectedCustomer;
     this.customer = service.customerList[this.selectedCustomer];
+    this.name = this.service.customerList[this.service.selectedCustomer].customerName
+    this.adr = this.service.customerList[this.service.selectedCustomer].address
+    this.isDone = this.service.customerList[this.service.selectedCustomer].planningStatus
+    this.meterid = [];
+    this.lastmeting = [];
+    this.service.customerList[this.selectedCustomer].meters.forEach(meter => {
+      this.lastmeting.push(meter.lastValue);
+      this.meterid.push(meter.meter_id);
+    });
 
-    // Old stuff
-    this.name = cData.custData[cData.selectedCust].name;
-    this.adr = cData.custData[cData.selectedCust].addr;
     this.mtype = cData.custData[cData.selectedCust].meterType;
     this.gMeter = 0;
     this.eMeter = 0;
-    this.nDate = new Date('00/00/0000');
-    this.isDone = false;
-    
-    // test
-    this.service.getDetails(1);
-    let list: Details[] = service.detailsList;
 
   }
   
   ngOnInit(): void {
-    if(this.service.customerList[this.selectedCustomer].planningStatus == 1) this.isDone = true;
-
-
+    if(this.service.customerList[this.selectedCustomer].planningStatus == 1) this.isDone = 1;
   }
 
   // Old functions
