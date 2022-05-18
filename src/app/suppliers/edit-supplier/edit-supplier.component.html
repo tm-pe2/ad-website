@@ -1,0 +1,66 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-700">
+
+    <div class="w-full md:w-1/2 sm:w-3/4 rounded shadow-2xl bg-white p-5 text-2xl">
+       
+        <label class="font-bold flex items-center justify-center pb-5">Edit -name of supplier- Supplier</label><br>
+
+        <form #addSupplierForm="ngForm" (ngSubmit)="onSubmit(addSupplierForm)">
+            <label class="font-bold flex items-center justify-center pb-5">Add new Supplier</label><br>
+
+            <div class="mb-5">
+                <label for="name">Name Supplier: </label>
+                <input type="text" class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400 form-control" id="addNameSup"  name="addNameSup" required ngModel><br>
+            </div>
+
+            <div class="mb-5">
+                <label for="addres">Addres Supplier: </label>
+                <input type="text" class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400 form-control" id="addAddressSup"  name="addAddressSup"><br>
+            </div>
+
+            <div class="mb-5">
+                <div class="grid grid-cols-2 mb-3 gap-2">
+                    <span>
+                        <label for="city">City Supplier: </label>
+                        <input type="text" class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400 form-control"  id="addCitySup"  name="addCitySup"><br>
+                    </span>
+                    <span>
+                        <label for="zip">ZIP code Supplier: </label>
+                        <input type="number" class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400 form-control" id="addZipSup"  name="addZipSup"><br>
+                    </span>   
+                </div>
+            </div>
+            
+            <div class="mb-5">
+                <div class="grid grid-cols-2 mb-3 gap-2">
+                    <span>
+                        <label for="type">Type goods: </label>
+                        <select class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-gray-400 form-control" id="addTypeSup" name="addTypeSup">
+                            <option>Electricity</option>
+                            <option>Gas</option>
+                        </select>
+                    </span> 
+                </div> 
+            </div>
+
+            <!-- Correct msg -->
+            <!--        
+            <div *ngIf="showSuccesMsg" class="border-2 border-green-600 w-72 bg-green-300 mx-auto mt-2">
+                <p class="text-center">Supplier has been added</p>
+            </div> -->
+            <!-- Error msg -->
+            <div class="bg-red-600 rounded p-5 bg-opacity-75" role="alert" *ngIf="invalidF">
+                Not All Field Are Filled in!
+            </div>
+
+            <div class="float-left m-2 pt-5">
+                <!-- Will edit the selectet Supplier in the Database -->
+                <button class="p-1.5 px-5 uppercase text-lg font-medium tracking-wider text-white bg-blue-400 rounded-lg hover:underline" id="addSupConfirm" type="submit">Add</button>
+            </div>
+        </form>
+
+        <div class="float-right m-2 pt-5">
+            <button class="p-1.5 px-5 text-lg uppercase font-medium tracking-wider text-black-600 hover:underline hover:cursor-pointer bg-red-400 rounded-lg" (click)="gotToPage('suppliers')">Back</button>
+        </div>
+
+    </div>
+</div>
