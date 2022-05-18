@@ -120,14 +120,14 @@
           <span>
             <label for="national_registry_number">national registry number</label>
             <input type="national_registry_number" class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black"
-              ngModel #national_registry_number="ngModel" required id="national_registry_number" name="national_registry_number">
+              ngModel #national_registry_number="ngModel" required id="national_registry_number" name="national_registry_number" [ngModel]="employeeService.current_Emp.national_registry_number">
               <div class="text-red-500" *ngIf="!national_registry_number.valid && national_registry_number.touched" >Fill in the national_registry_number</div>
           </span>
 
           <span>
             <label for="role">role</label>
             <input type="role" class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black"
-              ngModel #role="ngModel" required id="role" name="role">
+              ngModel #role="ngModel" required id="role" name="role" [ngModel]="employeeService.current_Emp.role_id">
               <div class="text-red-500" *ngIf="!role.valid && role.touched" >Fill in the role</div>
           </span>
 

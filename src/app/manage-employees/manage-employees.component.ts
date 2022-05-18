@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, ViewChild } from '@angular/core';
 import { Employee } from './employee';
 import { EmployeeCardComponent } from './employee-card/employee-card.component';
 import { Address } from '../interfaces/address';
@@ -6,14 +6,17 @@ import { AuthGuardService } from '../services/auth-guard.service';
 import { AuthService } from '../services/auth.service';
 import { EmployeeService } from './services/employee.service';
 import { UserdataService } from '../services/userdata.service';
+import { EditEmployeeFormComponent } from './edit-employee-form/edit-employee-form.component';
+import { Subject } from 'rxjs';
 
 
 @Component({
   selector: 'app-manage-employees',
   templateUrl: './manage-employees.component.html',
   styleUrls: ['./manage-employees.component.css'],
-  providers: [EmployeeService],
+  providers: [EmployeeService], 
 })
+
 
 export class ManageEmployeesComponent implements OnInit{
   
@@ -22,9 +25,11 @@ export class ManageEmployeesComponent implements OnInit{
   }
   
   role ?: number | null;
-  
+
+
   ngOnInit(){
     this.employeeService.loadEmp();
+    this.employeeService.current_Emp = this.employeeService.employees[0];
 
     //this.userdataService.loadUser();
     this.role = this.auth.getUserRoleId()
@@ -32,14 +37,12 @@ export class ManageEmployeesComponent implements OnInit{
     if(this.role != 6){
       this.employeeService.showAddEmpButton = false;
     }
-    
   }
     
     onAddButtonClick(){
     this.employeeService.showAddEmpForm = true;
     this.employeeService.showAddEmpButton = false;
     this.employeeService.showEmpList = false;
-
   }
   
   changeStatusEmpAddForm(){
@@ -50,23 +53,24 @@ export class ManageEmployeesComponent implements OnInit{
   }
 
   changeStatusEmpEditForm(){
-    this.employeeService.showEmpList = !this.employeeService.showEmpList;
-
     this.employeeService.showEditEmpForm = !this.employeeService.showEditEmpForm;
+
+    this.employeeService.showEmpList = !this.employeeService.showEmpList;
     this.employeeService.showAddEmpButton = !this.employeeService.showAddEmpButton;
+
+    console.log("hehleh",this.employeeService.current_Emp);
   }
     
   startEditEmployee(id: number){
-    console.log("id",id);
     this.employeeService.current_Emp = this.employeeService.employees[id];
     console.log(this.employeeService.current_Emp);
     this.changeStatusEmpEditForm();
-    console.log(this.employeeService.current_Emp);
   }
 
   deleteEmployee(id : number){
+    if(confirm("Do you want to remove " + this.employeeService.employees[id].first_name + " " + this.employeeService.employees[id].last_name )){
     this.employeeService.deleteEmp(this.employeeService.employees[id]);
-    console.log(id);
+    }
   }
 
   showDetails(id : number){
@@ -74,4 +78,5 @@ export class ManageEmployeesComponent implements OnInit{
     this.employeeService.showEmpList = !this.employeeService.showEmpList;
     this.employeeService.showEmpCard = !this.employeeService.showEmpCard;
   }
+
 }
