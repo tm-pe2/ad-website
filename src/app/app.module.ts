@@ -38,6 +38,7 @@ import { AuthService } from './services/auth.service';
 import { LogoutComponent } from './logout/logout.component';
 import { StatuscodepageComponent } from './statuscodepage/statuscodepage.component';
 import { SupportComponent } from './support/support.component';
+import { ManageinvoicesComponent } from './manageinvoices/manageinvoices.component';
 import { ValidateContractComponent } from './validate-contract/validate-contract.component';
 import { SuppliersComponent } from './suppliers/suppliers.component';
 import { AddSuplierComponent } from './suppliers/add-suplier/add-suplier.component';
@@ -56,6 +57,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
+    ManageTickets,
     DashboardComponent,
     SmallCardComponent,
     BigCardComponent,
@@ -81,7 +83,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     LogoutComponent,
     StatuscodepageComponent, 
     SupportComponent,
-    ManageTickets,
+    ManageinvoicesComponent,
     ValidateContractComponent,
     TicketingComponent,
     SuppliersComponent,
@@ -92,7 +94,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     ContactSupplierComponent,
     ContractOverveiwComponent,
     ManageContractComponent,
-    ManageTickets
   ],
   entryComponents:[CustomerDetailComponent],
     imports: [

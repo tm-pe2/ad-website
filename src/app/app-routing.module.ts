@@ -15,6 +15,7 @@ import { RoleGuardService } from './services/role-guard.service';
 import { LogoutComponent } from './logout/logout.component';
 import { StatuscodepageComponent } from './statuscodepage/statuscodepage.component';
 import { SupportComponent } from './support/support.component';
+import { ManageinvoicesComponent } from './manageinvoices/manageinvoices.component';
 import { UserRole } from './interfaces/User';
 import { EditSupplierComponent } from './suppliers/edit-supplier/edit-supplier.component';
 import { DeleteSupplierComponent } from './suppliers/delete-supplier/delete-supplier.component';
@@ -44,6 +45,7 @@ const routes: Routes = [
   {path: 'ticketing/:userType', component: TicketingComponent},
   {path: 'graphs', component: GraphsComponent, canActivate: [RoleGuardService], data: { roles: [UserRole.CUSTOMER] }},
   {path: 'statuscode/:statusCode', component: StatuscodepageComponent},
+  {path: 'manageinvoices', component: ManageinvoicesComponent, canActivate: [AuthGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER, UserRole.EMPLOYEE]}},
   {path:'manage-customers',component:CustomerComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
   {path:'consumption-estimation',component:ConsumptionEstimationComponent},
   {path:'register-customer',component:RegisterCustomerComponent},
@@ -55,7 +57,7 @@ const routes: Routes = [
   {path: 'contract-overview', component: ContractOverveiwComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
   {path: 'manage-contract', component: ManageContractComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
   {path: 'suppliers', component: SuppliersComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
-]
+];
 
 
 
