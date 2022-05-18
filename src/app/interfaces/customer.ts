@@ -1,7 +1,6 @@
-import { NumberValueAccessor } from "@angular/forms"
 
 export interface Address {
-  address_id: number,
+  address_id?: number,
   city: string,
   street: string,
   house_number: string,
@@ -9,12 +8,12 @@ export interface Address {
   country: string,
 }
 export interface User extends Address {
-  user_id: number,
-  role_id: number,
+  user_id?: number,
+  role_id?: number,
   first_name: string,
   last_name: string,
   birth_date: Date,
-  address_id: number,
+  address_id?: number,
   email: string,
   phone_number: string,
   password: string,
@@ -26,16 +25,16 @@ export interface Customer extends User {
 }
 export interface CustomerContract extends Customer
 {
-  UserID: number,
+  UserID?: number,
    customer_type: string,
    first_name: string,
    last_name: string,
-   ContractID: number
+   ContractID?: number
 }
 export interface CustomerExtend
 {
-  UserID: number,
-  RoleID: number,
+  UserID?: number,
+  RoleID?: number,
   first_name: string,
   last_name: string,
   BirthDate: Date,
@@ -46,19 +45,32 @@ export interface CustomerExtend
   ContractID: number
 }
 export interface Estimation {
-  estimation_id: number,
+  estimation_id?: number,
   service_type: number,
-  address_id: number,
+  address_id?: number,
   building_type: number,
   family_size: number,
-  meters_number:number,
-  meter_type:string,
-  meter_value: number,
-  meter_type2:string,
-  meter_value2:number,
-  meter_type3:string,
-  meter_value3:number,
-  equipments: number[],
+  equipments: string,
   past_consumption: number,
   estimated_consumption:number,
+}
+
+export interface Meter{
+  meter_id?:number,
+  contract_id?:number,
+  type:string,
+  value: number,
+  physic_id?:number,
+}
+
+export interface EstimatedContract extends Estimation
+{
+  start_date:Date,
+  end_date:Date,
+  customer_type:string,
+  tariff_id?:number,
+  estimation_id?:number,
+  address_id:number,
+  service_type:number,
+  status:string
 }

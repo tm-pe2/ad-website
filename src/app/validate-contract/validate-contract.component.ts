@@ -74,14 +74,14 @@ export class ValidateContractComponent implements OnInit {
       console.log("inside:",this.estimationData);
   }); 
   console.log("ouside:",this.estimationData);
-  this.selectedMeterNr=this.estimationData.meters_number;
-  this.meterTypesVal=this.estimationData.meter_type;
-  this.metersValueVal=this.estimationData.meter_value;
+  //this.selectedMeterNr=this.estimationData.meters_number;
+  //this.meterTypesVal=this.estimationData.meter_type;
+  //this.metersValueVal=this.estimationData.meter_value;
   console.log(this.metersValueVal);
-  this.meterTypes2Val=this.estimationData.meter_type2;
-  this.metersValue2Val=this.estimationData.meter_value2;
-  this.meterTypes3Val=this.estimationData.meter_type3;
-  this.metersValue3Val=this.estimationData.meter_value3;
+  //this.meterTypes2Val=this.estimationData.meter_type2;
+  //this.metersValue2Val=this.estimationData.meter_value2;
+  //this.meterTypes3Val=this.estimationData.meter_type3;
+  //this.metersValue3Val=this.estimationData.meter_value3;
 
   }
  
@@ -123,22 +123,23 @@ submit()
   if(this.step==3)
   {
     
-    const meters_number=this.meterTypeForm.value.metersNumber;
-    const meter_type=this.meterTypeForm.value.meterTypes;
-    const meter_value=this.meterTypeForm.value.metersValue;
+  //   const meters_number=this.meterTypeForm.value.metersNumber;
+  //   const meter_type=this.meterTypeForm.value.meterTypes;
+  //   const meter_value=this.meterTypeForm.value.metersValue;
 
-    if(this.meterTypeForm.value.metersNumber.value==2)
-    {
-      const meter_type2=this.meterTypeForm.value.meterTypes2;
-      const meter_value2=this.meterTypeForm.value.metersValue2;
-    }
-    else if(this.meterTypeForm.value.metersNumber.value==3)
-   {
-    const meter_type3=this.meterTypeForm.value.meterTypes3;
-    const meter_value3=this.meterTypeForm.value.metersValue3;
-   }
+  //   if(this.meterTypeForm.value.metersNumber.value==2)
+  //   {
+  //     const meter_type2=this.meterTypeForm.value.meterTypes2;
+  //     const meter_value2=this.meterTypeForm.value.metersValue2;
+  //   }
+  //   else if(this.meterTypeForm.value.metersNumber.value==3)
+  //  {
+  //   const meter_type3=this.meterTypeForm.value.meterTypes3;
+  //   const meter_value3=this.meterTypeForm.value.metersValue3;
+  //  }
 
   }
 
 }
+
 }

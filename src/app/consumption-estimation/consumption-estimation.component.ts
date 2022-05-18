@@ -1,10 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl,FormGroup,Validators,FormBuilder, FormArray } from '@angular/forms'
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/internal/operators/catchError';
 import { environment } from 'src/environments/environment';
 import { CustomerComponent } from '../customers/customers.component';
-import { Customer ,Estimation} from '../interfaces/customer';
+import { Customer ,EstimatedContract,Estimation, Meter} from '../interfaces/customer';
 import { UserdataService } from '../services/userdata.service';
+import {PostConfigService} from '../services/post-config.service'
+import { Address } from '../interfaces/customer';
 
 
 @Component({
@@ -25,22 +29,38 @@ export class ConsumptionEstimationComponent implements OnInit {
   consumption_step = false;
   step = 1;
   
-  customerData!: Customer ;
-  customer_ID!:number;
-  
-  fullAddresses: string[]=[];
-  addressesIDs: number[]=[];
-  
-  selectedAddressID!:number;
+  customerData: Customer[]=[] ;  
+  fullAddresses: Address[]=[];
+
+  selectedAddressID:number=-1;
   selectedMeterNr:number=1;
-  selectedAnswer:number=0;
-    
+  answerRadio:number=0;
   
-  estimationData!: Estimation;
-  estimation!:number;
-  annualEstimation!:number;
-  annualCustomerInput!:number;
-  past_consumtionV!:number;
+  meters: Meter[]=[];
+  contract: EstimatedContract=
+  {
+      start_date: new Date(),
+      end_date: new Date(),
+      customer_type: '',
+      tariff_id: -1 ,
+      estimation_id:-1,
+      address_id:-1,
+      service_type:-1,
+      status:"inactive",
+      building_type: -1,
+      family_size: -1 ,
+      equipments: '',
+      past_consumption: -1,
+      estimated_consumption:-1
+  
+  };
+
+  estimation:number=0;
+  annualEstimation:number=0;
+  annualCustomerInput:number=0;
+  past_consumtionV:number=0;
+
+
 
   equipments: Array<any> = [
     { name: 'Oven/Stove', value: '1' },
@@ -49,39 +69,42 @@ export class ConsumptionEstimationComponent implements OnInit {
     { name: 'Drying Machine', value: '4' },
     { name: 'Hair Dryer', value: '5' }
   ];
+
   
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(
+    private formBuilder: FormBuilder,
               private httpClient:HttpClient,
-              private customer_user: UserdataService) {}
+              private customer_user: UserdataService,
+              private postService: PostConfigService) {}
 
   ngOnInit() 
   {
     this.serviceChoiceForm = this.formBuilder.group({
-      choice:['', Validators.required],
+      service_type: new FormControl('', Validators.required),
       
     });
     this.familyAdressCompoundForm = this.formBuilder.group({
-        addressID: ['',Validators.required],
-        members: ['',Validators.required],
-        houseType: ['',Validators.required]
+        address_id: new FormControl('', Validators.required),
+        family_size: new FormControl('',Validators.required),
+        building_type: new FormControl('',Validators.required)
     });
     this.meterTypeForm = this.formBuilder.group({
-      metersNumber: [ '' , Validators.required],
-      meterTypes: [ '' ,Validators.required],
-      metersValue:[ '' ,Validators.required],
-      meterTypes2: [ '' ],
-      metersValue2:[ '' ],
-      meterTypes3: [ '' ],
-      metersValue3:[ '' ]
+      metersNumber: new FormControl(['' , Validators.required]),
+      type: new FormControl('',Validators.required),
+      value: new FormControl('',Validators.required),
+      type2: new FormControl(''),
+      value2: new FormControl(''),
+      type3: new FormControl(''),
+      value3: new FormControl('')
     });
     this.consumptionDetailsForm = this.formBuilder.group({
-        answer: [''],
-        annualConsumption: ['',Validators.required],
-        selectedEquipments : new FormArray([])
+        answer: new FormControl(''),
+        annualConsumption: new FormControl(''),
+        equipments : new FormArray([])
     });
 
-    this.getCustomers();
+    this.onGetCustomers();
     
   }
   get service() { return this.serviceChoiceForm.controls; }
@@ -90,7 +113,7 @@ export class ConsumptionEstimationComponent implements OnInit {
   get consumption() { return this.consumptionDetailsForm.controls; }
 
   onCheckboxChange(event: any) {
-    const selectedEquipments = (this.consumption['selectedEquipments'] as FormArray);
+    const selectedEquipments = (this.consumption['equipments'] as FormArray);
     if (event.target.checked) {
       selectedEquipments.push(new FormControl(event.target.value));
     } else {
@@ -99,42 +122,56 @@ export class ConsumptionEstimationComponent implements OnInit {
     }
   }
 
-  getCustomers()
+
+  onGetCustomers()
   {
-    this.customer_ID=this.customer_user.getUser().id;
-    this.httpClient.get<any>(environment.apiUrl+'/customers/' + this.customer_ID).subscribe(
+    
+   
+    this.postService.getCustomers(this.customer_user.getUser().id).subscribe(
       (response) =>{
-      this.customerData = response.customer;
-      console.log(this.customerData);
-      console.log(response.customer.street);
-      this.selectedAddressID=this.customerData.address_id;
-      this.fullAddresses.push(this.customerData.street + ", "+this.customerData.house_number);
-      this.addressesIDs.push(this.customerData.address_id)
-      console.log(this.customer_ID, this.fullAddresses);
-  });
-  
-}
+        console.log("received customer: ", response.customer);
+        this.customerData=response.customer;
+        this.customerData.forEach((add) => {
+        let a:Address=
+        {
+          address_id : add.address_id,
+          street : add.street,
+          house_number : add.house_number,
+          city : add.city,
+          postal_code : add.postal_code,
+          country : add.country
+        }
+        this.fullAddresses.push(a);
+        console.log("one add:",a);
+        console.log("all adds:",this.fullAddresses);
+        });
+      },
+      (error)=>console.log('error: ',error),
+      ()=> console.log('ready!')
+    );      
+  }
 
 next()
 {
   if(this.step==1)
   {
+    console.log(this.step);
     this.service_step=true;
     if(this.serviceChoiceForm.invalid){return}
     this.step++;
-    console.log(this.step);
   }
   if(this.step==2)
   {
     console.log(this.step);
     this.familyAdress_step=true;
+
     if(this.familyAdressCompoundForm.invalid)
     {
       console.error();
       return
     }
     this.step++;
-    console.log(this.step);
+   
   }
   if(this.step==3)
   {
@@ -146,87 +183,101 @@ next()
       return
     }
     this.step++;
-    console.log(this.step);
+   
   }
 }
 previous()
 {
   this.step--;
-  console.log(this.step);
+ 
   if(this.step==1)
   {
     this.service_step=false;
-    console.log(this.step);
+   
   }
   if(this.step==2)
   {
     this.familyAdress_step=false;
-    console.log(this.step);
+   
   }
   if(this.step==3)
   {
     this.meterType_step=false;
-    console.log(this.step);
+   
+  }
+  if(this.step==4)
+  {
+    this.consumption_step =false;
+   
   }
   
 }
-
 calculateConsumption()
 {
-  let estimation:number=0;
-  let nrOfPeople : number = this.familyAdressCompoundForm.get('members')?.value;
-  console.log("ppl",nrOfPeople);
-  if(nrOfPeople==1){
-      estimation=18;
-  }
-  else if(nrOfPeople==2)
-  {
-    estimation=28;
-  }
-  else if(nrOfPeople==3) 
-  { 
-    estimation=40;
-  }
-  else
-  {
-  estimation=60;}
-     
-  console.log("est",estimation);
   
-  let building : number = this.familyAdressCompoundForm.get('houseType')?.value;
-  console.log("bTy",building);
-  if(building==1){
-    estimation-=5;
-  }
-  else if(building==2)
+  switch(this.contract.family_size)
   {
-    estimation-=2;
+    //daily electricity consumption in kWh of 'x' person(s) in an apartment:
+    case 1:
+      {
+        this.estimation=18;
+        
+        break;
+      }
+    case 2:
+      {
+        this.estimation=28;
+        break;
+      }
+    case 3:
+      {
+        this.estimation=40;
+        break;
+      }
+    case 4:
+      {
+        this.estimation=60;
+        break;
+      }
   }
-  else if(building==3) 
-  { 
-    estimation+=5;
+  
+  //electricity consumption is adjusted depending on building type. e.g: closed house can get warmer easier than an open building, etc:
+  
+  switch(this.contract.building_type)
+  {
+    case 1:
+      {
+        this.estimation-=5;
+        break;
+      }
+    case 2:
+      {
+        this.estimation-=2;
+        break;
+      }
+    case 3:
+      {
+        this.estimation+=5;
+        break;
+      }
   }
-
-  console.log("est",estimation);
-
-  let appliances: [number]=(this.consumptionDetailsForm.get('selectedEquipments')?.value);
-  console.log(appliances);
+  
+  let appliances: [number]=(this.consumptionDetailsForm.get('equipments')?.value);
+  //the amount of kWh consumed in a day from an appliance is added to the estimated consumption
   appliances.forEach(app => {
     if(app==1)
-    {estimation+=1}
+    {this.estimation+=1}
     if(app==2)
-    {estimation+=0.20}
+    {this.estimation+=0.20}
     if(app==3)
-    {estimation+=0.36}
+    {this.estimation+=0.36}
     if(app==4)
-    {estimation+=0.30}
+    {this.estimation+=0.30}
     if(app==5)
-    {estimation+=1.07}
+    {this.estimation+=1.07}
   });
-  console.log(estimation);
-
   
-  return estimation;
+  return this.estimation;
 }
 
 submit()
@@ -239,30 +290,78 @@ submit()
       console.error();
     return
     }
-    this.estimation=this.calculateConsumption();
-    this.annualEstimation=this.estimation*365;
-    let monthlyEst:number= this.estimation*30;
-
-    console.log(this.serviceChoiceForm.value,this.familyAdressCompoundForm.value,this.meterTypeForm.value,this.consumptionDetailsForm.value);
     
-    const service_typeV=this.serviceChoiceForm.value;
-    const address_idV=this.familyAdressCompoundForm.value.address_id;
-    const building_typeV=this.familyAdressCompoundForm.value.houseType;
-    const family_sizeV=this.familyAdressCompoundForm.value.family_size;
+
+    this.annualEstimation=this.calculateConsumption()*365;
     const meters_numberV=this.meterTypeForm.value.metersNumber;
-    const meter_typeV=this.meterTypeForm.value.meterTypes;
-    const meter_valueV=this.meterTypeForm.value.metersValue;
-
-    const meter_type2V=this.meterTypeForm.value.meterTypes2;
-    const meter_value2V=this.meterTypeForm.value.metersValue2;
-       
-    const meter_type3V=this.meterTypeForm.value.meterTypes3;
-    const meter_value3V=this.meterTypeForm.value.metersValue3;
    
+    if(meters_numberV==1)
+    {
+        let m:Meter ={
+          meter_id:-1,
+          contract_id:-1,
+          type:this.meterTypeForm.value.type,
+          value:this.meterTypeForm.value.value,
+          physic_id:-1,
+          }
+        this.meters.push(m);
+    }
+    else if(meters_numberV == 2)
+      {
+        let m:Meter ={
+          meter_id:-1,
+          contract_id:-1,
+          type:this.meterTypeForm.value.type,
+          value:this.meterTypeForm.value.value,
+          physic_id:-1,
+          }
+        this.meters.push(m);
 
-    const equipmentListV=this.consumptionDetailsForm.value.selectedEquipments;
-    
-    if (this.selectedAnswer==1)
+        let m2:Meter ={
+          meter_id:-1,
+          contract_id:-1,
+          type:this.meterTypeForm.value.type2,
+          value:this.meterTypeForm.value.value2,
+          physic_id:-1,
+          }
+        this.meters.push(m2);
+      }
+      else if(meters_numberV==3)
+      {
+        let m:Meter ={
+          meter_id:-1,
+          contract_id:-1,
+          type:this.meterTypeForm.value.type,
+          value:this.meterTypeForm.value.value,
+          physic_id:-1,
+          }
+        this.meters.push(m);
+
+        let m2:Meter ={
+          meter_id:-1,
+          contract_id:-1,
+          type:this.meterTypeForm.value.type2,
+          value:this.meterTypeForm.value.value2,
+          physic_id:-1,
+          }
+        this.meters.push(m2);
+        
+        let m3:Meter ={
+          meter_id:-1,
+          contract_id:-1,
+          type:this.meterTypeForm.value.type3,
+          value:this.meterTypeForm.value.value3,
+          physic_id:-1,
+          }
+        this.meters.push(m3);
+      }
+      
+    }
+
+    const equipmentListV=this.consumptionDetailsForm.value.equipments;
+    const eqListString=equipmentListV.toString();
+
+    if (this.consumptionDetailsForm.value.answer==1)
     {   
         this.annualCustomerInput=this.consumptionDetailsForm.value.annualConsumption;
         if(this.annualCustomerInput < this.annualEstimation)
@@ -275,27 +374,37 @@ submit()
         }
     }
     
-    this.estimationData={
-      estimation_id:-1,
-      service_type:service_typeV,
-      address_id: address_idV,
-      building_type: building_typeV,
-      family_size: family_sizeV,
-      meters_number:meters_numberV,
-      meter_type:meter_typeV,
-      meter_value: meter_valueV,
-      meter_type2:meter_type2V,
-      meter_value2:meter_value2V,
-      meter_type3:meter_type2V,
-      meter_value3:meter_value3V,
-      equipments: equipmentListV,
-      past_consumption: this.past_consumtionV,
-      estimated_consumption:this.annualEstimation,
-
+  
+  
+    this.contract={
+      start_date: new Date(),
+      end_date: new Date(),
+      customer_type: this.customerData[0].customer_type,
+      tariff_id: 1 ,
+      estimation_id:0,
+      address_id: Number(this.familyAdressCompoundForm.value.address_id),
+      service_type:Number(this.serviceChoiceForm.value.service_type),
+      status:"inactive",
+      building_type: Number(this.familyAdressCompoundForm.value.building_type),
+      family_size: Number(this.familyAdressCompoundForm.value.family_size),
+      equipments: eqListString,
+      past_consumption: Number(this.past_consumtionV),
+      estimated_consumption:Number(this.annualEstimation)
     }
-    console.log(this.estimationData);
-
-  }
-
+    
+    this.onAddContract();
+  
+  
 }
-}
+    onAddContract()
+    {
+      console.log(this.contract);
+       this.postService.addContract(this.contract).subscribe(
+        (response: any)=>{
+          console.log('Contract added:',response);
+        },
+        (error: any)=>console.log('error:',error)
+       )
+    }
+  
+} 
