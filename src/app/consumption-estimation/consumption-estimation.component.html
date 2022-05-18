@@ -1,0 +1,270 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600&family=Roboto:wght@100;300;400;500&display=swap" rel="stylesheet">
+<div class="row"> 
+    <div class="col-md-12 col-md-offset-3">
+        <!-- 1st Form : Service-->
+        <form [formGroup]="serviceChoiceForm" id="forms">
+            <ul id="progressbar">
+                <li [ngClass]="step>=1 ? 'active ' : 'inactive'">Service</li>
+                <li [ngClass]="step>=2 ? 'active' : 'inactive'">Family Compound</li>
+                <li [ngClass]="step>=3 ? 'active' : 'inactive'">Meter</li>
+                <li [ngClass]="step==4 ? 'active' : 'inactive'">Consumption</li>
+            </ul>
+            <fieldset  *ngIf="step == 1" >
+                <h2 class="form-header">Service</h2>
+                
+                <mat-radio-group formControlName="service_type" class="flex place-content-evenly" >
+                    <mat-radio-button name="Electricity" [ngClass]="{ 'is-invalid': service_step && service['service_type'].errors }"  value="0" class="block px-3.5">Electricity</mat-radio-button>
+                    <mat-radio-button name="Gas" [ngClass]="{ 'is-invalid': service_step && service['service_type'].errors }"  value="1" class="block px-3.5">Gas</mat-radio-button>
+                </mat-radio-group>
+
+                <div *ngIf="service_step && serviceChoiceForm.controls['service_type'].errors">
+                    <div class="required" *ngIf="service['service_type'].errors?.['required']">*Choice is required</div>
+                </div>
+
+                <input (click)="next()" type="button" name="next" class="next action-button" value="Next"/>
+           
+            </fieldset>
+        </form> 
+        <!--2nd Form : Address and family-->
+         <form [formGroup]="familyAdressCompoundForm" id="forms">
+            <fieldset *ngIf="step == 2" >
+                <h2 class="form-header">Address</h2>
+            
+                <div class="flex place-content-evenly ">
+                    <mat-select formControlName="address_id" [(value)]="selectedAddressID">
+                        <mat-option  *ngFor="let address of fullAddresses" [value]="address.address_id">{{address.street}} {{address.house_number}}</mat-option>
+                      </mat-select>
+                </div>
+
+                <div class="flex place-content-evenly ">
+                    <div *ngIf="familyAdress_step && familyAdressCompoundForm.controls['address_id'].errors">
+                        <div class="required" *ngIf="familyAddress['address_id'].errors?.['required']">*Address is required</div>
+                    </div>
+                </div>
+                
+                <br>
+                
+                <h2 class="form-header">What type of house do you have?</h2>
+                
+                <mat-radio-group formControlName="building_type" class="flex place-content-evenly">
+                    <mat-radio-button [ngClass]="{ 'is-invalid': familyAdress_step && familyAddress['building_type'].errors }" value="0" class="block px-3.5">Apartment</mat-radio-button>
+                    <mat-radio-button [ngClass]="{ 'is-invalid': familyAdress_step && familyAddress['building_type'].errors }" value="1" class="block">Closed building</mat-radio-button>
+                    <mat-radio-button [ngClass]="{ 'is-invalid': familyAdress_step && familyAddress['building_type'].errors }" value="2" class="block">Semi-detached building</mat-radio-button>
+                    <mat-radio-button [ngClass]="{ 'is-invalid': familyAdress_step && familyAddress['building_type'].errors }" value="3" class="block">Open building</mat-radio-button>
+                </mat-radio-group>
+
+                <div *ngIf="familyAdress_step && familyAdressCompoundForm.controls['building_type'].errors">
+                    <div class="required" *ngIf="familyAddress['building_type'].errors?.['required']">*House type is required</div>
+                </div>
+                <br>
+                <h2 class="form-header">Family Details</h2>
+                
+                <mat-radio-group formControlName="family_size"  class="flex place-content-evenly">
+                    <mat-radio-button [ngClass]="{ 'is-invalid': familyAdress_step && familyAddress['family_size'].errors }" value="1" class="block">1 person</mat-radio-button>
+                    <mat-radio-button [ngClass]="{ 'is-invalid': familyAdress_step && familyAddress['family_size'].errors }" value="2" class="block">2 persons</mat-radio-button>
+                    <mat-radio-button [ngClass]="{ 'is-invalid': familyAdress_step && familyAddress['family_size'].errors }" value="3" class="block">3 persons</mat-radio-button>
+                    <mat-radio-button [ngClass]="{ 'is-invalid': familyAdress_step && familyAddress['family_size'].errors }" value="4" class="block">4 persons or more</mat-radio-button>
+                </mat-radio-group>
+
+                <div *ngIf="familyAdress_step && familyAdressCompoundForm.controls['family_size'].errors">
+                    <div class="required" *ngIf="familyAddress['family_size'].errors?.['required']">*Family Compound is required</div>
+                </div>
+
+                <input (click)="previous()" type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                <input  (click)="next()" type="button" name="next" class="next action-button" value="Next"/>
+            
+            </fieldset>
+        </form>
+        <!--3rd Form : Meter(s) type -->
+        <form [formGroup]="meterTypeForm" id="forms">
+            <fieldset *ngIf="step == 3">
+                <h2 class="form-header">Meter</h2>
+                <label for="metersNumber">How many meters do you have?</label>
+                <br>
+                <mat-form-field name="metersNumber" appearance="fill" ngDefaultControl  class="flex place-content-evenly">
+                    <mat-select formControlName="metersNumber" [(value)]="selectedMeterNr">
+                        <mat-option value="1">1 meter</mat-option>
+                        <mat-option value="2">2 meters</mat-option>
+                        <mat-option value="3" >3 meters</mat-option>
+                      </mat-select>
+                </mat-form-field>
+                <br>
+                <div *ngIf="meterType_step && meterTypeForm.controls['metersNumber'].errors">
+                    <div class="required" *ngIf="meterType['metersNumber'].errors?.['required']">*Number of meters is required</div>
+                </div>
+                <br>
+                <mat-radio-group *ngIf="selectedMeterNr==1; else elseBlock;" formControlName="type" class="block">
+                    <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type'].errors }" value="manualMeter" class="block px-3.5">Manual Meter</mat-radio-button>
+                    <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type'].errors }" value="smartMeter" class="block px-3.5">Smart Meter</mat-radio-button>
+                    <br>
+                    <div *ngIf="meterType_step && meterTypeForm.controls['type'].errors">
+                        <div class="required" *ngIf="meterType['type'].errors?.['required']">*Meter Type is required</div>
+                    </div>
+                    <br>
+                    <mat-form-field name="value">
+                        <mat-label>Meter value:</mat-label>
+                        <input matInput formControlName="value">
+                    </mat-form-field>
+                    <br>
+                    <div *ngIf="meterType_step && meterTypeForm.controls['value'].errors">
+                        <div class="required" *ngIf="meterType['value'].errors?.['required']">*Meter value is required</div>
+                    </div>
+                </mat-radio-group>
+
+                <ng-template  #elseBlock class="flex place-content-evenly">
+                    <div *ngIf="selectedMeterNr==2; else elseBlock2;" class="flex place-content-evenly">
+                        <mat-radio-group  formControlName="type" class="flex place-content-evenly">
+                            <div>
+                                <div><h3><strong><strong>Meter no.1</strong></strong></h3></div>
+                                <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type'].errors }" value="manualMeter" class="block px-3.5">Manual Meter</mat-radio-button>
+                                <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type'].errors }" value="smartMeter" class="block px-3.5">Smart Meter</mat-radio-button>
+                                <br>
+                                <div *ngIf="meterType_step && meterTypeForm.controls['type'].errors">
+                                    <div class="required" *ngIf="meterType['type'].errors?.['required']">*Meter Type is required</div>
+                                </div>
+                                <br>
+                                <mat-form-field name="value">
+                                    <mat-label>Meter no.1 value:</mat-label>
+                                    <input matInput formControlName="value">
+                                </mat-form-field>
+                                <br>            
+                                <div *ngIf="meterType_step && meterTypeForm.controls['value'].errors">
+                                    <div class="required" *ngIf="meterType['value'].errors?.['required']">*Meter value is required</div>
+                                </div>
+                            </div>
+                        </mat-radio-group>
+                        <mat-radio-group formControlName="type2" class="flex place-content-evenly">
+                            <div>
+                                <div><h3><strong>Meter no.2</strong></h3></div>
+                                <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type2'].errors }" value="manualMeter" class="block px-3.5">Manual Meter</mat-radio-button>
+                                <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type2'].errors }" value="smartMeter" class="block px-3.5">Smart Meter</mat-radio-button>
+                                <br>
+                                <div *ngIf="meterType_step && meterTypeForm.controls['type2'].errors">
+                                    <div class="required" *ngIf="meterType['type2'].errors?.['required']">*Meter Type is required</div>
+                                </div>
+                                <br>
+                                <mat-form-field name="value2">
+                                    <mat-label>Meter no.2 value:</mat-label>
+                                    <input matInput formControlName="value2">
+                                </mat-form-field>
+                                <br>            
+                                <div *ngIf="meterType_step && meterTypeForm.controls['value2'].errors">
+                                    <div class="required" *ngIf="meterType['value2'].errors?.['required']">*Meter value is required</div>
+                                </div>
+                            </div>
+                        </mat-radio-group>
+                    </div>
+                </ng-template>
+
+                <ng-template #elseBlock2 class="flex place-content-evenly">
+                    <div class="flex place-content-evenly">
+                        <mat-radio-group formControlName="type" class="flex place-content-evenly">
+                            <div>
+                                <div><h3><strong>Meter no.1</strong></h3></div>
+                                <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type'].errors }" value="manualMeter" class="block px-3.5">Manual Meter</mat-radio-button>
+                                <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type'].errors }" value="smartMeter" class="block px-3.5">Smart Meter</mat-radio-button>
+                                <br>
+                                <div *ngIf="meterType_step && meterTypeForm.controls['type'].errors">
+                                    <div class="required" *ngIf="meterType['type'].errors?.['required']">*Meter Type is required</div>
+                                </div>
+                                <br>
+                                <mat-form-field name="value">
+                                    <mat-label>Meter no.1 value:</mat-label>
+                                    <input matInput formControlName="value">
+                                </mat-form-field>
+                                <br>            
+                                <div *ngIf="meterType_step && meterTypeForm.controls['value'].errors">
+                                    <div class="required" *ngIf="meterType['value'].errors?.['required']">*Meter value is required</div>
+                                </div>
+                            </div>
+                        </mat-radio-group>
+                        <mat-radio-group formControlName="type2" class="flex place-content-evenly">
+                            <div>
+                                <div><h3><strong>Meter no.2</strong></h3></div>
+                                <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type2'].errors }" value="manualMeter" class="block px-3.5">Manual Meter</mat-radio-button>
+                                <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type2'].errors }" value="smartMeter" class="block px-3.5">Smart Meter</mat-radio-button>
+                                <br>
+                                <div *ngIf="meterType_step && meterTypeForm.controls['type2'].errors">
+                                    <div class="required" *ngIf="meterType['type2'].errors?.['required']">*Meter Type is required</div>
+                                </div>
+                                <br>
+                                <mat-form-field name="value2">
+                                    <mat-label>Meter no.2 value:</mat-label>
+                                    <input matInput formControlName="value2">
+                                </mat-form-field>
+                                <br>            
+                                <div *ngIf="meterType_step && meterTypeForm.controls['value2'].errors">
+                                    <div class="required" *ngIf="meterType['value2'].errors?.['required']">*Meter value is required</div>
+                                </div>
+                            </div>
+                        </mat-radio-group>
+                        <mat-radio-group formControlName="type3" class="flex place-content-evenly">
+                            <div>
+                                <div><h3><strong>Meter no.3</strong></h3></div>
+                                <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type3'].errors }" value="manualMeter" class="block px-3.5">Manual Meter</mat-radio-button>
+                                <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type3'].errors }" value="smartMeter" class="block px-3.5">Smart Meter</mat-radio-button>
+                                <br>
+                                <div *ngIf="meterType_step && meterTypeForm.controls['type3'].errors">
+                                    <div class="required" *ngIf="meterType['type3'].errors?.['required']">*Meter Type is required</div>
+                                </div>
+                                <br>
+                                <mat-form-field name="value3">
+                                    <mat-label>Meter no.3 value:</mat-label>
+                                    <input matInput formControlName="value3">
+                                </mat-form-field>
+                                <br>            
+                                <div *ngIf="meterType_step && meterTypeForm.controls['value3'].errors">
+                                    <div class="required" *ngIf="meterType['value3'].errors?.['required']">*Meter value is required</div>
+                                </div>
+                            </div>
+                        </mat-radio-group>   
+                    </div>                 
+                </ng-template>
+
+               
+                <br>
+                <input (click)="previous()" type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                <input  (click)="next()" type="button" name="next" class="next action-button" value="Next"/>
+        
+            
+            </fieldset>
+        </form>
+        <!--4th Form : Consumption -->
+        <form [formGroup]="consumptionDetailsForm" id="forms">
+            <fieldset *ngIf="step == 4">
+                <h2 class="form-header">Consumption</h2>
+                <label>Check all devices you use frequently:</label>
+                <div class="allDevices">
+                <div *ngFor="let equipment of equipments" class="inline">
+                    <input type="checkbox" formArrayName="equipments" [value]="equipment.value" (change)="onCheckboxChange($event)"/>
+                    <strong>{{equipment.name}}</strong>
+                </div>
+            </div>
+                <br>
+                <br>
+                <h2>DO YOU KNOW YOUR CONSUMPTION?</h2>
+                <br>
+                <mat-radio-group  formControlName="answer" class="flex place-content-evenly">
+                <mat-radio-button value="1" class="block px-3.5">Yes</mat-radio-button>
+                <mat-radio-button value="0" class="block px-3.5">No</mat-radio-button>
+                </mat-radio-group>
+                <br>
+
+                <div *ngIf=" consumptionDetailsForm.controls['answer'].value == 1; else elseBlock;" class="flex place-content-evenly">     
+                    <strong>Approximate yearly consumption:</strong>
+                    <input type="text" formControlName="annualConsumption" placeholder="Consumption in kW"/>
+                    <div *ngIf="consumption_step && consumptionDetailsForm.controls['annualConsumption'].errors">
+                        <div class="required" *ngIf="consumption['annualConsumption'].errors?.['required']">*Consumption is required</div>
+                    </div>
+                </div>
+                <ng-template #elseBlock>
+                    <p> Your estimated annual consumtion in kWh is: <span>{{annualEstimation}}</span></p>
+                </ng-template>
+                <input (click)="previous()" type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                <input (click)="submit()"type="submit" name="submit" class="submit action-button" value="Submit"/>
+            </fieldset>
+        </form>
+    </div>
+</div>

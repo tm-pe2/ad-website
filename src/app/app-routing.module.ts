@@ -3,8 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AddSuplierComponent } from './suppliers/add-suplier/add-suplier.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { GraphsComponent } from './graphs/graphs.component';
+import { CustomerComponent } from './customers/customers.component';
 import { TicketingComponent } from './ticketing/ticketing.component';
+import { ConsumptionEstimationComponent } from './consumption-estimation/consumption-estimation.component';
+import { RegisterCustomerComponent } from './register-customer/register-customer.component';
+import { GraphsComponent } from './graphs/graphs.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AuthGuardService } from './services/auth-guard.service';
@@ -13,6 +16,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { StatuscodepageComponent } from './statuscodepage/statuscodepage.component';
 import { SupportComponent } from './support/support.component';
 import { ReportingComponent } from './reporting/reporting.component';
+import { ManageinvoicesComponent } from './manageinvoices/manageinvoices.component';
 import { UserRole } from './interfaces/User';
 import { EditSupplierComponent } from './suppliers/edit-supplier/edit-supplier.component';
 import { DeleteSupplierComponent } from './suppliers/delete-supplier/delete-supplier.component';
@@ -43,6 +47,10 @@ const routes: Routes = [
   {path: 'graphs', component: GraphsComponent, canActivate: [RoleGuardService], data: { roles: [UserRole.CUSTOMER] }},
   {path: 'statuscode/:statusCode', component: StatuscodepageComponent},
   {path: 'reporting', component: ReportingComponent},
+  {path: 'manageinvoices', component: ManageinvoicesComponent, canActivate: [AuthGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER, UserRole.EMPLOYEE]}},
+  {path:'manage-customers',component:CustomerComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
+  {path:'consumption-estimation',component:ConsumptionEstimationComponent},
+  {path:'register-customer',component:RegisterCustomerComponent},
   {path: 'add-suplier', component: AddSuplierComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
   {path: 'edit-supplier', component: EditSupplierComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
   {path: 'delete-supplier', component: DeleteSupplierComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
@@ -51,12 +59,15 @@ const routes: Routes = [
   {path: 'contract-overview', component: ContractOverveiwComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
   {path: 'manage-contract', component: ManageContractComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
   {path: 'suppliers', component: SuppliersComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
-]
+];
 
 
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
+
+@NgModule(
+  {
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
+  }
+)
 export class AppRoutingModule { }
