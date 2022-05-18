@@ -30,6 +30,7 @@ import { AuthService } from './services/auth.service';
 import { LogoutComponent } from './logout/logout.component';
 import { StatuscodepageComponent } from './statuscodepage/statuscodepage.component';
 import { SupportComponent } from './support/support.component';
+import { ValidatorComponent } from './validator/validator.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { SupportComponent } from './support/support.component';
     ClientTicketsComponent,
     LogoutComponent,
     StatuscodepageComponent, 
-    SupportComponent,
+    SupportComponent, 
+    ValidatorComponent,
   ],
   imports: [
     BrowserModule,
