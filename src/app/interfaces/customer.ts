@@ -57,10 +57,12 @@ export interface Estimation {
 
 export interface Meter{
   meter_id?:number,
+  physical_id?:string,
+  index_id?:number;
   contract_id?:number,
-  type:string,
-  value: number,
-  physic_id?:number,
+  meter_type:string,
+  index_value: number,
+  date?:Date,
 }
 
 export interface EstimatedContract extends Estimation
