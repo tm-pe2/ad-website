@@ -9,7 +9,7 @@
         <div class="flex flex-wrap overflow-auto">
 
             <app-small-card *ngIf="this.employeeRoles.includes(this.auth.getUserRoleId()!)" [title]="'Manage suppliers'" [icon]="'archive'" [href]="'manage-suppliers'"></app-small-card>
-            <app-small-card *ngIf="this.employeeRoles.includes(this.auth.getUserRoleId()!)" [title]="'Manage clients'" [icon]="'group icon'" [href]="'manage-clients'"></app-small-card>
+            <app-small-card *ngIf="this.employeeRoles.includes(this.auth.getUserRoleId()!)" [title]="'Manage clients'" [icon]="'group icon'" [href]="'manage-customers'"></app-small-card>
             <app-small-card *ngIf="this.employeeRoles.includes(this.auth.getUserRoleId()!)" [title]="'Manage invoices'" [icon]="'file_copy'"  [href]="'manage-invoices'"></app-small-card>
             <app-small-card *ngIf="this.auth.getUserRoleId() == this.UserRole.CUSTOMER" [title]="'consumption estimations'" [icon]="'trending_up'" [href]="'consumption-estimation'"></app-small-card>
             <app-small-card *ngIf="this.auth.getUserRoleId() == this.UserRole.MANAGER" [title]="'Manage employees'" [icon]="'account_circle'"  [href]="'manage-employees'"></app-small-card>
