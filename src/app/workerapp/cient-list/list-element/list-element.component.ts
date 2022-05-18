@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CientListComponent } from '../cient-list.component';
-import { UtilService } from 'src/app/util.service';
-import { Cust } from 'src/app/Cust';
+import { WorkerlistItem } from 'src/app/interfaces/worker-interfaces';
+import { WorkerAppService } from 'src/app/services/worker-app.service';
 
 @Component({
   selector: 'app-list-element',
@@ -10,19 +10,19 @@ import { Cust } from 'src/app/Cust';
 })
 export class ListElementComponent implements OnInit {
   @Input() parent ?: CientListComponent;
-  custArr : Array<Cust> = [];
-  constructor(private cData: UtilService) { 
-    this.custArr = cData.custData;
+  custArr: Array<WorkerlistItem> = [];
+  constructor(private service: WorkerAppService) { 
+    this.custArr = service.customerList;
   }
   ngOnInit(): void {
 
   }
+
   selectCustomer(i : number): void{
-    this.cData.selectedCust = i;
-    if(this.cData.custData[i].status != "done")this.cData.custData[i].status = "in progress"
-    for (let i = 0; i < this.cData.custData.length; i++) {
-      if(this.cData.custData[i] != this.cData.custData[this.cData.selectedCust]){
-        if(this.cData.custData[i].status != "done") this.cData.custData[i].status = "not done";
+    if(this.service.customerList[i].planningStatus != 2)this.service.customerList[i].planningStatus = 1
+    for (let j = 0; j < this.service.customerList.length; j++) {
+      if(this.service.customerList[j] != this.service.customerList[i]){
+        if(this.service.customerList[j].planningStatus != 2) this.service.customerList[j].planningStatus = 0;
       }
     }
   }

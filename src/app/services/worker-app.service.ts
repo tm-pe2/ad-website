@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Cust } from 'src/app/Cust';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Planning, Customer, Address, Invoice } from 'src/app/interfaces/worker-interfaces';
+import { WorkerlistItem, WorkerlistMeter } from 'src/app/interfaces/worker-interfaces';
 
 
 @Injectable({
@@ -18,11 +18,37 @@ export class WorkerAppService {
   nCust : number = 10;
   clientList : Array<Cust> = [];
   eid : number = 5;
-  planningList: Planning[] = [];
+  customerList: Array<WorkerlistItem> = [];
+  selectedCustomer: number =  0;
 
   // Constructor
   constructor(private http: HttpClient)
   { }
+
+  getPlanning(): Promise<void>
+  {
+    return new Promise<void>((resolve, reject) => 
+    {
+      this.http.get<WorkerlistItem>(environment.apiUrl + '/planning/employees/' + this.eid)
+      .subscribe(
+        {
+          next: (res: WorkerlistItem) =>
+          {
+            this.customerList.push(res);
+            resolve();
+
+          }, error: (err) => 
+          {
+            reject(err);
+
+          }
+
+        })
+
+    });
+
+  }
+
 /*
   // Functions
   // Get planning

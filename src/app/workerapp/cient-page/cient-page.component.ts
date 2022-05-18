@@ -1,6 +1,8 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { WorkerappComponent } from '../workerapp.component';
 import { UtilService } from 'src/app/util.service';
+import { WorkerlistItem } from 'src/app/interfaces/worker-interfaces';
+import { WorkerAppService } from 'src/app/services/worker-app.service';
 
 @Component({
   selector: 'app-cient-page',
@@ -10,7 +12,11 @@ import { UtilService } from 'src/app/util.service';
 
 export class CientPageComponent implements OnInit {
   @Input() parent ?: WorkerappComponent;
+  // New veriables
+  customer: WorkerlistItem;
+  selectedCustomer: number;
 
+  // Old variables
   name : string; 
   adr : string;
   mtype : number;
@@ -21,9 +27,13 @@ export class CientPageComponent implements OnInit {
 
   fixedDateE: any = new Date();
   fixedDateG: any = new Date();
-  isDone:boolean;
+  isDone: boolean;
 
-  constructor(public cData: UtilService) {
+  constructor(public cData: UtilService, private service: WorkerAppService) {
+    this.selectedCustomer = service.selectedCustomer;
+    this.customer = service.customerList[this.selectedCustomer];
+
+    // Old stuff
     this.name = cData.custData[cData.selectedCust].name;
     this.adr = cData.custData[cData.selectedCust].addr;
     this.mtype = cData.custData[cData.selectedCust].meterType;
@@ -34,22 +44,26 @@ export class CientPageComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    if(this.cData.custData[this.cData.selectedCust].status == "done") this.isDone = true;
+    if(this.service.customerList[this.selectedCustomer].planningStatus == 1) this.isDone = true;
   }
 
+  // Old functions
   setGas(event:any){
     this.gMeter = event.target.value;
   }
+
   setElek(event:any){
     this.eMeter = event.target.value;
   }
+
   setDate(event:any){
     this.nDate = event.target.value
   }
 
+  // This function I updated already
   replan(){
     //TODO - add days to date
-    this.cData.custData[this.cData.selectedCust].status = 'done';
+    this.service.customerList[this.selectedCustomer].planningStatus = 1;
   }
 
   submit(){
