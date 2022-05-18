@@ -128,6 +128,8 @@ export class ConsumptionEstimationComponent implements OnInit {
 
   onGetCustomers()
   {
+    /*
+    
     this.postService.getCustomers(this.customer_user.getUser().id).subscribe(
       (response) =>{
         this.customerData=response.customer;
@@ -146,7 +148,8 @@ export class ConsumptionEstimationComponent implements OnInit {
       },
       (error)=>console.log('error: ',error),
       ()=> console.log('ready!')
-    );      
+    );    
+    */  
   }
 
 next()
@@ -160,12 +163,12 @@ next()
   if(this.step==2)
   {
     this.familyAdress_step=true;
-
+    /*
     if(this.familyAdressCompoundForm.invalid)
     {
       console.error();
       return
-    }
+    } */
     this.step++;
    
   }
@@ -391,7 +394,7 @@ submit()
     this.contract={
       start_date: new Date(),
       end_date: new Date(),
-      customer_type: this.customerData[0].customer_type,
+      customer_type: "private", //this.customerData[0].customer_type,
       tariff_id: 1 ,
       estimation_id:0,
       address_id: Number(this.familyAdressCompoundForm.value.address_id),
@@ -413,6 +416,31 @@ submit()
   })  
   
 }
+
+  addSmartMeter() {
+    this.meters.forEach((m) => {
+      if (m.meter_type == "smartMeter") {
+        let body = {
+          "occupants" : this.contract.family_size,
+          "day_consumption" : m.index_value,
+          "night_consumption" : 0,
+          "latitude": 50.5039,
+          "longitude": 4.4699
+        }
+
+        let headers = { "headers" : { "header" : ['Content-Type: application/json']}};
+
+
+        this.httpClient.post("http://10.97.0.100:3000/meter", body, headers).subscribe(
+          (response) => {
+            console.log("meter added", response)
+          },
+          (error) => console.log("error", error)
+        )
+        
+      }
+    })
+  }
    onAddContract(): Promise<number>
     {
       return new Promise<number>((resolve,reject) => {
