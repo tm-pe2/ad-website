@@ -43,7 +43,6 @@ import { FormsModule }   from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,6 +72,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ContactSupplierComponent,
     ContractOverveiwComponent,
     ManageContractComponent,
+    ManageTickets
   ],
   imports: [
     BrowserModule,
