@@ -17,5 +17,8 @@ export class ContractOverveiwComponent implements OnInit {
     this.router.navigate([`${pageName}`]);
   }
 
+  backToHub(pageName:string):void{
+    this.router.navigate([`${pageName}`]);
+  }
 
 }
