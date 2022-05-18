@@ -10,7 +10,8 @@
                     <tr>
                         <th class="p-3 text-sm font-semibold tracking-wide text-left">Name</th>
                         <th class="p-3 text-sm font-semibold tracking-wide text-left">Department</th>
-                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Running contract</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Telephone number & email</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Role</th>
                         <th class="p-3 text-sm font-semibold tracking-wide text-left">Contact</th>
                         <th class="p-3 text-sm font-semibold tracking-wide text-left">Details</th>
                         <th class="p-3 text-sm font-semibold tracking-wide text-left">edit</th>
@@ -20,22 +21,19 @@
                 <tbody>
                     <tr  *ngFor='let e of employeeService.employees; index as i;' class="shadow rounded-lg hover:bg-gray-200 ">
                         <td class="p-3 text-sm">
-                            <!--Name-->
                             {{e.first_name +  " " + e.last_name}}
                         </td>
                         <td class="p-3 text-sm">
-                            <!--Department-->
                             {{e.department}}
                         </td>
                         <td class="p-3 text-sm">
-                            <!--place contract details behind button-->
-                            <button class="p-1.5 text-xs font-medium uppercase tracking-wider text-yellow-800 bg-yellow-200 rounded-lg bg-opacity-50 hover:underline">
-                                Contract
-                            </button>
+                            {{e.phone_number + " " + e.email}}
+                        </td>
+                        <td class="p3 text-sm">
+                            {{e.role_id}}
                         </td>
                         <td class="w-20 p-3 text-sm">
-                            <!--place card with foto and contact details behind this button-->
-                            <button class="font-bold text-blue-500 hover:underline">Contact</button>
+                            <button  class="font-bold text-blue-500 hover:underline"><a href="mailto:{{e.email}}">Contact</a></button>
                         </td>
                         <td class="w-20 p-3 text-sm">
                             <button class="font-bold text-blue-500 hover:underline" (click)="showDetails(i)">Details</button>
@@ -74,9 +72,9 @@
 
 
 
+<app-edit-employee-form [style.display]="employeeService.showEditEmpForm ? 'block' : 'none' " [parent]="this"></app-edit-employee-form>
 
 <app-add-employee-form [style.display]="employeeService.showAddEmpForm ? 'block' : 'none'"  [parent]="this"></app-add-employee-form>
 
-<app-edit-employee-form [style.display]="employeeService.showEditEmpForm ? 'block' : 'none' " [parent]="this"></app-edit-employee-form>
 
 <app-employee-card [style.display]="employeeService.showEmpCard ? 'block' : 'none' "></app-employee-card>
