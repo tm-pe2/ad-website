@@ -91,8 +91,8 @@ import { ValidateContractComponent } from './validate-contract/validate-contract
     CustomerComponent,
     CustomerDetailComponent,
     ConfirmDialogComponent,
-    MatIconModule,
     HttpClientModule,
+    MatIconModule,
     
   ],
   providers: [
