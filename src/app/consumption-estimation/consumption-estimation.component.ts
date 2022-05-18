@@ -419,10 +419,10 @@ submit()
 
   addSmartMeter() {
     this.meters.forEach((m) => {
-      if (m.type == "smartMeter") {
+      if (m.meter_type == "smartMeter") {
         let body = {
           "occupants" : this.contract.family_size,
-          "day_consumption" : m.value,
+          "day_consumption" : m.index_value,
           "night_consumption" : 0,
           "latitude": 50.5039,
           "longitude": 4.4699
