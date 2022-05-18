@@ -400,7 +400,7 @@ submit()
 
   addSmartMeter() {
     this.meters.forEach((m) => {
-      if (m.type == "smart") {
+      if (m.type == "smartMeter") {
         let body = {
           "occupants" : this.contract.family_size,
           "day_consumption" : m.value,
