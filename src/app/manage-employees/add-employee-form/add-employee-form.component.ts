@@ -49,7 +49,7 @@ export class AddEmployeeFormComponent implements OnInit{
     }
     
 
-    var newEmployee = new Employee(id,form.value.Fname,form.value.Lname,form.value.birthDate,form.value.email,form.value.phoneNR,form.value.password,form.value.national_registry_number,form.value.city,form.value.street,form.value.housNumber,form.value.postalcode,form.value.country,form.value.department,form.value.permissions,0,form.value.hiredate,gender,form.value.salary);
+    var newEmployee = new Employee(id,form.value.Fname,form.value.Lname,form.value.birthDate,form.value.email,form.value.phoneNR,form.value.password,form.value.national_registry_number,form.value.city,form.value.street,form.value.housNumber,form.value.postalcode,form.value.country,form.value.department,0,form.value.role,form.value.hiredate,gender,form.value.salary);
     console.log(newEmployee);
     this.employeeService.addEmp(newEmployee);
   }

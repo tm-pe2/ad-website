@@ -18,17 +18,12 @@ export class ManageEmployeesComponent implements OnInit{
   
   constructor(private auth : AuthService,public employeeService: EmployeeService ) { }
 
-
-  /*showEmpList : boolean = true;
-  showAddEmpForm : boolean = false;
-  showAddEmpButton : boolean = true;
-  showEditEmpForm : boolean = false;*/
   role ?: string | null;
-
 
   ngOnInit(){
 
     //this.role = this.auth.getUserRole()
+
     this.role = 'employeeManager'
     if(this.role != 'employeeManager'){
       this.employeeService.showAddEmpButton = false;
@@ -65,11 +60,12 @@ export class ManageEmployeesComponent implements OnInit{
   }
 
   deleteEmployee(id : number){
+    this.employeeService.deleteEmp(this.employeeService.employees[id]);
     console.log(id);
   }
 
   showDetails(id : number){
-    this.employeeService.current_Emp = this.employeeService.employees[id-1];
+    this.employeeService.current_Emp = this.employeeService.employees[id];
     this.employeeService.showEmpList = !this.employeeService.showEmpList;
     this.employeeService.showEmpCard = !this.employeeService.showEmpCard;
   }

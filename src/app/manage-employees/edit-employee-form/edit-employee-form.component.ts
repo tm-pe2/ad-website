@@ -19,16 +19,12 @@ export class EditEmployeeFormComponent {
 
   }
 
-  
-  
-  //current_Emp = this.employeeService.getEmp();
-  
   onSubmit(f : NgForm) {
    console.log(f.value);
   }
   
   onCancelEditEmp(){
-    console.log("disapear");
+    console.log(this.employeeService.current_Emp);
     this.parent?.changeStatusEmpEditForm();
   }
   
