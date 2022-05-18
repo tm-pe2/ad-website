@@ -57,6 +57,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
+    ManageTickets,
     DashboardComponent,
     SmallCardComponent,
     BigCardComponent,
