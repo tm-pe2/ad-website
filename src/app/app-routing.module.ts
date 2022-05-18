@@ -50,6 +50,8 @@ const routes: Routes = [
   {path: 'contract-overview', component: ContractOverveiwComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
   {path: 'manage-contract', component: ManageContractComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
   {path: 'suppliers', component: SuppliersComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
+
+  {path: 'tempworkerapp', component: WorkerappComponent},
 ]
 
 
