@@ -74,6 +74,5 @@ export class CientListComponent implements OnInit{
   ngOnInit(): void
   {
     this.custArr = this.service.customerList;
-
   }
 }
