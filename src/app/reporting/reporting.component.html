@@ -6,7 +6,6 @@
         <thead>
             <tr>
                 <th>customerID</th>
-                <th>type</th>
                 <th>status</th>
                 <th>due</th>
                 <th>overdue [days]</th>
@@ -15,11 +14,10 @@
         </thead>
         <tbody>
             <tr *ngFor="let x of invoices">
-                <td>{{ x.CustomerID }}</td>
-                <td>{{ x.ElectricityType }}</td>
-                <td>{{invoiceStatusToString(x.Statusid)}}</td>
-                <td>{{x.DueDate.toString()}}</td>
-                <td>{{overdueDays(x.DueDate).toString()}}</td>
+                <td>{{ x.contract_id }}</td>
+                <td>{{invoiceStatusToString(x.status_id)}}</td>
+                <td>{{x.due_date.toString()}}</td>
+                <td>{{overdueDays(x.due_date).toString()}}</td>
             </tr>
         </tbody>
     </table>

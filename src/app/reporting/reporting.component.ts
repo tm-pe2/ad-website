@@ -19,13 +19,14 @@ export class ReportingComponent implements OnInit {
                 if(data?.length > 0)
                     this.invoices = data;
                 //TODO display "no overdue invoices"?
-            ;
                 //FIXME date is not date object (temp fix?)
-                this.invoices.forEach(d => d.DueDate = new Date(d.DueDate) );
-            }
-
+                this.invoices.forEach(d => d.due_date = new Date(d.due_date) );
+            },
+            error: (e) => console.log(e),
+            complete: () => console.log(this.invoices)
+            
         })
-    }
+    }   
 
     overdueDays(date: Date):number {
         const today = new Date()

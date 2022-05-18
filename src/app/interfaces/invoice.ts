@@ -1,16 +1,12 @@
 export interface Invoice {
-    InvoiceID: number,
-    CustomerID: number,
-    SupplierID: number,
-    Date: Date,
-    DueDate: Date,
-    Statusid: InvoiceStatus,
-    GasAmount: number,
-    ElectricityType: number,
+    contract_id: number,
+    creation_date: Date,
+    due_date: Date,
+    invoice_id: number,
+    supplier_id: number,
+    status_id: InvoiceStatus,
     Price: number,
     Tax: number,
-    StartDate: Date, //?
-    EndDate: Date, //?
 }
 
 //move to db table?
