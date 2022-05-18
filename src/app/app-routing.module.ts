@@ -44,7 +44,7 @@ const routes: Routes = [
   {path: 'ticketing/:userType', component: TicketingComponent},
   {path: 'graphs', component: GraphsComponent, canActivate: [RoleGuardService], data: { roles: [UserRole.CUSTOMER] }},
   {path: 'statuscode/:statusCode', component: StatuscodepageComponent},
-  {path:'manage-customers',component:CustomerComponent},
+  {path:'manage-customers',component:CustomerComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
   {path:'consumption-estimation',component:ConsumptionEstimationComponent},
   {path:'register-customer',component:RegisterCustomerComponent},
   {path: 'add-suplier', component: AddSuplierComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
@@ -56,8 +56,6 @@ const routes: Routes = [
   {path: 'manage-contract', component: ManageContractComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
   {path: 'suppliers', component: SuppliersComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
 ]
-
-
 
 
 

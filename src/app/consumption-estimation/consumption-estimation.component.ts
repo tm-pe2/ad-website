@@ -441,7 +441,6 @@ submit()
       }
     })
   }
-
    onAddContract(): Promise<number>
     {
       return new Promise<number>((resolve,reject) => {
