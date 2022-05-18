@@ -32,15 +32,20 @@ export class WorkerAppService {
   dmcusmet1 : WorkerlistMeter = {meter_id: 120550, meter_type: "gaas" , physical_id: 1231310 , lastValue: 3110}
   dmcusmet2 : WorkerlistMeter = {meter_id: 121551, meter_type: "elek" , physical_id: 1231311 , lastValue: 121}
   dmcusmet3 : WorkerlistMeter = {meter_id: 122552, meter_type: "elega" , physical_id: 1231312 , lastValue: 1532}
-  dumcus : WorkerlistItem = {planningID: 0, planningStatus: 0, customerName: "Roger Rogert", address: "straat baan ding 156b", meters: [this.dmcusmet1, this.dmcusmet2, this.dmcusmet3]};
+  dumcus : WorkerlistItem = {planningID: 0, contractID: 0, planningStatus: 0, customerName: "Roger Rogert", address: "Nevensbaan 24, Rillaar", meters: [this.dmcusmet1, this.dmcusmet2, this.dmcusmet3]};
+  dumcus2 : WorkerlistItem = {planningID: 0, contractID: 0, planningStatus: 0, customerName: "Stefaan Bareel", address: "Parochielaan 12, Leuven", meters: [this.dmcusmet3]};
+  dumcus3: WorkerlistItem = {planningID: 0, contractID: 0, planningStatus: 0, customerName: "Yaro Stefs", address: "Veldweg 43, Herent", meters: [this.dmcusmet2, this.dmcusmet3]};
 
-  // Constructor
+  // Constructor 
   constructor(private http: HttpClient)
   { 
     this.customerList.push(this.dumcus);
+    this.customerList.push(this.dumcus2);
+    this.customerList.push(this.dumcus3);
+
   }
 
-  /*
+
   getPlanning(): Promise<void>
   {
     return new Promise<void>((resolve, reject) => 
@@ -119,6 +124,5 @@ export class WorkerAppService {
     });
 
   }
-  */
 
 }

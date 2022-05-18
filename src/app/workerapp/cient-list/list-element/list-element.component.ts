@@ -19,6 +19,7 @@ export class ListElementComponent implements OnInit {
   }
 
   selectCustomer(i : number): void{
+    this.service.selectedCustomer = i;
     if(this.service.customerList[i].planningStatus != 2)this.service.customerList[i].planningStatus = 1
     for (let j = 0; j < this.service.customerList.length; j++) {
       if(this.service.customerList[j] != this.service.customerList[i]){
