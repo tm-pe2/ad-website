@@ -1,7 +1,7 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { WorkerappComponent } from '../workerapp.component';
 import { UtilService } from 'src/app/util.service';
-import { WorkerlistItem } from 'src/app/interfaces/worker-interfaces';
+import { Details, WorkerlistItem } from 'src/app/interfaces/worker-interfaces';
 import { WorkerAppService } from 'src/app/services/worker-app.service';
 
 @Component({
@@ -41,10 +41,17 @@ export class CientPageComponent implements OnInit {
     this.eMeter = 0;
     this.nDate = new Date('00/00/0000');
     this.isDone = false;
+    
+    // test
+    this.service.getDetails(1);
+    let list: Details[] = service.detailsList;
+
   }
   
   ngOnInit(): void {
     if(this.service.customerList[this.selectedCustomer].planningStatus == 1) this.isDone = true;
+
+
   }
 
   // Old functions

@@ -9,46 +9,17 @@ export interface Planning
 
 }
 
-export interface Customer
+export interface Details
 {
-  CustomerID: number,
-  FirstName: string,
-  LastName: string,
-  BirthDate: Date,
-  AdressID: number,
-  Email: string,
-  PhoneNumber: string,
-  Password: string,
-  GasType: number,
-  Electricitytype: number
+  firstName: string,
+  lastName: string,
+  street: string,
+  houseNumber: number,
+  city: string,
+  zipcode: string,
+  country: string,
+  status: number
 
-}
-
-export interface Address 
-{
-  AdressID: number,
-  City: string,
-  Street: string,
-  HouseNumber: string,
-  PostalCode: string,
-  Country: string,
-  StartDate: Date,
-  EndDate: Date  
-}
-
-export interface Invoice {
-  InvoiceID: number,
-  CustomerID: number,
-  SupplierID: number,
-  Date: Date,
-  DueDate: Date,
-  Status: number,
-  GasAmount: number,
-  ElectricityType: number,
-  Price: number,
-  Tax: number,
-  StartDate: Date,
-  EndDate: Date
 }
 
 export interface WorkerlistItem
