@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Cust } from 'src/app/Cust';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { WorkerlistItem, WorkerlistMeter } from 'src/app/interfaces/worker-interfaces';
+import { Details, Planning, WorkerlistItem, WorkerlistMeter } from 'src/app/interfaces/worker-interfaces';
 
 
 @Injectable({
@@ -20,6 +20,8 @@ export class WorkerAppService {
   eid : number = 5;
   customerList: Array<WorkerlistItem> = [];
   selectedCustomer: number =  0;
+  planningIDs: Array<number> = [];
+  detailsList: Array<Details> = [];
   
 
   //dummer data
@@ -38,12 +40,36 @@ export class WorkerAppService {
   {
     return new Promise<void>((resolve, reject) => 
     {
-      this.http.get<WorkerlistItem>(environment.apiUrl + '/planning/employees/' + this.eid)
+      this.http.get<Planning>(environment.apiUrl + '/planning/employees/' + this.eid)
       .subscribe(
         {
-          next: (res: WorkerlistItem) =>
+          next: (res: Planning) =>
           {
-            this.customerList.push(res);
+            this.planningIDs.push(res.PlanningID);
+            resolve();
+
+          }, error: (err) => 
+          {
+            reject(err);
+
+          }
+
+        })
+
+    });
+
+  }
+
+  getDetails(planningID: number): Promise<void>
+  {
+    return new Promise<void>((resolve, reject) => 
+    {
+      this.http.get<Details>(environment.apiUrl + '/plannings/details/' + planningID)
+      .subscribe(
+        {
+          next: (res: Details) =>
+          {
+            console.log(res);
             resolve();
 
           }, error: (err) => 

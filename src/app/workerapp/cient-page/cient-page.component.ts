@@ -1,7 +1,7 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { WorkerappComponent } from '../workerapp.component';
 import { UtilService } from 'src/app/util.service';
-import { WorkerlistItem } from 'src/app/interfaces/worker-interfaces';
+import { Details, WorkerlistItem } from 'src/app/interfaces/worker-interfaces';
 import { WorkerAppService } from 'src/app/services/worker-app.service';
 
 @Component({

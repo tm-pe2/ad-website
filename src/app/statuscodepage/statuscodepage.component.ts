@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
-import { Inject } from '@angular/core';
 
 @Component({
   selector: 'app-statuscodepage',
