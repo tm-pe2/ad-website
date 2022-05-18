@@ -15,7 +15,6 @@ import { RoleGuardService } from './services/role-guard.service';
 import { LogoutComponent } from './logout/logout.component';
 import { StatuscodepageComponent } from './statuscodepage/statuscodepage.component';
 import { SupportComponent } from './support/support.component';
-import { ValidateContractComponent } from './validate-contract/validate-contract.component';
 import { UserRole } from './interfaces/User';
 import { EditSupplierComponent } from './suppliers/edit-supplier/edit-supplier.component';
 import { DeleteSupplierComponent } from './suppliers/delete-supplier/delete-supplier.component';
@@ -48,7 +47,6 @@ const routes: Routes = [
   {path:'manage-customers',component:CustomerComponent},
   {path:'consumption-estimation',component:ConsumptionEstimationComponent},
   {path:'register-customer',component:RegisterCustomerComponent},
-  {path:'validate-contract',component:ValidateContractComponent},
   {path: 'add-suplier', component: AddSuplierComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
   {path: 'edit-supplier', component: EditSupplierComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
   {path: 'delete-supplier', component: DeleteSupplierComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
