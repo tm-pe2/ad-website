@@ -2,9 +2,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Cust } from 'src/app/Cust';
-import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Details, Planning, WorkerlistItem, WorkerlistMeter } from 'src/app/interfaces/worker-interfaces';
+import { Planning, WorkerlistItem, WorkerlistMeter } from 'src/app/interfaces/worker-interfaces';
+import { User } from '../interfaces/User';
 
 
 @Injectable({
@@ -20,15 +20,19 @@ export class WorkerAppService {
   eid : number = 5;
   customerList: Array<WorkerlistItem> = [];
   selectedCustomer: number =  0;
+
+  // Temporary storage stuff
   planningIDs: Array<number> = [];
-  detailsList: Array<Details> = [];
+  contractIDs: Array<number> = [];
+  statuses: Array<number> = [];
+  nameList: Array<String> = [];
   
 
   //dummer data
   dmcusmet1 : WorkerlistMeter = {meter_id: 69420, meter_type: "gaas" , physical_id: 1231310 , lastValue: 690}
   dmcusmet2 : WorkerlistMeter = {meter_id: 69421, meter_type: "elek" , physical_id: 1231311 , lastValue: 691}
   dmcusmet3 : WorkerlistMeter = {meter_id: 69422, meter_type: "elega" , physical_id: 1231312 , lastValue: 692}
-  dumcus : WorkerlistItem = {planningID: 0, contractID: 0, planningStatus: 0, customerName: "Ronny Flex", address: "sheeshbaan 69 helewijd", meters: [this.dmcusmet1, this.dmcusmet2, this.dmcusmet3]};
+  dumcus : WorkerlistItem = {planningID: 0, planningStatus: 0, customerName: "Ronny Flex", address: "sheeshbaan 69 helewijd", meters: [this.dmcusmet1, this.dmcusmet2, this.dmcusmet3]};
 
   // Constructor
   constructor(private http: HttpClient)
@@ -36,6 +40,7 @@ export class WorkerAppService {
     this.customerList.push(this.dumcus);
   }
 
+  /*
   getPlanning(): Promise<void>
   {
     return new Promise<void>((resolve, reject) => 
@@ -45,7 +50,10 @@ export class WorkerAppService {
         {
           next: (res: Planning) =>
           {
+            // if (res.Date == new Date())
             this.planningIDs.push(res.PlanningID);
+            this.contractIDs.push(res.CustomerID);
+            this.statuses.push(res.Status);
             resolve();
 
           }, error: (err) => 
@@ -60,16 +68,19 @@ export class WorkerAppService {
 
   }
 
-  getDetails(planningID: number): Promise<void>
+  getCustomerID(contractID: number): Promise<void>
   {
     return new Promise<void>((resolve, reject) => 
     {
-      this.http.get<Details>(environment.apiUrl + '/plannings/details/' + planningID)
+      this.http.get<Planning>(environment.apiUrl + '/planning/employees/' + this.eid)
       .subscribe(
         {
-          next: (res: Details) =>
+          next: (res: Planning) =>
           {
-            console.log(res);
+            // if (res.Date == new Date())
+            this.planningIDs.push(res.PlanningID);
+            this.contractIDs.push(res.CustomerID);
+            this.statuses.push(res.Status);
             resolve();
 
           }, error: (err) => 
@@ -84,28 +95,30 @@ export class WorkerAppService {
 
   }
 
-/*
-  // Functions
-  // Get planning
-  // |-> get employee ids, status & date
-  getPlanning(): Observable<Planning[]> 
-  { return this.http.get<Planning[]>(environment.apiUrl + '/plannings/employee/' + this.eid); }
+  getCustomerInfo(userID: number): Promise<void>
+  {
+    return new Promise<void>((resolve, reject) => 
+    {
+      this.http.get<User>(environment.apiUrl + '/users/' + userID)
+      .subscribe(
+        {
+          next: (res: User) =>
+          {
+            // if (res.Date == new Date())
 
-  // Get customer data
-  // |-> name, addressID, gasType, electricityType
-  // I have no idea if that's how the routes work tho, gotsta ask it to someone who does
-  getCustomer(customerID: Number): Observable<Customer> 
-  { return this.http.get<Customer>(environment.apiUrl + '/customer/:' + customerID); }
+            resolve();
 
-  // Get address
-  // |-> get the address with an addressID
-  // |-> use the address values to make it a string
-  // I have no idea if that's how the routes work tho, gotsta ask it to someone who does
-  getAddress(adresID: Number): Observable<Address>
-  { return this.http.get<Address>(environment.apiUrl + '/addresses/:' + adresID); }
-  
-  // Get data from invoice (sort on highest ID?)
-  getInvoices(): Observable<Invoice[]>
-  { return this.http.get<Invoice[]>(environment.apiUrl + '/invoices'); }
+          }, error: (err) => 
+          {
+            reject(err);
+
+          }
+
+        })
+
+    });
+
+  }
   */
+
 }

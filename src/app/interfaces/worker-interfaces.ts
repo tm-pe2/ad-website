@@ -9,16 +9,10 @@ export interface Planning
 
 }
 
-export interface Details
+export interface CustomerContracts
 {
-  firstName: string,
-  lastName: string,
-  street: string,
-  houseNumber: number,
-  city: string,
-  zipcode: string,
-  country: string,
-  status: number
+  customerID: number,
+  contractID: number
 
 }
 
