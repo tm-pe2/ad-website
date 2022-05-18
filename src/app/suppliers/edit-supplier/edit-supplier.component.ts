@@ -38,9 +38,11 @@ export class EditSupplierComponent implements OnInit {
   private control(addSupplierForm: NgForm){
    const suppliersData: SupplierData =  { 
     name: addSupplierForm.value.addNameSup,
-    addres: addSupplierForm.value.addNameSup.addAddressSup, 
+    street: addSupplierForm.value.addStreetSup, 
+    housenumber: addSupplierForm.value.addHouseNumberSup,
     city: addSupplierForm.value.addCitySup, 
     zip: addSupplierForm.value.addZipSup, 
+    country: addSupplierForm.value.addCountrySup,
     type: addSupplierForm.value.addTypeSup
     };
   }

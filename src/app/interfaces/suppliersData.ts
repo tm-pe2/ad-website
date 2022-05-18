@@ -1,9 +1,10 @@
 export interface SupplierData
 {
     name: string;
-    addres: string;
+    street: string;
+    housenumber: number;
     city: string;
     zip: string;
+    country: string;
     type: string;
-
 }

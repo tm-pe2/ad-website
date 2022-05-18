@@ -14,6 +14,7 @@ export class SuppliersComponent implements OnInit {
   ngOnInit(): void {
   }
   myName="Jeff";
+  
   getName()
   {
     alert(this.myName)
