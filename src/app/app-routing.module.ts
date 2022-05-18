@@ -47,10 +47,19 @@ const routes: Routes = [
   {path: 'ticketing/:userType', component: TicketingComponent},
   {path: 'graphs', component: GraphsComponent, canActivate: [RoleGuardService], data: { roles: [UserRole.CUSTOMER] }},
   {path: 'statuscode/:statusCode', component: StatuscodepageComponent},
+<<<<<<< HEAD
   {path:'manage-customers',component:CustomerComponent},
   {path:'consumption-estimation',component:ConsumptionEstimationComponent},
   {path:'register-customer',component:RegisterCustomerComponent},
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+  {path:'manage-customers',component:CustomerComponent},
+  {path:'consumption-estimation',component:ConsumptionEstimationComponent},
+  {path:'register-customer',component:RegisterCustomerComponent},
+=======
+>>>>>>> main
+>>>>>>> manage-clients
   {path: 'add-suplier', component: AddSuplierComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
   {path: 'edit-supplier', component: EditSupplierComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
   {path: 'delete-supplier', component: DeleteSupplierComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
@@ -62,9 +71,18 @@ const routes: Routes = [
 =======
 >>>>>>> manage-clients
 ]
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> main
 
 
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> manage-clients
 
 @NgModule(
   {

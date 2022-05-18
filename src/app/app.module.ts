@@ -6,7 +6,7 @@ import { CustomerDetailComponent } from './customer-detail/customer-detail.compo
 import { CustomerComponent } from './customers/customers.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { MaterialModule } from './material/material.module';
-import { ManageTickets } from './ticketing/ticketing.component';
+import { TicketingComponent,ManageTickets } from './ticketing/ticketing.component';
 import { AddCustomerDialogComponent } from './add-customer-dialog/add-customer-dialog.component';
 import { ConsumptionEstimationComponent } from './consumption-estimation/consumption-estimation.component';
 import { MatSelectModule } from '@angular/material/select';
@@ -39,7 +39,6 @@ import { LogoutComponent } from './logout/logout.component';
 import { StatuscodepageComponent } from './statuscodepage/statuscodepage.component';
 import { SupportComponent } from './support/support.component';
 import { ValidateContractComponent } from './validate-contract/validate-contract.component';
-import { TicketingComponent } from './ticketing/ticketing.component';
 import { SuppliersComponent } from './suppliers/suppliers.component';
 import { AddSuplierComponent } from './suppliers/add-suplier/add-suplier.component';
 import { EditSupplierComponent } from './suppliers/edit-supplier/edit-supplier.component';
