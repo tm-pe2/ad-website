@@ -6,7 +6,7 @@ import { CustomerDetailComponent } from './customer-detail/customer-detail.compo
 import { CustomerComponent } from './customers/customers.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { MaterialModule } from './material/material.module';
-import { TicketingComponent,ManageTickets } from './ticketing/ticketing.component';
+import { TicketingComponent } from './ticketing/ticketing.component';
 import { AddCustomerDialogComponent } from './add-customer-dialog/add-customer-dialog.component';
 import { ConsumptionEstimationComponent } from './consumption-estimation/consumption-estimation.component';
 import { MatSelectModule } from '@angular/material/select';
@@ -31,7 +31,13 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { UserdataService } from './services/userdata.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { ManageEmployeesComponent } from './manage-employees/manage-employees.component';
+import { AddEmployeeFormComponent } from './manage-employees/add-employee-form/add-employee-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { EditEmployeeFormComponent } from './manage-employees/edit-employee-form/edit-employee-form.component';
+import { EmployeeCardComponent } from './manage-employees/employee-card/employee-card.component';
 import { ClientTicketsComponent } from './ticketing/client-tickets/client-tickets.component';
+
 import { NavigationComponent } from './navigation/navigation.component';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { AuthService } from './services/auth.service';
@@ -51,13 +57,12 @@ import { ContactSupplierComponent } from './suppliers/contact-supplier/contact-s
 import { ContractOverveiwComponent } from './suppliers/contract-overveiw/contract-overveiw.component';
 import { ManageContractComponent } from './suppliers/manage-contract/manage-contract.component';
 import { FormsModule }   from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ManageTickets } from './ticketing/manage-tickets/manage-tickets.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ManageTickets,
     DashboardComponent,
     SmallCardComponent,
     BigCardComponent,
@@ -78,6 +83,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     RegistrationComponent,
     GraphsComponent,
+    ManageTickets,
+    ClientTicketsComponent, 
+    TicketingComponent,
+    ManageEmployeesComponent,
+    EmployeeCardComponent,
+    AddEmployeeFormComponent,
+    EditEmployeeFormComponent,
     NavigationComponent, 
     ClientTicketsComponent,
     LogoutComponent,

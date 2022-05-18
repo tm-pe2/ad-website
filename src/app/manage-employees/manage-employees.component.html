@@ -1,0 +1,80 @@
+<div class="box row-start-2 row-end-6 col-start-1 col-end-3 overflow-y-auto shadow">
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" [style.display]="employeeService.showAddEmpButton ? 'block' : 'none'" (click)="changeStatusEmpAddForm()">Add Employee</button>
+</div> 
+    <div class="box row-start-2 row-end-6 col-start-3 col-end-11" [style.display]="employeeService.showEmpList ? 'block' : 'none'"> 
+        <div class="flex flex-wrap overflow-y-auto max-h-full border-md shadow">          
+            <!--Place employee cards here-->
+            
+            <table class="w-full rounded-lg shadow">
+                <thead class="bg-gray-50 border-b-2 border-gray-200 sticky top-0">
+                    <tr>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Name</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Department</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Telephone number & email</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Role</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Contact</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Details</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">edit</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr  *ngFor='let e of employeeService.employees; index as i;' class="shadow rounded-lg hover:bg-gray-200 ">
+                        <td class="p-3 text-sm">
+                            {{e.first_name +  " " + e.last_name}}
+                        </td>
+                        <td class="p-3 text-sm">
+                            {{e.department}}
+                        </td>
+                        <td class="p-3 text-sm">
+                            {{e.phone_number + " " + e.email}}
+                        </td>
+                        <td class="p3 text-sm">
+                            {{e.role_id}}
+                        </td>
+                        <td class="w-20 p-3 text-sm">
+                            <button  class="font-bold text-blue-500 hover:underline"><a href="mailto:{{e.email}}">Contact</a></button>
+                        </td>
+                        <td class="w-20 p-3 text-sm">
+                            <button class="font-bold text-blue-500 hover:underline" (click)="showDetails(i)">Details</button>
+                        </td>
+                        <td class="w-20 p-3 text-sm">
+                            <button 
+                            [ngClass]="{
+                                'text-blue-500': (this.role == 6),
+                                'hover:underline': (this.role == 6),
+                                'text-gray-500': (this.role == 7)
+                            }" 
+                            class="font-bold" (click)="startEditEmployee(i)" [disabled]='role!= 6'>edit</button>
+                        </td>
+                        <td class="w-20 p-3 text-sm">
+                            <button
+                            [ngClass]="{
+                                'text-red-500': (this.role == 6),
+                                'hover:underline': (this.role == 6),
+                                'text-gray-500': (this.role == 7)
+                            }" 
+                             class="font-bold" (click)="deleteEmployee(i)" [disabled]='role!= 6'>remove</button>
+                        </td>
+                    </tr>  
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="box row-start-6 row-end-6 col-start-1 col-end-11">
+        <!--Footer-->
+    </div>
+
+
+
+
+
+
+
+
+<app-edit-employee-form [style.display]="employeeService.showEditEmpForm ? 'block' : 'none' " [parent]="this"></app-edit-employee-form>
+
+<app-add-employee-form [style.display]="employeeService.showAddEmpForm ? 'block' : 'none'"  [parent]="this"></app-add-employee-form>
+
+
+<app-employee-card [style.display]="employeeService.showEmpCard ? 'block' : 'none' "></app-employee-card>
