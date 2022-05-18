@@ -33,6 +33,8 @@ export class CientPageComponent implements OnInit {
   isDone: number;
   meterid : number[];
   lastmeting : number[];
+  newvalues : number[];
+
 
   constructor(public cData: UtilService, private service: WorkerAppService) {
     this.selectedCustomer = service.selectedCustomer;
@@ -42,9 +44,11 @@ export class CientPageComponent implements OnInit {
     this.isDone = this.service.customerList[this.service.selectedCustomer].planningStatus
     this.meterid = [];
     this.lastmeting = [];
+    this.newvalues = [];
     this.service.customerList[this.selectedCustomer].meters.forEach(meter => {
       this.lastmeting.push(meter.lastValue);
       this.meterid.push(meter.meter_id);
+      this.newvalues.push(0);
     });
 
     this.mtype = cData.custData[cData.selectedCust].meterType;
@@ -58,8 +62,8 @@ export class CientPageComponent implements OnInit {
   }
 
   // Old functions
-  setGas(event:any){
-    this.gMeter = event.target.value;
+  setValue(event:any, i:number){
+    this.newvalues[i] = event.target.value;
   }
 
   setElek(event:any){
@@ -77,6 +81,10 @@ export class CientPageComponent implements OnInit {
   }
 
   submit(){
+    for (let i = 0; i < this.newvalues.length; i++) {
+      this.lastmeting[i] = this.newvalues[i];
+    }
+    /*
     let valid = true;
     //0 = gas 1 = elek 2 = both
     if(this.nDate != 'Invalid Date'){
@@ -127,6 +135,8 @@ export class CientPageComponent implements OnInit {
     if(valid){
       this.cData.custData[this.cData.selectedCust].status = 'done';
     };
+
+    */
   }
 }
 
