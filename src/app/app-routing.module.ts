@@ -15,7 +15,6 @@ import { RoleGuardService } from './services/role-guard.service';
 import { LogoutComponent } from './logout/logout.component';
 import { StatuscodepageComponent } from './statuscodepage/statuscodepage.component';
 import { SupportComponent } from './support/support.component';
-<<<<<<< HEAD
 import { UserRole } from './interfaces/User';
 import { EditSupplierComponent } from './suppliers/edit-supplier/edit-supplier.component';
 import { DeleteSupplierComponent } from './suppliers/delete-supplier/delete-supplier.component';
@@ -24,8 +23,6 @@ import { ContactSupplierComponent } from './suppliers/contact-supplier/contact-s
 import { ContractOverveiwComponent } from './suppliers/contract-overveiw/contract-overveiw.component';
 import { ManageContractComponent } from './suppliers/manage-contract/manage-contract.component';
 import { SuppliersComponent } from './suppliers/suppliers.component';
-=======
->>>>>>> manage-clients
 
 const routes: Routes = [
   {path: "", redirectTo: "dashboard", pathMatch: "full"},
@@ -47,19 +44,9 @@ const routes: Routes = [
   {path: 'ticketing/:userType', component: TicketingComponent},
   {path: 'graphs', component: GraphsComponent, canActivate: [RoleGuardService], data: { roles: [UserRole.CUSTOMER] }},
   {path: 'statuscode/:statusCode', component: StatuscodepageComponent},
-<<<<<<< HEAD
   {path:'manage-customers',component:CustomerComponent},
   {path:'consumption-estimation',component:ConsumptionEstimationComponent},
   {path:'register-customer',component:RegisterCustomerComponent},
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-  {path:'manage-customers',component:CustomerComponent},
-  {path:'consumption-estimation',component:ConsumptionEstimationComponent},
-  {path:'register-customer',component:RegisterCustomerComponent},
-=======
->>>>>>> main
->>>>>>> manage-clients
   {path: 'add-suplier', component: AddSuplierComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
   {path: 'edit-supplier', component: EditSupplierComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
   {path: 'delete-supplier', component: DeleteSupplierComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
@@ -68,21 +55,12 @@ const routes: Routes = [
   {path: 'contract-overview', component: ContractOverveiwComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
   {path: 'manage-contract', component: ManageContractComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
   {path: 'suppliers', component: SuppliersComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
-=======
->>>>>>> manage-clients
 ]
-<<<<<<< HEAD
-=======
-
-
->>>>>>> main
 
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> manage-clients
+
 
 @NgModule(
   {
