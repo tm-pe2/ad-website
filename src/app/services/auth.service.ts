@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 
 import { environment } from '../../environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { UserRole } from '../interfaces/User';
 
 const ACCESSTOKEN = 'auth-token';
 const REFRESHTOKEN = 'auth-refreshtoken';
@@ -28,7 +29,7 @@ export class AuthService {
           AuthService.storeRefreshToken(res.refreshToken);
           resolve();
         },
-        error: (err) => {
+        error: (err: any) => {
           reject(err);
         }
       });
@@ -50,7 +51,7 @@ export class AuthService {
           this.router.navigate(['login']);
           resolve();
         },
-        error: (err) => {
+        error: (err: any) => {
           reject(err);
         }
       });
@@ -81,13 +82,13 @@ export class AuthService {
   }
 
   // Returns null if role cannot be retrieved from access token
-  getUserRole(): string | null {
+  getUserRoleId(): UserRole | null {
     const token = AuthService.getAccessToken();
     if (!token) {
       return null;
     }
     const payload = this.jwtHelper.decodeToken(token);
-    return payload.role;
+    return payload.role_id as UserRole;
   }
 
   refreshAccessToken() {
