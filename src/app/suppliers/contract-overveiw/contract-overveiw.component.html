@@ -1,0 +1,27 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-700">
+    <div class="rounded shadow-2xl bg-white p-5 text-2xl">
+       
+        <label class="font-bold flex items-center justify-center pb-5">Contract of "Supplier 1"</label><br>
+
+        <div class="grid grid-cols-2 mb-3 gap-2">
+            <span>Contract type:</span>
+            <span>Type 2</span>
+        </div>
+        <div class="grid grid-cols-2 mb-3 gap-2">
+            <span>total Consumptions:</span>
+            <span>5</span>
+        </div>
+        <div class="grid grid-cols-2 mb-3 gap-2">
+            <span>Contract Expire:</span>
+            <span>10-5-2025</span>
+        </div>
+
+        <div class="flex justify-center m-2 pt-5">
+            <button class="p-1.5 px-5 text-lg uppercase font-medium tracking-wider text-black-600 hover:underline hover:cursor-pointer bg-orange-400 rounded-lg" (click)="gotToPage('manage-contract')"> Contact Contract manager</button><br>
+        </div>
+        <div class="flex justify-center m-2 pt-5">
+            <button class="p-1.5 px-5 text-lg uppercase font-medium tracking-wider text-black-600 hover:underline hover:cursor-pointer bg-red-400 rounded-lg" (click)="backToHub('suppliers')">Back</button>        
+        </div>
+
+    </div>
+</div>
