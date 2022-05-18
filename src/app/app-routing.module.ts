@@ -13,6 +13,7 @@ import { SupportComponent } from './support/support.component';
 import { UserRole } from './interfaces/User';
 
 const routes: Routes = [
+  {path: "", redirectTo: "dashboard", pathMatch: "full"},
   {
     path: 'dashboard',
     component: DashboardComponent,

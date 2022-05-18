@@ -14,8 +14,8 @@ import { UserRole } from '../interfaces/User';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
-  user?: User
   title: string = 'Dashboard'
+  employeeRoles: UserRole[] = [UserRole.ACCOUNTANT,UserRole.ADMIN, UserRole.EMPLOYEE, UserRole.HR_MANAGER, UserRole.MANAGER, UserRole.SUPPORT, UserRole.TECHNICIAN];
 
   constructor(private titleService: Title, private activatedRoute:ActivatedRoute, private elementRef: ElementRef, public auth: AuthService) {
   }
