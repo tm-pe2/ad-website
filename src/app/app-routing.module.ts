@@ -39,7 +39,7 @@ const routes: Routes = [
   {path: 'logout', component: LogoutComponent},
   {path: 'registration', component: RegistrationComponent},
   {path: 'ticketing/:userType', component: TicketingComponent},
-  {path: 'graphs', component: GraphsComponent},
+  {path: 'graphs', component: GraphsComponent, canActivate: [RoleGuardService], data: { roles: [UserRole.CUSTOMER] }},
   {path: 'statuscode/:statusCode', component: StatuscodepageComponent},
   {path: 'add-suplier', component: AddSuplierComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
   {path: 'edit-supplier', component: EditSupplierComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
