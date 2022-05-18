@@ -14,14 +14,23 @@ export class ReportingComponent implements OnInit {
 
     ngOnInit(): void {
         //either update the status from here or update the status every day to update status, then get status
-        this.http.get<{ invoice: Invoice[] }>(environment.apiUrl + "/invoices/overdue").subscribe({
-            next: (data) => {this.invoices = data.invoice;
-            this.invoices.map(e => e.Statusid = InvoiceStatus.overdue)},
-            //complete: () => console.log(this.invoices)
+        this.http.get< Invoice[] >(environment.apiUrl + "/invoices/overdue").subscribe({
+            next: (data) => {
+                if(data?.length > 0)
+                    this.invoices = data;
+                //TODO display "no overdue invoices"?
+            ;
+                //FIXME date is not date object (temp fix?)
+                this.invoices.forEach(d => d.DueDate = new Date(d.DueDate) );
+            }
 
         })
     }
 
+    overdueDays(date: Date):number {
+        const today = new Date()
+        return Math.floor((today.valueOf() - date.valueOf()) / (1000 * 60 *60 *24))
+    }
 
 
     invoiceStatusToString(status: InvoiceStatus): string {

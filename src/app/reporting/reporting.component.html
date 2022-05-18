@@ -9,6 +9,7 @@
                 <th>type</th>
                 <th>status</th>
                 <th>due</th>
+                <th>overdue [days]</th>
             </tr>
 
         </thead>
@@ -18,6 +19,7 @@
                 <td>{{ x.ElectricityType }}</td>
                 <td>{{invoiceStatusToString(x.Statusid)}}</td>
                 <td>{{x.DueDate.toLocaleString()}}</td>
+                <td>{{overdueDays(x.DueDate).toString()}}</td>
             </tr>
         </tbody>
     </table>
