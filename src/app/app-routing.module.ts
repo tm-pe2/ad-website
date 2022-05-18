@@ -3,8 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AddSuplierComponent } from './suppliers/add-suplier/add-suplier.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { GraphsComponent } from './graphs/graphs.component';
+import { CustomerComponent } from './customers/customers.component';
 import { TicketingComponent } from './ticketing/ticketing.component';
+import { ConsumptionEstimationComponent } from './consumption-estimation/consumption-estimation.component';
+import { RegisterCustomerComponent } from './register-customer/register-customer.component';
+import { GraphsComponent } from './graphs/graphs.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AuthGuardService } from './services/auth-guard.service';
@@ -41,6 +44,9 @@ const routes: Routes = [
   {path: 'ticketing/:userType', component: TicketingComponent},
   {path: 'graphs', component: GraphsComponent, canActivate: [RoleGuardService], data: { roles: [UserRole.CUSTOMER] }},
   {path: 'statuscode/:statusCode', component: StatuscodepageComponent},
+  {path:'manage-customers',component:CustomerComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
+  {path:'consumption-estimation',component:ConsumptionEstimationComponent},
+  {path:'register-customer',component:RegisterCustomerComponent},
   {path: 'add-suplier', component: AddSuplierComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
   {path: 'edit-supplier', component: EditSupplierComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
   {path: 'delete-supplier', component: DeleteSupplierComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
@@ -53,8 +59,11 @@ const routes: Routes = [
 
 
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
+
+@NgModule(
+  {
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
+  }
+)
 export class AppRoutingModule { }

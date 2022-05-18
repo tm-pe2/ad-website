@@ -29,7 +29,7 @@ export class AuthService {
           AuthService.storeRefreshToken(res.refreshToken);
           resolve();
         },
-        error: (err) => {
+        error: (err: any) => {
           reject(err);
         }
       });
@@ -51,7 +51,7 @@ export class AuthService {
           this.router.navigate(['login']);
           resolve();
         },
-        error: (err) => {
+        error: (err: any) => {
           reject(err);
         }
       });
