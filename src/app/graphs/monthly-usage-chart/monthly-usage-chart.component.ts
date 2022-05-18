@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Chart, registerables} from 'chart.js';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-monthly-usage-chart',
@@ -8,7 +9,7 @@ import { Chart, registerables} from 'chart.js';
 })
 export class MonthlyUsageChartComponent implements OnInit {
 
-  constructor() {
+  constructor(private http:HttpClient) {
     Chart.register(...registerables);
   }
   
@@ -17,6 +18,17 @@ export class MonthlyUsageChartComponent implements OnInit {
   chart?: Chart;
 
   ngOnInit(): void {
+
+    const consumptions = [];
+
+    let response = this.http.get("http://localhost:6060/consumptions").subscribe(
+      (response) => {
+        console.log(response)
+      },
+      (error) => {
+        console.log('error', error)
+      }
+    )
 
     const labels = [
       'April',
