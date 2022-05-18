@@ -1,0 +1,165 @@
+form
+{
+    display: flex;
+    margin-top: 2.5vh;
+    margin-left: 33%;
+    margin-right: 30%;
+    max-width: 800px;
+    /*max-height: 95vh;*/
+    width: 60vw;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    border: solid 1px #000000;
+    border-radius: 1rem;
+    box-shadow: 0.5rem 0.5rem 0.75rem #888888;
+    color: #B22222;
+    
+}
+
+h2
+{
+    text-align: center;
+    width: 100%;
+    font-size: 2.5rem;
+    margin-top: 2%;
+    margin-left: 10%;
+}
+
+.form-group
+{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: 0.75rem;
+
+}
+.form-group1
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 90%;
+    margin: 0.75rem;
+
+}
+.form-label
+{
+    text-align: left;
+    padding-bottom: 0.5rem;
+
+}
+
+.form-control 
+{
+    width: 100%;
+    margin: auto;
+    padding: 0.5rem;
+    border: solid 1px #888888;
+    text-align: left;
+    border-radius: 0.75rem;
+
+}
+
+.form-control-att
+{
+    width: 100%;
+    margin: auto;
+    margin-right: 1%;
+    padding: 0.5rem;
+    border: solid 1px #888888;
+    text-align: left;
+    border-radius: 0.75rem;
+}
+
+.form-control-att-big
+{
+    width: 250%;
+    margin: auto;
+    margin-right: 1%;
+    padding: 0.5rem;
+    border: solid 1px #888888;
+    text-align: left;
+    border-radius: 0.75rem;
+}
+
+.form-buttons
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0.5rem;
+
+}
+
+.form-button
+{
+    background-color: #00AAff;
+    color: #FFFFFF;
+    padding: 1rem;
+    width: 25%;
+    border: solid 1px #0079b6;
+    border-radius: 1rem;
+    box-shadow: 0.125rem 0.1 25rem 0.25rem #888888;
+    text-align: center;
+    margin-left: 40%;
+    margin-right: 40%;
+}
+
+.form-link
+{
+    padding: 1rem;
+    width: 30%;
+    text-align: center;
+    text-decoration: underline;
+    margin-left: 40%;
+    margin-right: 40%;
+}
+
+.error-alert
+{
+    margin-bottom: 1rem;
+    padding: 1rem;
+    width: 90%;
+    text-align: center;
+    color: #B22222;
+    background-color: #FFAAAA;
+    border: solid 1px #B22222;
+    border-radius: 0.75rem;
+
+}
+
+.form-dropdown
+{
+    width: 100%;
+    padding: 0.5rem;
+    border: solid 1px #888888;
+    text-indent: 5px;
+    border-radius: 0.75rem;
+    background-color: #FFFFFF;
+    color: #444444;
+
+}
+
+.warning
+{
+    font-size: small;
+    padding-left: 2%;
+    width: 90%;
+    padding-top: 3%;
+}
+
+/* Remove arrows from input:number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button
+{
+    -webkit-appearance: none;
+    margin: 0;
+
+}
+
+input[type=number] { -moz-appearance: textfield; }
