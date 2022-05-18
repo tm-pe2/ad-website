@@ -19,17 +19,6 @@ export class MonthlyUsageChartComponent implements OnInit {
 
   ngOnInit(): void {
 
-    const consumptions = [];
-
-    let response = this.http.get("http://localhost:6060/consumptions").subscribe(
-      (response) => {
-        console.log(response)
-      },
-      (error) => {
-        console.log('error', error)
-      }
-    )
-
     const labels = [
       'April',
       'May',
@@ -51,7 +40,7 @@ export class MonthlyUsageChartComponent implements OnInit {
         label: 'Energy Usage',
         backgroundColor: 'rgb(35, 170, 250)',
         borderColor: 'rgb(35, 170, 250)',
-        data: [],
+        data: [5000, 3050, 4567, 5678, 4532, 2345, 4536, 3656, 4567, 3645, 2987, 4565],
       }]
     };
   
@@ -78,22 +67,6 @@ export class MonthlyUsageChartComponent implements OnInit {
         maintainAspectRatio: 'true',
       }
     };
-
-    fetch('http://localhost:6060/energyUsage/' + this.test_id)
-      .then((res) => res.json())
-      .then((usage: Usage) => {
-        this.usage = usage;
-        console.log("Fetch succeeded");
-        if (this.chart) {
-            for (let monthData of this.usage.usage) {
-              this.chart.data.datasets[0].data.push(monthData as number);
-            }
-            this.chart.update();
-        }        
-      })
-      .catch((err) => {
-        console.error('Error retrieving user', err);
-    });
 
     this.chart = new Chart(<HTMLCanvasElement>document.getElementById('monthlyChart'), config);
   }
