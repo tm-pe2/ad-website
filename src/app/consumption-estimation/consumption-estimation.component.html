@@ -252,16 +252,14 @@
                 </mat-radio-group>
                 <br>
 
-                <div *ngIf=" consumptionDetailsForm.controls['answer'].value == 1; else elseBlock;" class="flex place-content-evenly">     
+                <div *ngIf=" consumptionDetailsForm.controls['answer'].value == 1;" class="flex place-content-evenly">     
                     <strong>Approximate yearly consumption:</strong>
                     <input type="text" formControlName="annualConsumption" placeholder="Consumption in kW"/>
                     <div *ngIf="consumption_step && consumptionDetailsForm.controls['annualConsumption'].errors">
                         <div class="required" *ngIf="consumption['annualConsumption'].errors?.['required']">*Consumption is required</div>
                     </div>
                 </div>
-                <ng-template #elseBlock>
-                    <p> Your estimated annual consumtion in kWh is: <span>{{annualEstimation}}</span></p>
-                </ng-template>
+                
                 <input (click)="previous()" type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                 <input (click)="submit()"type="submit" name="submit" class="submit action-button" value="Submit"/>
             </fieldset>

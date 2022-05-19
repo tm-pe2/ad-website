@@ -6,6 +6,7 @@ import { DateAdapter } from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment';
 import { Customer } from '../interfaces/customer';
+import { UserdataService } from '../services/userdata.service';
 
 
 @Component({
@@ -23,6 +24,7 @@ export class CustomerDetailComponent implements OnInit {
     private httpClient:HttpClient,
     private formB: FormBuilder,
     private dialRef: MatDialogRef<CustomerDetailComponent>,
+    private userData : UserdataService,
     @Inject(MAT_DIALOG_DATA) public data: Customer) {
       this.form=this.formB.group({
         customer_id:data.customer_id,
