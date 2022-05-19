@@ -6,6 +6,7 @@ import { DateAdapter } from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment';
 import { Customer } from '../interfaces/customer';
+import { UserdataService } from '../services/userdata.service';
 
 
 @Component({
@@ -23,8 +24,10 @@ export class CustomerDetailComponent implements OnInit {
     private httpClient:HttpClient,
     private formB: FormBuilder,
     private dialRef: MatDialogRef<CustomerDetailComponent>,
+    private userData : UserdataService,
     @Inject(MAT_DIALOG_DATA) public data: Customer) {
       this.form=this.formB.group({
+        customer_id:data.customer_id,
         RoleID:data.role_id,
         FirstName:data.first_name,
         LastName:data.last_name,
@@ -48,7 +51,6 @@ export class CustomerDetailComponent implements OnInit {
   {
     this.httpClient.get<any>(environment.apiUrl+'/customers').subscribe(
       ( response: Customer[])=>{
-      console.log(response);
       this.customers=response;
     }
     );
@@ -63,10 +65,11 @@ export class CustomerDetailComponent implements OnInit {
       last_name: this.form.get('LastName')?.value,
       birth_date: this.form.get('BirthDate')?.value,
       email: this.form.get('Email')?.value,
-      phone_number: this.form.get('PhoneNumber')?.value,
+      phone_number: 'test',
       password: this.form.get('Password')?.value,
-      customer_id: -1,
-      user_id: -1,
+      customer_id: this.form.value.customer_id,
+      user_id: 0,
+      address_id:0,
       national_registry_number: this.form.get('NationalRegNumber')?.value,
       city: this.form.get('City')?.value,
       street: this.form.get('Street')?.value,

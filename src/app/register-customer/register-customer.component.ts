@@ -110,64 +110,6 @@ previous()
   
 }
 
-// calculateConsumption()
-// {
-//   let estimation:number=0;
-//   let nrOfPeople : number = this.familyAdressCompoundForm.get('members')?.value;
-//   console.log("ppl",nrOfPeople);
-//   if(nrOfPeople==1){
-//       estimation=18;
-//   }
-//   else if(nrOfPeople==2)
-//   {
-//     estimation=28;
-//   }
-//   else if(nrOfPeople==3) 
-//   { 
-//     estimation=40;
-//   }
-//   else
-//   {
-//   estimation=60;}
-     
-//   console.log("est",estimation);
-  
-//   let building : number = this.familyAdressCompoundForm.get('houseType')?.value;
-//   console.log("bTy",building);
-//   if(building==1){
-//     estimation-=5;
-//   }
-//   else if(building==2)
-//   {
-//     estimation-=2;
-//   }
-//   else if(building==3) 
-//   { 
-//     estimation+=5;
-//   }
-
-//   console.log("est",estimation);
-
-//   let appliances: [number]=(this.consumptionDetailsForm.get('selectedEquipments')?.value);
-//   console.log(appliances);
-//   appliances.forEach(app => {
-//     if(app==1)
-//     {estimation+=1}
-//     if(app==2)
-//     {estimation+=0.20}
-//     if(app==3)
-//     {estimation+=0.36}
-//     if(app==4)
-//     {estimation+=0.30}
-//     if(app==5)
-//     {estimation+=1.07}
-//   });
-//   console.log(estimation);
-
-  
-//   return estimation;
-// }
-
 submit()
 {
   if(this.step==3)
@@ -179,9 +121,6 @@ submit()
     console.error();
     return
     }
-    // this.estimation=this.calculateConsumption() 
-    // let monthlyEst:number= this.estimation*30;
-    // let annual:number=this.estimation*365;
     console.log(this.personalDetailsForm.value,this.familyAdressCompoundForm.value,this.meterDetailsForm.value);
     
 
