@@ -1,5 +1,6 @@
 import { Component,  Input, OnInit } from '@angular/core';
-import { FieldData, ManageTickets } from '../ticketing.component';
+import { ManageTickets } from '../manage-tickets/manage-tickets.component';
+import { FieldData } from '../ticketing.component';
 
 @Component({
   selector: 'app-edit-modal',

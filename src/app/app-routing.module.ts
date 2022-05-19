@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AddSuplierComponent } from './suppliers/add-suplier/add-suplier.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ManageEmployeesComponent } from './manage-employees/manage-employees.component';
 import { CustomerComponent } from './customers/customers.component';
 import { TicketingComponent } from './ticketing/ticketing.component';
 import { ConsumptionEstimationComponent } from './consumption-estimation/consumption-estimation.component';
@@ -15,6 +16,7 @@ import { RoleGuardService } from './services/role-guard.service';
 import { LogoutComponent } from './logout/logout.component';
 import { StatuscodepageComponent } from './statuscodepage/statuscodepage.component';
 import { SupportComponent } from './support/support.component';
+import { ManageinvoicesComponent } from './manageinvoices/manageinvoices.component';
 import { UserRole } from './interfaces/User';
 import { EditSupplierComponent } from './suppliers/edit-supplier/edit-supplier.component';
 import { DeleteSupplierComponent } from './suppliers/delete-supplier/delete-supplier.component';
@@ -37,6 +39,7 @@ const routes: Routes = [
     canActivate: [RoleGuardService],
     data: { roles: [UserRole.ADMIN, UserRole.TECHNICIAN] }, // E.g. how to user roleguard service
   },
+
   {path: 'support', component: SupportComponent},
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: LogoutComponent},
@@ -44,6 +47,8 @@ const routes: Routes = [
   {path: 'ticketing/:userType', component: TicketingComponent},
   {path: 'graphs', component: GraphsComponent, canActivate: [RoleGuardService], data: { roles: [UserRole.CUSTOMER] }},
   {path: 'statuscode/:statusCode', component: StatuscodepageComponent},
+  {path: 'manage-employees',component:ManageEmployeesComponent, canActivate: [RoleGuardService], data:{roles:[UserRole.MANAGER,UserRole.HR_MANAGER,UserRole.ADMIN,UserRole.EMPLOYEE]}},
+  {path: 'manageinvoices', component: ManageinvoicesComponent, canActivate: [AuthGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER, UserRole.EMPLOYEE]}},
   {path:'manage-customers',component:CustomerComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
   {path:'consumption-estimation',component:ConsumptionEstimationComponent},
   {path:'register-customer',component:RegisterCustomerComponent},
@@ -55,7 +60,7 @@ const routes: Routes = [
   {path: 'contract-overview', component: ContractOverveiwComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
   {path: 'manage-contract', component: ManageContractComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
   {path: 'suppliers', component: SuppliersComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
-]
+];
 
 
 
