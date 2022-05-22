@@ -1,4 +1,4 @@
-<h2><span style="color:#00AAFF; font-weight:600">register</span><br><span style="color:gray; font-weight: 100;">to go further</span></h2>
+<!-- <h2><span style="color:#00AAFF; font-weight:600">register</span><br><span style="color:gray; font-weight: 100;">to go further</span></h2>
 <form #regForm="ngForm" (ngSubmit)="onSubmit(regForm)">
     <div class="warning">
         <p>
@@ -52,4 +52,6 @@
     <div class="error-alert" role="alert" *ngIf="matchingPasswords">
         The passwords don't match!
     </div>
-</form>
+</form> -->
+
+<app-forms [submitText]="'Sign up'" [title]="'Register'" [type]="'register'" (submitted)="onSubmit($event)"></app-forms>

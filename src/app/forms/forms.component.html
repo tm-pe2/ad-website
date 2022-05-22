@@ -1,0 +1,49 @@
+<form [formGroup]="form"
+    class="flex flex-col border rounded justify-center items-center p-24 mt-10 w-fit m-auto bg-slate-200"
+    (ngSubmit)="submit()">
+    <h1 class="">{{this.title}}</h1>
+    <div>
+        <mat-form-field appearance="standard" class="pr-20">
+
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName" placeholder="Name">
+
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName" placeholder="Last Name">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="standard" class="pr-20">
+            <mat-label>Email <span class="text-red-500" *ngIf="this.form.get('email')?.hasError('email')"> is not
+                    valid</span></mat-label>
+            <input matInput type="email" formControlName="email" placeholder="E-mail">
+        </mat-form-field>
+
+        <mat-form-field appearance="standard">
+            <mat-label>Phone<span class="text-red-500" *ngIf="this.form.get('phone')?.hasError('pattern')"> number is
+                    not valid</span></mat-label>
+            <input matInput type="tel" formControlName="phone" placeholder="Phone">
+        </mat-form-field>
+    </div>
+    <mat-form-field class="self-start">
+        <mat-select formControlName="city">
+            <mat-option *ngFor="let city of this.cities"   value="{{city.name}}">{{city.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="standard" class=" self-start">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" [(ngModel)]="password" formControlName="password" placeholder="Password">
+    </mat-form-field>
+    <mat-form-field *ngIf="this.type == 'register'" appearance="standard" class="mb-24 self-start">
+        <mat-label>Confirm Password <span class="text-red-500"
+                *ngIf="this.form.get('confirmPassword')?.hasError('passwordMismatch')"> | Not the same</span>
+        </mat-label>
+        <input matInput type="password" [(ngModel)]="confirmPassword" formControlName="confirmPassword"
+            placeholder="Confirm Password">
+    </mat-form-field>
+
+    <button mat-raised-button type="submit">{{this.submitText}}</button>
+
+</form>

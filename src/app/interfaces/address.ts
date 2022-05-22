@@ -6,3 +6,8 @@ export interface Address{
     housNumber: number,
     country: string
 }
+
+export interface City{
+    zipcode: string,
+    name: string,
+}
