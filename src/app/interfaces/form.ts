@@ -7,4 +7,7 @@ export interface Form{
     password?: string,
     confirmPassword?: string,
     city?: string,
+    registryId?: string,
+    birthDate?: Date,
+    
 }
