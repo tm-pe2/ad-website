@@ -4,7 +4,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { City } from '../interfaces/address';
-import { Form } from '../interfaces/form';
+import { MeterAppForm, RegisterForm, SuppliersForm } from '../interfaces/form';
+import { Meter } from '../interfaces/meter';
+import { Supplier } from '../suppliers/supplier';
 
 @Component({
   selector: 'app-forms[type]',
@@ -15,15 +17,19 @@ export class FormsComponent implements OnInit {
   @Input() submitText?: string;
   @Input() title?: string;
   @Input() type!: string;
-  @Output() submitted = new EventEmitter<Form>();
+  @Output() submitted = new EventEmitter<any>();
+  @Input() meters?: Meter[];
 
   mindate?: Date;
-  maxDate?: Date;
+  maxEmployeeDate?: Date;
+  maxCustomerDate?: Date;
   cities?: City[];
   password?:string;
   confirmPassword?:string;
 
   registerFields: string[] = ["firstName", "lastName", "email", "phone", "password", "confirmPassword", "city", "registryId", "birthDate"]
+  supplierFields: string[] = ["supplierName", "goods", "city", "street"]
+  meterAppFields: string[] = [];
 
   form = new FormGroup({
     firstName:  new FormControl('', [Validators.required]),
@@ -35,7 +41,11 @@ export class FormsComponent implements OnInit {
     confirmPassword: new FormControl('', [Validators.required, this.validateConfirmPassword()]),
     city: new FormControl('', [Validators.required]),
     registryId: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]{11}$/)]),
-    birthDate: new FormControl('', [Validators.required])
+    birthDate: new FormControl('', [Validators.required]),
+    street: new FormControl('', [Validators.required]),
+
+    supplierName: new FormControl('', [Validators.required]),
+    goods: new FormControl('', [Validators.required]),
     
   })
 
@@ -48,33 +58,76 @@ export class FormsComponent implements OnInit {
     let curDate = new Date();
     curDate.setHours(24,0,0,0)
     this.mindate = new Date(curDate.getUTCFullYear() - 120, curDate.getUTCMonth() , curDate.getUTCDate() )
-    if(this.type == "register"){
-      this.maxDate = new Date(curDate.getUTCFullYear() - 16, curDate.getUTCMonth(), curDate.getUTCDate())  
-    }
+    this.maxEmployeeDate = new Date(curDate.getUTCFullYear() - 16, curDate.getUTCMonth(), curDate.getUTCDate())  
+    this.maxCustomerDate = new Date(curDate.getUTCFullYear() - 18, curDate.getUTCMonth(), curDate.getUTCDate())
+
+    this.meters?.forEach(meter => {
+      this.meterAppFields.push(`meter_${meter.id.toString()}`);
+      this.form.addControl(`meter_${meter.id.toString()}`, new FormControl('', [Validators.required]))
+      this.form.get(`meter_${meter.id.toString()}`)?.setValue(meter.value);
+    });
   }
 
 
   submit(): boolean{
-    let filled: Form = {
-      firstName: this.form.get('firstName')?.value,
-      lastName: this.form.get('lastName')?.value,
-      email: this.form.get('email')?.value,
-      phone: this.form.get('phone')?.value,
-      password: this.form.get('password')?.value,
-      confirmPassword: this.form.get('confirmPassword')?.value,
-      city: this.form.get('city')?.value,
-      registryId: this.form.get('registryId')?.value,
-      birthDate: this.form.get('birthDate')?.value
-    };
+
     if(this.type== "register"){
+      let filled: RegisterForm = {
+        firstName: this.form.get('firstName')?.value,
+        lastName: this.form.get('lastName')?.value,
+        email: this.form.get('email')?.value,
+        phone: this.form.get('phone')?.value,
+        password: this.form.get('password')?.value,
+        confirmPassword: this.form.get('confirmPassword')?.value,
+        city: this.form.get('city')?.value as number,
+        registryId: this.form.get('registryId')?.value,
+        birthDate: this.form.get('birthDate')?.value,
+        street: this.form.get('street')?.value,
+      };
       for(let field of this.registerFields){
         if(this.form.get(field)?.errors){
           return false;
         }
       }
+      this.submitted.emit(filled as RegisterForm);
       
     }
-    this.submitted.emit(filled);
+    if(this.type== "suppliers"){
+      let filled: SuppliersForm = {
+        name: this.form.get('supplierName')?.value,
+        goods: this.form.get('goods')?.value,
+        city: this.form.get('city')?.value as number,
+        street: this.form.get('street')?.value,
+      };
+      for(let field of this.supplierFields){
+        if(this.form.get(field)?.errors){
+          return false;
+        }
+      }
+      this.submitted.emit(filled as SuppliersForm);
+      
+    }
+    if(this.type== "meter-app"){
+      let filled: MeterAppForm = {
+        meters: []
+      }
+      this.meters?.forEach(meter => {
+        filled.meters.push({
+          id: meter.id,
+          value: this.form.get(`meter_${meter.id.toString()}`)?.value,
+          meter_type: meter.meter_type,
+          physical_id: meter.physical_id
+        })
+      });
+      for(let field of this.meterAppFields){
+        if(this.form.get(field)?.errors){
+          return false;
+        }
+      }
+      this.submitted.emit(filled as MeterAppForm);
+      
+    }
+
     return true;
     
 
