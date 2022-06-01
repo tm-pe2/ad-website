@@ -1,4 +1,5 @@
 
+
 export interface Address {
   address_id?: number,
   city: string,
@@ -75,4 +76,8 @@ export interface EstimatedContract extends Estimation
   address_id:number,
   service_type:number,
   status:string
+}
+export enum CustomerType{
+  PRIVATE = 1, 
+  COMPANY = 2,
 }

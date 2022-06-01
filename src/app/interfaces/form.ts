@@ -1,16 +1,19 @@
+import { CustomerType } from "./customer";
 import { Meter } from "./meter";
 
 export interface RegisterForm {
-    firstName?: string,
-    lastName?: string,
+    first_name?: string,
+    last_name?: string,
     email?: string,
-    phone?: string,
+    phone_number?: string,
     password?: string,
     confirmPassword?: string,
     city?: number,
-    registryId?: string,
-    birthDate?: Date,
+    national_registry_number?: string,
+    birth_date?: Date,
     street?: string,
+    house_number?: string,
+    type?: CustomerType
 }
 
 export interface SuppliersForm {
@@ -18,6 +21,7 @@ export interface SuppliersForm {
     goods?: string,
     city?: number,
     street?: string,
+    house_number?: string,
 }
 
 export interface MeterAppForm {

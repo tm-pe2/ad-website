@@ -1,8 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 import { RegisterForm } from '../interfaces/form';
 import { Meter } from '../interfaces/meter';
-import { RegistrationData } from '../interfaces/registrationData';
 import { UserdataService } from '../services/userdata.service';
 
 
@@ -37,7 +38,7 @@ export class RegistrationComponent implements OnInit {
     },
   ]
   // Constructor
-  constructor() { }
+  constructor(private http: HttpClient, private userService: UserdataService) { }
 
   // On init
   ngOnInit(): void { }
@@ -46,8 +47,7 @@ export class RegistrationComponent implements OnInit {
   // Public
   onSubmit(form: RegisterForm) 
   {
-    console.log("Registration: " , form)
-
+    this.userService.registerUser(form)
   }
 
   // Private

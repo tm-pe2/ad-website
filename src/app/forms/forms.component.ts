@@ -1,12 +1,11 @@
-import { validateHorizontalPosition } from '@angular/cdk/overlay';
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { City } from '../interfaces/address';
+import {  CustomerType } from '../interfaces/customer';
 import { MeterAppForm, RegisterForm, SuppliersForm } from '../interfaces/form';
 import { Meter } from '../interfaces/meter';
-import { Supplier } from '../suppliers/supplier';
 
 @Component({
   selector: 'app-forms[type]',
@@ -43,6 +42,8 @@ export class FormsComponent implements OnInit {
     registryId: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]{11}$/)]),
     birthDate: new FormControl('', [Validators.required]),
     street: new FormControl('', [Validators.required]),
+    house_number: new FormControl('', [Validators.required]),
+    type: new FormControl('', [Validators.required]),
 
     supplierName: new FormControl('', [Validators.required]),
     goods: new FormControl('', [Validators.required]),
@@ -55,6 +56,7 @@ export class FormsComponent implements OnInit {
     this.http.get<City[]>(environment.apiUrl + "/cities").subscribe(data => {
       this.cities = data;
     });
+
     let curDate = new Date();
     curDate.setHours(24,0,0,0)
     this.mindate = new Date(curDate.getUTCFullYear() - 120, curDate.getUTCMonth() , curDate.getUTCDate() )
@@ -71,18 +73,20 @@ export class FormsComponent implements OnInit {
 
   submit(): boolean{
 
-    if(this.type== "register"){
+    if(this.type == "register"){
       let filled: RegisterForm = {
-        firstName: this.form.get('firstName')?.value,
-        lastName: this.form.get('lastName')?.value,
+        first_name: this.form.get('firstName')?.value,
+        last_name: this.form.get('lastName')?.value,
         email: this.form.get('email')?.value,
-        phone: this.form.get('phone')?.value,
+        phone_number: this.form.get('phone')?.value,
         password: this.form.get('password')?.value,
         confirmPassword: this.form.get('confirmPassword')?.value,
         city: this.form.get('city')?.value as number,
-        registryId: this.form.get('registryId')?.value,
-        birthDate: this.form.get('birthDate')?.value,
+        national_registry_number: this.form.get('registryId')?.value,
+        birth_date: this.form.get('birthDate')?.value,
         street: this.form.get('street')?.value,
+        house_number: this.form.get('house_number')?.value,
+        type: this.form.get('type')?.value as CustomerType
       };
       for(let field of this.registerFields){
         if(this.form.get(field)?.errors){
@@ -92,7 +96,7 @@ export class FormsComponent implements OnInit {
       this.submitted.emit(filled as RegisterForm);
       
     }
-    if(this.type== "suppliers"){
+    if(this.type == "suppliers"){
       let filled: SuppliersForm = {
         name: this.form.get('supplierName')?.value,
         goods: this.form.get('goods')?.value,
@@ -107,7 +111,7 @@ export class FormsComponent implements OnInit {
       this.submitted.emit(filled as SuppliersForm);
       
     }
-    if(this.type== "meter-app"){
+    if(this.type == "meter-app"){
       let filled: MeterAppForm = {
         meters: []
       }
@@ -143,8 +147,9 @@ export class FormsComponent implements OnInit {
       return null;
     }
   }
-  onCitySelected(city : string){
-    this.form.get('zip')?.setValue(this.cities?.find(c => c.name === city)?.zipcode);
+
+  public get CustomerType(){
+    return CustomerType
   }
 
 }

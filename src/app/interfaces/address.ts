@@ -8,6 +8,6 @@ export interface Address{
 }
 
 export interface City{
-    zipcode: string,
-    name: string,
+    postal_code: string,
+    city_name: string,
 }
