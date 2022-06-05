@@ -91,16 +91,17 @@ export class FormsComponent implements OnInit {
       let filled: RegisterForm = {
         first_name: this.form.get('firstName')?.value,
         last_name: this.form.get('lastName')?.value,
+        birth_date: this.form.get('birthDate')?.value,
         email: this.form.get('email')?.value,
         phone_number: this.form.get('phone')?.value,
-        password: this.form.get('password')?.value,
-        confirmPassword: this.form.get('confirmPassword')?.value,
-        city: this.form.get('city')?.value as number,
         national_registry_number: this.form.get('registryId')?.value,
-        birth_date: this.form.get('birthDate')?.value,
-        street: this.form.get('street')?.value,
-        house_number: this.form.get('house_number')?.value,
-        type: this.form.get('type')?.value as CustomerType
+        addresses: [{
+          street: this.form.get('street')?.value,
+          house_number: this.form.get('house_number')?.value,
+          city_id: this.form.get('city')?.value as number
+        }],
+        type_id: this.form.get('type')?.value as CustomerType,
+        password: this.form.get('password')?.value,
       };
       for (let field of this.registerFields) {
         if (this.form.get(field)?.errors) {

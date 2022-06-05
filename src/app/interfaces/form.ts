@@ -1,3 +1,4 @@
+import { Address } from "./address";
 import { CustomerType } from "./customer";
 import { Meter } from "./meter";
 
@@ -13,7 +14,8 @@ export interface RegisterForm {
     birth_date?: Date,
     street?: string,
     house_number?: string,
-    type?: CustomerType
+    type_id?: CustomerType,
+    addresses?: Address[]
 }
 
 export interface SuppliersForm {
