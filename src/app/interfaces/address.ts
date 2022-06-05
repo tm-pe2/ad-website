@@ -1,8 +1,14 @@
 export interface Address{
-    adressID: number,
-    city: string,
+    id?: number,
+    city_id: number,
     street: string,
-    postalcode: number,
-    housNumber: number,
-    country: string
+    postal_code?: number,
+    house_number: number,
+    country?: string
+}
+
+export interface City{
+    id: number,
+    postal_code: string,
+    city_name: string,
 }

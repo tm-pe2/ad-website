@@ -7,9 +7,9 @@ import { catchError, Observable } from 'rxjs';
 // Interfaces
 import { User, UserRole } from '../interfaces/User';
 import { LoginData } from '../interfaces/loginData';
-import { RegistrationData } from '../interfaces/registrationData';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
+import { RegisterForm } from '../interfaces/form';
 
 
 @Injectable({
@@ -57,18 +57,16 @@ export class UserdataService
     });
   }
 
-  registerUser(regDate: RegistrationData): Promise<void> 
+  registerUser(registerData: RegisterForm): Promise<void> 
   {
     const promise = new Promise<void>((resolve, reject) =>
     {
-      this.http.post(environment.apiUrl + '/users', regDate)
+      this.http.post(environment.apiUrl + '/customers', registerData)
       .subscribe(
         {
           next: (res: any) => 
           {
-            // What needs to go here?
-            // I just put a resolve here atm but idk if I need this
-            resolve(res);
+            resolve();
 
           },
           error: (err) =>
