@@ -1,4 +1,4 @@
-<div class="min-h-screen flex items-center justify-center bg-gray-700">
+<!-- <div class="min-h-screen flex items-center justify-center bg-gray-700">
 
   <div class="w-full md:w-1/2 sm:w-3/4 rounded shadow-2xl bg-white p-5 text-2xl">
     <form (ngSubmit)="onAddFormSubmit(f)" #f="ngForm"> 
@@ -177,11 +177,12 @@
           type="submit">Add Employee</button>
         </div>
     </form>
-    <!--Return button to cancel edit and go back to Manage page--> 
     <div class="float-right m-2 pt-5">
       <button class="p-1.5 px-5 text-lg uppercase font-medium tracking-wider text-black-600 hover:underline hover:cursor-pointer bg-red-400 rounded-lg"
       (click)="onCancelAddEmp()">Back</button>
     </div>  
 
   </div>
-</div>
+</div> -->
+
+<app-forms [title]="'Add employees'" [type]="'employees'" [submitText]="'Add'" [cancel]="true" (canceled)="onCancelAddEmp()" (submitted)="onAddFormSubmit($event)"></app-forms>

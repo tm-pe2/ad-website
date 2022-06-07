@@ -4,7 +4,8 @@ import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn,
 import { environment } from 'src/environments/environment';
 import { City } from '../interfaces/address';
 import { CustomerType } from '../interfaces/customer';
-import { EmployeeForm, Role } from '../interfaces/employee';
+import { Role } from '../interfaces/employee';
+import { EmployeeForm } from '../interfaces/form';
 import { MeterAppForm, RegisterForm, SuppliersForm } from '../interfaces/form';
 import { Meter } from '../interfaces/meter';
 
@@ -29,8 +30,6 @@ export class FormsComponent implements OnInit {
   roles?: Role[];
   cities?: City[];
 
-  password?: string;
-  confirmPassword?: string;
 
   registerFields: string[] = ["firstName", "lastName", "email", "phone", "password", "confirmPassword", "city", "registryId", "birthDate"]
   supplierFields: string[] = ["supplierName", "goods", "city", "street"]
@@ -58,8 +57,6 @@ export class FormsComponent implements OnInit {
     hireDate: new FormControl('', [Validators.required]),
     role: new FormControl('', [Validators.required]),
     salary: new FormControl('', [Validators.required]),
-    department: new FormControl('', [Validators.required]),
-
   })
 
   constructor(private http: HttpClient) { }
@@ -148,6 +145,7 @@ export class FormsComponent implements OnInit {
     }
 
     if (this.type == "employees") {
+      console.log("hey")
       let filled: EmployeeForm = {
         first_name: this.form.get('firstName')?.value,
         last_name: this.form.get('lastName')?.value,
@@ -155,21 +153,24 @@ export class FormsComponent implements OnInit {
         phone_number: this.form.get('phone')?.value,
         password: this.form.get('password')?.value,
         confirmPassword: this.form.get('confirmPassword')?.value,
-        city: this.form.get('city')?.value as number,
         national_registry_number: this.form.get('registryId')?.value,
         birth_date: this.form.get('birthDate')?.value,
-        street: this.form.get('street')?.value,
-        house_number: this.form.get('house_number')?.value,
         hire_date: this.form.get('hireDate')?.value,
         salary: this.form.get('salary')?.value,
-        department: this.form.get('department')?.value,
-        role_id: this.form.get('role')?.value as number
+        roles: [this.form.get('role')?.value as number],
+        addresses: [{
+          street: this.form.get('street')?.value,
+          house_number: this.form.get('house_number')?.value,
+          city_id: this.form.get('city')?.value as number
+        }],
       }
       for (let field of this.employeeFields) {
         if (this.form.get(field)?.errors) {
+          console.log("huh welke", field)
           return false;
         }
       }
+      console.log("not getting here")
       this.submitted.emit(filled as EmployeeForm);
     }
     return true;
