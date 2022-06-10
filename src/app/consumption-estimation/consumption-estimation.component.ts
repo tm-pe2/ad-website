@@ -164,7 +164,6 @@ next()
   }
   if(this.step==2)
   {
-    this.step=3
     this.familyAdress_step=true;
     if(this.familyAdressCompoundForm.invalid)
     {
@@ -368,7 +367,6 @@ submit()
           }
         this.meters.push(m3);
       } 
-      this.addSmartMeter();
     }
 
     const equipmentListV=this.consumptionDetailsForm.value.equipments;
@@ -411,7 +409,7 @@ submit()
     this.alterContractID(res);
     this.onAddMeters();
     this.openDialog();
-    //this.addSmartMeter();
+    this.addSmartMeter();
     
   })  
   
