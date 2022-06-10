@@ -410,6 +410,7 @@ submit()
     this.alterContractID(res);
     this.onAddMeters();
     this.openDialog();
+    this.addSmartMeter();
     
   })  
   
