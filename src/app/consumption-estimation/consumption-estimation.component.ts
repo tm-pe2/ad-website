@@ -13,7 +13,6 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { ConstantPool } from '@angular/compiler';
 
 
-
 @Component({
   selector: 'app-consumption-estimation',
   templateUrl: './consumption-estimation.component.html',
@@ -165,6 +164,7 @@ next()
   }
   if(this.step==2)
   {
+    this.step=3
     this.familyAdress_step=true;
     if(this.familyAdressCompoundForm.invalid)
     {
@@ -368,6 +368,7 @@ submit()
           }
         this.meters.push(m3);
       } 
+      this.addSmartMeter();
     }
 
     const equipmentListV=this.consumptionDetailsForm.value.equipments;
@@ -410,14 +411,14 @@ submit()
     this.alterContractID(res);
     this.onAddMeters();
     this.openDialog();
-    this.addSmartMeter();
+    //this.addSmartMeter();
     
   })  
   
 }
 
   addSmartMeter() {
-    this.meters.forEach((m) => {
+    this.meters.forEach(async (m) => {
       if (m.meter_type == "smartMeter") {
         let body = {
           "occupants" : this.contract.family_size,
@@ -429,14 +430,35 @@ submit()
 
         let headers = { "headers" : { "header" : ['Content-Type: application/json']}};
 
+        let generated_meterid: any;
 
-        this.httpClient.post("http://10.97.0.100:3000/meter", body, headers).subscribe(
-          (response) => {
-            console.log("meter added", response)
-          },
-          (error) => console.log("error", error)
-        )
-        
+        await new Promise<void>((resolve, reject) => {
+          this.httpClient.post("http://10.97.0.100:3000/meter", body, headers).subscribe({
+            next: (response: any) => {
+              generated_meterid = response.id;
+              console.log(generated_meterid);
+              console.log("smart meter generated");
+              resolve();
+            },
+            error: (error: any) => reject(error)
+          })
+        })
+
+        let device = {
+          "device": 4,
+          "on": true
+        }
+
+        await new Promise<void>((resolve, reject) => {
+          this.httpClient.post("http://10.97.0.100:3000/meter/" + generated_meterid + "/device", device, headers).subscribe({
+            next: (response) => {
+              console.log("general consumption added");
+              resolve();
+            },
+            error: (error) => reject(error)
+          })
+        })
+
       }
     })
   }
