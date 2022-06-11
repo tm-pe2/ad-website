@@ -27,8 +27,7 @@ export class ManageEmployeesComponent implements OnInit{
 
 
   ngOnInit(){
-
-
+    this.employeeService.loadEmp();
     this.role = this.auth.getUserRoleId()
   }
     

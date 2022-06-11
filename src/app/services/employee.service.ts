@@ -15,16 +15,24 @@ export class EmployeeService {
   
   current_Emp ?: Employee;
   
-  
-
-
   showEmpList : boolean = true;
   showAddEmpForm : boolean = false;
   showAddEmpButton : boolean = true;
   showEditEmpForm : boolean = false;
   showEmpCard : boolean = false;
 
-
+  loadEmp(){
+    this.http.get<Employee[]>(environment.apiUrl + "/employees").subscribe(
+      {
+        next:(res: Employee[]) => {
+          this.employees = res;
+        },
+        error: (err) =>{
+          console.log("error loading employees: ",err);
+        }
+      }
+    )
+  }
 
   addEmployee(employee: EmployeeForm): Promise<void>{
     const promise = new Promise<void>((resolve, reject) => 
@@ -40,6 +48,7 @@ export class EmployeeService {
     ));
     return promise;
   }
+
 
 }
 
