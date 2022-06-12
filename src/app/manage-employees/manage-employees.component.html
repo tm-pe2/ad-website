@@ -27,7 +27,7 @@
                             {{e.phone_number + " " + e.email}}
                         </td>
                         <td class="p3 text-sm">
-                            {{e.roles!}}
+                            {{e.roles! | rolesToString}}
                         </td>
                         <td class="w-20 p-3 text-sm">
                             <button  class="font-bold text-blue-500 hover:underline"><a href="mailto:{{e.email}}">Contact</a></button>

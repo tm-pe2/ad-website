@@ -5,30 +5,53 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class RolesToStringPipe implements PipeTransform {
 
-  transform(role : Number = 0): string {
-    switch(role){
-      case 1:
-        return "Customer"; //isn't possbile...
-      case 2:
-        return "Supplier"; //isn't possbile...
-      case 3:
-        return "Employee";
-      case 4:
-        return "Accountant";
-      case 5:
-        return "Technican";
-      case 6:
-        return "Support";
-      case 7:
-        return "Manager";
-      case 8:
-        return "Hr Manager";
-      case 9:
-        return "Admin";
-      default:
-        return "null";
+  transform(roles : number[]): string {
+
+    var fullStr= "";
+    var i: number = 0;
+
+    for(let role of roles){
+
+      switch(role){
+        case 1:
+          fullStr = fullStr + "Customer"; //isn't possbile...
+          break;
+        case 2:
+            fullStr = fullStr + "Supplier"; //isn't possbile...
+            break;
+        case 3:
+            fullStr = fullStr + "Employee";
+            break;
+        case 4:
+          fullStr = fullStr + "Accountant";
+          break;
+        case 5:
+          fullStr = fullStr + "Technican";
+          break;
+        case 6:
+          fullStr = fullStr + "Support";
+          break;
+        case 7:
+          fullStr = fullStr + "Manager";
+          break;
+        case 8:
+          fullStr = fullStr + "Hr Manager";
+          break;
+        case 9:
+          fullStr = fullStr + "Admin";
+          break;
+        default:
+            fullStr = fullStr + "null";
+        }
+        i = i + 1;
+        if(i > 1){
+          fullStr = fullStr + " ,";
+        }
+
+      
     }
-    
-  }
+    return fullStr;
+        
+      }
 
 }

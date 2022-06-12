@@ -4,14 +4,16 @@
     
             <h2 class="text-4xl">{{current_Emp!.first_name}} {{current_Emp!.last_name}}</h2>
         
-        <!--Make clicking div go to details page to edit employee-->
         <div class="p-6 hover:bg-gray-700 hover:text-white transition duration-300 ease-in cursor-pointer">
             <h1 class="text-2xl font-medium text-indigo-300 mb-1"> Birthdate: {{current_Emp!.birth_date}}</h1>
             <h1 class="text-2xl font-medium text-indigo-300 mb-1">Email: {{current_Emp!.email}} </h1>
             <h1 class="text-2xl font-medium text-indigo-300 mb-1">Phonenumber: {{current_Emp!.phone_number}} </h1>
             <h1 class="text-2xl font-medium text-indigo-300 mb-1">Hiredate: {{current_Emp!.hire_date}} </h1>
-            <!-- TODO: Add the rest of the employee details here (if needed : for example addresses) -->
             <h1 class="text-2xl font-medium text-indigo-300 mb-1">Salary: {{current_Emp!.salary}} </h1>
+            <h1>NGN: {{current_Emp!.national_registry_number}}</h1>
+            <h1>{{current_Emp!.roles | rolesToString}}</h1>
+            <button  mat-raised-button class=" bg-gray-500" type="button"
+            (click)="this.onBack()">Back</button>
         </div>
     </div>
 </div>

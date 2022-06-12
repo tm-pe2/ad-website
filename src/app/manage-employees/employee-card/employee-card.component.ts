@@ -30,5 +30,10 @@ export class EmployeeCardComponent implements OnInit {
     );
   }
 
+  onBack(){
+    this.router.navigate(['manage-employees']);
+  }
+
+
 
 }
