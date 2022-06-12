@@ -1,10 +1,9 @@
 import { Component, OnInit, Input, Output, ViewChild } from '@angular/core';
-import { Employee } from './employee';
 import { EmployeeCardComponent } from './employee-card/employee-card.component';
 import { Address } from '../interfaces/address';
 import { AuthGuardService } from '../services/auth-guard.service';
 import { AuthService } from '../services/auth.service';
-import { EmployeeService } from './services/employee.service';
+import { EmployeeService } from '../services/employee.service';
 import { UserdataService } from '../services/userdata.service';
 import { EditEmployeeFormComponent } from './edit-employee-form/edit-employee-form.component';
 import { Subject } from 'rxjs';
@@ -28,15 +27,9 @@ export class ManageEmployeesComponent implements OnInit{
 
 
   ngOnInit(){
-    this.employeeService.loadEmp();
-    this.employeeService.current_Emp = this.employeeService.employees[0];
 
-    //this.userdataService.loadUser();
+
     this.role = this.auth.getUserRoleId()
-
-    if(this.role != 6){
-      this.employeeService.showAddEmpButton = false;
-    }
   }
     
     onAddButtonClick(){
@@ -69,7 +62,7 @@ export class ManageEmployeesComponent implements OnInit{
 
   deleteEmployee(id : number){
     if(confirm("Do you want to remove " + this.employeeService.employees[id].first_name + " " + this.employeeService.employees[id].last_name )){
-    this.employeeService.deleteEmp(this.employeeService.employees[id]);
+    //this.employeeService.deleteEmp(this.employeeService.employees[id]);
     }
   }
 

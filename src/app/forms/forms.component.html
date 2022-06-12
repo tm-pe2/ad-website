@@ -79,10 +79,10 @@
             <mat-form-field appearance="standard" class="self-start pr-10">
                 <mat-label>Birthdate</mat-label>
                 <input matInput [min]="this.mindate" formControlName="birthDate" [max]="this.maxCustomerDate"
-                    [matDatepicker]="picker" placeholder="MM/DD/YY">
+                    [matDatepicker]="birthDatePicker" placeholder="MM/DD/YY">
                 <mat-hint>MM/DD/YY</mat-hint>
-                <mat-datepicker-toggle matSuffix class="" [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
+                <mat-datepicker-toggle matSuffix class="" [for]="birthDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #birthDatePicker></mat-datepicker>
                 <mat-error *ngIf="this.form.get('birthDate')?.hasError('required')">This field is required</mat-error>
             </mat-form-field>
 
@@ -96,7 +96,7 @@
         <div>
             <mat-form-field appearance="standard" class=" self-start pr-20">
                 <mat-label>Password</mat-label>
-                <input matInput type="password" [(ngModel)]="password" formControlName="password"
+                <input matInput type="password" formControlName="password"
                     placeholder="Password">
                 <mat-error *ngIf="this.form.get('password')?.hasError('required')">This field is required</mat-error>
                 <mat-error *ngIf="this.form.get('password')?.hasError('minlength')">Password must be at least 6
@@ -106,7 +106,7 @@
             </mat-form-field>
             <mat-form-field appearance="standard" class="mb-24 self-start">
                 <mat-label>Confirm Password </mat-label>
-                <input matInput type="password" [(ngModel)]="confirmPassword" formControlName="confirmPassword"
+                <input matInput type="password" formControlName="confirmPassword"
                     placeholder="Confirm Password">
                 <mat-error *ngIf="this.form.get('confirmPassword')?.hasError('required')">This field is required
                 </mat-error>
@@ -181,7 +181,7 @@
                 </mat-error>
             </mat-form-field>
         </div>
-        <div class="self-start">
+        <div>
             <mat-form-field appearance="standard" class="self-start pr-20">
                 <mat-label>Registry ID</mat-label>
                 <input type="text" matInput formControlName="registryId" placeholder="00000000000">
@@ -202,7 +202,7 @@
         <div>
             <mat-form-field appearance="standard" class="self-start pr-20">
                 <mat-label>Password</mat-label>
-                <input matInput type="password" [(ngModel)]="password" formControlName="password"
+                <input matInput type="password" formControlName="password"
                     placeholder="Password">
                 <mat-error *ngIf="this.form.get('password')?.hasError('required')">This field is required
                 </mat-error>
@@ -213,7 +213,7 @@
             </mat-form-field>
             <mat-form-field appearance="standard" class="self-start">
                 <mat-label>Confirm Password </mat-label>
-                <input matInput type="password" [(ngModel)]="confirmPassword" formControlName="confirmPassword"
+                <input matInput type="password" formControlName="confirmPassword"
                     placeholder="Confirm Password">
                 <mat-error *ngIf="this.form.get('confirmPassword')?.hasError('required')">This field is required
                 </mat-error>
@@ -245,17 +245,17 @@
         </div>
 
         <div>
-            <mat-form-field appearance="standard" class="self-start">
+            <mat-form-field appearance="standard" class="self-start pr-10">
                 <mat-label>Hire Date</mat-label>
                 <input matInput [min]="this.mindate" formControlName="hireDate" [max]="this.CurrentDate"
-                    [matDatepicker]="picker" placeholder="MM/DD/YY">
+                    [matDatepicker]="hireDatePicker" placeholder="MM/DD/YY">
                 <mat-hint>MM/DD/YY</mat-hint>
-                <mat-datepicker-toggle matSuffix class="" [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
+                <mat-datepicker-toggle matSuffix class="" [for]="hireDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #hireDatePicker></mat-datepicker>
                 <mat-error *ngIf="this.form.get('hireDate')?.hasError('required')">This field is required
                 </mat-error>
             </mat-form-field>
-            <mat-form-field appearance="standard" class="self-start pr-20">
+            <mat-form-field appearance="standard" class="self-start">
                 <mat-label>Salary</mat-label>
                 <input matInput type="number" min="0" max="9999999" formControlName="salary" placeholder="Salary">
                 <mat-error *ngIf="this.form.get('salary')?.hasError('required')">This field is required</mat-error>

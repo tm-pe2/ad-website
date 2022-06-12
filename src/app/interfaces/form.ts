@@ -1,6 +1,7 @@
 import { Address } from "./address";
 import { CustomerType } from "./customer";
 import { Meter } from "./meter";
+import { UserRole } from "./User";
 
 export interface RegisterForm {
     first_name?: string,
@@ -9,11 +10,8 @@ export interface RegisterForm {
     phone_number?: string,
     password?: string,
     confirmPassword?: string,
-    city?: number,
     national_registry_number?: string,
     birth_date?: Date,
-    street?: string,
-    house_number?: string,
     type_id?: CustomerType,
     addresses?: Address[]
 }
@@ -28,4 +26,9 @@ export interface SuppliersForm {
 
 export interface MeterAppForm {
     meters: Meter[]
+}
+export interface EmployeeForm extends RegisterForm{
+    hire_date: Date,
+    salary: number,
+    roles: UserRole[],
 }
