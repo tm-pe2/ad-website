@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse,} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
-import { Customer, EstimatedContract, Meter } from '../interfaces/customer';
+import { Customer, EstimationRegistration, Meter } from '../interfaces/customer';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -24,7 +24,7 @@ export class PostConfigService {
 
   getCustomers(id:number):Observable<any>
   {
-    return this.httpClient.get<any>(environment.apiUrl+"/customers/"+id+"/addresses");
+    return this.httpClient.get<any>(environment.apiUrl+"/customers/" + id );
   }
 
   getAllCustomers():Observable<any>
@@ -32,17 +32,9 @@ export class PostConfigService {
     return this.httpClient.get<any>(environment.apiUrl+"/customers/contracts")
   }
 
-  addContract(e:EstimatedContract): Observable <EstimatedContract>
+  addEstimation(e:EstimationRegistration)
     {
-       return this.httpClient.post<EstimatedContract>( environment.apiUrl+"/contracts", e )
-
-       
-    }
-  
-  addMeters(e:Meter): Observable <Meter>
-    {
-       return this.httpClient.post<Meter>( environment.apiUrl+"/meters", e )
-
+       return this.httpClient.post( environment.apiUrl+"/estimations", e, {responseType: 'text'});
        
     }
   

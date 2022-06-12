@@ -5,7 +5,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment';
 import { CustomerDetailComponent } from '../customer-detail/customer-detail.component';
 import { Customer } from '../interfaces/customer';
-
+//TODO fix the dialog
 @Component({
   selector: 'app-add-customer-dialog',
   templateUrl: './add-customer-dialog.component.html',
@@ -68,14 +68,11 @@ export class AddCustomerDialogComponent implements OnInit {
         first_name: this.form.get('FirstName')?.value,
         last_name: this.form.get('LastName')?.value,
         birth_date: this.form.get('BirthDate')?.value,
-        address_id: -1,
         email: this.form.get('Email')?.value,
         phone_number: this.form.get('PhoneNumber')?.value,
         password: this.form.get('Password')?.value,
-        customer_id: -1,
-        user_id: -1,
         national_registry_number:this.form.get('NationalRegNumber')?.value,
-        city:this.form.get('City')?.value,
+        city_name:this.form.get('City')?.value,
         street: this.form.get('Street')?.value,
         house_number: this.form.get('HouseNr')?.value,
         postal_code: this.form.get('PostCode')?.value,

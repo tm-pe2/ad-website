@@ -1,7 +1,7 @@
-
+//TODO refactor to match the db/Api
 export interface Address {
-  address_id?: number,
-  city: string,
+  id?: number,
+  city_name: string,
   street: string,
   house_number: string,
   postal_code: string,
@@ -10,17 +10,16 @@ export interface Address {
 export interface User extends Address {
   user_id?: number,
   role_id?: number,
+  addresses? : Address[],
   first_name: string,
   last_name: string,
   birth_date: Date,
-  address_id?: number,
   email: string,
   phone_number: string,
   password: string,
   national_registry_number: string
 }
 export interface Customer extends User {
-  customer_id: number,
   customer_type:string,
 }
 export interface CustomerContract extends Customer
@@ -44,35 +43,49 @@ export interface CustomerExtend
   Password: string,
   ContractID: number
 }
-export interface Estimation {
-  estimation_id?: number,
-  service_type: number,
-  address_id?: number,
-  building_type: number,
-  family_size: number,
-  equipments: string,
-  past_consumption: number,
-  estimated_consumption:number,
-}
 
 export interface Meter{
-  meter_id?:number,
-  physical_id?:string,
-  index_id?:number;
-  contract_id?:number,
-  meter_type:string,
+  meter_type:MeterType,
   index_value: number,
-  date?:Date,
 }
 
-export interface EstimatedContract extends Estimation
+
+export interface EstimationRegistration {
+  service_type: ServiceType,
+  address_id?: number,
+  building_type: BuildingType,
+  family_size: number,
+  equipment: EquipmentType [],
+  past_consumption: number,
+  meters : Meter[],
+}
+
+export enum BuildingType{
+
+  'Apartment'= 0,
+  'Closed Building'= 1,
+  'Semi Detached' = 2,
+  'Open Building'= 3,
+
+}
+
+export enum ServiceType
 {
-  start_date:Date,
-  end_date:Date,
-  customer_type:string,
-  tariff_id?:number,
-  estimation_id?:number,
-  address_id:number,
-  service_type:number,
-  status:string
+  Electricity= 0,
+  Gas= 1,
+}
+
+export enum EquipmentType
+{ 
+   'Oven/Stove' = 1 ,
+   'Dishwasher' = 2 ,
+   'Washing Machine' = 3 ,
+   'Drying Machine' = 4 ,
+   'Hair Dryer' = 5 
+
+}
+
+export enum MeterType {
+  MANUAL = "Manual",
+  SMART = "Smart",
 }

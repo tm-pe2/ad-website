@@ -15,8 +15,8 @@
                 <h2 class="form-header">Service</h2>
                 
                 <mat-radio-group formControlName="service_type" class="flex place-content-evenly" >
-                    <mat-radio-button name="Electricity" [ngClass]="{ 'is-invalid': service_step && service['service_type'].errors }"  value="0" class="block px-3.5">Electricity</mat-radio-button>
-                    <mat-radio-button name="Gas" [ngClass]="{ 'is-invalid': service_step && service['service_type'].errors }"  value="1" class="block px-3.5">Gas</mat-radio-button>
+                    <mat-radio-button name="Electricity" [ngClass]="{ 'is-invalid': service_step && service['service_type'].errors }"  value="1" class="block px-3.5">Electricity</mat-radio-button>
+                    <mat-radio-button name="Gas" [ngClass]="{ 'is-invalid': service_step && service['service_type'].errors }"  value="2" class="block px-3.5">Gas</mat-radio-button>
                 </mat-radio-group>
 
                 <div *ngIf="service_step && serviceChoiceForm.controls['service_type'].errors">
@@ -34,8 +34,8 @@
             
                 <div class="flex place-content-evenly ">
                     <mat-select formControlName="address_id" [(value)]="selectedAddressID">
-                        <mat-option  *ngFor="let address of fullAddresses" [value]="address.address_id">{{address.street}} {{address.house_number}}</mat-option>
-                      </mat-select>
+                        <mat-option  *ngFor="let address of fullAddresses" [value]="address.id">{{address.street}} {{address.house_number}}</mat-option>
+                    </mat-select>
                 </div>
 
                 <div class="flex place-content-evenly ">

@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl,FormGroup,Validators,FormBuilder, FormArray } from '@angular/forms'
+import { FormGroup,Validators,FormBuilder } from '@angular/forms'
 import { environment } from 'src/environments/environment';
-import { CustomerComponent } from '../customers/customers.component';
-import { Customer ,Estimation} from '../interfaces/customer';
+import { Customer , EstimationRegistration} from '../interfaces/customer';
 import { UserdataService } from '../services/userdata.service';
+
+//optional
 
 @Component({
   selector: 'app-validate-contract',
@@ -24,7 +25,7 @@ export class ValidateContractComponent implements OnInit {
   customer_ID!:number;
   
   selectedMeterNr:number=1;
-  estimationData!:Estimation;
+  estimationData!:EstimationRegistration;
   meterTypesVal!: string;
   metersValueVal!: number;
   meterTypes2Val!: string;
@@ -59,7 +60,7 @@ export class ValidateContractComponent implements OnInit {
 
   getCustomers()
   {
-    this.customer_ID=this.customer_user.user.user_id;
+    this.customer_ID=this.customer_user.user.id;
     this.httpClient.get<any>(environment.apiUrl+'/customers/user/' + this.customer_ID).subscribe(
       (response) =>{
       this.customerData = response.customer;

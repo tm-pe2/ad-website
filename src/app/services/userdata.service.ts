@@ -20,7 +20,7 @@ export class UserdataService
 {
   user: User =
   { 
-    user_id: 0,
+    id: 0, //changed from user_id to id so it matches the db otherwise undefined 
     role_id: UserRole.CUSTOMER,
     first_name: '',
     last_name: '',

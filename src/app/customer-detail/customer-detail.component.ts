@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 import { Customer } from '../interfaces/customer';
 import { UserdataService } from '../services/userdata.service';
 
+//TODO test and fix it
 
 @Component({
   selector: 'app-customer-detail',
@@ -27,7 +28,7 @@ export class CustomerDetailComponent implements OnInit {
     private userData : UserdataService,
     @Inject(MAT_DIALOG_DATA) public data: Customer) {
       this.form=this.formB.group({
-        customer_id:data.customer_id,
+        customer_id:data.id,
         RoleID:data.role_id,
         FirstName:data.first_name,
         LastName:data.last_name,
@@ -35,7 +36,7 @@ export class CustomerDetailComponent implements OnInit {
         Street:data.street,
         HouseNr:data.house_number,
         PostCode:data.postal_code,
-        City:data.city,
+        City:data.city_name,
         NationalRegNumber:data.national_registry_number,
         Email:data.email,
         PhoneNumber:data.phone_number,
@@ -67,11 +68,8 @@ export class CustomerDetailComponent implements OnInit {
       email: this.form.get('Email')?.value,
       phone_number: 'test',
       password: this.form.get('Password')?.value,
-      customer_id: this.form.value.customer_id,
-      user_id: 0,
-      address_id:0,
       national_registry_number: this.form.get('NationalRegNumber')?.value,
-      city: this.form.get('City')?.value,
+      city_name: this.form.get('City')?.value,
       street: this.form.get('Street')?.value,
       house_number: this.form.get('HouseNr')?.value,
       postal_code: this.form.get('PostCode')?.value,

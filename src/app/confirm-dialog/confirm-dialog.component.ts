@@ -4,7 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment';
 import { CustomerDetailComponent } from '../customer-detail/customer-detail.component';
 import { Customer } from '../interfaces/customer';
-
+//TODO fix the dialog
 
 @Component({
   selector: 'app-confirm-dialog',
@@ -14,7 +14,7 @@ import { Customer } from '../interfaces/customer';
 export class ConfirmDialogComponent implements OnInit {
   
   name:string;
-  id:number;
+  id?:number;
   customers!:Customer[];
   
 
@@ -23,7 +23,7 @@ export class ConfirmDialogComponent implements OnInit {
     private httpClient:HttpClient,
     @Inject(MAT_DIALOG_DATA) public data: Customer) {
       this.name=data.first_name;
-      this.id=data.customer_id;
+      this.id=data.user_id;
     }
   
 
@@ -39,7 +39,7 @@ export class ConfirmDialogComponent implements OnInit {
     }
     );
   }
-  deleteCustomer(idToDel: number) {
+  deleteCustomer(idToDel?: number) {
     console.log(idToDel);
         const options = {
           headers: new HttpHeaders({

@@ -1,7 +1,7 @@
 // This interface makes it easy to make a new user variable somewhere when needed
 export interface User
 {
-    user_id: number,
+    id: number, // changed it to id so it can match the table's column
     role_id: UserRole,
     first_name: string,
     last_name: string,
