@@ -98,7 +98,7 @@ export class FormsComponent implements OnInit {
           house_number: this.form.get('house_number')?.value,
           city_id: this.form.get('city')?.value as number
         }],
-        type_id: this.form.get('type')?.value as CustomerType,
+        customer_type: this.form.get('type')?.value as CustomerType,
         password: this.form.get('password')?.value,
       };
       for (let field of this.registerFields) {
