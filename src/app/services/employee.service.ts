@@ -13,15 +13,6 @@ export class EmployeeService {
   }
   employees: EmployeeForm[] = []; 
 
-  
-  
-  current_Emp ?: EmployeeForm;
-  
-  showEmpList : boolean = true;
-  showAddEmpForm : boolean = false;
-  showAddEmpButton : boolean = true;
-  showEditEmpForm : boolean = false;
-  showEmpCard : boolean = false;
 
   loadEmp(){
     this.http.get<EmployeeForm[]>(environment.apiUrl + "/employees").subscribe(

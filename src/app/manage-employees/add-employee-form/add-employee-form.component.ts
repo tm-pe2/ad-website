@@ -3,6 +3,7 @@ import { Component, OnInit, Input} from '@angular/core';
 import { ManageEmployeesComponent } from '../manage-employees.component';
 import { EmployeeService } from '../../services/employee.service';
 import { EmployeeForm } from 'src/app/interfaces/form';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-employee-form',
@@ -11,20 +12,18 @@ import { EmployeeForm } from 'src/app/interfaces/form';
   providers:[EmployeeService]
 })
 
-export class AddEmployeeFormComponent implements OnInit{ 
+export class AddEmployeeFormComponent{ 
   
   
-  @Input() parent?: ManageEmployeesComponent;
-  constructor(public employeeService : EmployeeService) {}
+  constructor(public employeeService : EmployeeService,private router:Router) {}
 
   onAddFormSubmit(form : EmployeeForm) {
-    this.employeeService.addEmployee(form).then(() => this.parent?.changeStatusEmpAddForm())
+    this.employeeService.addEmployee(form);
+    this.router.navigate(['manage-employees']);
   }
   onCancelAddEmp(){
-    this.parent?.changeStatusEmpAddForm();
+    this.router.navigate(['manage-employees']);
   }
 
-  ngOnInit(): void {
-  }
 }
 
