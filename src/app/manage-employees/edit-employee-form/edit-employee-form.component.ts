@@ -14,6 +14,7 @@ export class EditEmployeeFormComponent {
   
 
   @Input() parent?: ManageEmployeesComponent;
+  employee?: EmployeeForm;
 
   constructor(public employeeService: EmployeeService,private router:Router,private route:ActivatedRoute) {    
   }
@@ -32,6 +33,13 @@ export class EditEmployeeFormComponent {
   
   
   ngOnInit(): void {
+    
+    this.employeeService.getEmployeeById(this.route.snapshot.params['id'] as number).subscribe(
+      {
+        next:(res: EmployeeForm) => {
+          this.employee = res;
+        }
+      });
    
   }
   
