@@ -2,7 +2,6 @@ import { Injectable, OnInit, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { EmployeeForm } from 'src/app/interfaces/form';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -35,9 +34,6 @@ export class EmployeeService {
         }
       }
     )
-  }
-  getEmployeeById(id : number):  Observable<EmployeeForm> {
-    return this.http.get<EmployeeForm>(environment.apiUrl + "/employees/" + id);
   }
 
   addEmployee(employee: EmployeeForm): Promise<void>{
@@ -88,14 +84,6 @@ export class EmployeeService {
     );
   }
 
-  getEmp(id : number){
-    this.http.get(environment.apiUrl + '/employees' + id).subscribe(
-      {
-        next:(res : any) => {
-          return res;
-        }
-      }
-    )
-  }
+
 }
 

@@ -47,10 +47,4 @@ export class ManageEmployeesComponent implements OnInit{
     this.employeeService.deleteEmp(emp);
   }
 
-  showDetails(id : number){
-    this.employeeService.current_Emp = this.employeeService.employees[id];
-    this.employeeService.showEmpList = !this.employeeService.showEmpList;
-    this.employeeService.showEmpCard = !this.employeeService.showEmpCard;
-  }
-
 }

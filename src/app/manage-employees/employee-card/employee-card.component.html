@@ -2,16 +2,16 @@
 <div class="p-4 max-w-xs">
     <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden shadow-xl">
     
-            <h2 class="text-4xl">{{employeeService.current_Emp!.first_name}} {{employeeService.current_Emp!.last_name}}</h2>
+            <h2 class="text-4xl">{{current_Emp!.first_name}} {{current_Emp!.last_name}}</h2>
         
         <!--Make clicking div go to details page to edit employee-->
         <div class="p-6 hover:bg-gray-700 hover:text-white transition duration-300 ease-in cursor-pointer">
-            <h1 class="text-2xl font-medium text-indigo-300 mb-1"> Birthdate: {{employeeService.current_Emp!.birth_date}}</h1>
-            <h1 class="text-2xl font-medium text-indigo-300 mb-1">Email: {{employeeService.current_Emp!.email}} </h1>
-            <h1 class="text-2xl font-medium text-indigo-300 mb-1">Phonenumber: {{employeeService.current_Emp!.phone_number}} </h1>
-            <h1 class="text-2xl font-medium text-indigo-300 mb-1">Hiredate: {{employeeService.current_Emp!.hire_date}} </h1>
+            <h1 class="text-2xl font-medium text-indigo-300 mb-1"> Birthdate: {{current_Emp!.birth_date}}</h1>
+            <h1 class="text-2xl font-medium text-indigo-300 mb-1">Email: {{current_Emp!.email}} </h1>
+            <h1 class="text-2xl font-medium text-indigo-300 mb-1">Phonenumber: {{current_Emp!.phone_number}} </h1>
+            <h1 class="text-2xl font-medium text-indigo-300 mb-1">Hiredate: {{current_Emp!.hire_date}} </h1>
             <!-- TODO: Add the rest of the employee details here (if needed : for example addresses) -->
-            <h1 class="text-2xl font-medium text-indigo-300 mb-1">Salary: {{employeeService.current_Emp!.salary}} </h1>
+            <h1 class="text-2xl font-medium text-indigo-300 mb-1">Salary: {{current_Emp!.salary}} </h1>
         </div>
     </div>
 </div>
