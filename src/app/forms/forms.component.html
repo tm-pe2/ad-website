@@ -161,8 +161,9 @@
             </mat-form-field>
             <mat-form-field appearance="standard">
                 <mat-label>Vat Number</mat-label>
-                <input matInput type="number" formControlName="vat_number" placeholder="Vat Number">
+                <input matInput type="text" formControlName="vat_number" placeholder="BExxxxxxxxxx">
                 <mat-error *ngIf="this.form.get('vat_number')?.hasError('required')">This field is required</mat-error>
+                <mat-error *ngIf="this.form.get('vat_number')?.hasError('pattern')">Not a valid vat number</mat-error>
             </mat-form-field>
         </div>
     </ng-container>
