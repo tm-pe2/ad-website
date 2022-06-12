@@ -4,6 +4,7 @@ import { Meter } from "./meter";
 import { UserRole } from "./User";
 
 export interface RegisterForm {
+    id?: number,
     first_name?: string,
     last_name?: string,
     email?: string,
@@ -31,4 +32,5 @@ export interface EmployeeForm extends RegisterForm{
     hire_date: Date,
     salary: number,
     roles: UserRole[],
+    active?: Boolean,
 }

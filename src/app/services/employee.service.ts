@@ -2,7 +2,6 @@ import { Injectable, OnInit, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { EmployeeForm } from 'src/app/interfaces/form';
-import { Employee } from '../interfaces/employee';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +10,11 @@ export class EmployeeService {
   
   constructor(private http:HttpClient) { 
   }
-  employees: Employee[] = []; 
+  employees: EmployeeForm[] = []; 
+
   
-  current_Emp ?: Employee;
+  
+  current_Emp ?: EmployeeForm;
   
   showEmpList : boolean = true;
   showAddEmpForm : boolean = false;
@@ -22,10 +23,11 @@ export class EmployeeService {
   showEmpCard : boolean = false;
 
   loadEmp(){
-    this.http.get<Employee[]>(environment.apiUrl + "/employees").subscribe(
+    this.http.get<EmployeeForm[]>(environment.apiUrl + "/employees").subscribe(
       {
-        next:(res: Employee[]) => {
+        next:(res: EmployeeForm[]) => {
           this.employees = res;
+          console.log(res);
         },
         error: (err) =>{
           console.log("error loading employees: ",err);
@@ -47,6 +49,39 @@ export class EmployeeService {
       }
     ));
     return promise;
+  }
+
+  editEmp(employee : EmployeeForm): Promise<void>{
+    const promise = new Promise<void>((resolve,reject) => 
+    this.http.put(environment.apiUrl + '/employees',employee).subscribe(
+      {
+        next:(res : any) => {
+
+          console.log("Emp edited", res);
+        },
+        error:(err) => {
+          console.log("error:", err);
+        }
+      }
+    )
+    )
+    return promise;
+  }
+
+
+  deleteEmp(emp : EmployeeForm){
+    emp.active = false;
+    console.log(emp);
+    this.http.put(environment.apiUrl + '/employees',emp).subscribe(
+      {
+        next:(res : any) => {
+          console.log("Emp gone", res);
+        },
+        error:(err) => {
+          console.log("error test:", err);
+        }
+      }
+    );
   }
 
 

@@ -17,18 +17,9 @@ export class AddEmployeeFormComponent implements OnInit{
   @Input() parent?: ManageEmployeesComponent;
   constructor(public employeeService : EmployeeService) {}
 
-
-
-  
-  
   onAddFormSubmit(form : EmployeeForm) {
     this.employeeService.addEmployee(form).then(() => this.parent?.changeStatusEmpAddForm())
   }
-
-
-
-  
-
   onCancelAddEmp(){
     this.parent?.changeStatusEmpAddForm();
   }

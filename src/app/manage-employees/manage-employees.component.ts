@@ -5,9 +5,7 @@ import { AuthGuardService } from '../services/auth-guard.service';
 import { AuthService } from '../services/auth.service';
 import { EmployeeService } from '../services/employee.service';
 import { UserdataService } from '../services/userdata.service';
-import { EditEmployeeFormComponent } from './edit-employee-form/edit-employee-form.component';
-import { Subject } from 'rxjs';
-
+import { EmployeeForm } from 'src/app/interfaces/form';
 
 @Component({
   selector: 'app-manage-employees',
@@ -20,15 +18,14 @@ import { Subject } from 'rxjs';
 export class ManageEmployeesComponent implements OnInit{
   
   constructor(private auth : AuthService,public employeeService: EmployeeService,public userdataService: UserdataService) {
-    
   }
   
   role ?: number | null;
 
-
   ngOnInit(){
     this.employeeService.loadEmp();
-    this.role = this.auth.getUserRoleId()
+    this.role = this.auth.getUserRoleId();
+    this.role = 6;
   }
     
     onAddButtonClick(){
@@ -43,26 +40,11 @@ export class ManageEmployeesComponent implements OnInit{
     this.employeeService.showEmpList = !this.employeeService.showEmpList;
     
   }
-
-  changeStatusEmpEditForm(){
-    this.employeeService.showEditEmpForm = !this.employeeService.showEditEmpForm;
-
-    this.employeeService.showEmpList = !this.employeeService.showEmpList;
-    this.employeeService.showAddEmpButton = !this.employeeService.showAddEmpButton;
-
-    console.log("hehleh",this.employeeService.current_Emp);
-  }
-    
-  startEditEmployee(id: number){
-    this.employeeService.current_Emp = this.employeeService.employees[id];
-    console.log(this.employeeService.current_Emp);
-    this.changeStatusEmpEditForm();
-  }
-
-  deleteEmployee(id : number){
-    if(confirm("Do you want to remove " + this.employeeService.employees[id].first_name + " " + this.employeeService.employees[id].last_name )){
-    //this.employeeService.deleteEmp(this.employeeService.employees[id]);
+  
+  deleteEmployee(emp : EmployeeForm){
+    if(confirm("Do you want to remove " + emp.first_name + " " + emp.last_name )){
     }
+    this.employeeService.deleteEmp(emp);
   }
 
   showDetails(id : number){

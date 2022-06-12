@@ -18,11 +18,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr  *ngFor='let e of employeeService.employees; index as i;' class="shadow rounded-lg hover:bg-gray-200 ">
+                    <tr  *ngFor='let e of employeeService.employees;'  class="shadow rounded-lg hover:bg-gray-200 ">
+                        <ng-container *ngIf="e.active">
                         <td class="p-3 text-sm">
                             {{e.first_name +  " " + e.last_name}}
                         </td>
-
                         <td class="p-3 text-sm">
                             {{e.phone_number + " " + e.email}}
                         </td>
@@ -33,7 +33,7 @@
                             <button  class="font-bold text-blue-500 hover:underline"><a href="mailto:{{e.email}}">Contact</a></button>
                         </td>
                         <td class="w-20 p-3 text-sm">
-                            <button class="font-bold text-blue-500 hover:underline" (click)="showDetails(i)">Details</button>
+                            <button class="font-bold text-blue-500 hover:underline" (click)="showDetails(2)">Details</button>
                         </td>
                         <td class="w-20 p-3 text-sm">
                             <button 
@@ -42,8 +42,9 @@
                                 'hover:underline': (this.role == 6),
                                 'text-gray-500': (this.role == 7)
                             }" 
-                            class="font-bold" (click)="startEditEmployee(i)" [disabled]='role!= 6'>edit</button>
+                            class="font-bold" routerLink="/manage-employees/editEmployees/{{e.id}}" [disabled]='role!= 6'>edit</button>
                         </td>
+
                         <td class="w-20 p-3 text-sm">
                             <button
                             [ngClass]="{
@@ -51,8 +52,9 @@
                                 'hover:underline': (this.role == 6),
                                 'text-gray-500': (this.role == 7)
                             }" 
-                             class="font-bold" (click)="deleteEmployee(i)" [disabled]='role!= 6'>remove</button>
+                             class="font-bold" (click)="deleteEmployee(e)" [disabled]='role!= 6'>remove</button>
                         </td>
+                        </ng-container>
                     </tr>  
                 </tbody>
             </table>
@@ -64,12 +66,6 @@
 
 
 
-
-
-
-
-
-<app-edit-employee-form *ngIf="employeeService.showEditEmpForm" [parent]="this"></app-edit-employee-form>
 
 <app-add-employee-form *ngIf="employeeService.showAddEmpForm"  [parent]="this"></app-add-employee-form>
 

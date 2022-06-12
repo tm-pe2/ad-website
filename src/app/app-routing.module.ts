@@ -25,6 +25,7 @@ import { ContactSupplierComponent } from './suppliers/contact-supplier/contact-s
 import { ContractOverveiwComponent } from './suppliers/contract-overveiw/contract-overveiw.component';
 import { ManageContractComponent } from './suppliers/manage-contract/manage-contract.component';
 import { SuppliersComponent } from './suppliers/suppliers.component';
+import { EditEmployeeFormComponent } from './manage-employees/edit-employee-form/edit-employee-form.component';
 
 const routes: Routes = [
   {path: "", redirectTo: "dashboard", pathMatch: "full"},
@@ -49,6 +50,8 @@ const routes: Routes = [
   {path: 'statuscode/:statusCode', component: StatuscodepageComponent},
   //{path: 'manage-employees',component:ManageEmployeesComponent, canActivate: [RoleGuardService], data:{roles:[UserRole.MANAGER,UserRole.HR_MANAGER,UserRole.ADMIN,UserRole.EMPLOYEE]}},
   {path: 'manage-employees',component:ManageEmployeesComponent},
+  //{path: 'manage-employees/editEmloyees/:id',component:EditEmployeeFormComponent, canActivate: [RoleGuardService], data:{roles:[UserRole.MANAGER,UserRole.HR_MANAGER,UserRole.ADMIN,UserRole.EMPLOYEE]}},
+  {path: 'manage-employees/editEmployees/:id',component:EditEmployeeFormComponent},
   {path: 'manageinvoices', component: ManageinvoicesComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER, UserRole.EMPLOYEE]}},
   {path:'manage-customers',component:CustomerComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
   {path:'consumption-estimation',component:ConsumptionEstimationComponent},
