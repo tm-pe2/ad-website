@@ -123,16 +123,16 @@
             <mat-form-field appearance="standard" class="pr-20">
 
                 <mat-label>Name</mat-label>
-                <input matInput formControlName="supplierName" placeholder="Name">
-                <mat-error *ngIf="this.form.get('supplierName')?.hasError('required')">This field is required
+                <input matInput formControlName="company_name" placeholder="Name">
+                <mat-error *ngIf="this.form.get('company_name')?.hasError('required')">This field is required
                 </mat-error>
 
 
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Type of goods</mat-label>
-                <input matInput type="goods" formControlName="goods" placeholder="Goods">
-                <mat-error *ngIf="this.form.get('goods')?.hasError('required')">This field is required</mat-error>
+                <mat-label>Type of service</mat-label>
+                <input matInput formControlName="service_type" placeholder="Service">
+                <mat-error *ngIf="this.form.get('service_type')?.hasError('required')">This field is required</mat-error>
             </mat-form-field>
         </div>
         <div>
@@ -146,10 +146,23 @@
                 <mat-error *ngIf="this.form.get('city')?.hasError('required')">This field is required</mat-error>
             </mat-form-field>
             <mat-form-field appearance="standard">
-                <mat-label> Street </mat-label>
+                <mat-label>Street</mat-label>
                 <input matInput formControlName="street" placeholder="Street">
                 <mat-error *ngIf="this.form.get('street')?.hasError('required')">This field is required</mat-error>
 
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="standard" class="pr-20">
+                <mat-label>House Number</mat-label>
+                <input matInput type="text" formControlName="house_number" placeholder="houseNumber">
+                <mat-error *ngIf="this.form.get('house_number')?.hasError('required')">This field is required
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>Vat Number</mat-label>
+                <input matInput type="number" formControlName="vat_number" placeholder="Vat Number">
+                <mat-error *ngIf="this.form.get('vat_number')?.hasError('required')">This field is required</mat-error>
             </mat-form-field>
         </div>
     </ng-container>
