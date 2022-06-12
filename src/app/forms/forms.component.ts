@@ -51,8 +51,9 @@ export class FormsComponent implements OnInit {
     house_number: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]{1,5}[A-Z]?$/)]),
     type: new FormControl('', [Validators.required]),
 
-    supplierName: new FormControl('', [Validators.required]),
-    goods: new FormControl('', [Validators.required]),
+    company_name: new FormControl('', [Validators.required]),
+    service_type: new FormControl('', [Validators.required]),
+    vat_number:   new FormControl('', [Validators.required, Validators.pattern(/^BE[0-9]{10}$/)]),
 
     hireDate: new FormControl('', [Validators.required]),
     role: new FormControl('', [Validators.required]),
@@ -63,7 +64,7 @@ export class FormsComponent implements OnInit {
 
   ngOnInit(): void {
     this.http.get<City[]>(environment.apiUrl + "/cities").subscribe(data => {
-      this.cities = data;
+      this.cities = data.sort((a, b) => a.city_name.localeCompare(b.city_name));
     });
     this.http.get<Role[]>(environment.apiUrl + "/roles").subscribe(data => {
       this.roles = data;
@@ -97,7 +98,7 @@ export class FormsComponent implements OnInit {
           house_number: this.form.get('house_number')?.value,
           city_id: this.form.get('city')?.value as number
         }],
-        type_id: this.form.get('type')?.value as CustomerType,
+        customer_type: this.form.get('type')?.value as CustomerType,
         password: this.form.get('password')?.value,
       };
       for (let field of this.registerFields) {
@@ -110,10 +111,14 @@ export class FormsComponent implements OnInit {
     }
     if (this.type == "suppliers") {
       let filled: SuppliersForm = {
-        name: this.form.get('supplierName')?.value,
-        goods: this.form.get('goods')?.value,
-        city: this.form.get('city')?.value as number,
-        street: this.form.get('street')?.value,
+        company_name: this.form.get('company_name')?.value,
+        vat_number: this.form.get('vat_number')?.value,
+        address: {
+          street: this.form.get('street')?.value,
+          house_number: this.form.get('house_number')?.value,
+          city_id: this.form.get('city')?.value as number
+        },
+        service_type: this.form.get('service_type')?.value,
       };
       for (let field of this.supplierFields) {
         if (this.form.get(field)?.errors) {

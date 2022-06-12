@@ -13,16 +13,16 @@ export interface RegisterForm {
     confirmPassword?: string,
     national_registry_number?: string,
     birth_date?: Date,
-    type_id?: CustomerType,
+    customer_type?: CustomerType,
     addresses?: Address[]
 }
 
 export interface SuppliersForm {
-    name?: string,
-    goods?: string,
-    city?: number,
-    street?: string,
-    house_number?: string,
+    id? :number,
+    company_name?: string,
+    vat_number?: string,
+    address?: Address,
+    service_type?: string,
 }
 
 export interface MeterAppForm {
