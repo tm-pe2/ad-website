@@ -13,7 +13,7 @@ export interface RegisterForm {
     confirmPassword?: string,
     national_registry_number?: string,
     birth_date?: Date,
-    type_id?: CustomerType,
+    customer_type?: CustomerType,
     addresses?: Address[]
 }
 
