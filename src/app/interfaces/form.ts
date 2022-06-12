@@ -4,6 +4,7 @@ import { Meter } from "./meter";
 import { UserRole } from "./User";
 
 export interface RegisterForm {
+    id?: number,
     first_name?: string,
     last_name?: string,
     email?: string,
@@ -17,11 +18,11 @@ export interface RegisterForm {
 }
 
 export interface SuppliersForm {
-    name?: string,
-    goods?: string,
-    city?: number,
-    street?: string,
-    house_number?: string,
+    id? :number,
+    company_name?: string,
+    vat_number?: string,
+    address?: Address,
+    service_type?: string,
 }
 
 export interface MeterAppForm {
