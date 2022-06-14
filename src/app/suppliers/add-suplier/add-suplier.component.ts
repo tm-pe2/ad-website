@@ -45,20 +45,6 @@ export class AddSuplierComponent implements OnInit {
   }
 
   onSubmit(addSupplierForm: NgForm){
-    if(!addSupplierForm.valid){
-      this.invalidF = true;
-      this.allfilled = true;
-      return;
-    }
-    this.control(addSupplierForm);
-    console.log("u good");
-
-    let tempId = 2;
-    
-    var supAddress: Address = {adressID:2,city:addSupplierForm.value.addCitySup,street:addSupplierForm.value.addStreetSup,housNumber:addSupplierForm.value.addHouseNumberSup,postalcode:addSupplierForm.value.addZipSup,country:addSupplierForm.value.addCountrySup};
-    var addedSupplier = new Supplier(tempId,addSupplierForm.value.addNameSup,supAddress,addSupplierForm.value.addTypeSup);
-
-    
 
   }
 

@@ -1,0 +1,57 @@
+<h2 mat-dialog-title>Update customer</h2>  
+<mat-dialog-content>
+<form [formGroup]="form" (ngSubmit)="Submit()" >
+<br>
+  <mat-form-field class="mr-2">
+    <input matInput formControlName="FirstName"
+    placeholder="Name">
+  </mat-form-field>
+  
+  <mat-form-field>  
+    <input matInput formControlName="LastName"
+    placeholder="Lastname">
+  </mat-form-field>
+  <br>
+  <mat-form-field>  
+    <input matInput formControlName="NationalRegNumber"
+    placeholder="National Register Number">
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label>Birthdate</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="BirthDate">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+<br>
+<mat-form-field class="mr-2">  
+  <input matInput formControlName="Street" placeholder="Street">
+</mat-form-field>
+
+<mat-form-field>  
+  <input matInput formControlName="HouseNr" placeholder="House no">
+</mat-form-field>
+<br>
+<mat-form-field class="mr-2">  
+  <input matInput formControlName="City" placeholder="City">
+</mat-form-field>
+
+<mat-form-field>  
+  <input matInput formControlName="PostCode" placeholder="Postal Code">
+</mat-form-field>
+<br>
+  <mat-form-field class="mr-2">  
+    <input type="email" matInput formControlName="Email" placeholder="Email">
+  </mat-form-field>
+<br>
+  <mat-form-field class="mr-2">
+    <input type="password" matInput formControlName="Password"  placeholder="Password">
+  </mat-form-field>
+
+  
+  <mat-dialog-actions class="flex justify-evenly">
+    <button mat-raised-button mat-dialog-close mat-dialog-close="false" type="submit" (click)="Submit()">Submit</button>
+    <button mat-raised-button mat-dialog-close mat-dialog-close="false" (click)="cancel()">Cancel</button>
+  </mat-dialog-actions>
+  </form>
+</mat-dialog-content>
