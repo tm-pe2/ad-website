@@ -25,32 +25,14 @@ export class ManageEmployeesComponent implements OnInit{
   ngOnInit(){
     this.employeeService.loadEmp();
     this.role = this.auth.getUserRoleId();
-    this.role = 6;
+    this.role = 7;
+    console.log("role",this.role);
   }
     
-    onAddButtonClick(){
-    this.employeeService.showAddEmpForm = true;
-    this.employeeService.showAddEmpButton = false;
-    this.employeeService.showEmpList = false;
-  }
-  
-  changeStatusEmpAddForm(){
-    this.employeeService.showAddEmpForm = !this.employeeService.showAddEmpForm;
-    this.employeeService.showAddEmpButton = !this.employeeService.showAddEmpButton;
-    this.employeeService.showEmpList = !this.employeeService.showEmpList;
-    
-  }
-  
   deleteEmployee(emp : EmployeeForm){
     if(confirm("Do you want to remove " + emp.first_name + " " + emp.last_name )){
     }
     this.employeeService.deleteEmp(emp);
-  }
-
-  showDetails(id : number){
-    this.employeeService.current_Emp = this.employeeService.employees[id];
-    this.employeeService.showEmpList = !this.employeeService.showEmpList;
-    this.employeeService.showEmpCard = !this.employeeService.showEmpCard;
   }
 
 }
