@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { SupplierData } from 'src/app/interfaces/suppliersData';
+import { SuppliersForm } from 'src/app/interfaces/form';
 
 
 
@@ -31,20 +31,8 @@ export class EditSupplierComponent implements OnInit {
       this.allfilled = true;
       return;
     }
-    this.control(addSupplierForm);
+  
 
-  }
-
-  private control(addSupplierForm: NgForm){
-   const suppliersData: SupplierData =  { 
-    name: addSupplierForm.value.addNameSup,
-    street: addSupplierForm.value.addStreetSup, 
-    housenumber: addSupplierForm.value.addHouseNumberSup,
-    city: addSupplierForm.value.addCitySup, 
-    zip: addSupplierForm.value.addZipSup, 
-    country: addSupplierForm.value.addCountrySup,
-    type: addSupplierForm.value.addTypeSup
-    };
   }
 
 
