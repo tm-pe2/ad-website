@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment';
 import { CustomerDetailComponent } from '../customer-detail/customer-detail.component';
-import { Customer } from '../interfaces/customer';
+import { Customer } from '../../interfaces/customer';
 //TODO fix the dialog
 @Component({
   selector: 'app-add-customer-dialog',

@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
-import { CustomerComponent } from './customers/customers.component';
-import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { CustomerDetailComponent } from './manage-customers/customer-detail/customer-detail.component';
+import { CustomerComponent } from './manage-customers/customers/customers.component';
+import { ConfirmDialogComponent } from './manage-customers/confirm-dialog/confirm-dialog.component';
 import { MaterialModule } from './material/material.module';
 import { TicketingComponent } from './ticketing/ticketing.component';
-import { AddCustomerDialogComponent } from './add-customer-dialog/add-customer-dialog.component';
+import { AddCustomerDialogComponent } from './manage-customers/add-customer-dialog/add-customer-dialog.component';
 import { ConsumptionEstimationComponent } from './consumption-estimation/consumption-estimation.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -27,7 +27,6 @@ import { UtilService } from './util.service';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-
 import { UserdataService } from './services/userdata.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
@@ -37,7 +36,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EditEmployeeFormComponent } from './manage-employees/edit-employee-form/edit-employee-form.component';
 import { EmployeeCardComponent } from './manage-employees/employee-card/employee-card.component';
 import { ClientTicketsComponent } from './ticketing/client-tickets/client-tickets.component';
-
 import { NavigationComponent } from './navigation/navigation.component';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { AuthService } from './services/auth.service';
@@ -45,12 +43,10 @@ import { LogoutComponent } from './logout/logout.component';
 import { StatuscodepageComponent } from './statuscodepage/statuscodepage.component';
 import { SupportComponent } from './support/support.component';
 import { ManageinvoicesComponent } from './manageinvoices/manageinvoices.component';
-import { ValidateContractComponent } from './validate-contract/validate-contract.component';
 import { SuppliersComponent } from './suppliers/suppliers.component';
 import { AddSuplierComponent } from './suppliers/add-suplier/add-suplier.component';
 import { EditSupplierComponent } from './suppliers/edit-supplier/edit-supplier.component';
 import { DeleteSupplierComponent } from './suppliers/delete-supplier/delete-supplier.component';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DetailsSupplierComponent } from './suppliers/details-supplier/details-supplier.component';
 import { ContactSupplierComponent } from './suppliers/contact-supplier/contact-supplier.component';
@@ -96,7 +92,6 @@ import { ManageTickets } from './ticketing/manage-tickets/manage-tickets.compone
     StatuscodepageComponent, 
     SupportComponent,
     ManageinvoicesComponent,
-    ValidateContractComponent,
     TicketingComponent,
     SuppliersComponent,
     AddSuplierComponent,

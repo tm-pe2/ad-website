@@ -3,7 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment';
 import { CustomerDetailComponent } from '../customer-detail/customer-detail.component';
-import { Customer } from '../interfaces/customer';
+import { Customer } from '../../interfaces/customer';
 //TODO fix the dialog
 
 @Component({

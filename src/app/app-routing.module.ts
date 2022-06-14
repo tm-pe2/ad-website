@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddSuplierComponent } from './suppliers/add-suplier/add-suplier.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ManageEmployeesComponent } from './manage-employees/manage-employees.component';
-import { CustomerComponent } from './customers/customers.component';
+import { CustomerComponent } from './manage-customers/customers/customers.component';
 import { TicketingComponent } from './ticketing/ticketing.component';
 import { ConsumptionEstimationComponent } from './consumption-estimation/consumption-estimation.component';
 import { RegisterCustomerComponent } from './register-customer/register-customer.component';

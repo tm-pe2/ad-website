@@ -4,9 +4,9 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CustomerDetailComponent } from '../customer-detail/customer-detail.component';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { AddCustomerDialogComponent } from '../add-customer-dialog/add-customer-dialog.component';
-import { Customer, CustomerContract } from '../interfaces/customer';
+import { Customer, CustomerContract } from '../../interfaces/customer';
 import { environment } from 'src/environments/environment';
-import { PostConfigService } from '../services/post-config.service';
+import { PostConfigService } from '../../services/post-config.service';
 
 
 @Component({

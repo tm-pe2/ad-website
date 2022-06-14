@@ -5,8 +5,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment';
-import { Customer } from '../interfaces/customer';
-import { UserdataService } from '../services/userdata.service';
+import { Customer } from '../../interfaces/customer';
+import { UserdataService } from '../../services/userdata.service';
 
 //TODO test and fix it
 
