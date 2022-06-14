@@ -410,53 +410,14 @@ submit()
     this.onAddMeters();
     this.openDialog();
     this.addSmartMeter();
-    
   })  
   
 }
 
   addSmartMeter() {
     this.meters.forEach(async (m) => {
-      if (m.meter_type == "smartMeter") {
-        let body = {
-          "occupants" : this.contract.family_size,
-          "day_consumption" : m.index_value,
-          "night_consumption" : 0,
-          "latitude": 50.5039,
-          "longitude": 4.4699
-        }
-
-        let headers = { "headers" : { "header" : ['Content-Type: application/json']}};
-
-        let generated_meterid: any;
-
-        await new Promise<void>((resolve, reject) => {
-          this.httpClient.post("http://10.97.0.100:3000/meter", body, headers).subscribe({
-            next: (response: any) => {
-              generated_meterid = response.id;
-              console.log(generated_meterid);
-              console.log("smart meter generated");
-              resolve();
-            },
-            error: (error: any) => reject(error)
-          })
-        })
-
-        let device = {
-          "device": 4,
-          "on": true
-        }
-
-        await new Promise<void>((resolve, reject) => {
-          this.httpClient.post("http://10.97.0.100:3000/meter/" + generated_meterid + "/device", device, headers).subscribe({
-            next: (response) => {
-              console.log("general consumption added");
-              resolve();
-            },
-            error: (error) => reject(error)
-          })
-        })
-
+      if (m.meter_type == "smartMeter") { 
+        // api call
       }
     })
   }
