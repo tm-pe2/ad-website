@@ -92,12 +92,12 @@ export class FormsComponent implements OnInit {
 
     if (this.type == "register") {
       let filled: RegisterForm = {
-        first_name: this.form.get('firstName')?.value,
-        last_name: this.form.get('lastName')?.value,
-        birth_date: this.form.get('birthDate')?.value,
+        first_name: this.form.get('first_name')?.value,
+        last_name: this.form.get('last_name')?.value,
+        birth_date: this.form.get('birth_date')?.value,
         email: this.form.get('email')?.value,
-        phone_number: this.form.get('phone')?.value,
-        national_registry_number: this.form.get('registryId')?.value,
+        phone_number: this.form.get('phone_number')?.value,
+        national_registry_number: this.form.get('national_registry_number')?.value,
         addresses: [{
           street: this.form.get('street')?.value,
           house_number: this.form.get('house_number')?.value,
@@ -157,15 +157,15 @@ export class FormsComponent implements OnInit {
     if (this.type == "employees") {
       console.log("hey")
       let filled: EmployeeForm = {
-        first_name: this.form.get('firstName')?.value,
-        last_name: this.form.get('lastName')?.value,
+        first_name: this.form.get('first_name')?.value,
+        last_name: this.form.get('last_name')?.value,
         email: this.form.get('email')?.value,
-        phone_number: this.form.get('phone')?.value,
+        phone_number: this.form.get('phone_number')?.value,
         password: this.form.get('password')?.value,
         confirmPassword: this.form.get('confirmPassword')?.value,
-        national_registry_number: this.form.get('registryId')?.value,
-        birth_date: this.form.get('birthDate')?.value,
-        hire_date: this.form.get('hireDate')?.value,
+        national_registry_number: this.form.get('national_registry_number')?.value,
+        birth_date: this.form.get('birth_date')?.value,
+        hire_date: this.form.get('hire_date')?.value,
         salary: this.form.get('salary')?.value,
         roles: [this.form.get('role')?.value as number],
         addresses: [{
@@ -176,11 +176,9 @@ export class FormsComponent implements OnInit {
       }
       for (let field of this.employeeFields) {
         if (this.form.get(field)?.errors) {
-          console.log("huh welke", field)
           return false;
         }
       }
-      console.log("not getting here")
       this.submitted.emit(filled as EmployeeForm);
     }
     return true;
