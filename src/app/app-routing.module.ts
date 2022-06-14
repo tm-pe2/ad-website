@@ -51,10 +51,10 @@ const routes: Routes = [
   {path: 'graphs', component: GraphsComponent, canActivate: [RoleGuardService], data: { roles: [UserRole.CUSTOMER] }},
   {path: 'statuscode/:statusCode', component: StatuscodepageComponent},
   
-  {path: 'manage-employees',component:ManageEmployeesComponent},
-  {path: 'manage-employees/addEmployee',component:AddEmployeeFormComponent},
-  {path: 'manage-employees/editEmployees/:id',component:EditEmployeeFormComponent},
-  {path: 'manage-employees/details/:id',component:EmployeeCardComponent},
+  {path: 'manage-employees',component:ManageEmployeesComponent,canActivate: [RoleGuardService], data:{roles:[UserRole.MANAGER,UserRole.HR_MANAGER,UserRole.ADMIN,UserRole.EMPLOYEE]}},
+  {path: 'manage-employees/addEmployee',component:AddEmployeeFormComponent,canActivate: [RoleGuardService], data:{roles:[UserRole.MANAGER,UserRole.HR_MANAGER,UserRole.ADMIN,UserRole.EMPLOYEE]}},
+  {path: 'manage-employees/editEmployees/:id',component:EditEmployeeFormComponent,canActivate: [RoleGuardService], data:{roles:[UserRole.MANAGER,UserRole.HR_MANAGER,UserRole.ADMIN,UserRole.EMPLOYEE]}},
+  {path: 'manage-employees/details/:id',component:EmployeeCardComponent,canActivate: [RoleGuardService], data:{roles:[UserRole.MANAGER,UserRole.HR_MANAGER,UserRole.ADMIN,UserRole.EMPLOYEE]}},
 
 
   
