@@ -54,6 +54,7 @@ import { ContractOverveiwComponent } from './suppliers/contract-overveiw/contrac
 import { ManageContractComponent } from './suppliers/manage-contract/manage-contract.component';
 import { FormsModule }   from '@angular/forms';
 import { ManageTickets } from './ticketing/manage-tickets/manage-tickets.component';
+import { FormsComponent } from './forms/forms.component';
 
 
 @NgModule({
@@ -101,6 +102,7 @@ import { ManageTickets } from './ticketing/manage-tickets/manage-tickets.compone
     ContactSupplierComponent,
     ContractOverveiwComponent,
     ManageContractComponent,
+    FormsComponent,
   ],
   entryComponents:[CustomerDetailComponent],
     imports: [

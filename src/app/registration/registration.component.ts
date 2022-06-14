@@ -1,6 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { RegistrationData } from '../interfaces/registrationData';
+import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+import { RegisterForm } from '../interfaces/form';
+import { Meter } from '../interfaces/meter';
 import { UserdataService } from '../services/userdata.service';
 
 
@@ -10,62 +14,25 @@ import { UserdataService } from '../services/userdata.service';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-  // Variables
-  invalidForm = false;
-  matchingPasswords = false;
-  types = ["Private", "Company"];
 
   // Constructor
-  constructor() { }
+  constructor(private http: HttpClient, private userService: UserdataService, private router:Router ) { }
 
   // On init
   ngOnInit(): void { }
 
   // Functions
   // Public
-  onSubmit(regForm: NgForm) 
+  onSubmit(form: RegisterForm) 
   {
-    // Check if all the fields are filled in
-    // Set invalidForm to true so the error message displays
-    // Set matchingPasswords to false so the error message doesn't display
-    if (!regForm.valid)
-    {
-      this.invalidForm = true;
-      this.matchingPasswords = false;
-      return;
-    
-    }
+    this.userService.registerUser(form).then(() => {
+      //redirect to root route
+      this.router.navigate(['/']);
 
-    // Check if the passwords match
-    // Set matchingPasswords to true so the error message displays
-    // Set invalidForm to false so the error message doesn't display
-    if (!(regForm.value.regPassword == regForm.value.regConfPassword))
-    {
-      this.invalidForm = false;
-      this.matchingPasswords = true;
-      return;
-
-    }
-
-    // User stuff
-    const regData: RegistrationData =
-    {
-      user_id: -1,
-      role_id: 1,
-      first_name: regForm.value.regFname,
-      last_name: regForm.value.regLname,
-      birth_date: regForm.value.regBdate,
-      email: regForm.value.regMain,
-      phone_number: regForm.value.regPhone,
-      password: regForm.value.regPassword,
-      national_registry_number: regForm.value.regNatianalNr
-      
-    }
-
-    // Print out the data to the console for demo
-    // Delete this later when you can send it to the API
-    // this.service.addCustomer(regData);
-
+    })
+    .catch(error => {
+      console.log(error);
+    })
   }
 
   // Private
