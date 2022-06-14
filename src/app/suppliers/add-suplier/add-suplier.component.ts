@@ -1,10 +1,13 @@
-import { Component, NgModule, OnInit } from '@angular/core';
+import { Component, Input, NgModule, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { SupplierData } from 'src/app/interfaces/suppliersData';
 import { Supplier } from '../supplier';
 import { Address } from '../../interfaces/address';
-
+import { FormsComponent } from 'src/app/forms/forms.component';
+import { SuppliersComponent } from '../suppliers.component';
+import { SupplierService } from '../services/supplier.service';
+import { SuppliersForm } from 'src/app/interfaces/form';
 
 
 
@@ -17,54 +20,22 @@ import { Address } from '../../interfaces/address';
 })
 export class AddSuplierComponent implements OnInit {
 
-  // Vars Form validation
-  formNotValid = false;
-  credentialsNotValid = false;
 
+  @Input() parent?: SuppliersComponent;
+  constructor(public supplierService : SupplierService) { } 
+  
+  onAddFormSubmit(form : SuppliersForm) {
+    // TODO: Add Supplier 
+  }
 
-  constructor(private router: Router) { }   
- 
-  // Error msg
-
-  allfilled = false;
-  invalidF = false;
-
-  tester = 1;
-
-  //Testing hardcoded for sending data to database
-  idT = 2; 
-  nameT = "TestSupplier";
-  addresT = "TestStraat 12";
-  cityT = "Schelle";
-  zipT = 2627;
-  typeT = "GAS"
-  VATT = 123123123
+  onCancelAddSupplier() {
+    /* this.parent?.changeStatusOnCancelAddSupplier(); */
+  }
 
   ngOnInit(): void {
-   
-  }
-
-  onSubmit(addSupplierForm: NgForm){
-
-  }
-
-  private control(addSupplierForm: NgForm){
-   const suppliersData: SupplierData =  { 
-    name: addSupplierForm.value.addNameSup,
-    street: addSupplierForm.value.addStreetSup, 
-    housenumber: addSupplierForm.value.addHouseNumberSup,
-    city: addSupplierForm.value.addCitySup, 
-    zip: addSupplierForm.value.addZipSup, 
-    country: addSupplierForm.value.addCountrySup,
-    type: addSupplierForm.value.addTypeSup
-    };
   }
 
 
-  
-  backToHub(pageName:string):void{
-    this.router.navigate([`${pageName}`]);
-  }
 
 
   
