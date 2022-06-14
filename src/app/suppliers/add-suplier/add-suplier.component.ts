@@ -1,12 +1,7 @@
-import { Component, Input, NgModule, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
-import { SupplierData } from 'src/app/interfaces/suppliersData';
-import { Supplier } from '../supplier';
-import { Address } from '../../interfaces/address';
-import { FormsComponent } from 'src/app/forms/forms.component';
+import { Component, Input, OnInit } from '@angular/core';
+
 import { SuppliersComponent } from '../suppliers.component';
-import { SupplierService } from '../services/supplier.service';
+import { SupplierService } from '../../services/supplier.service'
 import { SuppliersForm } from 'src/app/interfaces/form';
 
 
