@@ -409,18 +409,10 @@ submit()
     this.alterContractID(res);
     this.onAddMeters();
     this.openDialog();
-    this.addSmartMeter();
   })  
   
 }
 
-  addSmartMeter() {
-    this.meters.forEach(async (m) => {
-      if (m.meter_type == "smartMeter") { 
-        // api call
-      }
-    })
-  }
    onAddContract(): Promise<number>
     {
       return new Promise<number>((resolve,reject) => {
