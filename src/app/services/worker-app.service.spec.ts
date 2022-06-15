@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UtilService } from './util.service';
+import { WorkerAppService } from './worker-app.service';
 
-describe('UtilService', () => {
-  let service: UtilService;
+describe('MobileAppDataService', () => {
+  let service: WorkerAppService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(UtilService);
+    service = TestBed.inject(WorkerAppService);
   });
 
   it('should be created', () => {

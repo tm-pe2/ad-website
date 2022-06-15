@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import axios from 'axios';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CustomerDetailComponent } from '../customer-detail/customer-detail.component';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';

@@ -14,7 +14,6 @@ export interface Employee {
     password?: string,
     hire_date: Date,
     salary: number,
-    active?: Boolean,
 }
 
 export interface Role{

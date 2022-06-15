@@ -22,16 +22,12 @@ export class RoleGuardService {
       this.router.navigate(['/statuscode/401']);
       return false;
     }
-
+    
     const roles = route.data['roles'] as Array<UserRole>; // TODO string enum for roles
-    const userRoles = this.auth.getUserRoleId();
-    if (!userRoles) {
-      return false;
-    }
-    for (let userRole of userRoles) {
-      if (userRole != null && roles.includes(userRole)) {
-        return true;
-      }
+    const userRole = this.auth.getUserRoleId();
+
+    if (userRole != null && roles.includes(userRole)) {
+      return true;
     }
 
     this.router.navigate(['/statuscode/403']);

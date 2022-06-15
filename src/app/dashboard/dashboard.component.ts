@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Title } from '@angular/platform-browser'
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { User } from '../interfaces/User';
@@ -16,10 +16,8 @@ import { UserRole } from '../interfaces/User';
 export class DashboardComponent implements OnInit, AfterViewInit {
   title: string = 'Dashboard'
   employeeRoles: UserRole[] = [UserRole.ACCOUNTANT,UserRole.ADMIN, UserRole.EMPLOYEE, UserRole.HR_MANAGER, UserRole.MANAGER, UserRole.SUPPORT, UserRole.TECHNICIAN];
-  employeeRequirement: Boolean = false;
 
   constructor(private titleService: Title, private activatedRoute:ActivatedRoute, private elementRef: ElementRef, public auth: AuthService) {
-    this.employeeRequirement = this.auth.getUserRoleId()?.some(r => this.employeeRoles.includes(r))!;
   }
 
   ngAfterViewInit(): void {
