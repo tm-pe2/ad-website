@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse,} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
 import { Customer, EstimationRegistration, Meter } from '../interfaces/customer';
 import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -34,15 +34,23 @@ export class PostConfigService {
 
   addEstimation(e:EstimationRegistration)
     {
-       return this.httpClient.post( environment.apiUrl+"/estimations", e, {responseType: 'text'});
+       return this.httpClient.post(environment.apiUrl+"/estimations", e, {responseType: 'text'});
        
     }
   
   addCustomer(c:Customer)
   {
-      return this.httpClient.post( environment.apiUrl+"/customers", c, {responseType: 'text'});
+      return this.httpClient.post(environment.apiUrl+"/customers", c, {responseType: 'text'});
        
   }
 
+  editCustomer(id:number,c:Customer)
+  {
+      return this.httpClient.put(environment.apiUrl + "/customers/" + id ,c);
+  }
  
+  deactivateCustomer(activeCustomer: {active:boolean}, id:number): Observable<Customer>
+  {
+    return this.httpClient.patch<Customer>(environment.apiUrl+ "/customers/"+id, activeCustomer);
+  }
 }

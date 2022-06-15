@@ -1,12 +1,9 @@
-import { ConfigurableFocusTrap } from '@angular/cdk/a11y';
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit,Inject } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { DateAdapter } from '@angular/material/core';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { PostConfigService } from 'src/app/services/post-config.service';
 import { environment } from 'src/environments/environment';
-import { Address, Customer } from '../../interfaces/customer';
-import { UserdataService } from '../../services/userdata.service';
+import { Customer } from '../../interfaces/customer';
 
 //get addresses, select address to change and change the values
 
@@ -18,80 +15,52 @@ import { UserdataService } from '../../services/userdata.service';
 export class CustomerDetailComponent implements OnInit {
   
   form!: FormGroup;
-  customers!: Customer[];
-  
   
   constructor(
-    private httpClient:HttpClient,
+    private postService:PostConfigService,
     private formB: FormBuilder,
     private dialRef: MatDialogRef<CustomerDetailComponent>,
-    private userData : UserdataService,
+    
     @Inject(MAT_DIALOG_DATA) public data: Customer) {
       this.form=this.formB.group({
-        customer_id:data.id,
-        RoleID:data.roles,
-        FirstName:data.first_name,
-        LastName:data.last_name,
-        BirthDate:data.birth_date,
-        // Street:data.street,
-        // HouseNr:data.house_number,
-        // PostCode:data.postal_code,
-        // City:data.city_name,
-        NationalRegNumber:data.national_registry_number,
-        Email:data.email,
-        PhoneNumber:data.phone_number,
-        Password:data.password
-      })
+      firstName: data.first_name,
+      lastName: data.last_name,
+      email: data.email,
+      phone: data.phone_number,
+      password: data.password,
+      registryId: data.national_registry_number,
+      birthDate: data.birth_date,
+      type: data.customer_type,
+      });      
      }
 
-  ngOnInit() {
-  this.getCustomers();
-}
+  ngOnInit() {}
 
-  getCustomers()
+  onSubmit(c:Customer)
   {
-    this.httpClient.get<any>(environment.apiUrl+'/customers').subscribe(
-      ( response: Customer[])=>{
-      this.customers=response;
-    }
-    );
-  }
-
-  Submit()
-  {
-
-    let address: Address ={
-
-      city_name: this.form.get('City')?.value,
-      street: this.form.get('Street')?.value,
-      house_number: this.form.get('HouseNr')?.value,
-      postal_code: this.form.get('PostCode')?.value,
-      country: 'Belgium',
-
-    } 
-    let user: Customer = {
-      roles: [1],
-      customer_type:(this.form.get('Type'))?.value,
-      first_name: this.form.get('FirstName')?.value,
-      last_name: this.form.get('LastName')?.value,
-      birth_date: this.form.get('BirthDate')?.value,
-      email: this.form.get('Email')?.value,
-      phone_number: 'test',
-      password: this.form.get('Password')?.value,
-      national_registry_number: this.form.get('NationalRegNumber')?.value,
-      //addresses:[address],
-      active:true,
-    }
-    
-    this.httpClient.put(environment.apiUrl+'/customers',user)
-    .subscribe({
+    console.log(c.id);
+    if(c.id)
+    {
+      this.postService.editCustomer(c.id,c).subscribe({
       next:(response: any) => console.log(response),
       error: (error: any) => console.log(error),
-    });
-
+      });
+    }
+    
   }
   cancel() {
     this.dialRef.close();
+}
+
+validateConfirmPassword(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const password = control.root.get('password');
+    const confirmPassword = control.root.get('confirmPassword');
+    if (password && confirmPassword) {
+      return password.value === confirmPassword.value ? null : { passwordMismatch: true };
+    }
+    return null;
+  }
 }
 
 }
