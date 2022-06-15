@@ -13,7 +13,6 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { ConstantPool } from '@angular/compiler';
 
 
-
 @Component({
   selector: 'app-consumption-estimation',
   templateUrl: './consumption-estimation.component.html',
@@ -410,35 +409,10 @@ submit()
     this.alterContractID(res);
     this.onAddMeters();
     this.openDialog();
-    
   })  
   
 }
 
-  addSmartMeter() {
-    this.meters.forEach((m) => {
-      if (m.meter_type == "smartMeter") {
-        let body = {
-          "occupants" : this.contract.family_size,
-          "day_consumption" : m.index_value,
-          "night_consumption" : 0,
-          "latitude": 50.5039,
-          "longitude": 4.4699
-        }
-
-        let headers = { "headers" : { "header" : ['Content-Type: application/json']}};
-
-
-        this.httpClient.post("http://10.97.0.100:3000/meter", body, headers).subscribe(
-          (response) => {
-            console.log("meter added", response)
-          },
-          (error) => console.log("error", error)
-        )
-        
-      }
-    })
-  }
    onAddContract(): Promise<number>
     {
       return new Promise<number>((resolve,reject) => {
