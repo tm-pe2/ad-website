@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Planning } from '../models/planning';
-import { Consumption } from '../models/consumtion';
+import { Consumption, ConsumptionPost } from '../models/consumtion';
 import { Observable } from 'rxjs';
 
 
@@ -47,13 +47,26 @@ export class WorkerAppService {
   
   }
 
-  
-
 
   // Public functions
   // Get the consumtions for e certain user
   // Call this in the component itself
   public getConsumtions(userID: number): Observable<Consumption>
   { return this.http.get<Consumption>(environment.apiUrl + '/consumptions/' + userID); }
+
+  public postNewConsumtions(userID: number, newConsumtion: ConsumptionPost)
+  {
+    return new Promise<void>((resolve, reject) =>
+    {
+      this.http.post(environment.apiUrl + '/consumptions/' + userID, newConsumtion).subscribe(
+        {
+          next: (res: any) => { resolve(res); },
+          error: (err) => { reject(err); }
+
+        })
+
+    });
+
+  }
 
 }
