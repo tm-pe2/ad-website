@@ -1,11 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { UserRole } from '../interfaces/User';
 
 @Pipe({
   name: 'rolesToString'
 })
 export class RolesToStringPipe implements PipeTransform {
 
-  transform(roles : number[]): string {
+  transform(roles : UserRole[]): string {
 
     var fullStr= "";
     var i: number = 0;

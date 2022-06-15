@@ -59,7 +59,7 @@ export class ValidateContractComponent implements OnInit {
 
   getCustomers()
   {
-    this.customer_ID=this.customer_user.user.user_id;
+    this.customer_ID =this.customer_user.user.id!;
     this.httpClient.get<any>(environment.apiUrl+'/customers/user/' + this.customer_ID).subscribe(
       (response) =>{
       this.customerData = response.customer;

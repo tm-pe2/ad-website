@@ -1,11 +1,9 @@
 import { Component, OnInit, Input, Output, ViewChild } from '@angular/core';
-import { EmployeeCardComponent } from './employee-card/employee-card.component';
-import { Address } from '../interfaces/address';
-import { AuthGuardService } from '../services/auth-guard.service';
 import { AuthService } from '../services/auth.service';
 import { EmployeeService } from '../services/employee.service';
 import { UserdataService } from '../services/userdata.service';
 import { EmployeeForm } from 'src/app/interfaces/form';
+import { UserRole } from '../interfaces/User';
 
 @Component({
   selector: 'app-manage-employees',
@@ -20,12 +18,16 @@ export class ManageEmployeesComponent implements OnInit{
   constructor(private auth : AuthService,public employeeService: EmployeeService,public userdataService: UserdataService) {
   }
   
-  role ?: number | null;
+  role ?:UserRole[] | null;
+  elevated: UserRole[] = [UserRole.ADMIN, UserRole.HR_MANAGER, UserRole.MANAGER];
+  employeeRoles: UserRole[] = [UserRole.ACCOUNTANT,UserRole.ADMIN, UserRole.EMPLOYEE, UserRole.HR_MANAGER, UserRole.MANAGER, UserRole.SUPPORT, UserRole.TECHNICIAN];
+  elevatedAllowed = this.auth.getUserRoleId()?.some(r => this.elevated.includes(r))!;
+  employeeAllowed = this.auth.getUserRoleId()?.some(r => this.employeeRoles.includes(r))!;
+
 
   ngOnInit(){
     this.employeeService.loadEmp();
     this.role = this.auth.getUserRoleId();
-    this.role = 7;
     console.log("role",this.role);
   }
     
