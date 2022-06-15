@@ -3,7 +3,6 @@ import { WorkerappComponent } from '../workerapp.component';
 import { WorkerAppService } from 'src/app/services/worker-app.service';
 import { Planning } from 'src/app/models/planning';
 import { Address } from 'src/app/interfaces/address';
-import { AriaDescriber } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'app-cient-page',
