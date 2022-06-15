@@ -64,6 +64,7 @@ import { ManageContractComponent } from './suppliers/manage-contract/manage-cont
 import { FormsModule }   from '@angular/forms';
 import { ManageTickets } from './ticketing/manage-tickets/manage-tickets.component';
 import { FormsComponent } from './forms/forms.component';
+import { RolesToStringPipe } from './manage-employees/roles-to-string.pipe';
 
 
 @NgModule({
@@ -119,6 +120,7 @@ import { FormsComponent } from './forms/forms.component';
     ContractOverveiwComponent,
     ManageContractComponent,
     FormsComponent,
+    RolesToStringPipe,
   ],
   entryComponents:[CustomerDetailComponent],
     imports: [

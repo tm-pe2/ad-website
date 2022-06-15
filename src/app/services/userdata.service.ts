@@ -20,12 +20,11 @@ export class UserdataService
 {
   user: User =
   { 
-    user_id: 0,
-    role_id: UserRole.CUSTOMER,
+    id: 0,
     first_name: '',
     last_name: '',
     birth_date: new Date(),
-    address_id: 0,
+    addresses: [],
     email: '',
     phone_number: '',
     password: 'WhyAreWeSendingTheHashedPasswords?',
