@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { SuppliersComponent } from '../suppliers.component';
 import { SupplierService } from '../../services/supplier.service'
 import { SuppliersForm } from 'src/app/interfaces/form';
-
+import { Router } from '@angular/router';
 
 
 
@@ -17,10 +17,11 @@ export class AddSuplierComponent implements OnInit {
 
 
   @Input() parent?: SuppliersComponent;
-  constructor(public supplierService : SupplierService) { } 
+  constructor(public supplierService : SupplierService, public router : Router) { } 
   
   onAddFormSubmit(form : SuppliersForm) {
-    // TODO: Add Supplier 
+    // TODO: Add Supplier
+    this.supplierService.addSupplier(form);
   }
 
   onCancelAddSupplier() {
@@ -30,7 +31,9 @@ export class AddSuplierComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
+  backToHome(){
+    this.router.navigate([`suppliers`]);
+  }
 
 
   

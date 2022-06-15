@@ -14,6 +14,26 @@ export class SupplierService {
     suppliers: SupplierData[] = [];
     currentSupplier?: SupplierData;
 
+    addSupplier(suppliers: SuppliersForm): Promise<void>{
+        const promise = new Promise<void>((resolve, reject) => 
+        this.http.post(environment.apiUrl + '/suppliers',suppliers).subscribe(
+            {
+                next:(res: any) => {
+                    resolve();
+                },
+                error:(err) => {
+                    reject(err);
+                    console.log("Error");
+                }
+            }
+        ));
+        console.log("Test");
+        return promise;
+    }
+
+    editSupplier(suppliers : SuppliersForm){
+        // Add code to edit supplier
+    }
 
 
 }
