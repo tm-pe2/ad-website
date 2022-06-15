@@ -1,5 +1,5 @@
-import { Address } from "../interfaces/address";
-import { UserRole, CustomerType } from "../interfaces/User";
+import { Address } from "./address";
+import { UserRole, CustomerType } from "./User";
 
 export interface Consumption{
     id: number,

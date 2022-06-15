@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Planning } from '../models/planning';
-import { Consumption, ConsumptionPost } from '../models/consumtion';
+import { Consumption, ConsumptionPost } from '../interfaces/consumtion';
 import { Observable } from 'rxjs';
 
 
@@ -26,6 +26,7 @@ export class WorkerAppService {
   }
 
   // Private functions
+  // get from models folder
   private getPlanning(): Promise<void>
   { 
     return new Promise<void>((resolve, reject) => 
@@ -51,6 +52,7 @@ export class WorkerAppService {
   // Public functions
   // Get the consumtions for e certain user
   // Call this in the component itself
+  // get from consumtion interface
   public getConsumtions(userID: number): Observable<Consumption>
   { return this.http.get<Consumption>(environment.apiUrl + '/consumptions/' + userID); }
 
