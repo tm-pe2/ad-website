@@ -1,18 +1,12 @@
-import { Address } from "../interfaces/address";
+import { Address } from "../interfaces/customer";
 
 export interface Planning {
     id: number,
-    user: {
-        id: number,
-        first_name: string,
-        last_name: string,
-        email: string,
-        phone: string,
-        address: Address,
-    },
     contract_id: number,
+    user_id?: number,
     date: Date,
     status: PlanningStatus,
+    address: Address,
 }
 
 export enum PlanningStatus {
