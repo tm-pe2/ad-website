@@ -1,4 +1,4 @@
-<div class="box row-start-2 row-end-6 col-start-1 col-end-3 overflow-y-auto shadow">
+<div *ngIf="this.elevatedAllowed" class="box row-start-2 row-end-6 col-start-1 col-end-3 overflow-y-auto shadow">
     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" routerLink="/manage-employees/addEmployee">Add Employee</button>
 </div> 
     <div class="box row-start-2 row-end-6 col-start-3 col-end-11"> 
@@ -40,9 +40,9 @@
                         <td class="w-20 p-3 text-sm">
                             <button 
                             [ngClass]="{
-                                'text-blue-500': (elevated),
-                                'hover:underline': (elevated),
-                                'text-gray-500': (!elevated)
+                                'text-blue-500': (elevatedAllowed),
+                                'hover:underline': (elevatedAllowed),
+                                'text-gray-500': (!elevatedAllowed)
                             }" 
                             class="font-bold" routerLink="/manage-employees/editEmployees/{{e.id}}" [disabled]='!elevatedAllowed'>Edit</button>
                         </td>
@@ -50,11 +50,11 @@
                         <td class="w-20 p-3 text-sm">
                             <button
                             [ngClass]="{
-                                'text-red-500': (elevated),
-                                'hover:underline': (elevated),
-                                'text-gray-500': (!elevated)
+                                'text-red-500': (elevatedAllowed),
+                                'hover:underline': (elevatedAllowed),
+                                'text-gray-500': (!elevatedAllowed)
                             }" 
-                             class="font-bold" (click)="deleteEmployee(e)" [disabled]='elevated'>remove</button>
+                             class="font-bold" (click)="deleteEmployee(e)" [disabled]='!elevatedAllowed'>remove</button>
                         </td>
                         </ng-container>
                     </tr>  
