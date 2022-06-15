@@ -1,8 +1,9 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { WorkerappComponent } from '../workerapp.component';
-import { UtilService } from 'src/app/util.service';
-import { WorkerlistItem } from 'src/app/interfaces/worker-interfaces';
 import { WorkerAppService } from 'src/app/services/worker-app.service';
+import { Planning } from 'src/app/models/planning';
+import { Address } from 'src/app/interfaces/address';
+import { AriaDescriber } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'app-cient-page',
@@ -13,19 +14,19 @@ import { WorkerAppService } from 'src/app/services/worker-app.service';
 export class CientPageComponent implements OnInit {
   @Input() parent ?: WorkerappComponent;
   // New veriables
-  customer: WorkerlistItem;
+  customer: Planning;
   selectedCustomer: number;
 
   // Old variables
   name : string; 
-  adr : string;
-  mtype : number;
+  adr : Address;
+  //mtype : number;
 
 
 
 
-  gMeter : number;
-  eMeter : number;
+  //gMeter : number;
+  //eMeter : number;
   nDate : any;
 
   fixedDateE: any = new Date();
@@ -36,51 +37,54 @@ export class CientPageComponent implements OnInit {
   newvalues : number[];
 
 
-  constructor(public cData: UtilService, private service: WorkerAppService) {
-    this.selectedCustomer = service.selectedCustomer;
-    this.customer = service.customerList[this.selectedCustomer];
-    this.name = this.service.customerList[this.service.selectedCustomer].customerName
-    this.adr = this.service.customerList[this.service.selectedCustomer].address
-    this.isDone = this.service.customerList[this.service.selectedCustomer].planningStatus
+  constructor(private service: WorkerAppService) {
+    this.selectedCustomer = service.selectedUser;
+    this.customer = service.planningList[this.selectedCustomer];
+    this.name = this.customer.user.first_name + this.customer.user.last_name;
+    this.adr = this.customer.user.address;
+    this.isDone = this.customer.status;
     this.meterid = [];
     this.lastmeting = [];
     this.newvalues = [];
+    /*
     this.service.customerList[this.selectedCustomer].meters.forEach(meter => {
       this.lastmeting.push(meter.lastValue);
       this.meterid.push(meter.meter_id);
       this.newvalues.push(0);
     });
-
+    
     this.mtype = cData.custData[cData.selectedCust].meterType;
     this.gMeter = 0;
     this.eMeter = 0;
-
+    */
   }
   
   ngOnInit(): void {
-    if(this.service.customerList[this.selectedCustomer].planningStatus == 1) this.isDone = 1;
+    //if(this.service.customerList[this.selectedCustomer].planningStatus == 1) this.isDone = 1;
   }
 
   // Old functions
   setValue(event:any, i:number){
     this.newvalues[i] = event.target.value;
   }
-
+/*
   setElek(event:any){
     this.eMeter = event.target.value;
   }
-
+*/
   setDate(event:any){
     this.nDate = event.target.value
   }
 
   // This function I updated already
+  /*
   replan(){
     //TODO - add days to date
     this.service.customerList[this.selectedCustomer].planningStatus = 1;
   }
+  */
 
-  submit(){
+  submit(): void{
     for (let i = 0; i < this.newvalues.length; i++) {
       this.lastmeting[i] = this.newvalues[i];
     }

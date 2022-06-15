@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UtilService } from 'src/app/util.service';
 import { WorkerappComponent } from '../workerapp.component';
 
 @Component({

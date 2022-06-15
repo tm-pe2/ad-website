@@ -23,7 +23,6 @@ import { ButtonComponent } from './dashboard/button/button.component';
 import { MonthlyUsageChartComponent } from './graphs/monthly-usage-chart/monthly-usage-chart.component';
 import { GraphsComponent } from './graphs/graphs.component';
 import { MatIconModule } from '@angular/material/icon'
-import { UtilService } from './util.service';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -152,7 +151,6 @@ import { FormsComponent } from './forms/forms.component';
     
   ],
   providers: [
-    UtilService,
     UserdataService,
     HttpClientModule,
     {

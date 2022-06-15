@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { UtilService } from '../util.service';
 import {} from '@angular/core';
 
 
@@ -11,7 +10,7 @@ import {} from '@angular/core';
 
 export class WorkerappComponent implements OnInit {
   displayPage : number = 1;
-  constructor(private cData: UtilService) {
+  constructor() {
   }
   
   ngOnInit(): void{

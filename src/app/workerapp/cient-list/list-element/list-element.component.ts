@@ -9,7 +9,7 @@ import { WorkerAppService } from 'src/app/services/worker-app.service';
 })
 export class ListElementComponent implements OnInit {
   @Input() parent ?: CientListComponent;
-  constructor(private service: WorkerAppService) { 
+  constructor(public service: WorkerAppService) { 
 
   }
   ngOnInit(): void {
