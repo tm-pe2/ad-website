@@ -82,13 +82,13 @@ export class AuthService {
   }
 
   // Returns null if role cannot be retrieved from access token
-  getUserRoleId(): UserRole[] | null {
+  getUserRoleId(): UserRole | null {
     const token = AuthService.getAccessToken();
     if (!token) {
       return null;
     }
     const payload = this.jwtHelper.decodeToken(token);
-    return payload.roles as UserRole[];
+    return payload.role_id as UserRole;
   }
 
   refreshAccessToken() {

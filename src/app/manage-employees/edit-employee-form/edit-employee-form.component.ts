@@ -1,8 +1,8 @@
 import { Component, OnInit,Input, OnChanges } from '@angular/core';
 import { ManageEmployeesComponent } from '../manage-employees.component';
 import { EmployeeService } from '../../services/employee.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { EmployeeForm } from 'src/app/interfaces/form';
+import { NgForm } from '@angular/forms';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-edit-employee-form',
@@ -14,32 +14,21 @@ export class EditEmployeeFormComponent {
   
 
   @Input() parent?: ManageEmployeesComponent;
-  employee?: EmployeeForm;
 
-  constructor(public employeeService: EmployeeService,private router:Router,private route:ActivatedRoute) {    
+  constructor(public employeeService: EmployeeService) {    
   }
 
-  onSubmit(employee : EmployeeForm) {
-    let emp:EmployeeForm = employee;
-    emp.id = this.route.snapshot.params['id'] as number;
-    
-    this.employeeService.editEmp(emp);
-    this.router.navigate(['manage-employees']);
+  onSubmit(f : NgForm) {
+    var id =0;
+    this.parent?.changeStatusEmpEditForm();
   }
   
   onCancelEditEmp(){
-    this.router.navigate(['manage-employees']);
+    this.parent?.changeStatusEmpEditForm();
   }
   
   
   ngOnInit(): void {
-    
-    this.employeeService.getEmployeeById(this.route.snapshot.params['id'] as number).subscribe(
-      {
-        next:(res: EmployeeForm) => {
-          this.employee = res;
-        }
-      });
    
   }
   

@@ -16,10 +16,8 @@ import { UserRole } from '../interfaces/User';
 export class DashboardComponent implements OnInit, AfterViewInit {
   title: string = 'Dashboard'
   employeeRoles: UserRole[] = [UserRole.ACCOUNTANT,UserRole.ADMIN, UserRole.EMPLOYEE, UserRole.HR_MANAGER, UserRole.MANAGER, UserRole.SUPPORT, UserRole.TECHNICIAN];
-  employeeRequirement: Boolean = false;
 
   constructor(private titleService: Title, private activatedRoute:ActivatedRoute, private elementRef: ElementRef, public auth: AuthService) {
-    this.employeeRequirement = this.auth.getUserRoleId()?.some(r => this.employeeRoles.includes(r))!;
   }
 
   ngAfterViewInit(): void {

@@ -1,1 +1,167 @@
-<app-forms *ngIf="this.employee" [title]="'Edit employees'" [type]="'employees'" [submitText]="'Edit'" [cancel]="true" (canceled)="onCancelEditEmp()" [editEmployee]="this.employee" (submitted)="onSubmit($event)"></app-forms>
+<!-- <div class="min-h-screen flex items-center justify-center bg-gray-700">
+  
+  <div class="w-full md:w-1/2 sm:w-3/4 rounded shadow-2xl bg-white p-5 text-2xl">
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm"> 
+      <label for="editEmpp" class="font-bold flex items-center justify-center pb-5">Edit Employee</label><br>
+      
+      
+      
+      <div class="grid grid-cols-2 mb-3 gap-2">
+        <span>
+          <label for="Fname">First name: </label>
+          <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black form-control"          
+          type="text" id="Fname" name="Fname" ngModel required maxlength="50" #Fname="ngModel" [(ngModel)]="employeeService.current_Emp.first_name"><br>
+              
+          <div class="text-red-500" *ngIf="Fname.errors?.['maxlength']" >The name is to long. <br></div>
+          <div class="text-red-500" *ngIf="!Fname.valid && Fname.touched">Fill in the firstname. <br></div>
+
+          
+          <label for="Lname">Last name: </label>
+          <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" 
+          type="text" id="Lname" name="Lname" ngModel required maxlength="50" #Lname="ngModel" [(ngModel)]="employeeService.current_Emp.last_name"><br>
+          
+          <div class="text-red-500" *ngIf="!Lname.valid && Lname.touched">Fill in the lastname <br> </div>
+
+        </span>
+        
+        <span class="flex items-center justify-center">
+          <span class="grid grid-rows-4">
+            Gender:
+            <span>
+              <input type="radio" id="M" name="gender" value="M" [(ngModel)]="employeeService.current_Emp.gender">
+              <label for="M" class="ml-2">M</label>
+            </span>
+            <span>
+              <input type="radio" id="F" name="gender" value="F"  [(ngModel)]="employeeService.current_Emp.gender">
+              <label for="F" class="ml-2">F</label>
+            </span>
+            <span>
+              <input type="radio" id="X" name="gender" value="X"  [(ngModel)]="employeeService.current_Emp.gender"> 
+              <label for="X" class="ml-2">X</label>
+            </span>
+          </span>
+        </span>
+
+      </div>
+
+      <div class="mb-5">
+        <label for="birthDate">BirthDate: </label>
+        <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" type="text" id="birthDate" name="birthDate"
+        [(ngModel)]="employeeService.current_Emp.birth_date"><br>
+
+      </div>
+
+      <div class="mb-5">
+        <label for="email">Email:  </label>
+        <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" type="text" id="email" name="email"
+         [(ngModel)]="employeeService.current_Emp.email" ><br>
+
+      </div>
+
+      <div class="mb-5">
+        <label for="phoneNR">Phone Number: </label>
+        <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" type="text" id="phoneNR" name="phoneNR" 
+         [(ngModel)]="employeeService.current_Emp.phone_number"><br>
+      </div>
+
+      
+      
+      
+      <div class="mb-5">
+        <div class="grid grid-cols-2 mb-3 gap-2">
+          <span>
+            <label for="street">Street:</label>
+            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" type="text" id="street" name="street"
+            [(ngModel)]="employeeService.current_Emp.street"> <br>
+
+          </span>
+          <span>
+            <label for="houseNumber">Hous number:</label>
+            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" type="text" id="housNumber" name="housNumber"
+            [(ngModel)]="employeeService.current_Emp.house_number"> <br>
+
+          </span>
+        </div>
+      </div>
+      
+      <div class="mb-5">
+        <div class="grid grid-cols-2 mb-3 gap-2">
+          <span>
+            <label for="city">City:</label>
+            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" type="text" id="city" name="city"
+            [(ngModel)]="employeeService.current_Emp.city"> <br>
+  
+          </span>
+          <span>
+            <label for="postalcode">Postalcode:</label>
+            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" type="text" id="postalcode" name="postalcode"
+            [(ngModel)]="employeeService.current_Emp.postal_code"> <br>
+  
+          </span>
+        </div>
+      </div>
+      
+      
+      <div class="mb-5">
+        <div class="grid grid-cols-2 mb-3 gap-2">
+          <span>
+            <label for="HireDate">HireDate </label>
+            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black mb-5" type="text" id="hiredate" name="hiredate" 
+            [(ngModel)]="employeeService.current_Emp.hire_date"><br>
+          
+            <label for="Salary">Salary</label>
+            <input class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black" type="text" id="Salary" name="salary" 
+            ngModel #salary="ngModel" required [(ngModel)]="employeeService.current_Emp.salary"> <br>
+            
+            <div class="text-red-500" *ngIf="!salary.valid && salary.touched" >Fill in the salary</div>    
+          </span>
+
+
+          <span>
+            <label for="national_registry_number">national registry number</label>
+            <input type="national_registry_number" class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black"
+              ngModel #national_registry_number="ngModel" required id="national_registry_number" name="national_registry_number" [ngModel]="employeeService.current_Emp.national_registry_number">
+              <div class="text-red-500" *ngIf="!national_registry_number.valid && national_registry_number.touched" >Fill in the national_registry_number</div>
+          </span>
+
+          <span>
+            <label for="role">role</label>
+            <input type="role" class="border-solid border-slate-300 border-2 w-full rounded-lg py-0.5 px-2 text-black"
+              ngModel #role="ngModel" required id="role" name="role" [ngModel]="employeeService.current_Emp.role_id">
+              <div class="text-red-500" *ngIf="!role.valid && role.touched" >Fill in the role</div>
+          </span>
+
+
+          <span class="flex items-center justify-left ml-5">
+            <span class="grid grid-rows-4">
+              Department:
+              <span>
+                <input type="radio" id="test" name="department" value="HR" [(ngModel)]="employeeService.current_Emp.department">
+                <label for="test" class="ml-2">HR</label>
+              </span>
+              <span>
+                <input type="radio" id="test2" name="department" value="Support"  [(ngModel)]="employeeService.current_Emp.department" >
+                <label for="test2" class="ml-2">Support</label>
+              </span>
+              <span>
+                <input type="radio" id="test3" name="department" value="Technician"  [(ngModel)]="employeeService.current_Emp.department" > 
+                <label for="test3" class="ml-2">Technician</label>
+              </span>
+              </span>
+            </span>
+
+        </div>
+      </div>
+
+      <div class="float-left m-2 pt-5">
+        <button class="p-1.5 px-5 uppercase text-lg font-medium tracking-wider text-white bg-blue-400 rounded-lg hover:underline"
+         type="submit">Edit Employee</button>
+        </div>
+      </form>
+      <div class="float-right m-2 pt-5">
+        <button class="p-1.5 px-5 text-lg uppercase font-medium tracking-wider text-black-600 hover:underline hover:cursor-pointer bg-red-400 rounded-lg"
+        (click)="onCancelEditEmp()">Back</button>
+      </div>
+    
+  </div>
+</div> -->

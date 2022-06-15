@@ -133,7 +133,7 @@ export class ConsumptionEstimationComponent implements OnInit {
   async onGetCustomers()
   {
     await this.customer_user.loadUser();
-    this.postService.getCustomers(this.customer_user.user.id!).subscribe(
+    this.postService.getCustomers(this.customer_user.user.user_id).subscribe(
       (response) =>{
         this.customerData=response.customer;
         this.customerData.forEach((add) => {
