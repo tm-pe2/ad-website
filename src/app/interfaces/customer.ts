@@ -1,3 +1,5 @@
+import { UserRole } from "./User"
+
 //TODO refactor to match the db/Api
 export interface Address {
   id?: number,
@@ -7,48 +9,30 @@ export interface Address {
   postal_code: string,
   country: string,
 }
-export interface User extends Address {
-  user_id?: number,
-  role_id?: number,
-  addresses? : Address[],
+export interface User {
+  id?: number,
   first_name: string,
   last_name: string,
   birth_date: Date,
   email: string,
   phone_number: string,
-  password: string,
-  national_registry_number: string
+  national_registry_number: string,
+  roles?: UserRole[],
+  addresses?: Address[],
+  password?: string,
+  active?: boolean,
 }
+
 export interface Customer extends User {
-  customer_type:string,
+  [x: string]: any
+  customer_type: CustomerType
 }
-export interface CustomerContract extends Customer
-{
-  UserID?: number,
-   customer_type: string,
-   first_name: string,
-   last_name: string,
-   ContractID?: number
-}
-export interface CustomerExtend
-{
-  UserID?: number,
-  RoleID?: number,
-  first_name: string,
-  last_name: string,
-  BirthDate: Date,
-  AddressID: number,
-  Email: string,
-  PhoneNumber: string,
-  Password: string,
-  ContractID: number
-}
+
 
 export interface Meter{
   meter_type:MeterType,
   index_value: number,
 }
-
 
 export interface EstimationRegistration {
   service_type: ServiceType,
@@ -88,4 +72,8 @@ export enum EquipmentType
 export enum MeterType {
   MANUAL = "Manual",
   SMART = "Smart",
+}
+export enum CustomerType{
+  PRIVATE = 1, 
+  COMPANY = 2,
 }

@@ -23,7 +23,7 @@ export class ConfirmDialogComponent implements OnInit {
     private httpClient:HttpClient,
     @Inject(MAT_DIALOG_DATA) public data: Customer) {
       this.name=data.first_name;
-      this.id=data.user_id;
+      this.id=data.id;
     }
   
 

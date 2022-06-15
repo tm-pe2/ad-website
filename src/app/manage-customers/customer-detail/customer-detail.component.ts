@@ -5,10 +5,10 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment';
-import { Customer } from '../../interfaces/customer';
+import { Address, Customer } from '../../interfaces/customer';
 import { UserdataService } from '../../services/userdata.service';
 
-//TODO test and fix it
+//get addresses, select address to change and change the values
 
 @Component({
   selector: 'app-customer-detail',
@@ -29,14 +29,14 @@ export class CustomerDetailComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: Customer) {
       this.form=this.formB.group({
         customer_id:data.id,
-        RoleID:data.role_id,
+        RoleID:data.roles,
         FirstName:data.first_name,
         LastName:data.last_name,
         BirthDate:data.birth_date,
-        Street:data.street,
-        HouseNr:data.house_number,
-        PostCode:data.postal_code,
-        City:data.city_name,
+        // Street:data.street,
+        // HouseNr:data.house_number,
+        // PostCode:data.postal_code,
+        // City:data.city_name,
         NationalRegNumber:data.national_registry_number,
         Email:data.email,
         PhoneNumber:data.phone_number,
@@ -59,8 +59,18 @@ export class CustomerDetailComponent implements OnInit {
 
   Submit()
   {
+
+    let address: Address ={
+
+      city_name: this.form.get('City')?.value,
+      street: this.form.get('Street')?.value,
+      house_number: this.form.get('HouseNr')?.value,
+      postal_code: this.form.get('PostCode')?.value,
+      country: 'Belgium',
+
+    } 
     let user: Customer = {
-      role_id: 1,
+      roles: [1],
       customer_type:(this.form.get('Type'))?.value,
       first_name: this.form.get('FirstName')?.value,
       last_name: this.form.get('LastName')?.value,
@@ -69,11 +79,8 @@ export class CustomerDetailComponent implements OnInit {
       phone_number: 'test',
       password: this.form.get('Password')?.value,
       national_registry_number: this.form.get('NationalRegNumber')?.value,
-      city_name: this.form.get('City')?.value,
-      street: this.form.get('Street')?.value,
-      house_number: this.form.get('HouseNr')?.value,
-      postal_code: this.form.get('PostCode')?.value,
-      country: 'Belgium',
+      //addresses:[address],
+      active:true,
     }
     
     this.httpClient.put(environment.apiUrl+'/customers',user)

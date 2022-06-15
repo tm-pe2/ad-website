@@ -11,7 +11,6 @@ import { AddCustomerDialogComponent } from './manage-customers/add-customer-dial
 import { ConsumptionEstimationComponent } from './consumption-estimation/consumption-estimation.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
-import { RegisterCustomerComponent } from './register-customer/register-customer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SmallCardComponent } from './dashboard/small-card/small-card.component';
 import { BigCardComponent } from './dashboard/big-card/big-card.component';
@@ -74,7 +73,6 @@ import { FormsComponent } from './forms/forms.component';
     ConfirmDialogComponent,
     AddCustomerDialogComponent,
     ConsumptionEstimationComponent,
-    RegisterCustomerComponent,
     GraphsComponent,
     MonthlyUsageChartComponent,
     LoginComponent,

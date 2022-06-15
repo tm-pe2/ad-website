@@ -27,9 +27,9 @@ export class PostConfigService {
     return this.httpClient.get<any>(environment.apiUrl+"/customers/" + id );
   }
 
-  getAllCustomers():Observable<any>
+  getAllCustomers():Observable<Customer[]>
   {
-    return this.httpClient.get<any>(environment.apiUrl+"/customers/contracts")
+    return this.httpClient.get<Customer[]>(environment.apiUrl+"/customers")
   }
 
   addEstimation(e:EstimationRegistration)
@@ -38,4 +38,11 @@ export class PostConfigService {
        
     }
   
+  addCustomer(c:Customer)
+  {
+      return this.httpClient.post( environment.apiUrl+"/customers", c, {responseType: 'text'});
+       
+  }
+
+ 
 }

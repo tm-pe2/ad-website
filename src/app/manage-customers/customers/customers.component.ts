@@ -4,7 +4,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CustomerDetailComponent } from '../customer-detail/customer-detail.component';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { AddCustomerDialogComponent } from '../add-customer-dialog/add-customer-dialog.component';
-import { Customer, CustomerContract } from '../../interfaces/customer';
+import { Customer } from '../../interfaces/customer';
 import { environment } from 'src/environments/environment';
 import { PostConfigService } from '../../services/post-config.service';
 
@@ -17,7 +17,7 @@ import { PostConfigService } from '../../services/post-config.service';
 })
 export class CustomerComponent implements OnInit {
  
-  customerData: CustomerContract[]=[];
+  customers: Customer[] = [];
   
   constructor(public dialog : MatDialog,
               private postService :PostConfigService){}
@@ -26,20 +26,31 @@ export class CustomerComponent implements OnInit {
     this.getCustomers();
   }
 
-  selectedCustomer? : CustomerContract;
+  selectedCustomer: Customer=
+  {
+    first_name: '',
+    last_name: '',
+    birth_date: new Date,
+    email: '',
+    phone_number: '',
+    national_registry_number: '',
+    customer_type: 0
+  };
 
   getCustomers()
   {
     this.postService.getAllCustomers().subscribe(
       (response) =>{
-        this.customerData=response.customers;
+        this.customers=response;
       },
       (error)=>console.log('error: ',error),
       ()=> console.log('ready!')
     );      
   }
 
-   onSelectEdit(customer:CustomerContract)
+  
+  
+   onSelectEdit(customer:Customer)
   {  
     this.selectedCustomer=customer;
     const dialConfig=new MatDialogConfig();
@@ -47,18 +58,16 @@ export class CustomerComponent implements OnInit {
     dialConfig.autoFocus = true;
 
     dialConfig.data={
-      customer_id:this.selectedCustomer.UserID,
+      customer_id:this.selectedCustomer.id,
       first_name: this.selectedCustomer.first_name, 
       last_name: this.selectedCustomer.last_name, 
       customer_type: this.selectedCustomer.customer_type, 
-      contractNr: this.selectedCustomer.ContractID,
+      active: this.selectedCustomer.active,
       email:this.selectedCustomer.email,
       birth_date: this.selectedCustomer.birth_date,
       password:this.selectedCustomer.password,
       national_registry_number:this.selectedCustomer.national_registry_number,
-      street:this.selectedCustomer.street,
-      house_number:this.selectedCustomer.house_number,
-      postal_code:this.selectedCustomer.postal_code,
+      addresses:this.selectedCustomer.addresses,
   
     }
     //open dialog with selected client's data
@@ -71,7 +80,23 @@ export class CustomerComponent implements OnInit {
 
   } 
  
-  onSelectRemove(customer:CustomerContract):void {
+  openDialog()
+  {
+    const dialConfig=new MatDialogConfig();
+    dialConfig.disableClose = false;
+    dialConfig.autoFocus = true;
+    let dialRef=this.dialog.open(AddCustomerDialogComponent,dialConfig);
+
+    dialRef.afterClosed().subscribe((result: any) => {
+      this.postService.getAllCustomers().subscribe(resp=>
+        {
+          this.customers=resp;
+          console.log(resp);
+        })
+    });
+  }
+
+  onSelectRemove(customer:Customer):void {
     this.selectedCustomer = customer;  
     
     const dialConfig = new MatDialogConfig();
@@ -81,21 +106,22 @@ export class CustomerComponent implements OnInit {
 
     dialConfig.data = {
       name: this.selectedCustomer.first_name,
-      id: this.selectedCustomer.UserID
+      id: this.selectedCustomer.id
     }
     //open dialog with selected client's data
     let dialRef=this.dialog.open(ConfirmDialogComponent,dialConfig);
    
     // differ which button was pressed (true -> update | false -> cancel)
     dialRef.afterClosed().subscribe((result: any) => {
-      console.log(`Action was: ${result}`);
+      this.postService.getAllCustomers().subscribe(resp=>
+        {
+          this.customers=resp;
+          console.log(resp);
+        })
     });
 
 
   }
-  
-
-  
   
 }
 
