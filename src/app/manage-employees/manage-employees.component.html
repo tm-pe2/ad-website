@@ -44,7 +44,7 @@
                                 'hover:underline': (elevated),
                                 'text-gray-500': (!elevated)
                             }" 
-                            class="font-bold" routerLink="/manage-employees/editEmployees/{{e.id}}" [disabled]='elevated'>Edit</button>
+                            class="font-bold" routerLink="/manage-employees/editEmployees/{{e.id}}" [disabled]='!elevated'>Edit</button>
                         </td>
 
                         <td class="w-20 p-3 text-sm">
