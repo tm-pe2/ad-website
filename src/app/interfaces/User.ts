@@ -27,3 +27,8 @@ export enum UserRole {
     SUPPORT = 9,
     MANAGER = 10,
 }
+
+export enum CustomerType {
+    PRIVATE = 1,
+    COMPANY = 2
+}
