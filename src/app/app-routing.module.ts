@@ -28,6 +28,7 @@ import { SuppliersComponent } from './suppliers/suppliers.component';
 import { EditEmployeeFormComponent } from './manage-employees/edit-employee-form/edit-employee-form.component';
 import { EmployeeCardComponent } from './manage-employees/employee-card/employee-card.component';
 import { AddEmployeeFormComponent } from './manage-employees/add-employee-form/add-employee-form.component';
+import { WorkerappComponent } from './workerapp/workerapp.component';
 
 const routes: Routes = [
   {path: "", redirectTo: "dashboard", pathMatch: "full"},
@@ -50,6 +51,10 @@ const routes: Routes = [
   {path: 'ticketing/:userType', component: TicketingComponent},
   {path: 'graphs', component: GraphsComponent, canActivate: [RoleGuardService], data: { roles: [UserRole.CUSTOMER] }},
   {path: 'statuscode/:statusCode', component: StatuscodepageComponent},
+
+
+  //TEMP
+  {path: 'workerapp', component: WorkerappComponent},
   
   {path: 'manage-employees',component:ManageEmployeesComponent,canActivate: [RoleGuardService], data:{roles:[UserRole.MANAGER,UserRole.HR_MANAGER,UserRole.ADMIN,UserRole.EMPLOYEE]}},
   {path: 'manage-employees/addEmployee',component:AddEmployeeFormComponent,canActivate: [RoleGuardService], data:{roles:[UserRole.MANAGER,UserRole.HR_MANAGER,UserRole.ADMIN,UserRole.EMPLOYEE]}},

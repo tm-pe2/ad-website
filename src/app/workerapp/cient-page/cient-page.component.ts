@@ -1,8 +1,9 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { WorkerappComponent } from '../workerapp.component';
 import { WorkerAppService } from 'src/app/services/worker-app.service';
-import { Planning } from 'src/app/models/planning';
+import { Planning } from 'src/app/interfaces/planning';
 import { Address } from 'src/app/interfaces/address';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-cient-page',
@@ -17,8 +18,8 @@ export class CientPageComponent implements OnInit {
   selectedCustomer: number;
 
   // Old variables
-  name : string; 
-  adr : Address;
+  name : number; 
+  adr : number;
   //mtype : number;
 
 
@@ -39,8 +40,8 @@ export class CientPageComponent implements OnInit {
   constructor(private service: WorkerAppService) {
     this.selectedCustomer = service.selectedUser;
     this.customer = service.planningList[this.selectedCustomer];
-    this.name = this.customer.user.first_name + this.customer.user.last_name;
-    this.adr = this.customer.user.address;
+    this.name = this.service.planningList[this.selectedCustomer].id;
+    this.adr = this.service.planningList[this.selectedCustomer].id;
     this.isDone = this.customer.status;
     this.meterid = [];
     this.lastmeting = [];

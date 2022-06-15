@@ -60,6 +60,11 @@ import { FormsModule }   from '@angular/forms';
 import { ManageTickets } from './ticketing/manage-tickets/manage-tickets.component';
 import { FormsComponent } from './forms/forms.component';
 import { RolesToStringPipe } from './manage-employees/roles-to-string.pipe';
+import { WorkerappComponent } from './workerapp/workerapp.component';
+import { CientListComponent } from './workerapp/cient-list/cient-list.component';
+import { CientPageComponent } from './workerapp/cient-page/cient-page.component';
+import { ListElementComponent } from './workerapp/cient-list/list-element/list-element.component';
+import { HeaderComponent } from './workerapp/header/header.component';
 
 
 @NgModule({
@@ -110,6 +115,11 @@ import { RolesToStringPipe } from './manage-employees/roles-to-string.pipe';
     ManageContractComponent,
     FormsComponent,
     RolesToStringPipe,
+    WorkerappComponent,
+    CientListComponent,
+    CientPageComponent,
+    ListElementComponent,
+    HeaderComponent
   ],
   entryComponents:[CustomerDetailComponent],
     imports: [

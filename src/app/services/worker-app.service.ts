@@ -15,6 +15,7 @@ import { Contract } from '../interfaces/contract';
 // Class
 export class WorkerAppService {
   // Variables
+  selectedUser = 0;
   planningList: Array<Planning> = [];
 
   // Constructor 
