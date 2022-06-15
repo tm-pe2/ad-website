@@ -1,10 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { WorkerappComponent } from '../workerapp.component';
 import { UtilService } from 'src/app/util.service';
-import { Cust } from 'src/app/Cust';
-
 import { WorkerAppService } from 'src/app/services/worker-app.service';
-import { Planning, WorkerlistItem } from 'src/app/interfaces/worker-interfaces';
 
 @Component({
   selector: 'app-cient-list',
@@ -13,7 +10,6 @@ import { Planning, WorkerlistItem } from 'src/app/interfaces/worker-interfaces';
 })
 export class CientListComponent implements OnInit{
   @Input() parent?: WorkerappComponent;
-  custArr : Array<WorkerlistItem> = [];
   /*
   constructor(private cData: UtilService) {
     this.custArr = cData.custData;
@@ -23,6 +19,6 @@ export class CientListComponent implements OnInit{
   { }
   ngOnInit(): void
   {
-    this.custArr = this.service.customerList;
+    
   }
 }

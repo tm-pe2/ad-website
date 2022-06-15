@@ -16,6 +16,7 @@ import { Observable } from 'rxjs';
 export class WorkerAppService {
   // Variables
   eid : number = 5;
+  selectedUser : number = 0; //user selected in app, index for planningList
   planningList: Array<Planning> = [];
 
   // Constructor 
@@ -27,10 +28,8 @@ export class WorkerAppService {
 
   // Private functions
   // get from models folder
-  private getPlanning(): Promise<void>
-  { 
-    return new Promise<void>((resolve, reject) => 
-    {
+  private getPlanning(): Promise<void> { 
+    return new Promise<void>((resolve, reject) => {
       this.http.get<Planning>(environment.apiUrl + '/plannings').subscribe(
         {
           next: (res: Planning) =>
@@ -53,22 +52,19 @@ export class WorkerAppService {
   // Get the consumtions for e certain user
   // Call this in the component itself
   // get from consumtion interface
-  public getConsumtions(userID: number): Observable<Consumption>
-  { return this.http.get<Consumption>(environment.apiUrl + '/consumptions/' + userID); }
-
-  public postNewConsumtions(userID: number, newConsumtion: ConsumptionPost)
-  {
-    return new Promise<void>((resolve, reject) =>
-    {
-      this.http.post(environment.apiUrl + '/consumptions/' + userID, newConsumtion).subscribe(
-        {
+  public getConsumtions(userID: number): Observable<Consumption> { 
+  return this.http.get<Consumption>(environment.apiUrl + '/consumptions/' + userID); }
+  public postNewConsumtions(userID: number, newConsumtion: ConsumptionPost) {
+    return new Promise<void>((resolve, reject) => {
+      this.http.post(environment.apiUrl + '/consumptions/' + userID, newConsumtion).subscribe({
           next: (res: any) => { resolve(res); },
           error: (err) => { reject(err); }
-
-        })
-
+        });
     });
 
   }
+
+  
+
 
 }
