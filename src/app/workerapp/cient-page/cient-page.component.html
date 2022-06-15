@@ -1,0 +1,51 @@
+<div class="bg-slate-300 m-3 drop-shadow-md h-fit rounded-lg p-3 text-slate-300" id="list">
+    <div class="flex m-2 bg-slate-200 rounded-2xl p-4 justify-between">
+        <div class="bg-slate-500 rounded-2xl p-1 pr-4 pl-4">
+            {{name}}
+        </div>
+        <div class="bg-slate-500 rounded-2xl p-1 ml-2 md:ml-0 pr-4 pl-4">
+            {{adr}}
+        </div>
+    </div>
+
+    <div class="block md:flex m-2 bg-slate-200 drop-shadow-md rounded-2xl p-4 justify-between">
+        <div  *ngFor="let id of meterid; let i = index" id="gasfield" class="bg-slate-500 rounded-2xl p-1 pr-4 pl-4 pb-2 mt-2 mb-2">
+            <div class="flex">
+                Meter ID:
+                <div class="ml-2">
+                    {{meterid[i]}}
+               </div>
+            </div>
+            <div class="flex">
+                Last value:
+                <div class="ml-2">
+                     {{lastmeting[i]}}
+                </div>
+            </div>
+            <input type="text" (change)="setValue($event, i)" class="text-slate-600 rounded pl-2 mt-2" placeholder="Enter Value...">
+        </div>
+    </div>
+
+    <div class="flex m-2 bg-slate-200 drop-shadow-md rounded-2xl p-4 justify-between"><!--
+
+        <div class="bg-slate-500 rounded-2xl p-1 pr-4 pl-4">
+            Next checkup : <input type="date" class="text-slate-600 rounded pl-2" (change)="setDate($event)">
+        </div>
+
+
+    -->
+
+        <button (click)="submit()" class="md:ml-0 ml-2 bg-slate-500 drop-shadow-md rounded-2xl p-1 pr-4 pl-4">
+            submit
+        </button>   
+    </div>
+    <!--
+
+    <div class="flex m-2 mt-10 bg-slate-200 rounded-2xl p-4 justify-between">
+        <button (click)="replan()" class="bg-slate-500 rounded-2xl p-1 pr-4 pl-4">
+            Customer didn't answer
+        </button>   
+    </div>
+    -->
+
+</div>

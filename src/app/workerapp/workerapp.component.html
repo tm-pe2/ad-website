@@ -1,0 +1,4 @@
+<app-header [parent]="this"></app-header>
+<app-cient-list [parent]="this" *ngIf="displayPage == 1" id="clientlist"></app-cient-list>
+<app-cient-page [parent]="this" *ngIf="displayPage == 2"></app-cient-page>
+
