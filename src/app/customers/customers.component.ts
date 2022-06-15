@@ -46,11 +46,19 @@ export class CustomerComponent implements OnInit {
     dialConfig.autoFocus = true;
 
     dialConfig.data={
-      id:this.selectedCustomer.UserID,
-      name: this.selectedCustomer.first_name, 
+      customer_id:this.selectedCustomer.UserID,
+      first_name: this.selectedCustomer.first_name, 
       last_name: this.selectedCustomer.last_name, 
-      type: this.selectedCustomer.customer_type, 
+      customer_type: this.selectedCustomer.customer_type, 
       contractNr: this.selectedCustomer.ContractID,
+      email:this.selectedCustomer.email,
+      birth_date: this.selectedCustomer.birth_date,
+      password:this.selectedCustomer.password,
+      national_registry_number:this.selectedCustomer.national_registry_number,
+      street:this.selectedCustomer.street,
+      house_number:this.selectedCustomer.house_number,
+      postal_code:this.selectedCustomer.postal_code,
+  
     }
     //open dialog with selected client's data
     let dialRef=this.dialog.open(CustomerDetailComponent,dialConfig);

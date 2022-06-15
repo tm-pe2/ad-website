@@ -1,0 +1,325 @@
+<form [formGroup]="form"
+    class="flex flex-col border rounded justify-center items-center p-24 mt-10 w-fit m-auto bg-silver"
+    (ngSubmit)="submit()">
+    <h1 class="">{{this.title}}</h1>
+
+    <!-- All fields for register form -->
+    <ng-container *ngIf="this.type === 'register'">
+        <div>
+            <mat-form-field appearance="standard" class="pr-20">
+
+                <mat-label>First Name</mat-label>
+                <input matInput formControlName="firstName" placeholder="Name">
+                <mat-error *ngIf="this.form.get('firstName')?.hasError('required')">This field is required</mat-error>
+
+
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>Last Name</mat-label>
+                <input matInput formControlName="lastName" placeholder="Last Name">
+                <mat-error *ngIf="this.form.get('lastName')?.hasError('required')">This field is required</mat-error>
+
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="standard" class="pr-20">
+                <mat-label>Email</mat-label>
+
+                <input matInput type="email" formControlName="email" placeholder="E-mail">
+                <mat-error *ngIf="this.form.get('email')?.hasError('required')">This field is required</mat-error>
+                <mat-error *ngIf="this.form.get('email')?.hasError('email')">Email is not valid</mat-error>
+
+            </mat-form-field>
+
+            <mat-form-field appearance="standard">
+                <mat-label>Phone</mat-label>
+
+                <input matInput type="tel" formControlName="phone" placeholder="Phone">
+                <mat-error *ngIf="this.form.get('phone')?.hasError('required')">This field is required</mat-error>
+                <mat-error *ngIf="this.form.get('phone')?.hasError('pattern')"> number is not valid</mat-error>
+
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="self-start pr-20">
+                <mat-label>City</mat-label>
+                <mat-select formControlName="city">
+                    <mat-option *ngFor="let city of this.cities" value="{{city.id}}">{{city.city_name}} -
+                        {{city.postal_code}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="this.form.get('city')?.hasError('required')">This field is required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>Street</mat-label>
+                <input matInput formControlName="street" placeholder="Street">
+                <mat-error *ngIf="this.form.get('street')?.hasError('required')">This field is required</mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="standard" class="pr-20">
+                <mat-label>House Number</mat-label>
+                <input matInput type="text" formControlName="house_number" placeholder="houseNumber">
+                <mat-error *ngIf="this.form.get('house_number')?.hasError('required')">This field is required
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>Type</mat-label>
+                <mat-select formControlName="type">
+                    <mat-option value="{{CustomerType.COMPANY}}">
+                        Company
+                    </mat-option>
+                    <mat-option value="{{CustomerType.PRIVATE}}">
+                        Private
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="standard" class="self-start pr-10">
+                <mat-label>Birthdate</mat-label>
+                <input matInput [min]="this.mindate" formControlName="birthDate" [max]="this.maxCustomerDate"
+                    [matDatepicker]="birthDatePicker" placeholder="MM/DD/YY">
+                <mat-hint>MM/DD/YY</mat-hint>
+                <mat-datepicker-toggle matSuffix class="" [for]="birthDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #birthDatePicker></mat-datepicker>
+                <mat-error *ngIf="this.form.get('birthDate')?.hasError('required')">This field is required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="standard" class="self-start">
+                <mat-label>Registry ID</mat-label>
+                <input type="text" matInput formControlName="registryId" placeholder="00000000000">
+                <mat-error *ngIf="this.form.get('registryId')?.hasError('required')">This field is required</mat-error>
+                <mat-error *ngIf="this.form.get('registryId')?.hasError('pattern')">Not a valid registry id</mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="standard" class=" self-start pr-20">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" formControlName="password"
+                    placeholder="Password">
+                <mat-error *ngIf="this.form.get('password')?.hasError('required')">This field is required</mat-error>
+                <mat-error *ngIf="this.form.get('password')?.hasError('minlength')">Password must be at least 6
+                    characters
+                </mat-error>
+
+            </mat-form-field>
+            <mat-form-field appearance="standard" class="mb-24 self-start">
+                <mat-label>Confirm Password </mat-label>
+                <input matInput type="password" formControlName="confirmPassword"
+                    placeholder="Confirm Password">
+                <mat-error *ngIf="this.form.get('confirmPassword')?.hasError('required')">This field is required
+                </mat-error>
+                <mat-error *ngIf="this.form.get('confirmPassword')?.hasError('passwordMismatch')"> Passwords do not
+                    match
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </ng-container>
+
+    <!-- All fields for the suppliers form -->
+    <ng-container *ngIf="this.type=== 'suppliers'">
+        <div>
+            <mat-form-field appearance="standard" class="pr-20">
+
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="company_name" placeholder="Name">
+                <mat-error *ngIf="this.form.get('company_name')?.hasError('required')">This field is required
+                </mat-error>
+
+
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Type of service</mat-label>
+                <input matInput formControlName="service_type" placeholder="Service">
+                <mat-error *ngIf="this.form.get('service_type')?.hasError('required')">This field is required</mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="self-start pr-20">
+                <mat-label>City</mat-label>
+                <mat-select formControlName="city" onchange="onCitySelected($event)">
+                    <mat-option *ngFor="let city of this.cities" value="{{city.postal_code}}">{{city.city_name}} -
+                        {{city.postal_code}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="this.form.get('city')?.hasError('required')">This field is required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>Street</mat-label>
+                <input matInput formControlName="street" placeholder="Street">
+                <mat-error *ngIf="this.form.get('street')?.hasError('required')">This field is required</mat-error>
+
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="standard" class="pr-20">
+                <mat-label>House Number</mat-label>
+                <input matInput type="text" formControlName="house_number" placeholder="houseNumber">
+                <mat-error *ngIf="this.form.get('house_number')?.hasError('required')">This field is required
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>Vat Number</mat-label>
+                <input matInput type="text" formControlName="vat_number" placeholder="BExxxxxxxxxx">
+                <mat-error *ngIf="this.form.get('vat_number')?.hasError('required')">This field is required</mat-error>
+                <mat-error *ngIf="this.form.get('vat_number')?.hasError('pattern')">Not a valid vat number</mat-error>
+            </mat-form-field>
+        </div>
+    </ng-container>
+
+    <!-- All fields for the meter app -->
+    <ng-container *ngIf="this.type==='meter-app'">
+        <mat-form-field *ngFor="let meter of meters; let i = index">
+            <mat-label>Meter value {{i+1}}</mat-label>
+            <input matInput type="number" min="0" max="9999999" formControlName='meter_{{meter.id}}'
+                placeholder="meterValue" value="{{meter.value}}">
+            <mat-error *ngIf="this.form.get('meter_' + meter.id)?.hasError('required')">This field is required
+            </mat-error>
+        </mat-form-field>
+    </ng-container>
+
+    <ng-container *ngIf="this.type === 'employees' ">
+        <div>
+            <mat-form-field appearance="standard" class="self-start pr-20">
+                <mat-label>First Name</mat-label>
+                <input matInput formControlName="firstName" placeholder="Name">
+                <mat-error *ngIf="this.form.get('firstName')?.hasError('required')">
+                    This field is required
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard" class="self-start">
+                <mat-label>Last Name</mat-label>
+                <input matInput formControlName="lastName" placeholder="Last Name">
+                <mat-error *ngIf="this.form.get('lastName')?.hasError('required')">This field is required
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="standard" class="self-start pr-20">
+                <mat-label>Registry ID</mat-label>
+                <input type="text" matInput formControlName="registryId" placeholder="00000000000">
+                <mat-error *ngIf="this.form.get('registryId')?.hasError('required')">This field is required
+                </mat-error>
+                <mat-error *ngIf="this.form.get('registryId')?.hasError('pattern')">Not a valid registry id
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard" class="self-start">
+                <mat-label>Email</mat-label>
+
+                <input matInput type="email" formControlName="email" placeholder="E-mail">
+                <mat-error *ngIf="this.form.get('email')?.hasError('required')">This field is required</mat-error>
+                <mat-error *ngIf="this.form.get('email')?.hasError('email')">Email is not valid</mat-error>
+
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="standard" class="self-start pr-20">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" formControlName="password"
+                    placeholder="Password">
+                <mat-error *ngIf="this.form.get('password')?.hasError('required')">This field is required
+                </mat-error>
+                <mat-error *ngIf="this.form.get('password')?.hasError('minlength')">
+                    Password must be at least 6 characters
+                </mat-error>
+
+            </mat-form-field>
+            <mat-form-field appearance="standard" class="self-start">
+                <mat-label>Confirm Password </mat-label>
+                <input matInput type="password" formControlName="confirmPassword"
+                    placeholder="Confirm Password">
+                <mat-error *ngIf="this.form.get('confirmPassword')?.hasError('required')">This field is required
+                </mat-error>
+                <mat-error *ngIf="this.form.get('confirmPassword')?.hasError('passwordMismatch')"> Passwords do not
+                    match
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="standard" class="self-start pr-12 ">
+                <mat-label>Phone</mat-label>
+
+                <input matInput type="tel" formControlName="phone" placeholder="Phone">
+                <mat-error *ngIf="this.form.get('phone')?.hasError('required')">This field is required</mat-error>
+                <mat-error *ngIf="this.form.get('phone')?.hasError('pattern')"> number is not valid</mat-error>
+
+            </mat-form-field>
+            <mat-form-field appearance="standard" class="self-start">
+                <mat-label>Birthdate</mat-label>
+                <input matInput [min]="this.mindate" formControlName="birthDate" [max]="this.maxEmployeeDate"
+                    [matDatepicker]="picker" placeholder="MM/DD/YY">
+                <mat-hint>MM/DD/YY</mat-hint>
+                <mat-datepicker-toggle matSuffix class="" [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="this.form.get('birthDate')?.hasError('required')">This field is required
+                </mat-error>
+            </mat-form-field>
+
+        </div>
+
+        <div>
+            <mat-form-field appearance="standard" class="self-start pr-10">
+                <mat-label>Hire Date</mat-label>
+                <input matInput [min]="this.mindate" formControlName="hireDate" [max]="this.CurrentDate"
+                    [matDatepicker]="hireDatePicker" placeholder="MM/DD/YY">
+                <mat-hint>MM/DD/YY</mat-hint>
+                <mat-datepicker-toggle matSuffix class="" [for]="hireDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #hireDatePicker></mat-datepicker>
+                <mat-error *ngIf="this.form.get('hireDate')?.hasError('required')">This field is required
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard" class="self-start">
+                <mat-label>Salary</mat-label>
+                <input matInput type="number" min="0" max="9999999" formControlName="salary" placeholder="Salary">
+                <mat-error *ngIf="this.form.get('salary')?.hasError('required')">This field is required</mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="self-start pr-20">
+                <mat-label>City</mat-label>
+                <mat-select formControlName="city">
+                    <mat-option *ngFor="let city of this.cities" value="{{city.id}}">{{city.city_name}} -
+                        {{city.postal_code}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="this.form.get('city')?.hasError('required')">This field is required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <mat-label>Street</mat-label>
+                <input matInput formControlName="street" placeholder="Street">
+                <mat-error *ngIf="this.form.get('street')?.hasError('required')">This field is required</mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="standard" class="self-start pr-20">
+                <mat-label>House Number</mat-label>
+                <input matInput type="number" min="0" formControlName="house_number" placeholder="houseNumber">
+                <mat-error *ngIf="this.form.get('house_number')?.hasError('required')">
+                    This field is required
+                </mat-error>
+                <mat-error *ngIf="this.form.get('house_number')?.hasError('pattern')">
+                    Not a valid house number
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="self-start">
+                <mat-label>Role</mat-label>
+                <mat-select formControlName="role">
+                    <mat-option *ngFor="let role of this.roles" value="{{role.id}}">{{role.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="this.form.get('role')?.hasError('required')">This field is required</mat-error>
+            </mat-form-field>
+        </div>
+
+
+    </ng-container>
+
+    <div class="mt-20 flex flex-row space-x-12">
+        <button *ngIf="this.cancel" mat-raised-button class=" bg-gray-500" type="button"
+            (click)="this.onCancel()">Cancel</button>
+        <button mat-raised-button class=" bg-primary" type="submit">{{this.submitText}}</button>
+    </div>
+
+
+</form>

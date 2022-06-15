@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { environment } from 'src/environments/environment';
 import { CustomerComponent } from '../customers/customers.component';
-import { Customer ,EstimatedContract,Estimation, Meter} from '../interfaces/customer';
+import { Customer ,EstimatedContract,Estimation, Meter,User} from '../interfaces/customer';
 import { UserdataService } from '../services/userdata.service';
 import {PostConfigService} from '../services/post-config.service'
 import { Address } from '../interfaces/customer';
@@ -38,7 +38,8 @@ export class ConsumptionEstimationComponent implements OnInit {
   selectedAddressID:number=-1;
   selectedMeterNr:number=1;
   answerRadio:number=0;
-  
+  loggedInUser!: User;
+
   //received from the post req
   contract_id:number=0;
 
@@ -79,7 +80,9 @@ export class ConsumptionEstimationComponent implements OnInit {
               private httpClient:HttpClient,
               private customer_user: UserdataService,
               private postService: PostConfigService,
-              public dialog: MatDialog) {}
+              public dialog: MatDialog) {
+                this.onGetCustomers();
+              }
 
   ngOnInit() 
   {
@@ -107,7 +110,7 @@ export class ConsumptionEstimationComponent implements OnInit {
         equipments : new FormArray([])
     });
 
-    this.onGetCustomers();
+     this.onGetCustomers();
     
   }
   get service() { return this.serviceChoiceForm.controls; }
@@ -124,13 +127,13 @@ export class ConsumptionEstimationComponent implements OnInit {
       selectedEquipments.removeAt(index);
     }
   }
+  
+  
 
-
-  onGetCustomers()
+  async onGetCustomers()
   {
-    /*
-    
-    this.postService.getCustomers(this.customer_user.getUser().id).subscribe(
+    await this.customer_user.loadUser();
+    this.postService.getCustomers(this.customer_user.user.user_id).subscribe(
       (response) =>{
         this.customerData=response.customer;
         this.customerData.forEach((add) => {
@@ -149,7 +152,7 @@ export class ConsumptionEstimationComponent implements OnInit {
       (error)=>console.log('error: ',error),
       ()=> console.log('ready!')
     );    
-    */  
+    
   }
 
 next()
@@ -163,12 +166,11 @@ next()
   if(this.step==2)
   {
     this.familyAdress_step=true;
-    /*
     if(this.familyAdressCompoundForm.invalid)
     {
       console.error();
       return
-    } */
+    } 
     this.step++;
    
   }
@@ -212,10 +214,8 @@ previous()
 }
 calculateConsumption()
 {
-  console.log("fam size:",this.familyAdressCompoundForm.value.family_size);
   switch(this.familyAdressCompoundForm.value.family_size)
   {
-    
     
     //daily electricity consumption in kWh of 'x' person(s) in an apartment:
     case "1":
@@ -292,11 +292,8 @@ submit()
     return
     }
     
-
     this.annualEstimation=this.calculateConsumption();
-    console.log("day cons:",this.annualEstimation);
     this.annualEstimation=this.annualEstimation*365;
-    console.log("annual cons:",this.annualEstimation);
     const meters_numberV=this.meterTypeForm.value.metersNumber;
    
     if(meters_numberV==1)
@@ -389,12 +386,12 @@ submit()
         }
     }
     
-  console.log(this.annualEstimation);
+  
   
     this.contract={
       start_date: new Date(),
       end_date: new Date(),
-      customer_type: "private", //this.customerData[0].customer_type,
+      customer_type: "Private",
       tariff_id: 1 ,
       estimation_id:0,
       address_id: Number(this.familyAdressCompoundForm.value.address_id),
@@ -404,12 +401,13 @@ submit()
       family_size: Number(this.familyAdressCompoundForm.value.family_size),
       equipments: eqListString,
       past_consumption: Number(this.past_consumtionV),
-      estimated_consumption:Number(this.annualEstimation)
+      estimated_consumption:1
     }
+
+    console.log(this.contract);
     
   this.onAddContract().then((res) => {
     this.alterContractID(res);
-    console.log("meters:",this.meters);
     this.onAddMeters();
     this.openDialog();
     

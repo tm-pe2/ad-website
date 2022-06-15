@@ -18,14 +18,14 @@ export interface User
 */
 export enum UserRole {
     CUSTOMER = 1,
-    ADMIN = 3,
-    SUPPLIER = 4,
+    SUPPLIER = 2,
+    EMPLOYEE = 3,
+    ACCOUNTANT = 4,
     TECHNICIAN = 5,
-    HR_MANAGER = 6,
-    EMPLOYEE = 7,
-    ACCOUNTANT = 8,
-    SUPPORT = 9,
-    MANAGER = 10,
+    SUPPORT = 6,
+    MANAGER = 7,
+    HR_MANAGER = 8,
+    ADMIN = 9,
 }
 
 export enum CustomerType {
