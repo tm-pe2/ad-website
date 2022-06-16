@@ -1,11 +1,8 @@
 import { Component, OnInit,Inject } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { RegisterForm } from 'src/app/interfaces/form';
 import { PostConfigService } from 'src/app/services/post-config.service';
-import { environment } from 'src/environments/environment';
 import { Customer } from '../../interfaces/customer';
-
-//get addresses, select address to change and change the values
 
 @Component({
   selector: 'app-customer-detail',
@@ -14,35 +11,40 @@ import { Customer } from '../../interfaces/customer';
 })
 export class CustomerDetailComponent implements OnInit {
   
-  form!: FormGroup;
-  
+  c_id? : number = 0;
+  customer? : RegisterForm;
+
   constructor(
     private postService:PostConfigService,
-    private formB: FormBuilder,
     private dialRef: MatDialogRef<CustomerDetailComponent>,
-    
     @Inject(MAT_DIALOG_DATA) public data: Customer) {
-      this.form=this.formB.group({
-      firstName: data.first_name,
-      lastName: data.last_name,
-      email: data.email,
-      phone: data.phone_number,
-      password: data.password,
-      registryId: data.national_registry_number,
-      birthDate: data.birth_date,
-      type: data.customer_type,
-      });      
-     }
+    this.c_id=data.id;
+    }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+    console.log("Customer Id: ",this.c_id);
+    if(this.c_id)
+    {
+      this.postService.getCustomers(this.c_id).subscribe(
+      {  
+        next:(response: RegisterForm) =>
+        {
+             this.customer=response;
+        }
+      }
+      );
+    }
+    
+
+  }
 
   onSubmit(c:Customer)
   {
-    console.log(c.id);
-    if(c.id)
+    if(this.customer?.id)
     {
-      this.postService.editCustomer(c.id,c).subscribe({
-      next:(response: any) => console.log(response),
+      this.postService.editCustomer(this.customer.id,c).subscribe({
+      next:(response: any) => console.log("Response:",response),
       error: (error: any) => console.log(error),
       });
     }
@@ -50,17 +52,6 @@ export class CustomerDetailComponent implements OnInit {
   }
   cancel() {
     this.dialRef.close();
-}
-
-validateConfirmPassword(): ValidatorFn {
-  return (control: AbstractControl): ValidationErrors | null => {
-    const password = control.root.get('password');
-    const confirmPassword = control.root.get('confirmPassword');
-    if (password && confirmPassword) {
-      return password.value === confirmPassword.value ? null : { passwordMismatch: true };
-    }
-    return null;
-  }
 }
 
 }

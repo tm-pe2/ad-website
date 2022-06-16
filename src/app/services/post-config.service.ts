@@ -51,6 +51,6 @@ export class PostConfigService {
  
   deactivateCustomer(activeCustomer: {active:boolean}, id:number): Observable<Customer>
   {
-    return this.httpClient.patch<Customer>(environment.apiUrl+ "/customers/"+id, activeCustomer);
+    return this.httpClient.patch<Customer>(environment.apiUrl+ "/users/status/"+id, activeCustomer);
   }
 }

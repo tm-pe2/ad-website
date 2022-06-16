@@ -19,21 +19,18 @@ export class ConfirmDialogComponent implements OnInit {
     private dialRef: MatDialogRef<CustomerDetailComponent>,
     private postService:PostConfigService,
     @Inject(MAT_DIALOG_DATA) public data: Customer) {
-      this.name=data.first_name;
+      this.name=data['fname'];
       this.id=data.id;
     }
   
-  ngOnInit(): void {
-    console.log()
-  }
+  ngOnInit(): void {}
   
   deactivate(id?: number) {
-    console.log(id);
     if(id)
     {
       this.postService.deactivateCustomer({active:false},id).subscribe((s: any) => {
       console.log(s);
-      alert("Customer edited!");
+      alert("Customer is deactivated!");
       });
       this.dialRef.close();
     }   

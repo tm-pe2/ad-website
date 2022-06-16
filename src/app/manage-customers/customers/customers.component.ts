@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import axios from 'axios';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CustomerDetailComponent } from '../customer-detail/customer-detail.component';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { AddCustomerDialogComponent } from '../add-customer-dialog/add-customer-dialog.component';
 import { Customer } from '../../interfaces/customer';
-import { environment } from 'src/environments/environment';
 import { PostConfigService } from '../../services/post-config.service';
 
 
@@ -58,24 +56,14 @@ export class CustomerComponent implements OnInit {
     dialConfig.autoFocus = true;
 
     dialConfig.data={
-      customer_id:this.selectedCustomer.id,
-      first_name: this.selectedCustomer.first_name, 
-      last_name: this.selectedCustomer.last_name, 
-      customer_type: this.selectedCustomer.customer_type, 
-      active: this.selectedCustomer.active,
-      email:this.selectedCustomer.email,
-      birth_date: this.selectedCustomer.birth_date,
-      password:this.selectedCustomer.password,
-      national_registry_number:this.selectedCustomer.national_registry_number,
-      addresses:this.selectedCustomer.addresses,
-  
+      id:this.selectedCustomer.id
     }
     //open dialog with selected client's data
     let dialRef=this.dialog.open(CustomerDetailComponent,dialConfig);
    
     // differ which button was pressed (true -> update | false -> cancel)
     dialRef.afterClosed().subscribe((result: any) =>{
-      console.log(`Action was: ${result}`);
+      this.getCustomers();
     });
 
   } 
@@ -97,27 +85,20 @@ export class CustomerComponent implements OnInit {
   }
 
   onSelectRemove(customer:Customer):void {
-    this.selectedCustomer = customer;  
     
     const dialConfig = new MatDialogConfig();
-    
     dialConfig.disableClose = true;
     dialConfig.autoFocus = true;
 
     dialConfig.data = {
-      name: this.selectedCustomer.first_name,
-      id: this.selectedCustomer.id
+      fname: customer.first_name,
+      id: customer.id
     }
     //open dialog with selected client's data
     let dialRef=this.dialog.open(ConfirmDialogComponent,dialConfig);
    
-    // differ which button was pressed (true -> update | false -> cancel)
     dialRef.afterClosed().subscribe((result: any) => {
-      this.postService.getAllCustomers().subscribe(resp=>
-        {
-          this.customers=resp;
-          console.log(resp);
-        })
+      this.getCustomers();
     });
 
 
