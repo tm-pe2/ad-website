@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { City } from '../interfaces/address';
-import { CustomerType } from '../interfaces/customer';
+import { CustomerType, MeterType } from '../interfaces/customer';
 import { Role } from '../interfaces/employee';
 import { EmployeeForm } from '../interfaces/form';
 import { MeterAppForm, RegisterForm, SuppliersForm } from '../interfaces/form';
@@ -209,6 +209,10 @@ export class FormsComponent implements OnInit {
 
   public get CurrentDate() {
     return new Date()
+  }
+
+  public get MeterType() {
+    return MeterType
   }
 
 }
