@@ -6,7 +6,7 @@ import { CustomerType } from "./customer";
 export interface Consumption{
     id: number,
     consumed_value: number,
-    calculate_date: Date,
+    calculated_date: Date,
     customer: ConsumptionUser,
     address: Address,
     meter: Meter

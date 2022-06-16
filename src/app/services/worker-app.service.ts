@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Planning } from '../interfaces/planning';
 import { Consumption, ConsumptionPost, ConsumptionUser } from '../interfaces/consumption';
-import { Meter } from '../interfaces/meter';
+import { Meter } from '../interfaces/meter'
 import { Contract } from '../interfaces/contract';
 
 
@@ -22,6 +22,8 @@ export class WorkerAppService {
   customer?: ConsumptionUser;
   meters: Array<Meter> = [];
 
+  selectedUser : number = 0;
+
   // Constructor 
   constructor(private http: HttpClient)
   { this.getPlanning(); }
@@ -36,7 +38,6 @@ export class WorkerAppService {
           {
             this.planningList = res;
             resolve();
-
           },
           error: (err) =>
           { reject(err); }
@@ -92,8 +93,8 @@ export class WorkerAppService {
 
             this.customer = consumptions[0].customer;
 
-            this.meters.splice(0);
-
+            //this.meters.splice(0);
+            this.meters = [];
             for (let i = 0; i < consumptions.length; i++)
             { this.meters.push(consumptions[i].meter); }
 

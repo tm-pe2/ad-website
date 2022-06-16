@@ -33,6 +33,7 @@ export class ListElementComponent implements OnInit {
 
   selectCustomer(i : number): void
   {
+    this.service.meters = [];
     this.service.planningItem = this.service.planningList[i];
     this.service.getConsumtions(this.service.userIDs[i]);
     console.log(this.service.planningItem);

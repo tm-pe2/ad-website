@@ -12,6 +12,7 @@ export class CientPageComponent implements OnInit {
   @Input() parent ?: WorkerappComponent;
 
 
+
   constructor(public service: WorkerAppService) {
     /*
     this.service.customerList[this.selectedCustomer].meters.forEach(meter => {
@@ -26,7 +27,9 @@ export class CientPageComponent implements OnInit {
     */
   }
   
-  ngOnInit(): void{ }
+  ngOnInit(): void{
+    
+   }
 
   displayAddress(): string
   { return (this.service.planningItem?.address.street + ' ' + this.service.planningItem?.address.house_number + ', ' + this.service.planningItem?.address.postal_code + ' ' + this.service.planningItem?.address.city + ', ' + this.service.planningItem?.address.country); }
