@@ -3,7 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CustomerDetailComponent } from '../customer-detail/customer-detail.component';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { AddCustomerDialogComponent } from '../add-customer-dialog/add-customer-dialog.component';
-import { Customer } from '../../interfaces/customer';
+import { Customer, CustomerType } from '../../interfaces/customer';
 import { PostConfigService } from '../../services/post-config.service';
 
 
@@ -16,12 +16,14 @@ import { PostConfigService } from '../../services/post-config.service';
 export class CustomerComponent implements OnInit {
  
   customers: Customer[] = [];
+  customersFilter: Customer [] = [];
   
   constructor(public dialog : MatDialog,
               private postService :PostConfigService){}
   
   ngOnInit(): void {
-    this.getCustomers();
+  this.getCustomers();
+  this.getCustomersToFilter();
   }
 
   selectedCustomer: Customer=
@@ -46,7 +48,16 @@ export class CustomerComponent implements OnInit {
     );      
   }
 
-  
+  getCustomersToFilter()
+  {
+    this.postService.getAllCustomers().subscribe(
+      (response) =>{
+        this.customersFilter=response;
+      },
+      (error)=>console.log('error: ',error),
+      ()=> console.log('ready!')
+    );      
+  }
   
    onSelectEdit(customer:Customer)
   {  
@@ -104,6 +115,59 @@ export class CustomerComponent implements OnInit {
 
   }
   
+  showPrivate()
+  {
+    this.getCustomersToFilter();
+    this.customers=[];
+    this.customersFilter.forEach(element => {
+     console.log(element.customer_type)
+     if(element.customer_type==CustomerType.PRIVATE)
+     {
+      this.customers.push(element);
+     } 
+    });
+  }
+
+  showCompany()
+  {
+    this.getCustomersToFilter();
+    this.customers=[];
+    this.customersFilter.forEach(element => {
+     console.log(element.customer_type)
+     if(element.customer_type==CustomerType.COMPANY)
+     {
+      this.customers.push(element);
+     } 
+    });
+  }
+
+  showActive()
+  {
+    this.getCustomersToFilter();
+    this.customers=[];
+    this.customersFilter.forEach(element => {
+     console.log(element.customer_type)
+     if(element.active== true)
+     {
+      this.customers.push(element);
+     } 
+    });
+  }
+
+  showNonActive()
+  {
+    this.getCustomersToFilter();
+    this.customers=[];
+    this.customersFilter.forEach(element => {
+     console.log(element.customer_type)
+     if(element.active == false)
+     {
+      this.customers.push(element);
+     } 
+    });
+  }
+
+
 }
 
 

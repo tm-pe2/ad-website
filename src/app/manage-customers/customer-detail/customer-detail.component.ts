@@ -22,8 +22,7 @@ export class CustomerDetailComponent implements OnInit {
     }
 
   ngOnInit() {
-
-    console.log("Customer Id: ",this.c_id);
+    
     if(this.c_id)
     {
       this.postService.getCustomers(this.c_id).subscribe(
@@ -35,19 +34,16 @@ export class CustomerDetailComponent implements OnInit {
       }
       );
     }
-    
-
   }
 
   onSubmit(c:Customer)
-  {
-    if(this.customer?.id)
-    {
-      this.postService.editCustomer(this.customer.id,c).subscribe({
-      next:(response: any) => console.log("Response:",response),
-      error: (error: any) => console.log(error),
-      });
-    }
+  {    
+    let cust:Customer = c;
+    cust.id = this.customer?.id;
+    console.log(cust);
+    this.postService.editCustomer(cust);
+    alert("Customer edited successfully!");
+    this.cancel();
     
   }
   cancel() {

@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse,} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { Customer, EstimationRegistration, Meter } from '../interfaces/customer';
 import { environment } from 'src/environments/environment';
+import { RegisterForm } from '../interfaces/form';
 
 
 @Injectable({
@@ -44,9 +45,21 @@ export class PostConfigService {
        
   }
 
-  editCustomer(id:number,c:Customer)
-  {
-      return this.httpClient.put(environment.apiUrl + "/customers/" + id ,c);
+  editCustomer(customer : Customer): Promise<void>{
+    const promise = new Promise<void>((resolve,reject) => 
+    this.httpClient.put(environment.apiUrl + '/customers',customer,{responseType: 'text'}).subscribe(
+      {
+        next:(res : any) => {
+
+          console.log("Customer edited", res);
+        },
+        error:(err) => {
+          console.log("error:", err);
+        }
+      }
+    )
+    )
+    return promise;
   }
  
   deactivateCustomer(activeCustomer: {active:boolean}, id:number): Observable<Customer>

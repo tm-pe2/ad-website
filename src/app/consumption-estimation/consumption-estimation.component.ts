@@ -80,11 +80,11 @@ export class ConsumptionEstimationComponent implements OnInit {
     this.meterTypeForm = this.formBuilder.group({
       metersNumber: new FormControl(['' , Validators.required]),
       type: new FormControl('',Validators.required),
-      value: new FormControl('',Validators.required),
+      // value: new FormControl('',Validators.required),
       type2: new FormControl(''),
-      value2: new FormControl(''),
+      // value2: new FormControl(''),
       type3: new FormControl(''),
-      value3: new FormControl('')
+      // value3: new FormControl('')
     });
     this.consumptionDetailsForm = this.formBuilder.group({
         answer: new FormControl(''),
@@ -283,7 +283,7 @@ submit()
     {
         let m:Meter ={
           meter_type:this.meterTypeForm.value.type,
-          index_value:Number(this.meterTypeForm.value.value),
+          //index_value:Number(this.meterTypeForm.value.value),
           }
         this.meters.push(m);
     }
@@ -291,13 +291,13 @@ submit()
       {
         let m:Meter ={
           meter_type:this.meterTypeForm.value.type,
-          index_value:Number(this.meterTypeForm.value.value),
+          //index_value:Number(this.meterTypeForm.value.value),
           }
         this.meters.push(m);
 
         let m2:Meter ={
           meter_type:this.meterTypeForm.value.type2,
-          index_value:Number(this.meterTypeForm.value.value2),
+          //index_value:Number(this.meterTypeForm.value.value2),
           }
         this.meters.push(m2);
       }
@@ -305,19 +305,19 @@ submit()
       {
         let m:Meter ={
           meter_type:this.meterTypeForm.value.type,
-          index_value:Number(this.meterTypeForm.value.value),
+          //index_value:Number(this.meterTypeForm.value.value),
           }
         this.meters.push(m);
 
         let m2:Meter ={
           meter_type:this.meterTypeForm.value.type2,
-          index_value:Number(this.meterTypeForm.value.value2),
+          //index_value:Number(this.meterTypeForm.value.value2),
           }
         this.meters.push(m2);
         
         let m3:Meter ={
           meter_type:this.meterTypeForm.value.type3,
-          index_value:Number(this.meterTypeForm.value.value3),          
+          //index_value:Number(this.meterTypeForm.value.value3),          
           }
         this.meters.push(m3);
       } 
@@ -361,7 +361,7 @@ submit()
       if (m.meter_type == MeterType.SMART) {
         let body = {
           "occupants" : this.estimationRegistration.family_size,
-          "day_consumption" : m.index_value,
+          //"day_consumption" : m.index_value,
           "night_consumption" : 0,
           "latitude": 50.5039,
           "longitude": 4.4699
