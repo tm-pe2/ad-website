@@ -19,6 +19,7 @@ export class ManageEmployeesComponent implements OnInit{
   }
   
   role ?:UserRole[] | null;
+  user_id ?: number | null;
   elevated: UserRole[] = [UserRole.ADMIN, UserRole.HR_MANAGER, UserRole.MANAGER];
   employeeRoles: UserRole[] = [UserRole.ACCOUNTANT,UserRole.ADMIN, UserRole.EMPLOYEE, UserRole.HR_MANAGER, UserRole.MANAGER, UserRole.SUPPORT, UserRole.TECHNICIAN];
   elevatedAllowed = this.auth.getUserRoleId()?.some(r => this.elevated.includes(r))!;
@@ -28,6 +29,7 @@ export class ManageEmployeesComponent implements OnInit{
   ngOnInit(){
     this.employeeService.loadEmp();
     this.role = this.auth.getUserRoleId();
+    this.user_id = this.auth.getUserId();
     console.log("role",this.role);
   }
     
