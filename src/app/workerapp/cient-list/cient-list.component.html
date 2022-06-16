@@ -1,8 +1,10 @@
 <div class="bg-slate-300 m-3 drop-shadow-md h-fit rounded-lg p-3" id="list">
     <app-list-element 
         *ngFor="let planning of this.service.planningList let i = index"
+        [parent]="this"
         [address]="planning.address"
         [status]="planning.status"
+        [contractID]="planning.contract_id"
         [index]="i">
     </app-list-element>
 </div>

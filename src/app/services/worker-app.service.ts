@@ -5,6 +5,7 @@ import { Planning, PlanningStatus } from '../interfaces/planning';
 import { Consumption, ConsumptionPost } from '../interfaces/consumption';
 import { Observable } from 'rxjs';
 import { Contract } from '../interfaces/contract';
+import { Customer } from '../interfaces/customer';
 
 
 @Injectable({
@@ -15,8 +16,10 @@ import { Contract } from '../interfaces/contract';
 // Class
 export class WorkerAppService {
   // Variables
-  selectedUser = 0;
+  planningItem?: Planning;
   planningList: Array<Planning> = [];
+  userIDs: Array<number> = [];
+  consumption?: Consumption;
 
   // Constructor 
   constructor(private http: HttpClient)
@@ -31,7 +34,6 @@ export class WorkerAppService {
           next: (res: Planning[]) =>
           {
             this.planningList = res;
-            console.log(this.planningList);
             resolve();
 
           },
@@ -49,16 +51,22 @@ export class WorkerAppService {
   // Call this in the component itself
   // get from consumtion interface
 
-  public getUserIds(contractID: number, i: number): Promise<void> 
+  public getUserIds(contractID: number, index: number): Promise<void> 
   {
-    console.log("ContractID: " + contractID, ", Position: " + i);
+    console.log("ContractID: " + contractID, ", Position: " + index);
     return new Promise<void>((resolve, reject) => 
     {
-      this.http.get<Contract>(environment.apiUrl + '/contracts').subscribe(
+      this.http.get<Contract[]>(environment.apiUrl + '/contracts').subscribe(
         {
-          next: (res: Contract) =>
+          next: (res: Contract[]) =>
           { 
-            if (res.id == contractID) { this.planningList[i].user_id = res.user_id; }
+            for (let i = 0; i < res.length; i++)
+            {
+              if (res[i].id == contractID)
+              { this.userIDs.push(res[i].user_id); }
+
+            }
+
             resolve();
           
           }, error: (err) => { reject(err); }
@@ -67,10 +75,25 @@ export class WorkerAppService {
 
     });
 
-  }
+  }// this.http.get<Consumption>(environment.apiUrl + '/consumptions/' + userID)
 
-  public getConsumtions(userID: number): Observable<Consumption> 
-  { return this.http.get<Consumption>(environment.apiUrl + '/consumptions/' + userID); }
+  public getConsumtions(userID: number): Promise<void> 
+  {
+    return new Promise<void>((resolve, reject) => 
+    {
+      this.http.get<Consumption>(environment.apiUrl + '/consumptions/' + userID).subscribe(
+        {
+          next: (res: Consumption) =>
+          {
+            this.consumption = res;
+            resolve();
+          
+          }, error: (err) => { reject(err); }
+
+        });
+
+    });
+  }
   
   public postNewConsumtions(userID: number, newConsumtion: ConsumptionPost)
   {

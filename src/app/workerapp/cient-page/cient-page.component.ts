@@ -1,10 +1,6 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { WorkerappComponent } from '../workerapp.component';
 import { WorkerAppService } from 'src/app/services/worker-app.service';
-import { Planning } from 'src/app/interfaces/planning';
-import { Address } from 'src/app/interfaces/address';
-import { NgIf } from '@angular/common';
-import { Meter } from 'src/app/interfaces/meter';
 
 @Component({
   selector: 'app-cient-page',
@@ -14,41 +10,9 @@ import { Meter } from 'src/app/interfaces/meter';
 
 export class CientPageComponent implements OnInit {
   @Input() parent ?: WorkerappComponent;
-  // New veriables
-  customer: Planning;
-  selectedCustomer: number;
-
-  // Old variables
-  name : number; 
-  adr : number;
-  //mtype : number;
 
 
-  meters: Meter[];
-
-  //gMeter : number;
-  //eMeter : number;
-  nDate : any;
-
-  fixedDateE: any = new Date();
-  fixedDateG: any = new Date();
-  isDone: number;
-  meterid : number[];
-  lastmeting : number[];
-  newvalues : number[];
-
-
-  constructor(private service: WorkerAppService) {
-    this.selectedCustomer = service.selectedUser;
-    this.customer = service.planningList[this.selectedCustomer];
-    this.name = this.service.planningList[this.selectedCustomer].id;
-    this.adr = this.service.planningList[this.selectedCustomer].id;
-    this.isDone = this.customer.status;
-    this.meterid = [];
-    this.lastmeting = [];
-    this.newvalues = [];
-
-    this.meters = [];
+  constructor(public service: WorkerAppService) {
     /*
     this.service.customerList[this.selectedCustomer].meters.forEach(meter => {
       this.lastmeting.push(meter.lastValue);
@@ -63,21 +27,15 @@ export class CientPageComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    //if(this.service.customerList[this.selectedCustomer].planningStatus == 1) this.isDone = 1;
+    console.log("test");
+    console.log(this.service.consumption);
   }
 
-  // Old functions
-  setValue(event:any, i:number){
-    this.newvalues[i] = event.target.value;
-  }
-/*
-  setElek(event:any){
-    this.eMeter = event.target.value;
-  }
-*/
-  setDate(event:any){
-    this.nDate = event.target.value
-  }
+  displayAddress(): string
+  { return (this.service.planningItem?.address.street + ' ' + this.service.planningItem?.address.house_number + ', ' + this.service.planningItem?.address.postal_code + ' ' + this.service.planningItem?.address.city + ', ' + this.service.planningItem?.address.country); }
+
+  displayName(): string
+  { return (this.service.consumption?.customer.first_name + ' ' + this.service.consumption?.customer.last_name); }
 
   // This function I updated already
   /*
@@ -88,10 +46,10 @@ export class CientPageComponent implements OnInit {
   */
 
   submit(): void{
+    /*
     for (let i = 0; i < this.newvalues.length; i++) {
       this.lastmeting[i] = this.newvalues[i];
     }
-    /*
     let valid = true;
     //0 = gas 1 = elek 2 = both
     if(this.nDate != 'Invalid Date'){

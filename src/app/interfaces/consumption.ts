@@ -19,13 +19,7 @@ export interface Consumption{
         roles: UserRole[],
     },
     address: Address,
-    meter: {
-        id: number,
-        meter_type: string,
-        physical_id: string,
-        index_value: number,
-        read_date: Date,
-    }
+    meter: Meter[]
 
     
 }

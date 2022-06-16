@@ -13,23 +13,30 @@ export class ListElementComponent implements OnInit {
   @Input() parent ?: CientListComponent;
   @Input() address!: Address;
   @Input() status!: number;
+  @Input() contractID!: number;
   @Input() index!: number;
-
-  planningList: Array<Planning> = [];
 
   constructor(public service: WorkerAppService)
   { }
 
   ngOnInit(): void
-  { console.log("List-Element comp. OnInit"); }
+  { this.getUserID(this.contractID, this.index); }
 
   displayStatus(status: number): string
   { return PlanningStatus[status]; }
 
   displayAddress(address: Address): string
-  { console.log(address); return (address.street + ' ' + address.house_number + ', ' + address.postal_code + ' ' + address.city + ', ' + address.country); }
+  { return (address.street + ' ' + address.house_number + ', ' + address.postal_code + ' ' + address.city + ', ' + address.country); }
+
+  getUserID(contractID: number, index: number)
+  { this.service.getUserIds(contractID, index); }
 
   selectCustomer(i : number): void
-  { this.service.selectedUser = i; }
+  {
+    this.service.planningItem = this.service.planningList[i];
+    this.service.getConsumtions(this.service.userIDs[i]);
+    console.log(this.service.planningItem);
+  
+  }
 
 }
