@@ -4,10 +4,6 @@
     <img src="../../../assets/img/dashboard/person.webp" class="w-1/4 border-2 border-black rounded-full m-4"/>
      <h1 class="p-1">{{ this.userdata.user.first_name }} {{this.userdata.user.last_name}}</h1>
      <h1 class="p-1">{{this.userdata.user.email}}</h1>
-     <h1 class="p-1">Type:      
-        <span *ngIf="this.employeeRoles.includes(this.auth.getUserRoleId()!)">Employee</span>
-        <span *ngIf="this.auth.getUserRoleId() == this.UserRole.CUSTOMER">Customer</span>
-     </h1>
 
 
 </div>
