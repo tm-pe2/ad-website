@@ -9,6 +9,7 @@ import { SupplierData } from "../interfaces/suppliersData";
 })
 export class SupplierService {
 
+
     constructor(private http:HttpClient) {}
 
     suppliers: SupplierData[] = [];
@@ -16,18 +17,16 @@ export class SupplierService {
 
     addSupplier(suppliers: SuppliersForm): Promise<void>{
         const promise = new Promise<void>((resolve, reject) => 
-        this.http.post(environment.apiUrl + '/suppliers',suppliers).subscribe(
+        this.http.post(environment.apiUrl + '/suppliers', suppliers).subscribe(
             {
                 next:(res: any) => {
-                    resolve();
+                   resolve();
                 },
                 error:(err) => {
-                    reject(err);
-                    console.log("Error");
+                    reject(err);                
                 }
             }
         ));
-        console.log("Test");
         return promise;
     }
 
