@@ -1,5 +1,6 @@
 import { Address } from "./address";
 import { UserRole } from "./User";
+import { Meter } from "./meter";
 import { CustomerType } from "./customer";
 
 export interface Consumption{
@@ -16,13 +17,6 @@ export interface Consumption{
 export interface ConsumptionPost {
     read_date: Date,
     meters: Meter[],
-}
-
-export interface Meter{
-    id: number,
-    meter_type: string,
-    physical_id: number,
-    index_value: number,
 }
 
 export interface ConsumptionUser {

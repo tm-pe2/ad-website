@@ -34,14 +34,6 @@ export class CientPageComponent implements OnInit {
   displayName(): string
   { return (this.service.customer?.first_name + ' ' + this.service.customer?.last_name); }
 
-  // This function I updated already
-  /*
-  replan(){
-    //TODO - add days to date
-    this.service.customerList[this.selectedCustomer].planningStatus = 1;
-  }
-  */
-
   submit(): void{
     /*
     for (let i = 0; i < this.newvalues.length; i++) {
