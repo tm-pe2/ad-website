@@ -37,10 +37,20 @@ export class WorkerAppService {
           next: (res: Planning[]) =>
           {
             this.planningList.splice(0);
-
             res.forEach(plan => {
-              if (plan.status == 1)
-              { this.planningList.push(plan); }
+              console.log("planningList lenghth: " + this.planningList.length)
+              let unique = true;
+              if (plan.status == 1){ 
+                for (let i = 0; i < this.planningList.length; i++) {
+                  if(plan.user.id == this.planningList[i].user.id){
+                    unique = false;
+                    console.log(plan.user.id + " checked")
+                  }
+                }
+                
+                if(unique) this.planningList.push(plan); 
+                
+              }
               
             });
 
