@@ -11,6 +11,9 @@ import { Address } from 'src/app/interfaces/customer';
 })
 export class ListElementComponent implements OnInit {
   @Input() parent ?: CientListComponent;
+  @Input() address!: Address;
+  @Input() status!: number;
+  @Input() index!: number;
 
   planningList: Array<Planning> = [];
 
@@ -24,7 +27,7 @@ export class ListElementComponent implements OnInit {
   { return PlanningStatus[status]; }
 
   displayAddress(address: Address): string
-  { return (address.street + ' ' + address.house_number + ', ' + address.postal_code + ' ' + address.city + ', ' + address.country); }
+  { console.log(address); return (address.street + ' ' + address.house_number + ', ' + address.postal_code + ' ' + address.city + ', ' + address.country); }
 
   selectCustomer(i : number): void
   { this.service.selectedUser = i; }
