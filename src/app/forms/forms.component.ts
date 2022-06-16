@@ -23,6 +23,7 @@ export class FormsComponent implements OnInit {
   @Input() meters?: Meter[];
   @Input() cancel?: Boolean;
   @Input() editEmployee?: EmployeeForm;
+  @Input() customer?: RegisterForm;
 
   mindate?: Date;
   maxEmployeeDate?: Date;
@@ -85,6 +86,9 @@ export class FormsComponent implements OnInit {
     if(this.editEmployee){
       this.form.patchValue(this.editEmployee);
     }
+    if(this.customer){
+      this.form.patchValue(this.customer);
+    } 
   }
 
 
