@@ -1,14 +1,11 @@
 <div *ngFor="let planning of this.service.planningList let i = index" class="md:flex m-4 p-2 pl-4 pr-4 rounded-2xl bg-slate-200 text-slate-300 drop-shadow-md block items-center justify-between">
     <div class="bg-slate-500 drop-shadow-md rounded-2xl p-2 pr-4 pl-4 mr-2">
-        {{planning.address}}
-    </div>
-    <div class="bg-slate-500 drop-shadow-md rounded-2xl mt-3 mb-3 md:mt-0 md:mb-0 mr-2 p-2 pr-4 pl-4">
-        {{planning.address}}
+        {{ displayAddress(planning.address) }}
     </div>
     <div>
         <div class="block w-fit md:flex md:w-80 md:justify-end">
             <div class="bg-slate-500 drop-shadow-md rounded-2xl p-2 pr-4 pl-4 mr-2">
-                {{this.service.planningList[i].status}}
+                {{ displayStatus(planning.status) }}
             </div>
             <button (click)="selectCustomer(i); this.parent?.parent?.goPage2();" class="bg-slate-500 drop-shadow-md rounded-2xl md:mt-0 mt-2 p-2 pr-4 pl-4">Go ></button>
         </div>

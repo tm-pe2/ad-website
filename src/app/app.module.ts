@@ -65,6 +65,7 @@ import { CientListComponent } from './workerapp/cient-list/cient-list.component'
 import { CientPageComponent } from './workerapp/cient-page/cient-page.component';
 import { ListElementComponent } from './workerapp/cient-list/list-element/list-element.component';
 import { HeaderComponent } from './workerapp/header/header.component';
+import { WorkerAppService } from './services/worker-app.service';
 
 
 @NgModule({
@@ -155,6 +156,7 @@ import { HeaderComponent } from './workerapp/header/header.component';
   providers: [
     UtilService,
     UserdataService,
+    WorkerAppService,
     HttpClientModule,
     {
       provide: HTTP_INTERCEPTORS,

@@ -14,8 +14,11 @@ export class CientListComponent implements OnInit{
     this.custArr = cData.custData;
   }
   */
-  constructor() 
-  { }
+  constructor(service: WorkerAppService) 
+  {
+
+  }
+
   ngOnInit(): void
   {
     

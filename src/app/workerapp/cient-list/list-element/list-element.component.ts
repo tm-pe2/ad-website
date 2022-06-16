@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CientListComponent } from '../cient-list.component';
 import { WorkerAppService } from 'src/app/services/worker-app.service';
+import { Planning, PlanningStatus } from 'src/app/interfaces/planning';
+import { Address } from 'src/app/interfaces/customer';
 
 @Component({
   selector: 'app-list-element',
@@ -9,23 +11,22 @@ import { WorkerAppService } from 'src/app/services/worker-app.service';
 })
 export class ListElementComponent implements OnInit {
   @Input() parent ?: CientListComponent;
-  constructor(public service: WorkerAppService) { 
 
-  }
-  ngOnInit(): void {
+  planningList: Array<Planning> = [];
 
-  }
+  constructor(public service: WorkerAppService)
+  { }
 
-  selectCustomer(i : number): void{
-    this.service.selectedUser = i;
-    /*
-    if(this.service.planningList[i].status != )this.service.customerList[i].planningStatus = 1
-    for (let j = 0; j < this.service.customerList.length; j++) {
-      if(this.service.customerList[j] != this.service.customerList[i]){
-        if(this.service.customerList[j].planningStatus != 2) this.service.customerList[j].planningStatus = 0;
-      }
-    }
-    */
-  }
+  ngOnInit(): void
+  { console.log("List-Element comp. OnInit"); }
+
+  displayStatus(status: number): string
+  { return PlanningStatus[status]; }
+
+  displayAddress(address: Address): string
+  { return (address.street + ' ' + address.house_number + ', ' + address.postal_code + ' ' + address.city + ', ' + address.country); }
+
+  selectCustomer(i : number): void
+  { this.service.selectedUser = i; }
 
 }

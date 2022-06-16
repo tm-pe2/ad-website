@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Planning } from '../interfaces/planning';
+import { Planning, PlanningStatus } from '../interfaces/planning';
 import { Consumption, ConsumptionPost } from '../interfaces/consumption';
 import { Observable } from 'rxjs';
 import { Contract } from '../interfaces/contract';
@@ -20,23 +20,18 @@ export class WorkerAppService {
 
   // Constructor 
   constructor(private http: HttpClient)
-  {
-    this.getPlanning();
-
-    for (let i = 0; i < this.planningList.length; i++)
-    { this.getUserIds(this.planningList[i].contract_id, i); }
-
-  }
+  { this.getPlanning(); }
 
   // Private functions
   // get from models folder
-  private getPlanning(): Promise<void> { 
+  private getPlanning(): Promise<void> {
     return new Promise<void>((resolve, reject) => {
-      this.http.get<Planning>(environment.apiUrl + '/plannings').subscribe(
+      this.http.get<Planning[]>(environment.apiUrl + '/plannings').subscribe(
         {
-          next: (res: Planning) =>
+          next: (res: Planning[]) =>
           {
-            this.planningList.push(res);
+            this.planningList = res;
+            console.log(this.planningList);
             resolve();
 
           },
@@ -49,8 +44,14 @@ export class WorkerAppService {
   
   }
 
-  private getUserIds(contractID: number, i: number): Promise<void> 
+  // Public functions
+  // Get the consumtions for e certain user
+  // Call this in the component itself
+  // get from consumtion interface
+
+  public getUserIds(contractID: number, i: number): Promise<void> 
   {
+    console.log("ContractID: " + contractID, ", Position: " + i);
     return new Promise<void>((resolve, reject) => 
     {
       this.http.get<Contract>(environment.apiUrl + '/contracts').subscribe(
@@ -68,14 +69,11 @@ export class WorkerAppService {
 
   }
 
-  // Public functions
-  // Get the consumtions for e certain user
-  // Call this in the component itself
-  // get from consumtion interface
-  public getConsumtions(userID: number): Observable<Consumption> { 
-  return this.http.get<Consumption>(environment.apiUrl + '/consumptions/' + userID); }
+  public getConsumtions(userID: number): Observable<Consumption> 
+  { return this.http.get<Consumption>(environment.apiUrl + '/consumptions/' + userID); }
   
-  public postNewConsumtions(userID: number, newConsumtion: ConsumptionPost) {
+  public postNewConsumtions(userID: number, newConsumtion: ConsumptionPost)
+  {
     return new Promise<void>((resolve, reject) => {
       this.http.post(environment.apiUrl + '/consumptions/' + userID, newConsumtion).subscribe({
           next: (res: any) => { resolve(res); },
