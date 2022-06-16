@@ -45,10 +45,10 @@ export interface EstimationRegistration {
 
 export enum BuildingType{
 
-  'Apartment'= 0,
-  'Closed Building'= 1,
-  'Semi Detached' = 2,
-  'Open Building'= 3,
+  APARTMENT = 0,
+  CLOSED_BUILDING = 1,
+  SEMI_DETACHED = 2,
+  OPEN_BUILDING = 3,
 
 }
 
@@ -60,11 +60,11 @@ export enum ServiceType
 
 export enum EquipmentType
 { 
-   'Oven/Stove' = 1 ,
-   'Dishwasher' = 2 ,
-   'Washing Machine' = 3 ,
-   'Drying Machine' = 4 ,
-   'Hair Dryer' = 5 
+   OVEN = 1 ,
+   DISHWASHER = 2 ,
+   WASHING_MACHINE = 3 ,
+   DRYING_MACHINE = 4 ,
+   HAIR_DRYER = 5 
 
 }
 

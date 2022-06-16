@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl,FormGroup,Validators,FormBuilder, FormArray } from '@angular/forms'
-import { Customer,EstimationRegistration, Meter,MeterType,User} from '../interfaces/customer';
+import { Customer,EstimationRegistration, Meter, MeterType, ServiceType, User} from '../interfaces/customer';
 import { UserdataService } from '../services/userdata.service';
 import {PostConfigService} from '../services/post-config.service'
 import { Address,BuildingType,EquipmentType } from '../interfaces/customer';
@@ -366,6 +366,26 @@ submit()
           console.log('The dialog was closed');
         });
     }
+
+    public get ServiceType()
+    {
+        return ServiceType
+    }
+    public get MeterType()
+    {
+        return MeterType
+    }
+    public get EquipmentsType()
+    {
+        return EquipmentType
+    }
+    public get BuildingType()
+    {
+        return BuildingType
+    }
+
+
+
 } 
 
 @Component({
@@ -386,3 +406,4 @@ export interface DialogData
 {
 estimationFromApi:number;
 }
+

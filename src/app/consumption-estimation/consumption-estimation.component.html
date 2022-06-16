@@ -15,8 +15,8 @@
                 <h2 class="form-header">Service</h2>
                 
                 <mat-radio-group formControlName="service_type" class="flex place-content-evenly" >
-                    <mat-radio-button name="Electricity" [ngClass]="{ 'is-invalid': service_step && service['service_type'].errors }"  value="1" class="block px-3.5">Electricity</mat-radio-button>
-                    <mat-radio-button name="Gas" [ngClass]="{ 'is-invalid': service_step && service['service_type'].errors }"  value="2" class="block px-3.5">Gas</mat-radio-button>
+                    <mat-radio-button name="Electricity" [ngClass]="{ 'is-invalid': service_step && service['service_type'].errors }"  value="{{ServiceType.Electricity}}" class="block px-3.5">Electricity</mat-radio-button>
+                    <mat-radio-button name="Gas" [ngClass]="{ 'is-invalid': service_step && service['service_type'].errors }"  value="{{ServiceType.Gas}}" class="block px-3.5">Gas</mat-radio-button>
                 </mat-radio-group>
 
                 <div *ngIf="service_step && serviceChoiceForm.controls['service_type'].errors">
@@ -49,10 +49,10 @@
                 <h2 class="form-header">What type of house do you have?</h2>
                 
                 <mat-radio-group formControlName="building_type" class="flex place-content-evenly">
-                    <mat-radio-button [ngClass]="{ 'is-invalid': familyAdress_step && familyAddress['building_type'].errors }" value="0" class="block px-3.5">Apartment</mat-radio-button>
-                    <mat-radio-button [ngClass]="{ 'is-invalid': familyAdress_step && familyAddress['building_type'].errors }" value="1" class="block">Closed building</mat-radio-button>
-                    <mat-radio-button [ngClass]="{ 'is-invalid': familyAdress_step && familyAddress['building_type'].errors }" value="2" class="block">Semi-detached building</mat-radio-button>
-                    <mat-radio-button [ngClass]="{ 'is-invalid': familyAdress_step && familyAddress['building_type'].errors }" value="3" class="block">Open building</mat-radio-button>
+                    <mat-radio-button [ngClass]="{ 'is-invalid': familyAdress_step && familyAddress['building_type'].errors }" value="{{BuildingType.APARTMENT}}" class="block px-3.5">Apartment</mat-radio-button>
+                    <mat-radio-button [ngClass]="{ 'is-invalid': familyAdress_step && familyAddress['building_type'].errors }" value="{{BuildingType.CLOSED_BUILDING}}" class="block">Closed building</mat-radio-button>
+                    <mat-radio-button [ngClass]="{ 'is-invalid': familyAdress_step && familyAddress['building_type'].errors }" value="{{BuildingType.SEMI_DETACHED}}" class="block">Semi-detached building</mat-radio-button>
+                    <mat-radio-button [ngClass]="{ 'is-invalid': familyAdress_step && familyAddress['building_type'].errors }" value="{{BuildingType.OPEN_BUILDING}}" class="block">Open building</mat-radio-button>
                 </mat-radio-group>
 
                 <div *ngIf="familyAdress_step && familyAdressCompoundForm.controls['building_type'].errors">
@@ -96,8 +96,8 @@
                 </div>
                 <br>
                 <mat-radio-group *ngIf="selectedMeterNr==1; else elseBlock;" formControlName="type" class="block">
-                    <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type'].errors }" value="Manual" class="block px-3.5">Manual Meter</mat-radio-button>
-                    <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type'].errors }" value="Smart" class="block px-3.5">Smart Meter</mat-radio-button>
+                    <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type'].errors }" value="{{MeterType.MANUAL}}" class="block px-3.5">Manual Meter</mat-radio-button>
+                    <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type'].errors }" value="{{MeterType.SMART}}" class="block px-3.5">Smart Meter</mat-radio-button>
                     <br>
                     <div *ngIf="meterType_step && meterTypeForm.controls['type'].errors">
                         <div class="required" *ngIf="meterType['type'].errors?.['required']">*Meter Type is required</div>
@@ -110,8 +110,8 @@
                         <mat-radio-group  formControlName="type" class="flex place-content-evenly">
                             <div>
                                 <div><h3><strong><strong>Meter no.1</strong></strong></h3></div>
-                                <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type'].errors }" value="Manual" class="block px-3.5">Manual Meter</mat-radio-button>
-                                <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type'].errors }" value="Smart" class="block px-3.5">Smart Meter</mat-radio-button>
+                                <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type'].errors }" value="{{MeterType.MANUAL}}" class="block px-3.5">Manual Meter</mat-radio-button>
+                                <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type'].errors }" value="{{MeterType.SMART}}" class="block px-3.5">Smart Meter</mat-radio-button>
                                 <br>
                                 <div *ngIf="meterType_step && meterTypeForm.controls['type'].errors">
                                     <div class="required" *ngIf="meterType['type'].errors?.['required']">*Meter Type is required</div>
@@ -122,8 +122,8 @@
                         <mat-radio-group formControlName="type2" class="flex place-content-evenly">
                             <div>
                                 <div><h3><strong>Meter no.2</strong></h3></div>
-                                <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type2'].errors }" value="Manual" class="block px-3.5">Manual Meter</mat-radio-button>
-                                <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type2'].errors }" value="Smart" class="block px-3.5">Smart Meter</mat-radio-button>
+                                <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type2'].errors }" value="{{MeterType.MANUAL}}" class="block px-3.5">Manual Meter</mat-radio-button>
+                                <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type2'].errors }" value="{{MeterType.SMART}}" class="block px-3.5">Smart Meter</mat-radio-button>
                                 <br>
                                 <div *ngIf="meterType_step && meterTypeForm.controls['type2'].errors">
                                     <div class="required" *ngIf="meterType['type2'].errors?.['required']">*Meter Type is required</div>
@@ -139,8 +139,8 @@
                         <mat-radio-group formControlName="type" class="flex place-content-evenly">
                             <div>
                                 <div><h3><strong>Meter no.1</strong></h3></div>
-                                <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type'].errors }" value="Manual" class="block px-3.5">Manual Meter</mat-radio-button>
-                                <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type'].errors }" value="Smart" class="block px-3.5">Smart Meter</mat-radio-button>
+                                <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type'].errors }" value="{{MeterType.MANUAL}}" class="block px-3.5">Manual Meter</mat-radio-button>
+                                <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type'].errors }" value="{{MeterType.SMART}}" class="block px-3.5">Smart Meter</mat-radio-button>
                                 <br>
                                 <div *ngIf="meterType_step && meterTypeForm.controls['type'].errors">
                                     <div class="required" *ngIf="meterType['type'].errors?.['required']">*Meter Type is required</div>
@@ -151,8 +151,8 @@
                         <mat-radio-group formControlName="type2" class="flex place-content-evenly">
                             <div>
                                 <div><h3><strong>Meter no.2</strong></h3></div>
-                                <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type2'].errors }" value="Manual" class="block px-3.5">Manual Meter</mat-radio-button>
-                                <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type2'].errors }" value="Smart" class="block px-3.5">Smart Meter</mat-radio-button>
+                                <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type2'].errors }" value="{{MeterType.MANUAL}}" class="block px-3.5">Manual Meter</mat-radio-button>
+                                <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type2'].errors }" value="{{MeterType.SMART}}" class="block px-3.5">Smart Meter</mat-radio-button>
                                 <br>
                                 <div *ngIf="meterType_step && meterTypeForm.controls['type2'].errors">
                                     <div class="required" *ngIf="meterType['type2'].errors?.['required']">*Meter Type is required</div>
@@ -163,8 +163,8 @@
                         <mat-radio-group formControlName="type3" class="flex place-content-evenly">
                             <div>
                                 <div><h3><strong>Meter no.3</strong></h3></div>
-                                <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type3'].errors }" value="Manual" class="block px-3.5">Manual Meter</mat-radio-button>
-                                <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type3'].errors }" value="Smart" class="block px-3.5">Smart Meter</mat-radio-button>
+                                <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type3'].errors }" value="{{MeterType.MANUAL}}" class="block px-3.5">Manual Meter</mat-radio-button>
+                                <mat-radio-button [ngClass]="{ 'is-invalid': meterType_step && meterType['type3'].errors }" value="{{MeterType.SMART}}" class="block px-3.5">Smart Meter</mat-radio-button>
                                 <br>
                                 <div *ngIf="meterType_step && meterTypeForm.controls['type3'].errors">
                                     <div class="required" *ngIf="meterType['type3'].errors?.['required']">*Meter Type is required</div>
