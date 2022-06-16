@@ -36,10 +36,7 @@
                             {{ sup.vat_number}}
                         </td>
                         <td class="w-24 p-3 text-sm">
-                            <button class="font-bold text-blue-500 hover:underline"   (click)="gotToPage('details-supplier')">Details</button>
-                        </td>
-                        <td class="w-24 p-3 text-sm">
-                            <button class="font-bold text-blue-500 hover:underline" (click)="gotToPage('contact-supplier')">Contact</button>
+                            <button class="font-bold text-blue-500 hover:underline" [routerLink]="['/details-supplier/',sup.id]" routerLinkActive="router-link-active">Details</button>
                         </td>
                         <td class="w-20 p-3 text-sm">
                             <!-- Button will redirect you to the edit page -->

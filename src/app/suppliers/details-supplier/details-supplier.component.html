@@ -4,29 +4,39 @@
        
         <label class="font-bold flex items-center justify-center pb-5">Company Details</label><br>
 
-        <div class="grid grid-cols-2 mb-3 gap-2">
-            <span>ID:</span>
-            <span>1</span>
-        </div>
+
         <div class="grid grid-cols-2 mb-3 gap-2">
             <span>Name:</span>
-            <span>Company name</span>
+            <span>{{supName}}</span>
         </div>
         <div class="grid grid-cols-2 mb-3 gap-2">
+        <!--     Street + house number -->
             <span>Adress:</span>
-            <span>Bierstraat 12</span>
+            <span>{{ supAddress }}</span>
         </div>
+
         <div class="grid grid-cols-2 mb-3 gap-2">
             <span>City:</span>
-            <span>2627 Schelle</span>
+            <span></span>
+        </div>
+
+        <div class="grid grid-cols-2 mb-3 gap-2">
+            <span>Postalcode:</span>
+            <span></span>
+        </div>
+
+        <div class="grid grid-cols-2 mb-3 gap-2">
+            <span>Country:</span>
+            <span></span>
+        </div>
+
+        <div class="grid grid-cols-2 mb-3 gap-2">
+            <span>VAT</span>
+            <span>{{supVAT}}</span>
         </div>
         <div class="grid grid-cols-2 mb-3 gap-2">
-            <span>Supplies:</span>
-            <span>Elektricity</span>
-        </div>
-        <div class="grid grid-cols-2 mb-3 gap-2">
-            <span>Ritten</span>
-            <span>0</span>
+            <span>Service</span>
+            <span>{{supService}}</span>
         </div>
 
 
