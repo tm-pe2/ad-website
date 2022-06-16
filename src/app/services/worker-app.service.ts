@@ -26,7 +26,7 @@ export class WorkerAppService {
 
   // Constructor 
   constructor(private http: HttpClient)
-  { this.getPlanning(); }
+  { this.getPlanning();}
 
   // Private functions
   // get from models folder
@@ -36,7 +36,10 @@ export class WorkerAppService {
         {
           next: (res: Planning[]) =>
           {
-            this.planningList = res;
+            res.forEach(plan => {
+              //check if they have smart meter or not here
+              this.planningList.push(plan);
+            });
             resolve();
           },
           error: (err) =>
@@ -95,9 +98,11 @@ export class WorkerAppService {
 
             //this.meters.splice(0);
             this.meters = [];
-            for (let i = 0; i < consumptions.length; i++)
-            { this.meters.push(consumptions[i].meter); }
-
+            for (let i = 0; i < consumptions.length; i++) { 
+              if(consumptions[i].meter.meter_type == "Manual"){
+                this.meters.push(consumptions[i].meter); 
+              }
+            }
             console.log(this.meters);
 
             resolve();
