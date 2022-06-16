@@ -33,11 +33,11 @@ export class ManageinvoicesComponent implements OnInit {
 
   ngOnInit(): void {
     let MyRole = this.auth.getUserRoleId();
-    if(this.AllViewer.includes(MyRole!))
+    if(MyRole?.some(r => this.AllViewer.includes(r))!)
     {
       this.invoiceService.GetAllInvoices().subscribe(invoices => {this.invoices = invoices; console.log(this.invoices);});
     }
-    else if (MyRole == UserRole.CUSTOMER)
+    else if (MyRole?.includes(UserRole.CUSTOMER))
     {
       this.invoiceService.GetUserInvoices().subscribe(invoices => {this.invoices = invoices; console.log(this.invoices);});
     }    

@@ -58,7 +58,7 @@ const routes: Routes = [
 
 
   
-  {path: 'manageinvoices', component: ManageinvoicesComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER, UserRole.EMPLOYEE]}},
+  {path: 'manageinvoices', component: ManageinvoicesComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER, UserRole.EMPLOYEE, UserRole.CUSTOMER]}},
   //{path: 'manageinvoices', component: ManageinvoicesComponent},
   {path:'manage-customers',component:CustomerComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
   {path:'consumption-estimation',component:ConsumptionEstimationComponent},
