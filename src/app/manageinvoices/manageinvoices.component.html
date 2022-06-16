@@ -1,42 +1,51 @@
 <!-- MANAGE INVOICES -->
-
-<div *ngIf="DetailsClicked">
-    <p>Invoice ID: {{invoices[DetailsID].id}}</p>
-    <p>Invoice Period Start: {{dateFormat(invoices[DetailsID].period_start)}}</p>
-    <p>Invoice Period End: {{dateFormat(invoices[DetailsID].period_end)}}</p>
-</div>
-
-<!-- <div class="grid overflow-hidden grid-cols-10 grid-rows-6 gap-px h-screen"> -->
-
-<div class="box row-start-2 row-end-6 col-start-3 col-end-11">
-    <div class="flex flex-wrap overflow-y-auto max-h-full border-md shadow">            
-        <table class="w-full rounded-lg shadow">
-            <thead class="bg-gray-50 border-b-2 border-gray-200 sticky top-0">
-                <tr>
-                    <th class="p-3 text-sm font-semibold tracking-wide text-left">Period Start</th>
-                    <th class="p-3 text-sm font-semibold tracking-wide text-left">Period End</th>
-                    <th class="p-3 text-sm font-semibold tracking-wide text-left">Private/Company</th>
-                    <th class="p-3 text-sm font-semibold tracking-wide text-left">Price</th>
-                    <th class="p-3 text-sm font-semibold tracking-wide text-left">Status</th>
-                    <th class="p-3 text-sm font-semibold tracking-wide text-left">Details</th>
-                    <!--th class="p-3 text-sm font-semibold tracking-wide text-left">Remove</th-->
-                </tr>
-            </thead>
-            <tbody *ngFor="let invoice of invoices; let i = index">
-                <!-- For invoice manager person -->
-                <tr>
-                    <td>{{dateFormat(invoice.period_start)}}</td>
-                    <td>{{dateFormat(invoice.period_end)}}</td>
-                    <td>{{GetCustomerType(invoice.customer.customer_type)}}</td>
-                    <td>{{invoice.price}}&euro;</td>
-                    <td>{{GetInvoiceType(invoice.status)}}</td>
-                    <td><button class="link text-blue-700" (click)="OnClickDetails(i)">Details</button></td>
-                </tr>
-            </tbody>
-        </table>
+<div *ngIf="!LogonError">
+    <div *ngIf="DetailsClicked">
+        <p>Invoice Period Start: {{dateFormat(invoices[DetailsID].period_start)}}</p>
+        <p>Invoice Period End: {{dateFormat(invoices[DetailsID].period_end)}}</p>
+        <p>Invoice Price (no tax): {{invoices[DetailsID].price}}</p>
+        <p>Invoice Tax: {{invoices[DetailsID].tax}}%</p>
+        <p>Invoice End Price: {{(invoices[DetailsID].tax / 100) * invoices[DetailsID].price + invoices[DetailsID].price}}</p>
+        <p>Invoice Due Date: {{dateFormat(invoices[DetailsID].due_date)}}</p>
+        <button class="link text-blue-700" >Download</button>
+    </div>
+    
+    <!-- <div class="grid overflow-hidden grid-cols-10 grid-rows-6 gap-px h-screen"> -->
+    
+    <div class="box row-start-2 row-end-6 col-start-3 col-end-11">
+        <div class="flex flex-wrap overflow-y-auto max-h-full border-md shadow">            
+            <table class="w-full rounded-lg shadow">
+                <thead class="bg-gray-50 border-b-2 border-gray-200 sticky top-0">
+                    <tr>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Period Start</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Period End</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Private/Company</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Price</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Status</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Details</th>
+                        <!--th class="p-3 text-sm font-semibold tracking-wide text-left">Remove</th-->
+                    </tr>
+                </thead>
+                <tbody *ngFor="let invoice of invoices; let i = index">
+                    <!-- For invoice manager person -->
+                    <tr>
+                        <td>{{dateFormat(invoice.period_start)}}</td>
+                        <td>{{dateFormat(invoice.period_end)}}</td>
+                        <td>{{GetCustomerType(invoice.customer.customer_type)}}</td>
+                        <td>{{invoice.price}}&euro;</td>
+                        <td>{{GetInvoiceType(invoice.status)}}</td>
+                        <td><button class="link text-blue-700" (click)="OnClickDetails(i)">Details</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="box row-start-6 row-end-6 col-start-1 col-end-11">
+        <!--Footer-->
     </div>
 </div>
-<div class="box row-start-6 row-end-6 col-start-1 col-end-11">
-    <!--Footer-->
+<div *ngIf="LogonError">
+    <p>An error has occured! Please re-log in and try again!</p>
 </div>
+
 <!-- </div> -->

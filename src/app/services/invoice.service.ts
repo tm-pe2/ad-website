@@ -17,4 +17,9 @@ export class InvoiceService {
   {    
     return this.http.get<Invoice[]>(environment.apiUrl + '/invoices/');
   }
+
+  GetUserInvoices() :  Observable<Invoice[]>
+  {    
+    return this.http.get<Invoice[]>(environment.apiUrl + '/invoices/self');
+  }
 }

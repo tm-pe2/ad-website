@@ -3,6 +3,8 @@ import { InvoiceService } from '../services/invoice.service';
 import { formatDate } from '@angular/common';
 import { Invoice, INVOICE_STATUS } from '../interfaces/invoice';
 import { CustomerType } from '../interfaces/customer';
+import { AuthService } from '../services/auth.service';
+import { UserRole } from '../interfaces/User';
 
 @Component({
   selector: 'app-manageinvoices',
@@ -24,11 +26,25 @@ export class ManageinvoicesComponent implements OnInit {
   invoices! : Invoice[];
   DetailsClicked : boolean = false;
   DetailsID : number = 0;
+  LogonError : boolean = false;
 
-  constructor(private invoiceService : InvoiceService) {}
+  constructor(private invoiceService : InvoiceService, public auth: AuthService) {}
+  AllViewer: UserRole[] = [UserRole.ACCOUNTANT,UserRole.ADMIN, UserRole.EMPLOYEE, UserRole.HR_MANAGER, UserRole.MANAGER, UserRole.SUPPORT, UserRole.TECHNICIAN];
 
   ngOnInit(): void {
-    this.invoiceService.GetAllInvoices().subscribe(invoices => {this.invoices = invoices; console.log(this.invoices);});
+    let MyRole = this.auth.getUserRoleId();
+    if(this.AllViewer.includes(MyRole!))
+    {
+      this.invoiceService.GetAllInvoices().subscribe(invoices => {this.invoices = invoices; console.log(this.invoices);});
+    }
+    else if (MyRole == UserRole.CUSTOMER)
+    {
+      this.invoiceService.GetUserInvoices().subscribe(invoices => {this.invoices = invoices; console.log(this.invoices);});
+    }    
+    else
+    {
+      this.LogonError = true;
+    }
   }
  
   dateFormat(date : Date) : string
