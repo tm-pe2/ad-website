@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Planning, PlanningStatus } from '../interfaces/planning';
-import { Consumption, ConsumptionPost } from '../interfaces/consumption';
-import { Observable } from 'rxjs';
+import { Planning } from '../interfaces/planning';
+import { Consumption, ConsumptionPost, Meter, ConsumptionUser } from '../interfaces/consumption';
 import { Contract } from '../interfaces/contract';
-import { Customer } from '../interfaces/customer';
 
 
 @Injectable({
@@ -19,7 +17,9 @@ export class WorkerAppService {
   planningItem?: Planning;
   planningList: Array<Planning> = [];
   userIDs: Array<number> = [];
-  consumption?: Consumption;
+  consumption: Array<Consumption> = [];
+  customer?: ConsumptionUser;
+  meters: Array<Meter> = [];
 
   // Constructor 
   constructor(private http: HttpClient)
@@ -79,13 +79,23 @@ export class WorkerAppService {
 
   public getConsumtions(userID: number): Promise<void> 
   {
+    let consumptions: Consumption[];
     return new Promise<void>((resolve, reject) => 
     {
-      this.http.get<Consumption>(environment.apiUrl + '/consumptions/' + userID).subscribe(
+      this.http.get<Consumption[]>(environment.apiUrl + '/consumptions/' + userID).subscribe(
         {
-          next: (res: Consumption) =>
+          next: (res: Consumption[]) =>
           {
-            this.consumption = res;
+            consumptions = res;
+            console.log(consumptions);
+
+            this.customer = consumptions[0].customer;
+
+            for (let i = 0; i < consumptions.length; i++)
+            { this.meters.push(consumptions[i].meter); }
+
+            console.log(this.meters);
+
             resolve();
           
           }, error: (err) => { reject(err); }

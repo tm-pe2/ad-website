@@ -26,16 +26,13 @@ export class CientPageComponent implements OnInit {
     */
   }
   
-  ngOnInit(): void {
-    console.log("test");
-    console.log(this.service.consumption);
-  }
+  ngOnInit(): void{ }
 
   displayAddress(): string
   { return (this.service.planningItem?.address.street + ' ' + this.service.planningItem?.address.house_number + ', ' + this.service.planningItem?.address.postal_code + ' ' + this.service.planningItem?.address.city + ', ' + this.service.planningItem?.address.country); }
 
   displayName(): string
-  { return (this.service.consumption?.customer.first_name + ' ' + this.service.consumption?.customer.last_name); }
+  { return (this.service.customer?.first_name + ' ' + this.service.customer?.last_name); }
 
   // This function I updated already
   /*
