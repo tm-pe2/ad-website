@@ -11,32 +11,30 @@ import { Address } from 'src/app/interfaces/customer';
 })
 export class ListElementComponent implements OnInit {
   @Input() parent ?: CientListComponent;
-  @Input() address!: Address;
-  @Input() status!: number;
-  @Input() contractID!: number;
+  @Input() planning!: Planning;
   @Input() index!: number;
 
   constructor(public service: WorkerAppService)
   { }
 
   ngOnInit(): void
-  { this.getUserID(this.contractID, this.index); }
+  { }
 
-  displayStatus(status: number): string
-  { return PlanningStatus[status]; }
+  displayStatus(): string
+  { return PlanningStatus[this.planning.status]; }
 
-  displayAddress(address: Address): string
-  { return (address.street + ' ' + address.house_number + ', ' + address.postal_code + ' ' + address.city + ', ' + address.country); }
+  displayName(): string
+  { return this.planning.user.first_name + ' ' + this.planning.user.last_name; }
 
-  getUserID(contractID: number, index: number)
-  { this.service.getUserIds(contractID, index); }
+  displayAddress(): string
+  { return (this.planning.user.address.street + ' ' + this.planning.user.address.house_number + ', ' + this.planning.user.address.postal_code + ' ' + this.planning.user.address.city_name + ', ' + this.planning.user.address.country); }
 
-  selectCustomer(i : number): void
+  selectCustomer(): void
   {
     this.service.meters = [];
-    this.service.planningItem = this.service.planningList[i];
-    this.service.getConsumtions(this.service.userIDs[i]);
-    console.log(this.service.planningItem);
+    this.service.planningItem = this.planning;
+    this.service.getConsumtions(this.planning.user.id);
+    this.service.selectedUser = this.planning.user.id;
   
   }
 

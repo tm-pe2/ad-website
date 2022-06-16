@@ -9,15 +9,8 @@ import { WorkerAppService } from 'src/app/services/worker-app.service';
 })
 export class CientListComponent implements OnInit{
   @Input() parent?: WorkerappComponent;
-  /*
-  constructor(private cData: UtilService) {
-    this.custArr = cData.custData;
-  }
-  */
   constructor(public service: WorkerAppService) 
-  {
-
-  }
+  { }
 
   ngOnInit(): void
   {

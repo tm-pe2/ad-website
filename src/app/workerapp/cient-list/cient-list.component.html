@@ -2,9 +2,7 @@
     <app-list-element 
         *ngFor="let planning of this.service.planningList let i = index"
         [parent]="this"
-        [address]="planning.address"
-        [status]="planning.status"
-        [contractID]="planning.contract_id"
+        [planning]="planning"
         [index]="i">
     </app-list-element>
 </div>
