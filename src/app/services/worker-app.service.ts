@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Planning } from '../interfaces/planning';
+import { Planning, PlanningStatus } from '../interfaces/planning';
 import { Consumption, ConsumptionPost, ConsumptionUser } from '../interfaces/consumption';
 import { Meter } from '../interfaces/meter'
 import { Contract } from '../interfaces/contract';
@@ -22,6 +22,7 @@ export class WorkerAppService {
   meters: Array<Meter> = [];
 
   selectedUser : number = 0;
+  planningID: number = 0;
 
   // Constructor 
   constructor(private http: HttpClient)
@@ -35,12 +36,16 @@ export class WorkerAppService {
         {
           next: (res: Planning[]) =>
           {
+            this.planningList.splice(0);
+
             res.forEach(plan => {
-              //check if they have smart meter or not here
-              this.planningList.push(plan);
+              if (plan.status == 1)
+              { this.planningList.push(plan); }
+              
             });
 
-            console.log('bloop');
+            console.log(this.planningList);
+
             resolve();
           },
           error: (err) =>
@@ -80,18 +85,29 @@ export class WorkerAppService {
     });
   }
   
-  public postNewConsumtions(meters: MeterAppForm)
+  public postNewConsumtions(meters: MeterAppForm): Promise<void>
   {
     return new Promise<void>((resolve, reject) => {
-      this.http.post(environment.apiUrl + '/consumptions/', meters).subscribe({
-          next: (res: any) => { resolve(res); console.log('YAY'); },
+      this.http.post(environment.apiUrl + '/consumptions/', meters, {responseType: 'text'}).subscribe({
+          next: (res: any) => { console.log(res); resolve(res); },
           error: (err) => { reject(err); console.log('NAY'); }
         });
     });
 
   }
 
-  
+  public patchPlanning(id: number)
+  {
+    return new Promise<void>((resolve, reject) => 
+    {
+      this.http.patch(environment.apiUrl + '/plannings/' + id, {status: PlanningStatus.DONE}, {responseType: 'text'}).subscribe(
+        {
+          next: (res: any) => { console.log(res); },
+          error: (err) => { reject(err); }
+          
+        });
+    });
 
+  }
 
 }

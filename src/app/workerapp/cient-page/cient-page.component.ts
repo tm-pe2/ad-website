@@ -2,6 +2,7 @@ import { Component, OnInit, Input} from '@angular/core';
 import { WorkerappComponent } from '../workerapp.component';
 import { WorkerAppService } from 'src/app/services/worker-app.service';
 import { MeterAppForm } from 'src/app/interfaces/form';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cient-page',
@@ -14,7 +15,7 @@ export class CientPageComponent implements OnInit {
 
 
 
-  constructor(public service: WorkerAppService) 
+  constructor(public service: WorkerAppService, private router: Router) 
   { }
   
   ngOnInit(): void{
@@ -30,6 +31,12 @@ export class CientPageComponent implements OnInit {
   }
 
   submit(form: MeterAppForm): void
-  { this.service.postNewConsumtions(form); }
+  { 
+    this.service.postNewConsumtions(form);
+    this.service.patchPlanning(this.service.planningID);
+    
+    this.router.navigateByUrl('/workerapp');
+  
+  }
 }
 

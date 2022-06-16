@@ -35,6 +35,7 @@ export class ListElementComponent implements OnInit {
     this.service.planningItem = this.planning;
     this.service.getConsumtions(this.planning.user.id);
     this.service.selectedUser = this.planning.user.id;
+    this.service.planningID = this.planning.id;
   
   }
 
