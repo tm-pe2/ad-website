@@ -31,7 +31,6 @@ export interface Customer extends User {
 
 export interface Meter{
   meter_type:MeterType,
-  //index_value: number,
 }
 
 export interface EstimationRegistration {
@@ -55,8 +54,8 @@ export enum BuildingType{
 
 export enum ServiceType
 {
-  Electricity= 0,
-  Gas= 1,
+  Electricity= 1,
+  Gas= 2,
 }
 
 export enum EquipmentType
