@@ -115,6 +115,7 @@ export class ConsumptionEstimationComponent implements OnInit {
   async onGetCustomers()
   {
     await this.customer_user.loadUser();
+    if(this.customer_user.user.id){
     this.postService.getCustomers(this.customer_user.user.id).subscribe(
       (response) =>{
         this.customerData=response.customer;
@@ -135,6 +136,7 @@ export class ConsumptionEstimationComponent implements OnInit {
       ()=> console.log('ready!')
     );    
     console.log(this.fullAddresses);
+   }
   }
 
 next()

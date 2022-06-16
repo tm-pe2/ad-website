@@ -1,16 +1,18 @@
+import { Address } from "./address";
+
 // This interface makes it easy to make a new user variable somewhere when needed
-export interface User
-{
-    id: number, // changed it to id so it can match the table's column
-    role_id: UserRole,
+export interface User {
+    id?: number,
     first_name: string,
     last_name: string,
     birth_date: Date,
-    address_id: number,
     email: string,
     phone_number: string,
-    password: string,
-    national_registry_number: string
+    national_registry_number: string,
+    roles?: UserRole[],
+    addresses?: Address[],
+    password?: string,
+    active?: boolean,
 }
 
 /** Role defining permission level of a user

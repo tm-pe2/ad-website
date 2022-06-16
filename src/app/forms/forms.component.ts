@@ -22,6 +22,8 @@ export class FormsComponent implements OnInit {
   @Output() canceled = new EventEmitter<any>();
   @Input() meters?: Meter[];
   @Input() cancel?: Boolean;
+  @Input() editEmployee?: EmployeeForm;
+  @Input() customer?: RegisterForm;
 
   mindate?: Date;
   maxEmployeeDate?: Date;
@@ -31,31 +33,31 @@ export class FormsComponent implements OnInit {
   cities?: City[];
 
 
-  registerFields: string[] = ["firstName", "lastName", "email", "phone", "password", "confirmPassword", "city", "registryId", "birthDate"]
-  supplierFields: string[] = ["supplierName", "goods", "city", "street"]
+  registerFields: string[] = ["first_name", "last_name", "email", "phone_number", "password", "confirmPassword", "city", "national_registry_number", "birth_date"]
+  supplierFields: string[] = ["company_name", "vat_number", "address", "service_type"]
   meterAppFields: string[] = [];
-  employeeFields: string[] = ["firstName", "lastName", "email", "phone", "password", "confirmPassword", "city", "registryId", "birthDate", "hireDate", "salary", "department", "street", "houseNumber"]
+  employeeFields: string[] = ["first_name", "last_name", "email", "phone_number", "password", "confirmPassword", "city", "national_registry_number", "birth_date", "salary", "roles", "active"]
 
   form = new FormGroup({
-    firstName: new FormControl('', [Validators.required]),
-    lastName: new FormControl('', [Validators.required]),
+    first_name: new FormControl('', [Validators.required]),
+    last_name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    phone: new FormControl('', [Validators.required,
+    phone_number: new FormControl('', [Validators.required,
     Validators.pattern(/^(((\+|00)32[ ]?(?:\(0\)[ ]?)?)|0){1}(4(60|[789]\d)\/?(\s?\d{2}\.?){2}(\s?\d{2})|(\d\/?\s?\d{3}|\d{2}\/?\s?\d{2})(\.?\s?\d{2}){2})$/)]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     confirmPassword: new FormControl('', [Validators.required, this.validateConfirmPassword()]),
     city: new FormControl('', [Validators.required]),
-    registryId: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]{11}$/)]),
-    birthDate: new FormControl('', [Validators.required]),
+    national_registry_number: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]{11}$/)]),
+    birth_date: new FormControl('', [Validators.required]),
     street: new FormControl('', [Validators.required]),
     house_number: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]{1,5}[A-Z]?$/)]),
-    type: new FormControl('', [Validators.required]),
+    customer_type: new FormControl('', [Validators.required]),
 
     company_name: new FormControl('', [Validators.required]),
     service_type: new FormControl('', [Validators.required]),
-    vat_number:   new FormControl('', [Validators.required, Validators.pattern(/^BE[0-9]{10}$/)]),
+    vat_number: new FormControl('', [Validators.required, Validators.pattern(/^BE[0-9]{10}$/)]),
 
-    hireDate: new FormControl('', [Validators.required]),
+    hire_date: new FormControl('', [Validators.required]),
     role: new FormControl('', [Validators.required]),
     salary: new FormControl('', [Validators.required]),
   })
@@ -74,12 +76,19 @@ export class FormsComponent implements OnInit {
     this.mindate = new Date(curDate.getUTCFullYear() - 120, curDate.getUTCMonth(), curDate.getUTCDate())
     this.maxEmployeeDate = new Date(curDate.getUTCFullYear() - 16, curDate.getUTCMonth(), curDate.getUTCDate())
     this.maxCustomerDate = new Date(curDate.getUTCFullYear() - 18, curDate.getUTCMonth(), curDate.getUTCDate())
-
-    this.meters?.forEach(meter => {
-      this.meterAppFields.push(`meter_${meter.id.toString()}`);
-      this.form.addControl(`meter_${meter.id.toString()}`, new FormControl('', [Validators.required]))
-      this.form.get(`meter_${meter.id.toString()}`)?.setValue(meter.value);
-    });
+    if (this.meters) {
+      this.meters?.forEach(meter => {
+        this.meterAppFields.push(`meter_${meter.id.toString()}`);
+        this.form.addControl(`meter_${meter.id.toString()}`, new FormControl('', [Validators.required]))
+        this.form.get(`meter_${meter.id.toString()}`)?.setValue(meter.value);
+      });
+    }
+    if(this.editEmployee){
+      this.form.patchValue(this.editEmployee);
+    }
+    if(this.customer){
+      this.form.patchValue(this.customer);
+    } 
   }
 
 
@@ -87,12 +96,12 @@ export class FormsComponent implements OnInit {
 
     if (this.type == "register") {
       let filled: RegisterForm = {
-        first_name: this.form.get('firstName')?.value,
-        last_name: this.form.get('lastName')?.value,
-        birth_date: this.form.get('birthDate')?.value,
+        first_name: this.form.get('first_name')?.value,
+        last_name: this.form.get('last_name')?.value,
+        birth_date: this.form.get('birth_date')?.value,
         email: this.form.get('email')?.value,
-        phone_number: this.form.get('phone')?.value,
-        national_registry_number: this.form.get('registryId')?.value,
+        phone_number: this.form.get('phone_number')?.value,
+        national_registry_number: this.form.get('national_registry_number')?.value,
         addresses: [{
           street: this.form.get('street')?.value,
           house_number: this.form.get('house_number')?.value,
@@ -152,15 +161,15 @@ export class FormsComponent implements OnInit {
     if (this.type == "employees") {
       console.log("hey")
       let filled: EmployeeForm = {
-        first_name: this.form.get('firstName')?.value,
-        last_name: this.form.get('lastName')?.value,
+        first_name: this.form.get('first_name')?.value,
+        last_name: this.form.get('last_name')?.value,
         email: this.form.get('email')?.value,
-        phone_number: this.form.get('phone')?.value,
+        phone_number: this.form.get('phone_number')?.value,
         password: this.form.get('password')?.value,
         confirmPassword: this.form.get('confirmPassword')?.value,
-        national_registry_number: this.form.get('registryId')?.value,
-        birth_date: this.form.get('birthDate')?.value,
-        hire_date: this.form.get('hireDate')?.value,
+        national_registry_number: this.form.get('national_registry_number')?.value,
+        birth_date: this.form.get('birth_date')?.value,
+        hire_date: this.form.get('hire_date')?.value,
         salary: this.form.get('salary')?.value,
         roles: [this.form.get('role')?.value as number],
         addresses: [{
@@ -171,11 +180,9 @@ export class FormsComponent implements OnInit {
       }
       for (let field of this.employeeFields) {
         if (this.form.get(field)?.errors) {
-          console.log("huh welke", field)
           return false;
         }
       }
-      console.log("not getting here")
       this.submitted.emit(filled as EmployeeForm);
     }
     return true;

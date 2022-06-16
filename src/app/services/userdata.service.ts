@@ -20,12 +20,11 @@ export class UserdataService
 {
   user: User =
   { 
-    id: 0, //changed from user_id to id so it matches the db otherwise undefined 
-    role_id: UserRole.CUSTOMER,
+    id: 0,
     first_name: '',
     last_name: '',
     birth_date: new Date(),
-    address_id: 0,
+    addresses: [],
     email: '',
     phone_number: '',
     password: 'WhyAreWeSendingTheHashedPasswords?',

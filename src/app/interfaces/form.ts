@@ -32,4 +32,5 @@ export interface EmployeeForm extends RegisterForm{
     hire_date: Date,
     salary: number,
     roles: UserRole[],
+    active?: Boolean,
 }
