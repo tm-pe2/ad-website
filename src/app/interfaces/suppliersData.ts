@@ -1,10 +1,10 @@
+import { Address } from "./address";
+
 export interface SupplierData
 {
-    name: string;
-    street: string;
-    housenumber: number;
-    city: string;
-    zip: string;
-    country: string;
-    type: string;
+    id? :number,
+    company_name?: string,
+    vat_number?: string,
+    address?: Address,
+    service_type?: string,
 }

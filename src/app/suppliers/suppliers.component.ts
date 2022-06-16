@@ -1,17 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { SupplierService } from '../services/supplier.service';
 
 @Component({
   selector: 'app-suppliers',
   templateUrl: './suppliers.component.html',
-  styleUrls: ['./suppliers.component.css']
+  styleUrls: ['./suppliers.component.css'],
+  providers: [SupplierService], 
+
 })
 export class SuppliersComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, public supplierService : SupplierService) { }
 
   ngOnInit(): void {
+    this.supplierService.loadSupplier();
   }
   myName="Jeff";
   
