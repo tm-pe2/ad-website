@@ -141,13 +141,8 @@
         <div>
             <mat-form-field class="self-start pr-20">
                 <mat-label>City</mat-label>
-<<<<<<< HEAD
-                <mat-select formControlName="city" onchange="onCitySelected($event)">
-                    <mat-option *ngFor="let city of this.cities" value="{{city.id}}">{{city.city_name}} -
-=======
                 <mat-select formControlName="city">
-                    <mat-option *ngFor="let city of this.cities" value="{{city.postal_code}}">{{city.city_name}} -
->>>>>>> main
+                    <mat-option *ngFor="let city of this.cities" value="{{city.id}}">{{city.city_name}} -
                         {{city.postal_code}}
                     </mat-option>
                 </mat-select>
