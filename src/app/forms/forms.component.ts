@@ -23,6 +23,7 @@ export class FormsComponent implements OnInit {
   @Input() meters?: Meter[];
   @Input() cancel?: Boolean;
   @Input() editEmployee?: EmployeeForm;
+  @Input() customer?: RegisterForm;
 
   mindate?: Date;
   maxEmployeeDate?: Date;
@@ -85,6 +86,9 @@ export class FormsComponent implements OnInit {
     if(this.editEmployee){
       this.form.patchValue(this.editEmployee);
     }
+    if(this.customer){
+      this.form.patchValue(this.customer);
+    } 
   }
 
 
@@ -103,7 +107,7 @@ export class FormsComponent implements OnInit {
           house_number: this.form.get('house_number')?.value,
           city_id: this.form.get('city')?.value as number
         }],
-        customer_type: this.form.get('type')?.value as CustomerType,
+        customer_type: this.form.get('customer_type')?.value as CustomerType,
         password: this.form.get('password')?.value,
       };
       for (let field of this.registerFields) {

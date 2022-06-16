@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { AddSuplierComponent } from './suppliers/add-suplier/add-suplier.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ManageEmployeesComponent } from './manage-employees/manage-employees.component';
-import { CustomerComponent } from './customers/customers.component';
+import { CustomerComponent } from './manage-customers/customers/customers.component';
 import { TicketingComponent } from './ticketing/ticketing.component';
 import { ConsumptionEstimationComponent } from './consumption-estimation/consumption-estimation.component';
-import { RegisterCustomerComponent } from './register-customer/register-customer.component';
 import { GraphsComponent } from './graphs/graphs.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -64,9 +62,8 @@ const routes: Routes = [
 
   
   {path: 'manageinvoices', component: ManageinvoicesComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER, UserRole.EMPLOYEE]}},
-  {path:'manage-customers',component:CustomerComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
-  {path:'consumption-estimation',component:ConsumptionEstimationComponent},
-  {path:'register-customer',component:RegisterCustomerComponent},
+  {path: 'manage-customers',component:CustomerComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER, UserRole.EMPLOYEE]}},
+  {path: 'consumption-estimation',component:ConsumptionEstimationComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.CUSTOMER]}},
   {path: 'add-suplier', component: AddSuplierComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
   {path: 'edit-supplier', component: EditSupplierComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
   {path: 'delete-supplier', component: DeleteSupplierComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
