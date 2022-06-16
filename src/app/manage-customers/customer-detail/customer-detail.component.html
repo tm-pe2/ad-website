@@ -1,0 +1,6 @@
+<h2 mat-dialog-title>Update customer</h2>  
+<mat-dialog-content>
+
+  <app-forms *ngIf="this.customer" [submitText]="'Edit'" [title]="'Edit customer data'" [type]="'register'" [customer]="this.customer" (submitted)="onSubmit($event)" [cancel]="true" (canceled)="cancel()"></app-forms>
+ 
+</mat-dialog-content>

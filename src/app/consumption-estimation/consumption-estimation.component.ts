@@ -1,18 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl,FormGroup,Validators,FormBuilder, FormArray } from '@angular/forms'
-import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/internal/operators/catchError';
-import { environment } from 'src/environments/environment';
-import { CustomerComponent } from '../customers/customers.component';
-import { Customer ,EstimatedContract,Estimation, Meter,User} from '../interfaces/customer';
+import { Customer,EstimationRegistration, Meter, MeterType, ServiceType, User} from '../interfaces/customer';
 import { UserdataService } from '../services/userdata.service';
 import {PostConfigService} from '../services/post-config.service'
-import { Address } from '../interfaces/customer';
+import { Address,BuildingType,EquipmentType } from '../interfaces/customer';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ConstantPool } from '@angular/compiler';
-
-
 
 @Component({
   selector: 'app-consumption-estimation',
@@ -25,7 +18,6 @@ export class ConsumptionEstimationComponent implements OnInit {
   familyAdressCompoundForm!: FormGroup;
   consumptionDetailsForm!: FormGroup;
   meterTypeForm!:FormGroup;
-  
   service_step = false;
   familyAdress_step = false;
   meterType_step=false;
@@ -35,32 +27,22 @@ export class ConsumptionEstimationComponent implements OnInit {
   customerData: Customer[]=[] ;  
   fullAddresses: Address[]=[];
 
-  selectedAddressID:number=-1;
+  selectedAddressID:number=0;
   selectedMeterNr:number=1;
   answerRadio:number=0;
   loggedInUser!: User;
 
-  //received from the post req
-  contract_id:number=0;
-
-  meters: Meter[]=[];
-  contract: EstimatedContract=
+  estimationRegistration:EstimationRegistration =
   {
-      start_date: new Date(),
-      end_date: new Date(),
-      customer_type: '',
-      tariff_id: -1 ,
-      estimation_id:-1,
-      address_id:-1,
-      service_type:-1,
-      status:"inactive",
-      building_type: -1,
-      family_size: -1 ,
-      equipments: '',
-      past_consumption: -1,
-      estimated_consumption:-1
-  
+    service_type : 0, 
+    building_type : 0, 
+    family_size: 0, 
+    equipment: [],
+    past_consumption: 0, 
+    meters: []
   };
+  
+  meters: Meter[]=[];
 
   estimation:number=0;
   annualEstimation:number=0;
@@ -80,9 +62,7 @@ export class ConsumptionEstimationComponent implements OnInit {
               private httpClient:HttpClient,
               private customer_user: UserdataService,
               private postService: PostConfigService,
-              public dialog: MatDialog) {
-                this.onGetCustomers();
-              }
+              public dialog: MatDialog) {}
 
   ngOnInit() 
   {
@@ -98,11 +78,8 @@ export class ConsumptionEstimationComponent implements OnInit {
     this.meterTypeForm = this.formBuilder.group({
       metersNumber: new FormControl(['' , Validators.required]),
       type: new FormControl('',Validators.required),
-      value: new FormControl('',Validators.required),
       type2: new FormControl(''),
-      value2: new FormControl(''),
       type3: new FormControl(''),
-      value3: new FormControl('')
     });
     this.consumptionDetailsForm = this.formBuilder.group({
         answer: new FormControl(''),
@@ -119,12 +96,12 @@ export class ConsumptionEstimationComponent implements OnInit {
   get consumption() { return this.consumptionDetailsForm.controls; }
 
   onCheckboxChange(event: any) {
-    const selectedEquipments = (this.consumption['equipments'] as FormArray);
+    const selectedEquipment = (this.consumption['equipments'] as FormArray);
     if (event.target.checked) {
-      selectedEquipments.push(new FormControl(event.target.value));
+      selectedEquipment.push(new FormControl(event.target.value));
     } else {
-      const index = selectedEquipments.controls.findIndex(x => x.value === event.target.value);
-      selectedEquipments.removeAt(index);
+      const index = selectedEquipment.controls.findIndex(x => x.value === event.target.value);
+      selectedEquipment.removeAt(index);
     }
   }
   
@@ -133,16 +110,17 @@ export class ConsumptionEstimationComponent implements OnInit {
   async onGetCustomers()
   {
     await this.customer_user.loadUser();
-    this.postService.getCustomers(this.customer_user.user.id!).subscribe(
+    if(this.customer_user.user.id){
+    this.postService.getCustomers(this.customer_user.user.id).subscribe(
       (response) =>{
         this.customerData=response.customer;
-        this.customerData.forEach((add) => {
+        response.addresses.forEach((add:Address) => {
         let a:Address=
         {
-          address_id : add.address_id,
+          id : add.id,
           street : add.street,
           house_number : add.house_number,
-          city : add.city,
+          city_name : add.city_name,
           postal_code : add.postal_code,
           country : add.country
         }
@@ -152,7 +130,8 @@ export class ConsumptionEstimationComponent implements OnInit {
       (error)=>console.log('error: ',error),
       ()=> console.log('ready!')
     );    
-    
+    console.log(this.fullAddresses);
+   }
   }
 
 next()
@@ -280,7 +259,6 @@ calculateConsumption()
   
   return this.estimation;
 }
-
 submit()
 {
   if(this.step==4)
@@ -299,84 +277,45 @@ submit()
     if(meters_numberV==1)
     {
         let m:Meter ={
-          date:new Date(),
-          meter_id:0,
-          contract_id:this.contract_id,
-          index_id:0,
-          physical_id:'000',
           meter_type:this.meterTypeForm.value.type,
-          index_value:Number(this.meterTypeForm.value.value),
           }
         this.meters.push(m);
     }
     else if(meters_numberV == 2)
       {
         let m:Meter ={
-          meter_id:0,
-          contract_id:this.contract_id,
-          index_id:0,
-          physical_id:'000',
           meter_type:this.meterTypeForm.value.type,
-          index_value:Number(this.meterTypeForm.value.value),
-          date:new Date()
           }
         this.meters.push(m);
 
         let m2:Meter ={
-          meter_id:0,
-          contract_id:this.contract_id,
-          index_id:0,
-          physical_id:'000',
           meter_type:this.meterTypeForm.value.type2,
-          index_value:Number(this.meterTypeForm.value.value2),
-          date:new Date()
           }
         this.meters.push(m2);
       }
       else if(meters_numberV==3)
       {
         let m:Meter ={
-          meter_id:0,
-          contract_id:this.contract_id,
-          index_id:0,
-          physical_id:'000',
           meter_type:this.meterTypeForm.value.type,
-          index_value:Number(this.meterTypeForm.value.value),
-          date:new Date()
           }
         this.meters.push(m);
 
         let m2:Meter ={
-          meter_id:0,
-          contract_id:this.contract_id,
-          index_id:0,
-          physical_id:'000',
           meter_type:this.meterTypeForm.value.type2,
-          index_value:Number(this.meterTypeForm.value.value2),
-          date:new Date()
           }
         this.meters.push(m2);
         
         let m3:Meter ={
-          meter_id:0,
-          contract_id:this.contract_id,
-          index_id:0,
-          physical_id:'000',
-          meter_type:this.meterTypeForm.value.type3,
-          index_value:Number(this.meterTypeForm.value.value3),
-          date:new Date()
+          meter_type:this.meterTypeForm.value.type3,          
           }
         this.meters.push(m3);
       } 
     }
 
-    const equipmentListV=this.consumptionDetailsForm.value.equipments;
-    const eqListString=equipmentListV.toString();
-
     if (this.consumptionDetailsForm.value.answer==1)
     {   
         this.annualCustomerInput=this.consumptionDetailsForm.value.annualConsumption;
-        if(this.annualCustomerInput < this.annualEstimation)
+        if(this.annualCustomerInput < (this.annualEstimation - (this.annualEstimation*0.1)) || this.annualCustomerInput > (this.annualEstimation + (this.annualEstimation*0.1)) )
         {
           this.past_consumtionV=this.annualEstimation;
         }
@@ -385,92 +324,37 @@ submit()
            this.past_consumtionV=this.annualCustomerInput;
         }
     }
-    
-  
-  
-    this.contract={
-      start_date: new Date(),
-      end_date: new Date(),
-      customer_type: "Private",
-      tariff_id: 1 ,
-      estimation_id:0,
+    else
+    {
+      this.past_consumtionV=this.annualEstimation;
+    }
+
+      this.estimationRegistration= {
+      service_type: Number(this.serviceChoiceForm.value.service_type),
       address_id: Number(this.familyAdressCompoundForm.value.address_id),
-      service_type:Number(this.serviceChoiceForm.value.service_type),
-      status:"inactive",
       building_type: Number(this.familyAdressCompoundForm.value.building_type),
       family_size: Number(this.familyAdressCompoundForm.value.family_size),
-      equipments: eqListString,
+      equipment: this.consumptionDetailsForm.value.equipments,
       past_consumption: Number(this.past_consumtionV),
-      estimated_consumption:1
+      meters : this.meters,
     }
 
-    console.log(this.contract);
+    console.log(this.estimationRegistration);
     
-  this.onAddContract().then((res) => {
-    this.alterContractID(res);
-    this.onAddMeters();
-    this.openDialog();
-    
-  })  
-  
+    this.onAddEstimation();
+
 }
 
-  addSmartMeter() {
-    this.meters.forEach((m) => {
-      if (m.meter_type == "smartMeter") {
-        let body = {
-          "occupants" : this.contract.family_size,
-          "day_consumption" : m.index_value,
-          "night_consumption" : 0,
-          "latitude": 50.5039,
-          "longitude": 4.4699
-        }
-
-        let headers = { "headers" : { "header" : ['Content-Type: application/json']}};
-
-
-        this.httpClient.post("http://10.97.0.100:3000/meter", body, headers).subscribe(
-          (response) => {
-            console.log("meter added", response)
-          },
-          (error) => console.log("error", error)
-        )
-        
-      }
-    })
-  }
-   onAddContract(): Promise<number>
+   onAddEstimation()
     {
-      return new Promise<number>((resolve,reject) => {
-        this.postService.addContract(this.contract).subscribe(
-         (response: any)=>{
-           console.log('Contract inserted!');
-           resolve(response.contract_id);
-         },
-         (error: any)=>console.log('error:',error)
-        );
-      })
+      this.postService.addEstimation(this.estimationRegistration).subscribe((res)=>
+        {
+          console.log(res);
+        }
+      )
+      this.openDialog();
     }
   
-    alterContractID(id: number)
-    {
-      this.meters.forEach(meter => {
-        meter.contract_id = id;
-      });
-    }
-
-    onAddMeters()
-    {
-      this.meters.forEach(meter =>
-        {
-          this.postService.addMeters(meter).subscribe(
-            (response: any)=>{
-              console.log('Meter inserted');
-            },
-            (error: any)=>console.log('error:',error)
-          )
-        });
-    }
     openDialog()
     {
         const dialogRef = this.dialog.open(SubmitEstimationDialogComponent, {
@@ -482,6 +366,26 @@ submit()
           console.log('The dialog was closed');
         });
     }
+
+    public get ServiceType()
+    {
+        return ServiceType
+    }
+    public get MeterType()
+    {
+        return MeterType
+    }
+    public get EquipmentsType()
+    {
+        return EquipmentType
+    }
+    public get BuildingType()
+    {
+        return BuildingType
+    }
+
+
+
 } 
 
 @Component({
@@ -498,9 +402,8 @@ export class SubmitEstimationDialogComponent {
     this.dialogRef.close();
   }
 }
-
-
 export interface DialogData
 {
 estimationFromApi:number;
 }
+
