@@ -4,6 +4,7 @@ import { WorkerAppService } from 'src/app/services/worker-app.service';
 import { Planning } from 'src/app/interfaces/planning';
 import { Address } from 'src/app/interfaces/address';
 import { NgIf } from '@angular/common';
+import { Meter } from 'src/app/interfaces/meter';
 
 @Component({
   selector: 'app-cient-page',
@@ -23,7 +24,7 @@ export class CientPageComponent implements OnInit {
   //mtype : number;
 
 
-
+  meters: Meter[];
 
   //gMeter : number;
   //eMeter : number;
@@ -46,6 +47,8 @@ export class CientPageComponent implements OnInit {
     this.meterid = [];
     this.lastmeting = [];
     this.newvalues = [];
+
+    this.meters = [];
     /*
     this.service.customerList[this.selectedCustomer].meters.forEach(meter => {
       this.lastmeting.push(meter.lastValue);

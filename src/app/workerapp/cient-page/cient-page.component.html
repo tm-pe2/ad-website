@@ -23,7 +23,9 @@
                 </div>
             </div>
             <input type="text" (change)="setValue($event, i)" class="text-slate-600 rounded pl-2 mt-2" placeholder="Enter Value...">
+            
         </div>
+        <app-forms [submitText]="'Text voor oke knopje'" [title]="'Titel'" [type]="'meter-app'" [meters]="this.meters" (submitted)="submit()"></app-forms>
     </div>
 
     <div class="flex m-2 bg-slate-200 drop-shadow-md rounded-2xl p-4 justify-between"><!--
