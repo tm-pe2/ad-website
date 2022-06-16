@@ -31,8 +31,19 @@ export class SupplierService {
         return promise;
     }
 
-    editSupplier(suppliers : SuppliersForm){
-        // Add code to edit supplier
+    editSupplier(suppliers : SuppliersForm): Promise<void>{
+        const promise = new Promise<void>((resolve,reject) => 
+        this.http.put(environment.apiUrl + '/suppliers',suppliers).subscribe({
+              next:(res : any) => {
+                console.log("Editted supplier");
+              },
+              error:(err) => {
+                console.log("Error:", err);
+              }
+            }
+          )
+        )
+        return promise;
     }
 
     loadSupplier(){

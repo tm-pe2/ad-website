@@ -63,7 +63,7 @@ const routes: Routes = [
   {path:'consumption-estimation',component:ConsumptionEstimationComponent},
   {path:'register-customer',component:RegisterCustomerComponent},
   {path: 'add-suplier', component: AddSuplierComponent,/*  canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]} */},
-  {path: 'edit-supplier', component: EditSupplierComponent, /* canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]} */},
+  {path: 'edit-supplier/:id', component: EditSupplierComponent, /* canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]} */},
   {path: 'delete-supplier', component: DeleteSupplierComponent, /* canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]} */},
   {path: 'details-supplier/:id', component: DetailsSupplierComponent,/*  canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]} */},
   {path: 'contact-supplier', component: ContactSupplierComponent, /* canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]} */},

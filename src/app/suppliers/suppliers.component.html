@@ -40,7 +40,7 @@
                         </td>
                         <td class="w-20 p-3 text-sm">
                             <!-- Button will redirect you to the edit page -->
-                            <button class="font-bold text-blue-500 hover:underline" (click)="gotToPage('edit-supplier')">edit</button>
+                            <button class="font-bold text-blue-500 hover:underline" [routerLink]="['/edit-supplier/',sup.id]">edit</button>
                         </td>
                         <td class="w-20 p-3 text-sm">
                             <!-- Buttonw ill reditect your to the Delete page -->
