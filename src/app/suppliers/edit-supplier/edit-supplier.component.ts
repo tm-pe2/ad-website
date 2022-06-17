@@ -35,7 +35,13 @@ export class EditSupplierComponent implements OnInit {
       this.supId = +params['id'];
     });
     console.log(this.supId);
-  
+    this.supplierService.getSupplierById(this.actRouter.snapshot.params['id'] as number). subscribe({
+      next:(res: SuppliersForm) => {
+        this.supplier = res;
+        console.log(this.supplier)
+
+      }
+    });
   }
 
   backToHome(){
