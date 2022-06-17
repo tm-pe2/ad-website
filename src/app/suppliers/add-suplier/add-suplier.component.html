@@ -1,1 +1,4 @@
 <app-forms [title]="'Add Supplier'" [type]="'suppliers'" [submitText]="'Add'" [cancel]="true" (canceled)="backToHome()" (submitted)="onAddFormSubmit($event)"></app-forms>
+<div class="bg-green-400 border-green-500 border-4 rounded p-5 bg-opacity-75 w-fit mx-auto" role="alert" *ngIf="presAdd">
+    <span class="w-fit mx-auto font-extrabold">Supplier has been Added</span>
+ </div>

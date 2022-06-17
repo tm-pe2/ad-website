@@ -15,13 +15,15 @@ import { Router } from '@angular/router';
 })
 export class AddSuplierComponent implements OnInit {
 
+  presAdd = false;
 
   @Input() parent?: SuppliersComponent;
   constructor(public supplierService : SupplierService, public router : Router) { } 
   
   onAddFormSubmit(form : SuppliersForm) {
     // TODO: Add Supplier
-    this.supplierService.addSupplier(form);
+   this.supplierService.addSupplier(form);
+   this.presAdd = true;
   }
 
   onCancelAddSupplier() {

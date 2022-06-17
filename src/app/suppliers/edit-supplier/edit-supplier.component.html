@@ -1,1 +1,4 @@
 <app-forms [title]="'Edit Supplier'" [type]="'suppliers'" [submitText]="'Edit'" [cancel]="true" (canceled)="backToHome()" [supplier]="this.supplier" (submitted)="onEditFormSubmit($event)"></app-forms>
+<div class="bg-yellow-400 border-yellow-500 border-4 rounded p-5 bg-opacity-75 w-fit mx-auto" role="alert" *ngIf="presEdit">
+   <span class="w-fit mx-auto font-extrabold">Supplier has been edited</span>
+</div>

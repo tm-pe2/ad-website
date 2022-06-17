@@ -22,19 +22,21 @@ export class EditSupplierComponent implements OnInit {
   parameterSub: Subscription | undefined;
   supId = 0;
 
+  presEdit = false;
+
 
   onEditFormSubmit(form : SuppliersForm) {
     let sup:SuppliersForm = form;
     sup.id = this.supId;
     console.log(sup.id);
     this.supplierService.editSupplier(form);
+    this.presEdit = true;
   }
   
   ngOnInit(): void {
     this.parameterSub = this.actRouter.params.subscribe(params => {
       this.supId = +params['id'];
     });
-    console.log(this.supId);
     this.supplierService.getSupplierById(this.actRouter.snapshot.params['id'] as number). subscribe({
       next:(res: SuppliersForm) => {
         this.supplier = res;
