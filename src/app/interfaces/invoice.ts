@@ -1,5 +1,5 @@
 import { Address } from "./address";
-import { Customer } from "./customer";
+import { Customer, CustomerType, ServiceType } from "./customer";
 
 export interface Invoice {
     id: number,
@@ -13,10 +13,10 @@ export interface Invoice {
     period_end: Date,
     status: INVOICE_STATUS,
     type: INVOICE_TYPE,
-    address?: Address,
-    customer?: Customer,
+    address: Address,
+    customer: Customer,
+    tariff: Tariff,
 }
-
 export enum INVOICE_TYPE {
     ADVANCE = 1,
     DEBIT,
@@ -27,6 +27,13 @@ export enum INVOICE_STATUS {
     DUE = 1,
     LATE,
     PAID,
+}
+
+interface Tariff {
+    id: number,
+    customer_type: CustomerType,
+    service_type: ServiceType,
+    value: number,
 }
 
 export interface InvoicesStatuses {
