@@ -6,36 +6,36 @@
 
 
         <div class="grid grid-cols-2 mb-3 gap-2">
-            <span>Name:</span>
+            <span class="font-bold">Name:</span>
             <span>{{supName}}</span>
         </div>
         <div class="grid grid-cols-2 mb-3 gap-2">
         <!--     Street + house number -->
-            <span>Adress:</span>
-            <span>{{ supAddress }}</span>
+            <span class="font-bold">Adress:</span>
+            <span>{{ supStreet + " " + supHousenumber }}</span>
         </div>
 
         <div class="grid grid-cols-2 mb-3 gap-2">
-            <span>City:</span>
-            <span></span>
+            <span class="font-bold">City:</span>
+            <span> {{ supCity }} </span>
         </div>
 
         <div class="grid grid-cols-2 mb-3 gap-2">
-            <span>Postalcode:</span>
-            <span></span>
+            <span class="font-bold">Postalcode:</span>
+            <span> {{ supPostal }} </span>
         </div>
 
         <div class="grid grid-cols-2 mb-3 gap-2">
-            <span>Country:</span>
-            <span></span>
+            <span class="font-bold">Country:</span>
+            <span> {{ supCountry }} </span>
         </div>
 
         <div class="grid grid-cols-2 mb-3 gap-2">
-            <span>VAT</span>
+            <span class="font-bold">VAT</span>
             <span>{{supVAT}}</span>
         </div>
         <div class="grid grid-cols-2 mb-3 gap-2">
-            <span>Service</span>
+            <span class="font-bold">Service</span>
             <span>{{supService}}</span>
         </div>
 

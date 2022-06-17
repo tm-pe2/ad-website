@@ -4,7 +4,8 @@ export interface Address{
     street: string,
     postal_code?: number,
     house_number: number,
-    country?: string
+    country?: string,
+    city_name?: string
 }
 
 export interface City{

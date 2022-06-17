@@ -3,7 +3,7 @@ import { Router } from '@angular/router'
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { SuppliersForm } from 'src/app/interfaces/form';
-import { Address } from 'src/app/interfaces/address';
+import { Address, City } from 'src/app/interfaces/address';
 import { SupplierService } from 'src/app/services/supplier.service';
 
 @Component({
@@ -22,10 +22,16 @@ export class DetailsSupplierComponent implements OnInit {
 
   supName?: string;
   supVAT?: string;
-  supHouse_number?: string;
+
   supAddress!: Address;
+  cityLink?: number;
+  cityInterface?: City;
 
-
+  supStreet?: string;
+  supHousenumber?: number;
+  supPostal?: number;
+  supCountry?: string;
+  supCity?: string;
 
   supService?: string;
 
@@ -37,12 +43,21 @@ export class DetailsSupplierComponent implements OnInit {
     this.supplierService.getSupplierById(this.tempId).subscribe((result: any) =>{
         this.supName = result['company_name'];
         this.supVAT = result['vat_number'];
-        this.supHouse_number = result['house_number'];
         this.supAddress = result['address'];
         this.supService = result['service_type'];
+      
+       
+
+        this.supHousenumber = this.supAddress.house_number;
+        this.supStreet = this.supAddress.street;
+        this.supPostal = this.supAddress.postal_code;
+        this.supCountry = this.supAddress.country;
+        this.supCity = this.supAddress.city_name;
+
+        console.log(this.supAddress);
+        console.log(this.supCity);
     });
-    console.log(" Ello");
-    console.log(this.supAddress);
+    
   }
   
 

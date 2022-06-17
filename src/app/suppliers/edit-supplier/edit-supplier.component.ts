@@ -37,6 +37,7 @@ export class EditSupplierComponent implements OnInit {
       this.supId = +params['id'];
     });
     console.log(this.supId);
+    
   }
 
   backToHome(){
