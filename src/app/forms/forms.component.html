@@ -131,14 +131,17 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Type of service</mat-label>
-                <input matInput formControlName="service_type" placeholder="Service">
+                <mat-select formControlName="service_type">
+                    <mat-option value="gas">Gas</mat-option>
+                    <mat-option value="electricity">Electricity</mat-option>
+                </mat-select>
                 <mat-error *ngIf="this.form.get('service_type')?.hasError('required')">This field is required</mat-error>
             </mat-form-field>
         </div>
         <div>
             <mat-form-field class="self-start pr-20">
                 <mat-label>City</mat-label>
-                <mat-select formControlName="city" onchange="onCitySelected($event)">
+                <mat-select formControlName="city">
                     <mat-option *ngFor="let city of this.cities" value="{{city.postal_code}}">{{city.city_name}} -
                         {{city.postal_code}}
                     </mat-option>
@@ -173,7 +176,7 @@
         <mat-form-field *ngFor="let meter of meters; let i = index">
             <mat-label>Meter value {{i+1}}</mat-label>
             <input matInput type="number" min="0" max="9999999" formControlName='meter_{{meter.id}}'
-                placeholder="meterValue" value="{{meter.value}}">
+                placeholder="meterValue" value="{{meter.value}}" [readonly]="meter.meter_type === MeterType.SMART" >
             <mat-error *ngIf="this.form.get('meter_' + meter.id)?.hasError('required')">This field is required
             </mat-error>
         </mat-form-field>
