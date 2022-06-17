@@ -24,6 +24,7 @@ export class FormsComponent implements OnInit {
   @Input() cancel?: Boolean;
   @Input() editEmployee?: EmployeeForm;
   @Input() customer?: RegisterForm;
+  @Input() supplier?: SuppliersForm;
 
   mindate?: Date;
   maxEmployeeDate?: Date;
@@ -89,6 +90,9 @@ export class FormsComponent implements OnInit {
     if(this.customer){
       this.form.patchValue(this.customer);
     } 
+    if(this.supplier){
+      this.form.patchValue(this.supplier);
+    }
   }
 
 
