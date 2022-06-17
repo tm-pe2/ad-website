@@ -33,6 +33,7 @@ export class CientPageComponent implements OnInit {
   submit(form: MeterAppForm): void
   { 
     this.service.postNewConsumtions(form);
+    this.router.navigateByUrl("/workerapp");
 
   }
 

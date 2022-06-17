@@ -95,7 +95,18 @@ export class WorkerAppService {
     {
       this.http.patch(environment.apiUrl + '/plannings/' + this.planningID, {status: PlanningStatus.DONE}, {responseType: 'text'}).subscribe(
         {
-          next: (res: any) => { console.log('patch'); resolve(res); },
+          next: (res: any) =>
+            { 
+              for (let i = 0; i < this.planningList.length; i++)
+              {
+                if (this.planningList[i].id == this.planningID)
+                { this.planningList.splice(i, 1); }
+
+              }
+              console.log('patch');
+              resolve(res);
+            
+            },
           error: (err) => { reject(err); }
           
         });
