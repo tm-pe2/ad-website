@@ -54,7 +54,7 @@ export class ManageinvoicesComponent implements OnInit {
     return formatDate(date, 'MM/dd/yyyy', 'en');
   }
 
-  GetCustomerType(customer : string) : string
+  GetCustomerType(customer : CustomerType) : string
   {
     return CustomerType[Number(customer)];
   }
