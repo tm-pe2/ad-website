@@ -1,24 +1,23 @@
 <!--container to place all the cards in (place all cards in this container)-->
 <div class="p-4 max-w-xs">
-    <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-auto shadow-xl">
+    <div class="h-full w-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-auto shadow-xl">
     
-        <h2 class="text-2xl text-indigo-300 flex justify-center font-bold">{{current_Emp!.roles | rolesToString}}</h2>
-        <hr>
-        <h2 class="text-2xl text-indigo-300 flex justify-center font-bold">{{current_Emp!.first_name}} {{current_Emp!.last_name}}</h2>
+        <h2 class="text-2xl text-indigo-500 flex justify-center font-bold bg-gray-200">{{current_Emp!.roles | rolesToString}}</h2>  
+        <h2 class="text-2xl text-indigo-500 flex justify-center font-bold bg-gray-200">{{current_Emp!.first_name}} {{current_Emp!.last_name}}</h2>
         
-        <div class="p-6 hover:bg-gray-700 hover:text-white transition duration-300 ease-in cursor-pointer">
-            <h1 class="text-xl font-medium">NGN: </h1>
-            <h1 class="text-xl font-medium mb-1 ml-5">{{current_Emp!.national_registry_number}}</h1>
-            <h1 class="text-xl font-medium">Email: </h1>
-            <h1 class="text-xl font-medium mb-1 ml-5">{{current_Emp!.email}}</h1>
-            <h1 class="text-xl font-medium">Phonenumber: </h1>
-            <h1 class="text-xl font-medium mb-1 ml-5">{{current_Emp!.phone_number}}</h1>
-            <h1 class="text-xl font-medium">Birthdate:</h1>
-            <h1 class="text-xl font-medium mb-1 ml-5">{{current_Emp!.birth_date}}</h1>
-            <h1 class="text-xl font-medium">Hiredate: </h1>
-            <h1 class="text-xl font-medium mb-1 ml-5">{{current_Emp!.hire_date}}</h1>
-            <h1 class="text-xl font-medium">Salary: </h1>
-            <h1 class="text-xl font-medium mb-5 ml-5">{{current_Emp!.salary}}</h1>
+        <div class="p-6 hover:bg-gray-400 transition duration-300 ease-in cursor-pointer">
+            <h1 class="text-xl font-bold">NGN: </h1>
+            <h1 class="text-xl font-medium pl-3 mb-1 ml-5">{{current_Emp!.national_registry_number}}</h1>
+            <h1 class="text-xl font-bold">Email: </h1>
+            <h1 class="text-xl font-medium pl-3 mb-1 ml-5">{{current_Emp!.email}}</h1>
+            <h1 class="text-xl font-bold">Phonenumber: </h1>
+            <h1 class="text-xl font-medium pl-3 mb-1 ml-5">{{current_Emp!.phone_number }}</h1>
+            <h1 class="text-xl font-bold">Birthdate:</h1>
+            <h1 class="text-xl font-medium pl-3 mb-1 ml-5">{{current_Emp!.birth_date | date:"dd MMMM YYYY"}}</h1>
+            <h1 class="text-xl font-bold">Hiredate: </h1>
+            <h1 class="text-xl font-medium pl-3 mb-1 ml-5">{{current_Emp!.hire_date | date:"dd MMMM YYYY"}}</h1>
+            <h1 class="text-xl font-bold">Salary: </h1>
+            <h1 class="text-xl font-medium pl-3 mb-5 ml-5">€{{current_Emp!.salary}}</h1>
             <button  mat-raised-button class="p-1 rounded bg-gray-500" type="button"
             (click)="this.onBack()">Back</button>
         </div>
