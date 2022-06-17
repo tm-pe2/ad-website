@@ -19,6 +19,7 @@
                 <tbody>
                     <tr  *ngFor='let e of employeeService.employees;'  class="shadow rounded-lg hover:bg-gray-200 ">
                         <ng-container *ngIf="e.active">
+                        <ng-container *ngIf="(e.id === this.user_id) || elevatedAllowed === true ">
                         <td class="p-3 text-sm">
                             {{e.first_name +  " " + e.last_name}}
                         </td>
@@ -56,6 +57,7 @@
                             }" 
                              class="font-bold" (click)="deleteEmployee(e)" [disabled]='!elevatedAllowed'>remove</button>
                         </td>
+                        </ng-container>
                         </ng-container>
                     </tr>  
                 </tbody>
