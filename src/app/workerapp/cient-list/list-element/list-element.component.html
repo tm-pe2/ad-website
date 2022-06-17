@@ -5,6 +5,9 @@
     <div class="bg-slate-500 drop-shadow-md rounded-2xl p-2 pr-4 mb-2 pl-4 mr-2">
         {{ displayAddress() }}
     </div>
+    <div class="bg-slate-500 drop-shadow-md rounded-2xl p-2 pr-4 mb-2 pl-4 mr-2">
+        {{ this.planning!.date | date: 'dd/MM/yyyy' }}
+    </div>
     <div>
         <div class="block w-fit md:flex md:w-80 md:justify-end">
             <div class="bg-slate-500 drop-shadow-md rounded-2xl p-2 pr-4 pl-4 mr-2">

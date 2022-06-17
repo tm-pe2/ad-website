@@ -6,6 +6,9 @@
         <div class="bg-slate-500 rounded-2xl p-1 ml-2 md:ml-0 pr-4 pl-4">
             {{ displayAddress() }}
         </div>
+        <div class="bg-slate-500 rounded-2xl p-1 pr-4 pl-4">
+            {{ this.service.planningItem!.date | date: 'dd/MM/yyyy' }}
+        </div>
     </div>
     <app-forms
     *ngIf="this.service.meters.length > 0"
