@@ -1,0 +1,21 @@
+<div class="bg-slate-300 m-3 drop-shadow-md h-fit rounded-lg p-3 text-slate-300" id="list">
+    <div class="flex m-2 bg-slate-200 rounded-2xl p-4 justify-between">
+        <div class="bg-slate-500 rounded-2xl p-1 pr-4 pl-4">
+            {{ displayName() }}
+        </div>
+        <div class="bg-slate-500 rounded-2xl p-1 ml-2 md:ml-0 pr-4 pl-4">
+            {{ displayAddress() }}
+        </div>
+    </div>
+    <app-forms
+    *ngIf="this.service.meters.length > 0"
+        [submitText]="'Submit values'"
+        [title]="'The meters'"
+        [type]="'meter-app'"
+        [meters]="this.service.meters"
+        (submitted)="submit($event)">
+    </app-forms>
+    <div *ngIf="this.service.submitted" class="bg-slate-500 rounded-2xl p-1 ml-2 md:ml-0 pr-4 pl-4"> The form is submitted, please wait</div>
+    <div *ngIf="this.service.posted" class="bg-slate-500 rounded-2xl p-1 ml-2 md:ml-0 pr-4 pl-4">Meters are posted, you can go back to the list now</div>
+    <div *ngIf="this.service.error" class="bg-slate-500 rounded-2xl p-1 ml-2 md:ml-0 pr-4 pl-4">There was an error whilst posting the values, try again later</div>
+</div>

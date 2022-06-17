@@ -1,6 +1,7 @@
 export interface Address{
     id?: number,
     city_id: number,
+    city_name?: string,
     street: string,
     postal_code?: number,
     house_number: number,
