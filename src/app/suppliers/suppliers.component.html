@@ -1,3 +1,4 @@
+
 <div class="grid overflow-hidden grid-cols-10 grid-rows-6 gap-px h-screen">
     <div class="box row-start-1 row-end-1 col-start-1 col-end-11">
         <!--Header-->
@@ -16,45 +17,29 @@
                 <thead class="bg-gray-50 border-b-2 border-gray-200 sticky top-0">
                     <tr>
                         <th class="p-3 text-sm font-semibold tracking-wide text-left">Name</th>
-                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Supplies</th>
-                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Running contract</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Supplies</th>                        
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">VAT Number</th>                        
                         <th class="p-3 text-sm font-semibold tracking-wide text-left">Details</th>
-                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Contact</th>
-                        <th class="p-3 text-sm font-semibold tracking-wide text-left">edit</th>
-                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Remove</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Edit</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="shadow rounded-lg hover:bg-gray-200 ">
+                    <tr *ngFor='let sup of supplierService.supplierF' class="shadow rounded-lg hover:bg-gray-200 ">
                         <td class="p-3 text-sm">
-                            Company1
+                            {{sup.company_name}}
                         </td>
                         <td class="p-3 text-sm">
-                            Electricity
+                            {{sup.service_type}}
                         </td>
                         <td class="p-3 text-sm">
-                            <!--if there is one or more running contracts, place each contract details behind one button-->
-                            <button class="p-1.5 text-xs font-medium uppercase tracking-wider text-yellow-800 bg-yellow-200 rounded-lg bg-opacity-50 hover:underline" (click)="gotToPage('contract-overview')">
-                                Contract
-                            </button>
-                             <!--No running contract-->
-                             <button class="p-1.5 text-xs font-medium uppercase tracking-wider text-gray-800 bg-gray-200 rounded-lg bg-opacity-50">
-                                Contract
-                            </button>
+                            {{ sup.vat_number}}
                         </td>
                         <td class="w-24 p-3 text-sm">
-                            <button class="font-bold text-blue-500 hover:underline"   (click)="gotToPage('details-supplier')">Details</button>
-                        </td>
-                        <td class="w-24 p-3 text-sm">
-                            <button class="font-bold text-blue-500 hover:underline" (click)="gotToPage('contact-supplier')">Contact</button>
+                            <button class="font-bold text-blue-500 hover:underline" [routerLink]="['/details-supplier/',sup.id]" routerLinkActive="router-link-active">Details</button>
                         </td>
                         <td class="w-20 p-3 text-sm">
                             <!-- Button will redirect you to the edit page -->
-                            <button class="font-bold text-blue-500 hover:underline" (click)="gotToPage('edit-supplier')">edit</button>
-                        </td>
-                        <td class="w-20 p-3 text-sm">
-                            <!-- Buttonw ill reditect your to the Delete page -->
-                            <button class="font-bold text-red-500 hover:underline" (click)="gotToPage('delete-supplier')">remove</button>
+                            <button class="font-bold text-blue-500 hover:underline" [routerLink]="['/edit-supplier/',sup.id]">Edit</button>
                         </td>
                     </tr>  
                 </tbody>

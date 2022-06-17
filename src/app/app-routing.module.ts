@@ -68,16 +68,17 @@ const routes: Routes = [
   {path: 'manage-employees/details/:id',component:EmployeeCardComponent,canActivate: [RoleGuardService], data:{roles:[UserRole.MANAGER,UserRole.HR_MANAGER,UserRole.ADMIN,UserRole.EMPLOYEE]}},
   
   {path: 'manageinvoices', component: ManageinvoicesComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER, UserRole.EMPLOYEE]}},
+  {path:'consumption-estimation',component:ConsumptionEstimationComponent},
+  {path: 'add-suplier', component: AddSuplierComponent,  canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
+  {path: 'edit-supplier/:id', component: EditSupplierComponent,  canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]} },
+  {path: 'delete-supplier', component: DeleteSupplierComponent,  canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]} },
+  {path: 'details-supplier/:id', component: DetailsSupplierComponent,  canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]} },
+  {path: 'contact-supplier', component: ContactSupplierComponent,  canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]} },
+  {path: 'contract-overview', component: ContractOverveiwComponent,  canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]} },
+  {path: 'manage-contract', component: ManageContractComponent,  canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]} },
+  {path: 'suppliers', component: SuppliersComponent,  canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]} },
   {path: 'manage-customers',component:CustomerComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER, UserRole.EMPLOYEE]}},
   {path: 'consumption-estimation',component:ConsumptionEstimationComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.CUSTOMER]}},
-  {path: 'add-suplier', component: AddSuplierComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
-  {path: 'edit-supplier', component: EditSupplierComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
-  {path: 'delete-supplier', component: DeleteSupplierComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
-  {path: 'details-supplier', component: DetailsSupplierComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
-  {path: 'contact-supplier', component: ContactSupplierComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
-  {path: 'contract-overview', component: ContractOverveiwComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
-  {path: 'manage-contract', component: ManageContractComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
-  {path: 'suppliers', component: SuppliersComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
 ];
 
 

@@ -4,29 +4,39 @@
        
         <label class="font-bold flex items-center justify-center pb-5">Company Details</label><br>
 
+
         <div class="grid grid-cols-2 mb-3 gap-2">
-            <span>ID:</span>
-            <span>1</span>
+            <span class="font-bold">Name:</span>
+            <span>{{supName}}</span>
         </div>
         <div class="grid grid-cols-2 mb-3 gap-2">
-            <span>Name:</span>
-            <span>Company name</span>
+        <!--     Street + house number -->
+            <span class="font-bold">Adress:</span>
+            <span>{{ supStreet + " " + supHousenumber }}</span>
+        </div>
+
+        <div class="grid grid-cols-2 mb-3 gap-2">
+            <span class="font-bold">City:</span>
+            <span> {{ supCity }} </span>
+        </div>
+
+        <div class="grid grid-cols-2 mb-3 gap-2">
+            <span class="font-bold">Postalcode:</span>
+            <span> {{ supPostal }} </span>
+        </div>
+
+        <div class="grid grid-cols-2 mb-3 gap-2">
+            <span class="font-bold">Country:</span>
+            <span> {{ supCountry }} </span>
+        </div>
+
+        <div class="grid grid-cols-2 mb-3 gap-2">
+            <span class="font-bold">VAT</span>
+            <span>{{supVAT}}</span>
         </div>
         <div class="grid grid-cols-2 mb-3 gap-2">
-            <span>Adress:</span>
-            <span>Bierstraat 12</span>
-        </div>
-        <div class="grid grid-cols-2 mb-3 gap-2">
-            <span>City:</span>
-            <span>2627 Schelle</span>
-        </div>
-        <div class="grid grid-cols-2 mb-3 gap-2">
-            <span>Supplies:</span>
-            <span>Elektricity</span>
-        </div>
-        <div class="grid grid-cols-2 mb-3 gap-2">
-            <span>Ritten</span>
-            <span>0</span>
+            <span class="font-bold">Service</span>
+            <span>{{supService}}</span>
         </div>
 
 

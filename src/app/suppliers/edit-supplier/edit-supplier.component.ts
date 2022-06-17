@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { SuppliersComponent } from '../suppliers.component';
+import { SupplierService } from '../../services/supplier.service'
+import { SuppliersForm } from 'src/app/interfaces/form';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
-import { SupplierData } from 'src/app/interfaces/suppliersData';
-
-
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-supplier',
@@ -11,42 +13,42 @@ import { SupplierData } from 'src/app/interfaces/suppliersData';
   styleUrls: ['./edit-supplier.component.css']
 })
 export class EditSupplierComponent implements OnInit {
+  
+  @Input() parent?: SuppliersComponent;
+  constructor(public supplierService : SupplierService, public router : Router, private actRouter : ActivatedRoute) { } 
+  
+  supplier?: SuppliersForm;
 
-  constructor(private router: Router) { }
+  parameterSub: Subscription | undefined;
+  supId = 0;
 
-  ngOnInit(): void {
+  presEdit = false;
+
+
+  onEditFormSubmit(form : SuppliersForm) {
+    let sup:SuppliersForm = form;
+    sup.id = this.supId;
+    console.log(sup.id);
+    this.supplierService.editSupplier(form);
+    this.presEdit = true;
   }
   
-  gotToPage(pageName:string):void{
-    this.router.navigate([`${pageName}`]);
+  ngOnInit(): void {
+    this.parameterSub = this.actRouter.params.subscribe(params => {
+      this.supId = +params['id'];
+    });
+    this.supplierService.getSupplierById(this.actRouter.snapshot.params['id'] as number). subscribe({
+      next:(res: SuppliersForm) => {
+        this.supplier = res;
+        console.log(this.supplier)
+
+      }
+    });
   }
 
-  homePage = "suppliers"
-  allfilled = false;
-  invalidF = false;
-
-  onSubmit(addSupplierForm: NgForm){
-    if(!addSupplierForm.valid){
-      this.invalidF = true;
-      this.allfilled = true;
-      return;
-    }
-    this.control(addSupplierForm);
-
+  backToHome(){
+    this.router.navigate([`suppliers`]);
   }
-
-  private control(addSupplierForm: NgForm){
-   const suppliersData: SupplierData =  { 
-    name: addSupplierForm.value.addNameSup,
-    street: addSupplierForm.value.addStreetSup, 
-    housenumber: addSupplierForm.value.addHouseNumberSup,
-    city: addSupplierForm.value.addCitySup, 
-    zip: addSupplierForm.value.addZipSup, 
-    country: addSupplierForm.value.addCountrySup,
-    type: addSupplierForm.value.addTypeSup
-    };
-  }
-
 
 
 
