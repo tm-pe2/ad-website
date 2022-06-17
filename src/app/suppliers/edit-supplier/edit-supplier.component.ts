@@ -6,6 +6,7 @@ import { SupplierService } from '../../services/supplier.service'
 import { SuppliersForm } from 'src/app/interfaces/form';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { FormsComponent } from 'src/app/forms/forms.component';
 
 @Component({
   selector: 'app-edit-supplier',
@@ -37,7 +38,7 @@ export class EditSupplierComponent implements OnInit {
       this.supId = +params['id'];
     });
     console.log(this.supId);
-    
+  
   }
 
   backToHome(){

@@ -54,8 +54,10 @@ export class DetailsSupplierComponent implements OnInit {
         this.supCountry = this.supAddress.country;
         this.supCity = this.supAddress.city_name;
 
+    
+
         console.log(this.supAddress);
-        console.log(this.supCity);
+        console.log(this.cityLink);
     });
     
   }
