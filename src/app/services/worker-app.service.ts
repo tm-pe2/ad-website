@@ -40,7 +40,6 @@ export class WorkerAppService {
             res.forEach(plan => {
               let unique = true;
               if (plan.status == 1){ 
-
                 //check if this entry is already in the list or not
                 for (let i = 0; i < this.planningList.length; i++) {
                   if(plan.user.id == this.planningList[i].user.id){
@@ -48,7 +47,12 @@ export class WorkerAppService {
                   }
                 }
                 
-                if(unique) this.planningList.push(plan); 
+                if(unique) 
+                {
+                  console.log(plan); 
+                  this.planningList.push(plan); 
+
+                } 
                 
               }
               
@@ -67,35 +71,7 @@ export class WorkerAppService {
   
   }
 
-  // Public functions
-  // Get the consumtions for e certain user
-  // Call this in the component itself
-  // get from consumtion interface
-    public getConsumtions(userID: number): Promise<void> 
-  {
-    let consumptions: Consumption[];
-    return new Promise<void>((resolve, reject) => 
-    {
-      this.http.get<Consumption[]>(environment.apiUrl + '/consumptions/' + userID).subscribe(
-        {
-          next: (res: Consumption[]) =>
-          {
-            consumptions = res;
-            console.log(consumptions)
-            this.meters = []
-            for (let i = 0; i < consumptions.length; i++)
-            { this.meters.push(consumptions[i].meter); }
-
-            
-            resolve();
-          
-          }, error: (err) => { reject(err); }
-
-        });
-
-    });
-  }
-  
+  // Public functions  
   public postNewConsumtions(meters: MeterAppForm): Promise<void>
   {
     return new Promise<void>((resolve, reject) => {

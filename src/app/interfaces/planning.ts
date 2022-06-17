@@ -1,4 +1,5 @@
 import { Address } from "../interfaces/customer";
+import { Meter } from "./meter";
 
 export interface Planning {
     id: number,
@@ -12,6 +13,7 @@ export interface Planning {
         national_registry_number: string,
         address: Address,
     },
+    meters: Meter[],
     contract_id: number,
     date: Date,
     status: PlanningStatus,
