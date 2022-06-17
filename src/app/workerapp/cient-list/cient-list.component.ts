@@ -10,7 +10,12 @@ import { WorkerAppService } from 'src/app/services/worker-app.service';
 export class CientListComponent implements OnInit{
   @Input() parent?: WorkerappComponent;
   constructor(public service: WorkerAppService) 
-  { }
+  { 
+    this.service.submitted = false;
+    this.service.posted = false;
+    this.service.error = false;
+
+  }
 
   ngOnInit(): void
   {
