@@ -15,4 +15,7 @@
         [meters]="this.service.meters"
         (submitted)="submit($event)">
     </app-forms>
+    <div *ngIf="this.service.submitted" class="bg-slate-500 rounded-2xl p-1 ml-2 md:ml-0 pr-4 pl-4"> The form is submitted, please wait</div>
+    <div *ngIf="this.service.posted" class="bg-slate-500 rounded-2xl p-1 ml-2 md:ml-0 pr-4 pl-4">Meters are posted, you can go back to the list now</div>
+    <div *ngIf="this.service.error" class="bg-slate-500 rounded-2xl p-1 ml-2 md:ml-0 pr-4 pl-4">There was an error whilst posting the values, try again later</div>
 </div>

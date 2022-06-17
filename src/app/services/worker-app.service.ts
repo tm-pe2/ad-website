@@ -23,6 +23,9 @@ export class WorkerAppService {
 
   selectedUser : number = 0;
   planningID: number = 0;
+  submitted: boolean = false;
+  posted: boolean = false;
+  error: boolean = false;
 
   // Constructor 
   constructor(private http: HttpClient)
@@ -83,7 +86,7 @@ export class WorkerAppService {
               resolve(res);
               
             },
-          error: (err) => { reject(err); console.log('NAY'); }
+          error: (err) => { reject(err); console.log('NAY'); this.submitted = false; this.error = false; }
         });
     });
 
@@ -104,10 +107,14 @@ export class WorkerAppService {
 
               }
               console.log('patch');
+              
+              this.submitted = false;
+              this.posted = true;
+
               resolve(res);
             
             },
-          error: (err) => { reject(err); }
+          error: (err) => { reject(err); this.submitted = false; this.error = false; }
           
         });
     });
