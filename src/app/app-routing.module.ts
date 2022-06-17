@@ -60,7 +60,7 @@ const routes: Routes = [
 
 
   //TEMP
-  {path: 'workerapp', component: WorkerappComponent},
+  {path: 'workerapp', component: WorkerappComponent, canActivate: [RoleGuardService], data:{roles:[UserRole.MANAGER,UserRole.ADMIN,UserRole.EMPLOYEE]}},
   
   {path: 'manage-employees',component:ManageEmployeesComponent,canActivate: [RoleGuardService], data:{roles:[UserRole.MANAGER,UserRole.HR_MANAGER,UserRole.ADMIN,UserRole.EMPLOYEE]}},
   {path: 'manage-employees/addEmployee',component:AddEmployeeFormComponent,canActivate: [RoleGuardService], data:{roles:[UserRole.MANAGER,UserRole.HR_MANAGER,UserRole.ADMIN,UserRole.EMPLOYEE]}},
