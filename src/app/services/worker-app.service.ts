@@ -76,20 +76,26 @@ export class WorkerAppService {
   {
     return new Promise<void>((resolve, reject) => {
       this.http.post(environment.apiUrl + '/consumptions/', meters, {responseType: 'text'}).subscribe({
-          next: (res: any) => { console.log(res); resolve(res); },
+          next: (res: any) =>
+            { 
+              console.log('post');
+              this.patchPlanning();
+              resolve(res);
+              
+            },
           error: (err) => { reject(err); console.log('NAY'); }
         });
     });
 
   }
 
-  public patchPlanning(id: number)
+  public patchPlanning()
   {
     return new Promise<void>((resolve, reject) => 
     {
-      this.http.patch(environment.apiUrl + '/plannings/' + id, {status: PlanningStatus.DONE}, {responseType: 'text'}).subscribe(
+      this.http.patch(environment.apiUrl + '/plannings/' + this.planningID, {status: PlanningStatus.DONE}, {responseType: 'text'}).subscribe(
         {
-          next: (res: any) => { console.log(res); },
+          next: (res: any) => { console.log('patch'); resolve(res); },
           error: (err) => { reject(err); }
           
         });

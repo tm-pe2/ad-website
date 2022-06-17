@@ -33,10 +33,7 @@ export class CientPageComponent implements OnInit {
   submit(form: MeterAppForm): void
   { 
     this.service.postNewConsumtions(form);
-    this.service.patchPlanning(this.service.planningID);
-    
-    this.router.navigateByUrl('/workerapp');
-  
-  }
-}
 
+  }
+
+}
