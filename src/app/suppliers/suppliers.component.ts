@@ -16,13 +16,7 @@ export class SuppliersComponent implements OnInit {
   ngOnInit(): void {
     this.supplierService.loadSupplier();
   }
-  myName="Jeff";
   
-  getName()
-  {
-    alert(this.myName)
-  }
-
   gotToPage(pageName:string):void{
     this.router.navigate([`${pageName}`]);
 

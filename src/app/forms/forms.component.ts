@@ -215,11 +215,8 @@ export class FormsComponent implements OnInit {
     return new Date()
   }
 
-<<<<<<< HEAD
-=======
   public get MeterType() {
     return MeterType
   }
->>>>>>> main
 
 }

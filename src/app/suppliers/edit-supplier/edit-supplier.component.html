@@ -1,1 +1,1 @@
-<app-forms [title]="'Edit Supplier'" [type]="'suppliers'" [submitText]="'Edit'" [cancel]="true" (canceled)="backToHome()" (submitted)="onEditFormSubmit($event)"></app-forms>
+<app-forms [title]="'Edit Supplier'" [type]="'suppliers'" [submitText]="'Edit'" [cancel]="true" (canceled)="backToHome()" [supplier]="this.supplier" (submitted)="onEditFormSubmit($event)"></app-forms>

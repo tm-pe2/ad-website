@@ -6,7 +6,6 @@ import { SupplierService } from '../../services/supplier.service'
 import { SuppliersForm } from 'src/app/interfaces/form';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { FormsComponent } from 'src/app/forms/forms.component';
 
 @Component({
   selector: 'app-edit-supplier',
@@ -18,6 +17,8 @@ export class EditSupplierComponent implements OnInit {
   @Input() parent?: SuppliersComponent;
   constructor(public supplierService : SupplierService, public router : Router, private actRouter : ActivatedRoute) { } 
   
+  supplier?: SuppliersForm;
+
   parameterSub: Subscription | undefined;
   supId = 0;
 
@@ -28,11 +29,7 @@ export class EditSupplierComponent implements OnInit {
     console.log(sup.id);
     this.supplierService.editSupplier(form);
   }
-
-  onCancelAddSupplier() {
-    /* this.parent?.changeStatusOnCancelAddSupplier(); */
-  }
-
+  
   ngOnInit(): void {
     this.parameterSub = this.actRouter.params.subscribe(params => {
       this.supId = +params['id'];
