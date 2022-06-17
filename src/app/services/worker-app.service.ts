@@ -17,8 +17,6 @@ export class WorkerAppService {
   // Variables
   planningItem?: Planning;
   planningList: Array<Planning> = [];
-  userIDs: Array<number> = [];
-  consumption: Array<Consumption> = [];
   meters: Array<Meter> = [];
 
   selectedUser : number = 0;
@@ -42,7 +40,8 @@ export class WorkerAppService {
               if (plan.status == 1){ 
                 //check if this entry is already in the list or not
                 for (let i = 0; i < this.planningList.length; i++) {
-                  if(plan.user.id == this.planningList[i].user.id){
+                  if(plan.id == this.planningList[i].id
+                      && plan.date == this.planningList[i].date){
                     unique = false;
                   }
                 }
@@ -51,7 +50,6 @@ export class WorkerAppService {
                 {
                   console.log(plan); 
                   this.planningList.push(plan); 
-
                 } 
                 
               }
@@ -76,37 +74,20 @@ export class WorkerAppService {
   {
     return new Promise<void>((resolve, reject) => {
       this.http.post(environment.apiUrl + '/consumptions/', meters, {responseType: 'text'}).subscribe({
-          next: (res: any) =>
-            { 
-              console.log('post');
-              this.patchPlanning();
-              resolve(res);
-              
-            },
+          next: (res: any) => { console.log(res); resolve(res); },
           error: (err) => { reject(err); console.log('NAY'); }
         });
     });
 
   }
 
-  public patchPlanning()
+  public patchPlanning(id: number)
   {
     return new Promise<void>((resolve, reject) => 
     {
-      this.http.patch(environment.apiUrl + '/plannings/' + this.planningID, {status: PlanningStatus.DONE}, {responseType: 'text'}).subscribe(
+      this.http.patch(environment.apiUrl + '/plannings/' + id, {status: PlanningStatus.DONE}, {responseType: 'text'}).subscribe(
         {
-          next: (res: any) =>
-            { 
-              for (let i = 0; i < this.planningList.length; i++)
-              {
-                if (this.planningList[i].id == this.planningID)
-                { this.planningList.splice(i, 1); }
-
-              }
-              console.log('patch');
-              resolve(res);
-            
-            },
+          next: (res: any) => { console.log(res); },
           error: (err) => { reject(err); }
           
         });
