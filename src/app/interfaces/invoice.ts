@@ -27,6 +27,7 @@ export enum INVOICE_STATUS {
     DUE = 1,
     LATE,
     PAID,
+    REMINDED
 }
 
 interface Tariff {
