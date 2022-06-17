@@ -35,11 +35,6 @@ export class ManageinvoicesComponent implements OnInit {
   ngOnInit(): void {
     this.LoadData();
   }
- 
-  dateFormat(date : Date) : string
-  {
-    return formatDate(date, 'MM/dd/yyyy', 'en');
-  }
 
   GetCustomerType(customer : CustomerType | undefined) : string
   {
