@@ -52,7 +52,6 @@ export class WorkerAppService {
                 
                 if(unique) 
                 {
-                  console.log(plan); 
                   this.planningList.push(plan); 
 
                 } 
@@ -60,8 +59,6 @@ export class WorkerAppService {
               }
               
             });
-
-            console.log(this.planningList);
 
             resolve();
           },
@@ -81,12 +78,11 @@ export class WorkerAppService {
       this.http.post(environment.apiUrl + '/consumptions/', meters, {responseType: 'text'}).subscribe({
           next: (res: any) =>
             { 
-              console.log('post');
               this.patchPlanning();
               resolve(res);
               
             },
-          error: (err) => { reject(err); console.log('NAY'); this.submitted = false; this.error = false; }
+          error: (err) => { reject(err); this.submitted = false; this.error = false; }
         });
     });
 
@@ -106,8 +102,6 @@ export class WorkerAppService {
                 { this.planningList.splice(i, 1); }
 
               }
-              console.log('patch');
-              
               this.submitted = false;
               this.posted = true;
 
