@@ -38,13 +38,13 @@ export class WorkerAppService {
           {
             this.planningList.splice(0);
             res.forEach(plan => {
-              console.log("planningList lenghth: " + this.planningList.length)
               let unique = true;
               if (plan.status == 1){ 
+
+                //check if this entry is already in the list or not
                 for (let i = 0; i < this.planningList.length; i++) {
                   if(plan.user.id == this.planningList[i].user.id){
                     unique = false;
-                    console.log(plan.user.id + " checked")
                   }
                 }
                 
@@ -81,11 +81,12 @@ export class WorkerAppService {
           next: (res: Consumption[]) =>
           {
             consumptions = res;
-
-            this.meters.splice(0);
+            console.log(consumptions)
+            this.meters = []
             for (let i = 0; i < consumptions.length; i++)
             { this.meters.push(consumptions[i].meter); }
 
+            
             resolve();
           
           }, error: (err) => { reject(err); }
