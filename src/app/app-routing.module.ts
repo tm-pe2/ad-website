@@ -26,6 +26,7 @@ import { SuppliersComponent } from './suppliers/suppliers.component';
 import { EditEmployeeFormComponent } from './manage-employees/edit-employee-form/edit-employee-form.component';
 import { EmployeeCardComponent } from './manage-employees/employee-card/employee-card.component';
 import { AddEmployeeFormComponent } from './manage-employees/add-employee-form/add-employee-form.component';
+import { WorkerappComponent } from './workerapp/workerapp.component';
 
 const routes: Routes = [
   {path: "", redirectTo: "dashboard", pathMatch: "full"},
@@ -41,6 +42,14 @@ const routes: Routes = [
     data: { roles: [UserRole.ADMIN, UserRole.TECHNICIAN] }, // E.g. how to user roleguard service
   },
 
+    
+  {
+    path: 'manageinvoices', 
+    component: ManageinvoicesComponent, 
+    canActivate: [RoleGuardService], 
+    data: {roles: [UserRole.ADMIN, UserRole.MANAGER, UserRole.EMPLOYEE, UserRole.CUSTOMER]}
+  },
+
   {path: 'support', component: SupportComponent},
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: LogoutComponent},
@@ -48,13 +57,23 @@ const routes: Routes = [
   {path: 'ticketing/:userType', component: TicketingComponent},
   {path: 'graphs', component: GraphsComponent, canActivate: [RoleGuardService], data: { roles: [UserRole.CUSTOMER] }},
   {path: 'statuscode/:statusCode', component: StatuscodepageComponent},
+
+
+  //TEMP
+  {path: 'workerapp', component: WorkerappComponent},
   
   {path: 'manage-employees',component:ManageEmployeesComponent,canActivate: [RoleGuardService], data:{roles:[UserRole.MANAGER,UserRole.HR_MANAGER,UserRole.ADMIN,UserRole.EMPLOYEE]}},
   {path: 'manage-employees/addEmployee',component:AddEmployeeFormComponent,canActivate: [RoleGuardService], data:{roles:[UserRole.MANAGER,UserRole.HR_MANAGER,UserRole.ADMIN,UserRole.EMPLOYEE]}},
   {path: 'manage-employees/editEmployees/:id',component:EditEmployeeFormComponent,canActivate: [RoleGuardService], data:{roles:[UserRole.MANAGER,UserRole.HR_MANAGER,UserRole.ADMIN,UserRole.EMPLOYEE]}},
   {path: 'manage-employees/details/:id',component:EmployeeCardComponent,canActivate: [RoleGuardService], data:{roles:[UserRole.MANAGER,UserRole.HR_MANAGER,UserRole.ADMIN,UserRole.EMPLOYEE]}},
+<<<<<<< HEAD
   
   {path: 'manageinvoices', component: ManageinvoicesComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER, UserRole.EMPLOYEE]}},
+=======
+
+
+
+>>>>>>> main
   {path: 'manage-customers',component:CustomerComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER, UserRole.EMPLOYEE]}},
   {path: 'consumption-estimation',component:ConsumptionEstimationComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.CUSTOMER]}},
   {path: 'add-suplier', component: AddSuplierComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},

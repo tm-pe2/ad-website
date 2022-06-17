@@ -250,7 +250,7 @@
             </mat-form-field>
             <mat-form-field appearance="standard" class="self-start">
                 <mat-label>Birthdate</mat-label>
-                <input matInput [min]="this.mindate" formControlName="birth_date" [max]="this.maxEmployeeDate"
+                <input matInput [min]="this.mindate" formControlName="birth_date" (dateChange)="onDatesChange()" [max]="this.maxEmployeeDate"
                     [matDatepicker]="picker" placeholder="MM/DD/YY">
                 <mat-hint>MM/DD/YY</mat-hint>
                 <mat-datepicker-toggle matSuffix class="" [for]="picker"></mat-datepicker-toggle>
@@ -264,7 +264,7 @@
         <div>
             <mat-form-field appearance="standard" class="self-start pr-10">
                 <mat-label>Hire Date</mat-label>
-                <input matInput [min]="this.mindate" formControlName="hire_date" [max]="this.CurrentDate"
+                <input matInput [min]="this.mindate" formControlName="hire_date" (dateChange)="onDatesChange()" [max]="this.CurrentDate"
                     [matDatepicker]="hireDatePicker" placeholder="MM/DD/YY">
                 <mat-hint>MM/DD/YY</mat-hint>
                 <mat-datepicker-toggle matSuffix class="" [for]="hireDatePicker"></mat-datepicker-toggle>

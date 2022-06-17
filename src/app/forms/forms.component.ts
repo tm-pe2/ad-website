@@ -8,6 +8,7 @@ import { Role } from '../interfaces/employee';
 import { EmployeeForm } from '../interfaces/form';
 import { MeterAppForm, RegisterForm, SuppliersForm } from '../interfaces/form';
 import { Meter } from '../interfaces/meter';
+import { UserRole } from '../interfaces/User';
 
 @Component({
   selector: 'app-forms[type]',
@@ -24,6 +25,7 @@ export class FormsComponent implements OnInit {
   @Input() cancel?: Boolean;
   @Input() editEmployee?: EmployeeForm;
   @Input() customer?: RegisterForm;
+  @Input() supplier?: SuppliersForm;
 
   mindate?: Date;
   maxEmployeeDate?: Date;
@@ -69,7 +71,7 @@ export class FormsComponent implements OnInit {
       this.cities = data.sort((a, b) => a.city_name.localeCompare(b.city_name));
     });
     this.http.get<Role[]>(environment.apiUrl + "/roles").subscribe(data => {
-      this.roles = data;
+      this.roles = data.filter((role: Role) => role.id !== UserRole.CUSTOMER);
     });
     let curDate = new Date();
     curDate.setHours(24, 0, 0, 0)
@@ -89,6 +91,18 @@ export class FormsComponent implements OnInit {
     if(this.customer){
       this.form.patchValue(this.customer);
     } 
+    if(this.supplier){
+      this.form.patchValue(this.supplier);
+    }
+    if(this.type === "employees"){
+      this.form.get("birth_date")?.addValidators(this.validateHireDateBirthDate());
+      this.form.get("hire_date")?.addValidators(this.validateHireDateBirthDate());
+    }
+  }
+
+  onDatesChange(){
+      this.form.get("hire_date")?.updateValueAndValidity();
+      this.form.get("birth_date")?.updateValueAndValidity();
   }
 
 
@@ -198,6 +212,23 @@ export class FormsComponent implements OnInit {
       const confirmPassword = control.root.get('confirmPassword');
       if (password && confirmPassword) {
         return password.value === confirmPassword.value ? null : { passwordMismatch: true };
+      }
+      return null;
+    }
+  }
+
+  validateHireDateBirthDate(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const birthDate = control.root.get('birth_date');
+      const hireDate = control.root.get('hire_date');
+
+      if (birthDate && hireDate) {
+        const hireDateOb = new Date(hireDate.value);
+        const birthDateOb = new Date(birthDate.value);
+        const ageDiff = hireDateOb.getTime() - birthDateOb.getTime();
+        const diffDate = new Date(ageDiff);
+        const yearsDiff = Math.abs(diffDate.getUTCFullYear() - 1970);
+        return (yearsDiff >= 16) ? null : { hireDateBeforeBirthDate: true };
       }
       return null;
     }

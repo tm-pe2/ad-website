@@ -1,140 +1,33 @@
 <!-- MANAGE INVOICES -->
-
-<div class="grid overflow-hidden grid-cols-10 grid-rows-6 gap-px h-screen">
-    <div class="box row-start-1 row-end-1 col-start-1 col-end-11">
-        <!--Header-->
-    </div>
-    <div class="box row-start-2 row-end-6 col-start-1 col-end-3 overflow-y-auto shadow">
+    <!-- <div class="grid overflow-hidden grid-cols-10 grid-rows-6 gap-px h-screen"> -->
     
-
-    </div>
     <div class="box row-start-2 row-end-6 col-start-3 col-end-11">
-        <div class="flex flex-wrap overflow-y-auto max-h-full border-md shadow">
-            
-            <div *ngIf="invoicedetails.id != 0;">
-                <table class="w-full rounded-lg shadow">
-                    <thead class="bg-gray-50 border-b-2 border-gray-200 sticky top-0">
-                        <th class="p-3 text-sm font-semibold tracking-wide text-left">ID: {{invoicedetails.id}}</th>
-                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Customer: {{invoicedetails.customerName}}</th>
-                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Date: {{invoicedetails.date}}</th>
-                    </thead>
-                    <tr class="shadow rounded-lg hover:bg-gray-200">
-                        <td></td><td class="p-3 text-sm">Supplier: {{invoicedetails.supplierName}}</td>
-                        <td class="p-3 text-sm">Due Date: {{invoicedetails.dueDate}}</td>
-                    </tr>
-                    <tr class="shadow rounded-lg hover:bg-gray-200">
-                        <td class="p-3 text-sm">Amount of gas: {{invoicedetails.gasAmount}} L</td>
-                        <td class="p-3 text-sm">Amount of electricity: {{invoicedetails.electricityAmount}} kWh</td>
-                        <td class="p-3 text-sm">Price: €{{invoicedetails.price}}</td>
-                    </tr>
-                    <tr class="shadow rounded-lg hover:bg-gray-200">
-                        <td class="p-3 text-sm">BTW: €{{invoicedetails.tax}}</td>
-                        <td class="p-3 text-sm">Total Price: €{{invoicedetails.price + invoicedetails.tax}}</td>
-                        <td class="w-20 p-3 text-sm"><!--Chose one of the 4 buttons-->
-                            <!--Not Generated-->
-                            <button class="p-1.5 text-xs font-medium uppercase tracking-wider text-gray-800 bg-gray-700 rounded-lg bg-opacity-50"
-                                *ngIf="invoicedetails.statusID == 0;">
-                                {{invoicedetails.status}}
-                            </button>
-                            <!--Generated-->
-                            <button class="p-1.5 text-xs font-medium uppercase tracking-wider text-gray-800 bg-blue-700 rounded-lg bg-opacity-50"
-                                *ngIf="invoicedetails.statusID == 1;">
-                                {{invoicedetails.status}}
-                            </button>
-                            <!--Paid-->
-                            <button class="p-1.5 text-xs font-medium uppercase tracking-wider text-gray-800 bg-green-700 rounded-lg bg-opacity-50"
-                                *ngIf="invoicedetails.statusID == 2;">
-                                {{invoicedetails.status}}
-                            </button>
-                            <!--Pending-->
-                            <button class="p-1.5 text-xs font-medium uppercase tracking-wider text-gray-800 bg-red-700 rounded-lg bg-opacity-50"
-                                *ngIf="invoicedetails.statusID == 3;">
-                                {{invoicedetails.status}}
-                            </button></td>
-                    </tr>
-                </table>
-            </div>
+        <div class="flex flex-wrap overflow-y-auto max-h-full border-md shadow">            
             <table class="w-full rounded-lg shadow">
                 <thead class="bg-gray-50 border-b-2 border-gray-200 sticky top-0">
                     <tr>
-                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Date</th>
                         <th class="p-3 text-sm font-semibold tracking-wide text-left">Name</th>
-                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Private/Business</th>
-                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Price</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Period Start</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Period End</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Private/Company</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Type</th>
                         <th class="p-3 text-sm font-semibold tracking-wide text-left">Status</th>
-                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Details</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Download PDF</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Pay</th>
                         <!--th class="p-3 text-sm font-semibold tracking-wide text-left">Remove</th-->
                     </tr>
                 </thead>
-                <tr>
-                    <th class="p-3 text-sm font-semibold tracking-wide text-left"></th>
-                    <th class="p-3 text-sm font-semibold tracking-wide text-left"><input placeholder="Search Customer Name" [(ngModel)]="searchCustomer"/></th>
-                    <th class="p-3 text-sm font-semibold tracking-wide text-left"></th>
-                    <th class="p-3 text-sm font-semibold tracking-wide text-left"></th>
-                    <th class="p-3 text-sm font-semibold tracking-wide text-left"><!--input placeholder="Filter status" [(ngModel)]="filterStatus"/-->
-                        <select name="status" [(ngModel)]="statusIDFilter">
-                            <option value="-1">--filter--</option>
-                            <option value="0">Not Generated</option>
-                            <option value="1">Generated</option>
-                            <option value="2">Pending</option>
-                            <option value="3">Paid</option>
-                        </select>
-                    </th>
-                    <th class="p-3 text-sm font-semibold tracking-wide text-left"></th>
-                    <!--th class="p-3 text-sm font-semibold tracking-wide text-left"></th-->
-                </tr>
-                <tbody *ngFor="let invoiceX of invoices; let j = index;">
-                    <tr class="shadow rounded-lg hover:bg-gray-200" *ngIf="0 <= invoiceX.CustomerName.toLowerCase().search(searchCustomer.toLowerCase()) && (invoiceX.StatusID == statusIDFilter || statusIDFilter == -1)">
-                        <td class="w-20 p-3 text-sm">
-                            {{invoiceX.Date}}
-                        </td>
-                        <td class="p-3 text-sm">
-                            {{invoiceX.CustomerName}}
-                        </td>
-                        <td class="p-3 text-sm">
-                            <!--client is a bussiness-->
-                            <button class="p-1.5 text-xs font-medium uppercase tracking-wider text-yellow-800 bg-yellow-200 rounded-lg bg-opacity-50 hover:underline"
-                                *ngIf="invoiceX.ClientType == 'Business'">
-                                business
-                            </button>
-                             <!--private client-->
-                             <button class="p-1.5 text-xs font-medium uppercase tracking-wider text-gray-800 bg-gray-200 rounded-lg bg-opacity-50"
-                                *ngIf="invoiceX.ClientType == 'Private'">
-                                private
-                            </button>
-                        </td>
-                        <td class="w-20 p-3 text-sm">
-                            ${{invoiceX.Price}}
-                        </td>
-                        <td class="w-20 p-3 text-sm">
-                            <!--Chose one of the 4 buttons-->
-                            <!--Not Generated-->
-                            <button class="p-1.5 text-xs font-medium uppercase tracking-wider text-gray-800 bg-gray-700 rounded-lg bg-opacity-50"
-                                *ngIf="invoiceX.StatusID == 0;">
-                                {{invoiceX.Status}}
-                            </button>
-                            <!--Generated-->
-                            <button class="p-1.5 text-xs font-medium uppercase tracking-wider text-gray-800 bg-blue-700 rounded-lg bg-opacity-50"
-                                *ngIf="invoiceX.StatusID == 1;">
-                                {{invoiceX.Status}}
-                            </button>
-                            <!--Paid-->
-                            <button class="p-1.5 text-xs font-medium uppercase tracking-wider text-gray-800 bg-green-700 rounded-lg bg-opacity-50"
-                                *ngIf="invoiceX.StatusID == 2;">
-                                {{invoiceX.Status}}
-                            </button>
-                            <!--Pending-->
-                            <button class="p-1.5 text-xs font-medium uppercase tracking-wider text-gray-800 bg-red-700 rounded-lg bg-opacity-50"
-                                *ngIf="invoiceX.StatusID == 3;">
-                                {{invoiceX.Status}}
-                            </button>
-                        </td>
-                        <td class="w-20 p-3 text-sm">
-                            <button class="font-bold text-blue-500 hover:underline" (click)="open(invoiceX.id)">details</button>
-                        </td>
-                        <!--td class="w-20 p-3 text-sm">
-                            <button class="font-bold text-red-500 hover:underline">remove</button>
-                        </td-->
+                <tbody *ngFor="let invoice of invoices; let i = index">
+                    <!-- For invoice manager person -->
+                    <tr>
+                        <td>{{invoice.customer?.first_name + ' ' + invoice.customer?.last_name}}</td>
+                        <td>{{invoice.period_start | date:'dd/MM/yyyy'}}</td>
+                        <td>{{invoice.period_end | date:'dd/MM/yyyy'}}</td>
+                        <td>{{GetCustomerType(invoice.customer?.customer_type)}}</td>
+                        <td>{{GetInvoiceType(invoice.type)}}</td>
+                        <td>{{GetInvoiceStatus(invoice.status)}}</td>
+                        <td><button class="link text-blue-700" (click)="OnClickDetails(i)">Download PDF</button></td>
+                        <td><button class="link text-blue-700" (click)="UpdatePayment(i)" *ngIf="((CheckInvoiceStatus(invoice.status) && UserMan) || CheckUserMan(invoice.customer?.id) && CheckInvoiceStatus(invoice.status))">Pay</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -143,4 +36,5 @@
     <div class="box row-start-6 row-end-6 col-start-1 col-end-11">
         <!--Footer-->
     </div>
-</div>
+
+<!-- </div> -->
