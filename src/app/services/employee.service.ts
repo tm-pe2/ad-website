@@ -51,8 +51,8 @@ export class EmployeeService {
     this.http.put(environment.apiUrl + '/employees',employee).subscribe(
       {
         next:(res : any) => {
-
           console.log("Emp edited", res);
+          this.loadEmp();
         },
         error:(err) => {
           console.log("error:", err);
@@ -65,12 +65,14 @@ export class EmployeeService {
 
 
   deleteEmp(emp : EmployeeForm){
-    emp.active = false;
     console.log(emp);
-    this.http.put(environment.apiUrl + '/employees',emp).subscribe(
+    this.http.patch(environment.apiUrl + '/users/' + emp.id, {
+      active: false
+    }).subscribe(
       {
         next:(res : any) => {
           console.log("Emp gone", res);
+          this.loadEmp();
         },
         error:(err) => {
           console.log("error test:", err);
