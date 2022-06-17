@@ -28,3 +28,8 @@ export enum INVOICE_STATUS {
     LATE,
     PAID,
 }
+
+export interface InvoicesStatuses {
+    invoice_id: number,
+    status_id: INVOICE_STATUS
+}

@@ -1,15 +1,6 @@
 <!-- MANAGE INVOICES -->
 <div *ngIf="!LogonError">
-    <div *ngIf="DetailsClicked">
-        <p>Invoice Period Start: {{dateFormat(invoices[DetailsID].period_start)}}</p>
-        <p>Invoice Period End: {{dateFormat(invoices[DetailsID].period_end)}}</p>
-        <p>Invoice Price (no tax): {{invoices[DetailsID].price}}</p>
-        <p>Invoice Tax: {{invoices[DetailsID].tax}}%</p>
-        <p>Invoice End Price: {{(invoices[DetailsID].tax / 100) * invoices[DetailsID].price + invoices[DetailsID].price}}</p>
-        <p>Invoice Due Date: {{dateFormat(invoices[DetailsID].due_date)}}</p>
-        <button class="link text-blue-700" >Download</button>
-    </div>
-    
+   
     <!-- <div class="grid overflow-hidden grid-cols-10 grid-rows-6 gap-px h-screen"> -->
     
     <div class="box row-start-2 row-end-6 col-start-3 col-end-11">
@@ -20,9 +11,10 @@
                         <th class="p-3 text-sm font-semibold tracking-wide text-left">Period Start</th>
                         <th class="p-3 text-sm font-semibold tracking-wide text-left">Period End</th>
                         <th class="p-3 text-sm font-semibold tracking-wide text-left">Private/Company</th>
-                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Price</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Type</th>
                         <th class="p-3 text-sm font-semibold tracking-wide text-left">Status</th>
-                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Details</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Download PDF</th>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Pay</th>
                         <!--th class="p-3 text-sm font-semibold tracking-wide text-left">Remove</th-->
                     </tr>
                 </thead>
@@ -32,9 +24,10 @@
                         <td>{{dateFormat(invoice.period_start)}}</td>
                         <td>{{dateFormat(invoice.period_end)}}</td>
                         <td>{{GetCustomerType(invoice.customer.customer_type)}}</td>
-                        <td>{{invoice.price}}&euro;</td>
-                        <td>{{GetInvoiceType(invoice.status)}}</td>
-                        <td><button class="link text-blue-700" (click)="OnClickDetails(i)">Details</button></td>
+                        <td>{{GetInvoiceType(invoice.type)}}</td>
+                        <td>{{GetInvoiceStatus(invoice.status)}}</td>
+                        <td><button class="link text-blue-700" (click)="OnClickDetails(i)">Download PDF</button></td>
+                        <td><button class="link text-blue-700" (click)="UpdatePayment(i)" *ngIf="((CheckInvoiceStatus(invoice.status) && UserMan) || CheckUserMan(invoice.customer.user_id) && CheckInvoiceStatus(invoice.status))">Pay</button></td>
                     </tr>
                 </tbody>
             </table>
