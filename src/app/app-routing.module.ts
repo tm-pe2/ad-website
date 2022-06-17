@@ -42,6 +42,14 @@ const routes: Routes = [
     data: { roles: [UserRole.ADMIN, UserRole.TECHNICIAN] }, // E.g. how to user roleguard service
   },
 
+    
+  {
+    path: 'manageinvoices', 
+    component: ManageinvoicesComponent, 
+    canActivate: [RoleGuardService], 
+    data: {roles: [UserRole.ADMIN, UserRole.MANAGER, UserRole.EMPLOYEE, UserRole.CUSTOMER]}
+  },
+
   {path: 'support', component: SupportComponent},
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: LogoutComponent},
@@ -60,8 +68,7 @@ const routes: Routes = [
   {path: 'manage-employees/details/:id',component:EmployeeCardComponent,canActivate: [RoleGuardService], data:{roles:[UserRole.MANAGER,UserRole.HR_MANAGER,UserRole.ADMIN,UserRole.EMPLOYEE]}},
 
 
-  
-  {path: 'manageinvoices', component: ManageinvoicesComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER, UserRole.EMPLOYEE]}},
+
   {path: 'manage-customers',component:CustomerComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER, UserRole.EMPLOYEE]}},
   {path: 'consumption-estimation',component:ConsumptionEstimationComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.CUSTOMER]}},
   {path: 'add-suplier', component: AddSuplierComponent, canActivate: [RoleGuardService], data: {roles: [UserRole.ADMIN, UserRole.MANAGER]}},
