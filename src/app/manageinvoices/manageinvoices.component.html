@@ -27,7 +27,7 @@
                         <td>{{GetInvoiceType(invoice.type)}}</td>
                         <td>{{GetInvoiceStatus(invoice.status)}}</td>
                         <td><button class="link text-blue-700" (click)="OnClickDetails(i)">Download PDF</button></td>
-                        <td><button class="link text-blue-700" (click)="UpdatePayment(i)" *ngIf="((CheckInvoiceStatus(invoice.status) && UserMan) || CheckUserMan(invoice.customer.user_id) && CheckInvoiceStatus(invoice.status))">Pay</button></td>
+                        <td><button class="link text-blue-700" (click)="UpdatePayment(i)" *ngIf="((CheckInvoiceStatus(invoice.status) && UserMan) || CheckUserMan(invoice.customer.id) && CheckInvoiceStatus(invoice.status))">Pay</button></td>
                     </tr>
                 </tbody>
             </table>
