@@ -8,6 +8,7 @@
             <table class="w-full rounded-lg shadow">
                 <thead class="bg-gray-50 border-b-2 border-gray-200 sticky top-0">
                     <tr>
+                        <th class="p-3 text-sm font-semibold tracking-wide text-left">Name</th>
                         <th class="p-3 text-sm font-semibold tracking-wide text-left">Period Start</th>
                         <th class="p-3 text-sm font-semibold tracking-wide text-left">Period End</th>
                         <th class="p-3 text-sm font-semibold tracking-wide text-left">Private/Company</th>
@@ -21,6 +22,7 @@
                 <tbody *ngFor="let invoice of invoices; let i = index">
                     <!-- For invoice manager person -->
                     <tr>
+                        <td>{{invoice.customer?.first_name + ' ' + invoice.customer?.last_name}}</td>
                         <td>{{invoice.period_start | date:'dd/MM/yyyy'}}</td>
                         <td>{{invoice.period_end | date:'dd/MM/yyyy'}}</td>
                         <td>{{GetCustomerType(invoice.customer?.customer_type)}}</td>
