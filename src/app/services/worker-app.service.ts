@@ -42,7 +42,7 @@ export class WorkerAppService {
               if (plan.status == 1){ 
                 //check if this entry is already in the list or not
                 for (let i = 0; i < this.planningList.length; i++) {
-                  if(plan.user.id == this.planningList[i].user.id){
+                  if(plan.id == this.planningList[i].id /*&& plan.date == this.planningList[i].date*/){
                     unique = false;
                   }
                 }
@@ -111,6 +111,21 @@ export class WorkerAppService {
           
         });
     });
+
+  }
+
+  public filterMeters(givenMeters: Meter[]): Meter[]
+  {
+    let filtered: Array<Meter> = [];
+
+    givenMeters.forEach(meter => 
+      {
+        if (!meter.physical_id == null)
+        { filtered.push(meter); }
+
+      });
+
+    return filtered;
 
   }
 
