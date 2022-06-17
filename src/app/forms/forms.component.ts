@@ -59,7 +59,7 @@ export class FormsComponent implements OnInit {
     service_type: new FormControl('', [Validators.required]),
     vat_number: new FormControl('', [Validators.required, Validators.pattern(/^BE[0-9]{10}$/)]),
 
-    hire_date: new FormControl('', [Validators.required, this.validateHireDateBirthDate()]),
+    hire_date: new FormControl('', [Validators.required]),
     role: new FormControl('', [Validators.required]),
     salary: new FormControl('', [Validators.required]),
   })
@@ -94,6 +94,15 @@ export class FormsComponent implements OnInit {
     if(this.supplier){
       this.form.patchValue(this.supplier);
     }
+    if(this.type === "employees"){
+      this.form.get("birth_date")?.addValidators(this.validateHireDateBirthDate());
+      this.form.get("hire_date")?.addValidators(this.validateHireDateBirthDate());
+    }
+  }
+
+  onDatesChange(){
+      this.form.get("hire_date")?.updateValueAndValidity();
+      this.form.get("birth_date")?.updateValueAndValidity();
   }
 
 
@@ -212,8 +221,14 @@ export class FormsComponent implements OnInit {
     return (control: AbstractControl): ValidationErrors | null => {
       const birthDate = control.root.get('birth_date');
       const hireDate = control.root.get('hire_date');
+
       if (birthDate && hireDate) {
-        return (new Date(birthDate.value) < new Date(hireDate.value)) ? null : { hireDateBeforeBirthDate: true };
+        const hireDateOb = new Date(hireDate.value);
+        const birthDateOb = new Date(birthDate.value);
+        const ageDiff = hireDateOb.getTime() - birthDateOb.getTime();
+        const diffDate = new Date(ageDiff);
+        const yearsDiff = Math.abs(diffDate.getUTCFullYear() - 1970);
+        return (yearsDiff >= 16) ? null : { hireDateBeforeBirthDate: true };
       }
       return null;
     }
