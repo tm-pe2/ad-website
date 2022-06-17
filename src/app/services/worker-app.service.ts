@@ -114,19 +114,4 @@ export class WorkerAppService {
 
   }
 
-  public filterMeters(givenMeters: Meter[]): Meter[]
-  {
-    let filtered: Array<Meter> = [];
-
-    givenMeters.forEach(meter => 
-      {
-        if (!meter.physical_id == null)
-        { filtered.push(meter); }
-
-      });
-
-    return filtered;
-
-  }
-
 }

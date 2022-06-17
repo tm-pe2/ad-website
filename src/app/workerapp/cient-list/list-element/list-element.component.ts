@@ -33,7 +33,7 @@ export class ListElementComponent implements OnInit {
   {
     this.service.meters = [];
     this.service.planningItem = this.planning;
-    this.service.meters = this.service.filterMeters(this.planning.meters);
+    this.service.meters = this.planning.meters;
     this.service.selectedUser = this.planning.user.id;
     this.service.planningID = this.planning.id;
   
