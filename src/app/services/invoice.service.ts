@@ -33,9 +33,10 @@ export class InvoiceService {
 
   UpdateInvoice(invoice: Invoice) : Observable<any>
   {
-    let buf : InvoicesStatuses = {invoice_id: invoice.id, status_id: INVOICE_STATUS.PAID};
+    //let buf : InvoicesStatuses = {invoice_id: invoice.id, status_id: INVOICE_STATUS.PAID};
     //const headers = { 'content-type': 'application/json'};
     //return this.http.post<InvoicesStatuses>(environment.apiUrl + '/invoices/' + invoice.id , buf, {'headers':headers});
-    return this.http.post<InvoicesStatuses>(environment.apiUrl + '/invoices/' + invoice.id , buf);
+    console.log(INVOICE_STATUS.PAID);
+    return this.http.post<InvoicesStatuses>(environment.apiUrl + '/invoices/' + invoice.id , {'invoice_id': invoice.id, 'status_id': INVOICE_STATUS.PAID});
   }
 }

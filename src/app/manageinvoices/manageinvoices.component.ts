@@ -105,7 +105,10 @@ export class ManageinvoicesComponent implements OnInit {
 
   UpdatePayment(i : number)
   {
-    this.invoiceService.UpdateInvoice(this.invoices[i]);
+    this.invoiceService.UpdateInvoice(this.invoices[i]).subscribe(response => {
+      console.log("Invoice Updated");
+      window.location.reload();
+    });
   }
   
 }
