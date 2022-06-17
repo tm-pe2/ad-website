@@ -21,8 +21,8 @@
                 <tbody *ngFor="let invoice of invoices; let i = index">
                     <!-- For invoice manager person -->
                     <tr>
-                        <td>{{dateFormat(invoice.period_start)}}</td>
-                        <td>{{dateFormat(invoice.period_end)}}</td>
+                        <td>{{invoice.period_start | date:'dd/MM/yyyy'}}</td>
+                        <td>{{invoice.period_end | date:'dd/MM/yyyy'}}</td>
                         <td>{{GetCustomerType(invoice.customer?.customer_type)}}</td>
                         <td>{{GetInvoiceType(invoice.type)}}</td>
                         <td>{{GetInvoiceStatus(invoice.status)}}</td>
