@@ -33,20 +33,7 @@ export class ManageinvoicesComponent implements OnInit {
   AllViewer: UserRole[] = [UserRole.ACCOUNTANT,UserRole.ADMIN, UserRole.EMPLOYEE, UserRole.HR_MANAGER, UserRole.MANAGER, UserRole.SUPPORT, UserRole.TECHNICIAN];
 
   ngOnInit(): void {
-    let MyRole = this.auth.getUserRoleId();
-    if(MyRole?.some(r => this.AllViewer.includes(r))!)
-    {
-      this.invoiceService.GetAllInvoices().subscribe(invoices => {this.invoices = invoices; console.log(this.invoices);});
-    }
-    else if (MyRole?.includes(UserRole.CUSTOMER))
-    {
-      this.invoiceService.GetUserInvoices().subscribe(invoices => {this.invoices = invoices; console.log(this.invoices);});
-      this.UserMan = true;
-    }    
-    else
-    {
-      this.LogonError = true;
-    }
+    this.LoadData();
   }
  
   dateFormat(date : Date) : string
@@ -107,8 +94,25 @@ export class ManageinvoicesComponent implements OnInit {
   {
     this.invoiceService.UpdateInvoice(this.invoices[i]).subscribe(response => {
       console.log("Invoice Updated");
-      window.location.reload();
+      this.LoadData();
     });
   }
   
+  LoadData()
+  {
+    let MyRole = this.auth.getUserRoleId();
+    if(MyRole?.some(r => this.AllViewer.includes(r))!)
+    {
+      this.invoiceService.GetAllInvoices().subscribe(invoices => {this.invoices = invoices; console.log(this.invoices);});
+    }
+    else if (MyRole?.includes(UserRole.CUSTOMER))
+    {
+      this.invoiceService.GetUserInvoices().subscribe(invoices => {this.invoices = invoices; console.log(this.invoices);});
+      this.UserMan = true;
+    }    
+    else
+    {
+      this.LogonError = true;
+    }
+  }
 }
