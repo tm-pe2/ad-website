@@ -82,7 +82,7 @@ export class FormsComponent implements OnInit {
       this.meters?.forEach(meter => {
         this.meterAppFields.push(`meter_${meter.id.toString()}`);
         this.form.addControl(`meter_${meter.id.toString()}`, new FormControl('', [Validators.required]))
-        this.form.get(`meter_${meter.id.toString()}`)?.setValue(meter.value);
+        this.form.get(`meter_${meter.id.toString()}`)?.setValue(meter.index_value);
       });
     }
     if(this.editEmployee){
@@ -158,7 +158,7 @@ export class FormsComponent implements OnInit {
       this.meters?.forEach(meter => {
         filled.meters.push({
           id: meter.id,
-          value: this.form.get(`meter_${meter.id.toString()}`)?.value,
+          index_value: this.form.get(`meter_${meter.id.toString()}`)?.value,
           meter_type: meter.meter_type,
           physical_id: meter.physical_id
         })
