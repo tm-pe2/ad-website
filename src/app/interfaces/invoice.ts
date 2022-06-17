@@ -13,8 +13,8 @@ export interface Invoice {
     period_end: Date,
     status: INVOICE_STATUS,
     type: INVOICE_TYPE,
-    address: Address,
-    customer: Customer,
+    address?: Address,
+    customer?: Customer,
 }
 
 export enum INVOICE_TYPE {

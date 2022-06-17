@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -22,7 +22,6 @@ export class InvoiceService {
   {    
     return this.http.get<Invoice[]>(environment.apiUrl + '/invoices/self');
   }
-
   
   downloadInvoiceFile(invoiceId: number) {
     return this.http.get(
@@ -33,10 +32,6 @@ export class InvoiceService {
 
   UpdateInvoice(invoice: Invoice) : Observable<any>
   {
-    //let buf : InvoicesStatuses = {invoice_id: invoice.id, status_id: INVOICE_STATUS.PAID};
-    //const headers = { 'content-type': 'application/json'};
-    //return this.http.post<InvoicesStatuses>(environment.apiUrl + '/invoices/' + invoice.id , buf, {'headers':headers});
-    console.log(INVOICE_STATUS.PAID);
-    return this.http.post<InvoicesStatuses>(environment.apiUrl + '/invoices/' + invoice.id , {'invoice_id': invoice.id, 'status_id': INVOICE_STATUS.PAID});
+    return this.http.patch(environment.apiUrl + '/invoices/' + invoice.id , {status: INVOICE_STATUS.PAID},{responseType: "text"} );
   }
 }

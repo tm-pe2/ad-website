@@ -41,7 +41,7 @@ export class ManageinvoicesComponent implements OnInit {
     return formatDate(date, 'MM/dd/yyyy', 'en');
   }
 
-  GetCustomerType(customer : CustomerType) : string
+  GetCustomerType(customer : CustomerType | undefined) : string
   {
     return CustomerType[Number(customer)];
   }
@@ -72,7 +72,7 @@ export class ManageinvoicesComponent implements OnInit {
     this.DownloadPDF()
   }
 
-  CheckUserMan(i : number | undefined) : boolean
+  CheckUserMan(i : number | undefined) : boolean //if employee, check if it's their invoice (since they can work there AND have a contract there). I think?
   {
     console.log(i);
     if(i != this.auth.getUserId())
@@ -92,9 +92,13 @@ export class ManageinvoicesComponent implements OnInit {
 
   UpdatePayment(i : number)
   {
-    this.invoiceService.UpdateInvoice(this.invoices[i]).subscribe(response => {
-      console.log("Invoice Updated");
+    this.invoiceService.UpdateInvoice(this.invoices[i]).subscribe(() =>
+    {
       this.LoadData();
+    },
+    (error) =>
+    {
+      console.log("an error has occured!");
     });
   }
   

@@ -23,11 +23,11 @@
                     <tr>
                         <td>{{dateFormat(invoice.period_start)}}</td>
                         <td>{{dateFormat(invoice.period_end)}}</td>
-                        <td>{{GetCustomerType(invoice.customer.customer_type)}}</td>
+                        <td>{{GetCustomerType(invoice.customer?.customer_type)}}</td>
                         <td>{{GetInvoiceType(invoice.type)}}</td>
                         <td>{{GetInvoiceStatus(invoice.status)}}</td>
                         <td><button class="link text-blue-700" (click)="OnClickDetails(i)">Download PDF</button></td>
-                        <td><button class="link text-blue-700" (click)="UpdatePayment(i)" *ngIf="((CheckInvoiceStatus(invoice.status) && UserMan) || CheckUserMan(invoice.customer.id) && CheckInvoiceStatus(invoice.status))">Pay</button></td>
+                        <td><button class="link text-blue-700" (click)="UpdatePayment(i)" *ngIf="((CheckInvoiceStatus(invoice.status) && UserMan) || CheckUserMan(invoice.customer?.id) && CheckInvoiceStatus(invoice.status))">Pay</button></td>
                     </tr>
                 </tbody>
             </table>
