@@ -8,6 +8,7 @@ import { Role } from '../interfaces/employee';
 import { EmployeeForm } from '../interfaces/form';
 import { MeterAppForm, RegisterForm, SuppliersForm } from '../interfaces/form';
 import { Meter } from '../interfaces/meter';
+import { UserRole } from '../interfaces/User';
 
 @Component({
   selector: 'app-forms[type]',
@@ -58,7 +59,7 @@ export class FormsComponent implements OnInit {
     service_type: new FormControl('', [Validators.required]),
     vat_number: new FormControl('', [Validators.required, Validators.pattern(/^BE[0-9]{10}$/)]),
 
-    hire_date: new FormControl('', [Validators.required]),
+    hire_date: new FormControl('', [Validators.required, this.validateHireDateBirthDate()]),
     role: new FormControl('', [Validators.required]),
     salary: new FormControl('', [Validators.required]),
   })
@@ -70,7 +71,7 @@ export class FormsComponent implements OnInit {
       this.cities = data.sort((a, b) => a.city_name.localeCompare(b.city_name));
     });
     this.http.get<Role[]>(environment.apiUrl + "/roles").subscribe(data => {
-      this.roles = data;
+      this.roles = data.filter((role: Role) => role.id !== UserRole.CUSTOMER);
     });
     let curDate = new Date();
     curDate.setHours(24, 0, 0, 0)
@@ -202,6 +203,17 @@ export class FormsComponent implements OnInit {
       const confirmPassword = control.root.get('confirmPassword');
       if (password && confirmPassword) {
         return password.value === confirmPassword.value ? null : { passwordMismatch: true };
+      }
+      return null;
+    }
+  }
+
+  validateHireDateBirthDate(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const birthDate = control.root.get('birth_date');
+      const hireDate = control.root.get('hire_date');
+      if (birthDate && hireDate) {
+        return (new Date(birthDate.value) < new Date(hireDate.value)) ? null : { hireDateBeforeBirthDate: true };
       }
       return null;
     }
